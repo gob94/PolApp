@@ -9,5 +9,13 @@
     <string name="lblUserName">User Name</string>
     <string name="lblPassword">Password</string>
     <string name="lblSignUp">Sign Up</string>
+    <string name="title_activity_home_screen">HomeScreenActivity</string>
+    <string name="title_activity_clientes">ClientesActivity</string>
+    <string name="title_activity_agregar_clientes">AgregarClientesActivity</string>
+    <string name="title_activity_lista_clientes">ListaClientesActivity</string>
+    <string name="title_activity_productos">ProductosActivity</string>
+    <string name="title_activity_lista_productos">ListaProductosActivity</string>
+    <string name="title_activity_editar_productos">EditarProductosActivity</string>
+    <string name="title_activity_editar_cliente">EditarClienteActivity</string>
 
 </resources>

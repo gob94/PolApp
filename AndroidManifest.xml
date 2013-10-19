@@ -30,6 +30,38 @@
             android:name="com.thinksoft.login.SignUp"
             android:label="@string/title_activity_sign_up" >
         </activity>
+        <activity
+            android:name="com.thinksoft.polapp.HomeScreenActivity"
+            android:label="@string/title_activity_home_screen" >
+        </activity>
+        <activity
+            android:name="com.thinksoft.polapp.ClientesActivity"
+            android:label="@string/title_activity_clientes" >
+        </activity>
+        <activity
+            android:name="com.thinksoft.polapp.AgregarClientesActivity"
+            android:label="@string/title_activity_agregar_clientes" >
+        </activity>
+        <activity
+            android:name="com.thinksoft.polapp.ListaClientesActivity"
+            android:label="@string/title_activity_lista_clientes" >
+        </activity>
+        <activity
+            android:name="com.thinksoft.polapp.ProductosActivity"
+            android:label="@string/title_activity_productos" >
+        </activity>
+        <activity
+            android:name="com.thinksoft.polapp.ListaProductosActivity"
+            android:label="@string/title_activity_lista_productos" >
+        </activity>
+        <activity
+            android:name="com.thinksoft.polapp.EditarProductosActivity"
+            android:label="@string/title_activity_editar_productos" >
+        </activity>
+        <activity
+            android:name="com.thinksoft.polapp.EditarClienteActivity"
+            android:label="@string/title_activity_editar_cliente" >
+        </activity>
     </application>
 
 </manifest>
