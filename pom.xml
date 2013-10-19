@@ -17,6 +17,21 @@
    <version>2.2.1</version>
    <scope>provided</scope>
   </dependency>
+  <dependency>
+	<groupId>com.j256.ormlite</groupId>
+	<artifactId>ormlite-core</artifactId>
+	<version>4.47</version>
+</dependency>
+<dependency>
+	<groupId>com.j256.ormlite</groupId>
+	<artifactId>ormlite-jdbc</artifactId>
+	<version>4.47</version>
+</dependency>
+<dependency>
+	<groupId>com.j256.ormlite</groupId>
+	<artifactId>ormlite-android</artifactId>
+	<version>4.47</version>
+</dependency>
  </dependencies>
  <build>
   <finalName>${project.artifactId}</finalName>
