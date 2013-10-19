@@ -10,7 +10,7 @@ public class BusinessLayerImpl implements BusinessLayer {
 	@Override
 	public void getUserById() {
 		
-
+		user.getUserById();
 	}
 
 }
