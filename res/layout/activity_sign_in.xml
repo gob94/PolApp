@@ -1,4 +1,4 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,46 +9,76 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".SignIn" >
 
+     <ImageView
+        android:id="@+id/imgUserName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:contentDescription="@string/lblUserName"
+        android:layout_x="20dp"
+        android:layout_y="30dp"
+        android:src="@drawable/user26" />
+
     <TextView
         android:id="@+id/lblUserName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_x="60dp"
+        android:layout_y="34dp"
         android:text="@string/lblUserName" />
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/txtUserName"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_x="130dp"
+        android:layout_y="25dp"
+        android:ems="10" />
+
+    <ImageView
+        android:id="@+id/imgPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10" >
-
-        <requestFocus />
-    </EditText>
+        android:contentDescription="@string/lblPassword"
+        android:layout_x="20dp"
+        android:layout_y="90dp"
+        android:src="@drawable/key26" />
 
     <TextView
         android:id="@+id/lblPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_x="60dp"
+        android:layout_y="95dp"
         android:text="@string/lblPassword" />
 
     <EditText
-        android:id="@+id/editText2"
-        android:layout_width="match_parent"
+        android:id="@+id/txtPassword"
+        android:layout_width="154dp"
         android:layout_height="wrap_content"
+        android:layout_x="130dp"
+        android:layout_y="80dp"
         android:ems="10"
-        android:inputType="textPassword" />
+        android:inputType="textPassword" >
+
+        <requestFocus />
+    </EditText>
 
     <TextView
         android:id="@+id/lblSignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
+        android:layout_x="110dp"
+        android:layout_y="150dp"
         android:text="@string/lblSignUp" />
 
     <Button
-        android:id="@+id/btnAccept"
+        android:id="@+id/btnEntrar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
+        android:background="#FFFFFF"
+        android:layout_x="100dp"
+        android:layout_y="190dp"
         android:text="Button" />
 
-</LinearLayout>
+</AbsoluteLayout>
