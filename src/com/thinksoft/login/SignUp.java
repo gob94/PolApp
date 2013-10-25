@@ -1,9 +1,6 @@
 package com.thinksoft.login;
 
 import com.thinksoft.polapp.R;
-import com.thinksoft.polapp.R.layout;
-import com.thinksoft.polapp.R.menu;
-
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
