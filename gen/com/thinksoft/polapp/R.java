@@ -21,9 +21,49 @@ public final class R {
         public static final int activity_vertical_margin=0x7f040001;
     }
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
-        public static final int key26=0x7f020001;
-        public static final int user26=0x7f020002;
+        public static final int add24px=0x7f020000;
+        public static final int calendar16px=0x7f020001;
+        public static final int calendar24px=0x7f020002;
+        public static final int car24px=0x7f020003;
+        public static final int check16px=0x7f020004;
+        public static final int check24px=0x7f020005;
+        public static final int cobros24px=0x7f020006;
+        public static final int cobros32px=0x7f020007;
+        public static final int contact16px=0x7f020008;
+        public static final int contact24px=0x7f020009;
+        public static final int correct16px=0x7f02000a;
+        public static final int correct24px=0x7f02000b;
+        public static final int delete16px=0x7f02000c;
+        public static final int delete24px=0x7f02000d;
+        public static final int dude16px=0x7f02000e;
+        public static final int dude24px=0x7f02000f;
+        public static final int error16px=0x7f020010;
+        public static final int error24px=0x7f020011;
+        public static final int ic_launcher=0x7f020012;
+        public static final int information16px=0x7f020013;
+        public static final int information24px=0x7f020014;
+        public static final int key26=0x7f020015;
+        public static final int login24px=0x7f020016;
+        public static final int maps16px=0x7f020017;
+        public static final int maps24px=0x7f020018;
+        public static final int peopegroup24px=0x7f020019;
+        public static final int people24px=0x7f02001a;
+        public static final int peoplegroup32px=0x7f02001b;
+        public static final int peopleicon16px=0x7f02001c;
+        public static final int peopleicon24px=0x7f02001d;
+        public static final int peoplepurple=0x7f02001e;
+        public static final int phone24px=0x7f02001f;
+        public static final int refresh16px=0x7f020020;
+        public static final int refresh24px=0x7f020021;
+        public static final int save24px=0x7f020022;
+        public static final int saved24px=0x7f020023;
+        public static final int search16px=0x7f020024;
+        public static final int search24px=0x7f020025;
+        public static final int tacometro24px=0x7f020026;
+        public static final int task16px=0x7f020027;
+        public static final int task24px=0x7f020028;
+        public static final int user26=0x7f020029;
+        public static final int write24px=0x7f02002a;
     }
     public static final class id {
         public static final int action_settings=0x7f08000e;

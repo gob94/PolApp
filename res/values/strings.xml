@@ -22,6 +22,11 @@
     <string name="title_activity_editar_productos">EditarProductosActivity</string>
     <string name="title_activity_editar_cliente">EditarClienteActivity</string>
     <string name="lblAgregarProductos">Agregar productos</string>
+    <string name="lblAgregarCliente">Agregar cliente</string>
+    <string name="lblNombCliente">Nombre</string>
+    <string name="lblTel">Teléfono</string>
+    <string name="lblProductos">Productos comprados</string>
+    <string name="lblDireccion">Direccion</string>
   
 
 
