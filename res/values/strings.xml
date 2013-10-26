@@ -27,6 +27,8 @@
     <string name="lblTel">Teléfono</string>
     <string name="lblProductos">Productos comprados</string>
     <string name="lblDireccion">Direccion</string>
+    <string name="lblApellido1">Primer Apellido</string>
+    <string name="lblApellido2">Segundo Apellido</string>
   
 
 
