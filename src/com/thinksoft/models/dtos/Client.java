@@ -1,5 +1,5 @@
 package com.thinksoft.models.dtos;
 
-public interface User {
+public interface Client {
 
 }

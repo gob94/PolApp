@@ -22,10 +22,10 @@ private String identification;
 private String name;
 
 @DatabaseField(useGetSet=true, canBeNull=false )
-private String middle_name;
+private String firstLastName;
 
-@DatabaseField(useGetSet=true, canBeNull=false )
-private String lastName;
+@DatabaseField(useGetSet=true)
+private String secondLastName;
 
 public User() {
 }
@@ -62,20 +62,22 @@ public void setName(String name) {
 	this.name = name;
 }
 
-public String getMiddle_name() {
-	return middle_name;
+
+
+public String getFirstLastName() {
+	return firstLastName;
 }
 
-public void setMiddle_name(String middle_name) {
-	this.middle_name = middle_name;
+public String getSecondLastName() {
+	return secondLastName;
 }
 
-public String getLastName() {
-	return lastName;
+public void setFirstLastName(String firstLastName) {
+	this.firstLastName = firstLastName;
 }
 
-public void setLastName(String lastName) {
-	this.lastName = lastName;
+public void setSecondLastName(String secondLastName) {
+	this.secondLastName = secondLastName;
 }
 
 public String getIdentification() {

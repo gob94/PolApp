@@ -10,6 +10,7 @@ import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 import com.thinksoft.models.dtos.impl.*;
+import com.thinksoft.polapp.R;
 
 public class PolAppHelper extends OrmLiteSqliteOpenHelper {
 	private static final String DATABASE_NAME = "PolApp.db";
@@ -17,7 +18,7 @@ public class PolAppHelper extends OrmLiteSqliteOpenHelper {
 	
 	
 	public PolAppHelper(Context context) {
-		super(context, DATABASE_NAME, null, DATABASE_VERSION);
+		super(context, DATABASE_NAME, null, DATABASE_VERSION, R.raw.ormlite_config);
 	}
 	@Override
 	public void onCreate(SQLiteDatabase database, ConnectionSource connectionSource) {

@@ -2,6 +2,7 @@ package com.thinksoft.models.dtos.impl;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
+import com.thinksoft.models.dtos.Address;
 
 @DatabaseTable
 public class ClientAddress {

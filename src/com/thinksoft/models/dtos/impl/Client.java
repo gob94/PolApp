@@ -14,10 +14,10 @@ public class Client {
 	private String name;
 	
 	@DatabaseField(useGetSet=true, canBeNull=false)
-	private String middleName;
+	private String firstLastName;
 	
-	@DatabaseField(useGetSet=true, canBeNull=false)
-	private String lastName;
+	@DatabaseField(useGetSet=true)
+	private String secondLastName;
 	
 	@DatabaseField(defaultValue="false",useGetSet=true, canBeNull=false)
 	private boolean accountState;
@@ -44,20 +44,20 @@ public class Client {
 		this.name = name;
 	}
 
-	public String getMiddleName() {
-		return middleName;
+	public String getFirstLastName() {
+		return firstLastName;
 	}
 
-	public void setMiddleName(String middleName) {
-		this.middleName = middleName;
+	public String getSecondLastName() {
+		return secondLastName;
 	}
 
-	public String getLastName() {
-		return lastName;
+	public void setFirstLastName(String firstLastName) {
+		this.firstLastName = firstLastName;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setSecondLastName(String secondLastName) {
+		this.secondLastName = secondLastName;
 	}
 
 	public boolean isAccountState() {
