@@ -66,21 +66,29 @@ public final class R {
         public static final int write24px=0x7f02002a;
     }
     public static final class id {
-        public static final int action_settings=0x7f08000e;
-        public static final int btnEntrar=0x7f080008;
-        public static final int btnRegistrar=0x7f08000d;
-        public static final int imgPassword=0x7f080004;
-        public static final int imgUserName=0x7f080001;
-        public static final int lblAgregarProductos=0x7f080000;
-        public static final int lblName=0x7f080009;
-        public static final int lblPassword=0x7f080005;
-        public static final int lblPhone=0x7f08000b;
-        public static final int lblSignUp=0x7f080007;
-        public static final int lblUserName=0x7f080002;
-        public static final int txtName=0x7f08000a;
-        public static final int txtPassword=0x7f080006;
-        public static final int txtPhone=0x7f08000c;
-        public static final int txtUserName=0x7f080003;
+        public static final int action_settings=0x7f080016;
+        public static final int btnAdd=0x7f080008;
+        public static final int btnEntrar=0x7f080010;
+        public static final int btnRegistrar=0x7f080015;
+        public static final int imgPassword=0x7f08000d;
+        public static final int imgUserName=0x7f080009;
+        public static final int lblAgregarCliente=0x7f080000;
+        public static final int lblDireccion=0x7f080007;
+        public static final int lblName=0x7f080011;
+        public static final int lblNombCliente=0x7f080001;
+        public static final int lblPassword=0x7f08000c;
+        public static final int lblPhone=0x7f080013;
+        public static final int lblProductos=0x7f080005;
+        public static final int lblSignUp=0x7f08000f;
+        public static final int lblTelefono=0x7f080003;
+        public static final int lblUserName=0x7f08000a;
+        public static final int spnProductos=0x7f080006;
+        public static final int txtName=0x7f080012;
+        public static final int txtNombre=0x7f080002;
+        public static final int txtPassword=0x7f08000e;
+        public static final int txtPhone=0x7f080014;
+        public static final int txtTelefono=0x7f080004;
+        public static final int txtUserName=0x7f08000b;
     }
     public static final class layout {
         public static final int activity_agregar_clientes=0x7f030000;
@@ -114,11 +122,16 @@ public final class R {
         public static final int btnAccept=0x7f05000b;
         public static final int btnRegister=0x7f05000a;
         public static final int hello_world=0x7f050002;
+        public static final int lblAgregarCliente=0x7f050015;
         public static final int lblAgregarProductos=0x7f050014;
+        public static final int lblDireccion=0x7f050019;
         public static final int lblName=0x7f050008;
+        public static final int lblNombCliente=0x7f050016;
         public static final int lblPassword=0x7f050006;
         public static final int lblPhone=0x7f050009;
+        public static final int lblProductos=0x7f050018;
         public static final int lblSignUp=0x7f050007;
+        public static final int lblTel=0x7f050017;
         public static final int lblUserName=0x7f050005;
         public static final int title_activity_agregar_clientes=0x7f05000e;
         public static final int title_activity_clientes=0x7f05000d;
