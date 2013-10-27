@@ -1,7 +1,7 @@
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="315dp"
-    android:layout_height="160dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     tools:context=".SignIn" >
 
@@ -10,13 +10,15 @@
     <TableRow
         android:id="@+id/row1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent" 
+        android:padding="5dip">
 
         <ImageView
             android:id="@+id/imgUserName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
+            android:paddingLeft="10dp"
             android:contentDescription="@string/lblUserName"
             android:src="@drawable/peopleicon24px" />
 
@@ -25,6 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
+            android:paddingLeft="10dp"
             android:text="@string/lblUserName" />
 
         <EditText
@@ -32,6 +35,7 @@
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
+            android:paddingLeft="10dp"
             android:ems="10" >
 
             <requestFocus />
@@ -43,13 +47,15 @@
     <TableRow
         android:id="@+id/row2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:padding="5dip">
         
         <ImageView
             android:id="@+id/imgPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
+            android:paddingLeft="10dp"
             android:contentDescription="@string/lblPassword"
             android:src="@drawable/login24px" />
         
@@ -58,6 +64,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
+            android:paddingLeft="10dp"
             android:text="@string/lblPassword" />
 
         <EditText
@@ -65,22 +72,28 @@
             android:layout_width="154dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
+            android:paddingLeft="10dp"
             android:ems="10"
             android:inputType="textPassword" />
 
     </TableRow>
 
-    <Space android:layout_height="20dp" />
+    <Space android:layout_height="25dp" />
 
     <TableRow
         android:id="@+id/row3"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
 	 <TextView
-            android:id="@+id/lblSignUp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/lblSignUp" />
+	     android:id="@+id/lblSignUp"
+	     android:layout_width="wrap_content"
+	     android:layout_height="wrap_content"
+	     android:linksClickable="true"
+	     android:layout_column="2"
+         android:layout_gravity="left"
+         android:paddingLeft="10dp"
+	     android:text="@string/lblSignUp" />
        
     </TableRow>
 		
@@ -89,14 +102,18 @@
     <TableRow
         android:id="@+id/row4"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:padding="5dip">
+
         <Button
             android:id="@+id/btnEntrar"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_column="2"
+            android:layout_gravity="left"
             android:background="#FFFFFF"
-            android:gravity="center_horizontal"
             android:text="@string/btnAccept" />
+
     </TableRow>
   
 </TableLayout>

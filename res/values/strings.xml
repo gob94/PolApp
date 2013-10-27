@@ -11,8 +11,12 @@
     <string name="lblSignUp">Sign Up</string>
     <string name="lblName">Name</string>
     <string name="lblPhone">Phone</string>
+    <string name="lblCode">Codigo</string>
+    <string name="lblPrice">Precio</string>
+    <string name="lblDescription">Descripcion</string>
     <string name="btnRegister">Register</string>
-    <string name="btnAccept">Accept</string>
+    <string name="btnAccept">Aceptar</string>
+    <string name="btnCancel">Cancelar</string>
     <string name="title_activity_home_screen">HomeScreenActivity</string>
     <string name="title_activity_clientes">ClientesActivity</string>
     <string name="title_activity_agregar_clientes">AgregarClientesActivity</string>
