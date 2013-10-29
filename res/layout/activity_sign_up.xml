@@ -1,0 +1,113 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+	android:orientation="vertical"
+    tools:context=".SignUp" >
+      <Space android:layout_height="50dp" />
+<TableRow 
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:padding="5dip">
+    <TextView
+        android:id="@+id/lblName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:text="@string/lblName" />
+
+    <EditText
+        android:id="@+id/txtName"
+        android:layout_width="182dp"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:ems="10" >
+
+        <requestFocus />
+    </EditText>
+</TableRow>
+      
+  <Space android:layout_height="20dp" />
+
+<TableRow 
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="5dip">
+    <TextView
+        android:id="@+id/lblPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:text="@string/lblPhone" />
+
+    <EditText
+        android:id="@+id/txtPhone"
+        android:layout_width="182dp"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:ems="10"
+        android:inputType="phone" />
+</TableRow>
+
+  <Space android:layout_height="20dp" />
+    <TableRow 
+        android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:padding="5dip">
+        <TextView
+        android:id="@+id/lblUserName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+		android:paddingLeft="10dp"
+        android:text="@string/lblUserName" />
+
+    <EditText
+        android:id="@+id/txtUserName"
+        android:layout_width="179dp"
+        android:layout_height="wrap_content"
+      	android:paddingLeft="10dp"
+        android:ems="10" />
+    </TableRow>
+
+      <Space android:layout_height="20dp" />
+    
+<TableRow 
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="5dip">
+     <TextView
+        android:id="@+id/lblPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:text="@string/lblPassword" />
+
+    <EditText
+        android:id="@+id/txtPassword"
+        android:layout_width="182dp"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:ems="10"
+        android:inputType="textPassword" />
+</TableRow>
+   
+  <Space android:layout_height="20dp" />
+
+<TableRow
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:weightSum="3">
+
+    <Button
+        android:id="@+id/btnRegistrar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_column="1"
+        android:background="#FFFFFF"
+        android:shadowColor="#ADEAEA"
+        android:text="@string/btnRegister" />
+    
+</TableRow>
+    
+
+</TableLayout>
