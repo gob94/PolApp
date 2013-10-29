@@ -1,9 +1,10 @@
 package com.thinksoft.login;
 
-import com.thinksoft.polapp.R;
-import android.os.Bundle;
 import android.app.Activity;
+import android.os.Bundle;
 import android.view.Menu;
+
+import com.thinksoft.polapp.R;
 
 public class SignUp extends Activity {
 

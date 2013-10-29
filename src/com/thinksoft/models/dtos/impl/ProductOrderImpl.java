@@ -1,22 +1,10 @@
 package com.thinksoft.models.dtos.impl;
 
-import com.j256.ormlite.field.DatabaseField;
-import com.j256.ormlite.table.DatabaseTable;
+import com.thinksoft.models.dtos.Order;
+import com.thinksoft.models.dtos.Product;
+import com.thinksoft.models.dtos.ProductOrder;
 
-@DatabaseTable
-public class ProductOrder {
-	
-	@DatabaseField(useGetSet=true, canBeNull=false)
-	private int quantity;
-	@DatabaseField(useGetSet=true, canBeNull=false)
-	private int total;
-	@DatabaseField(useGetSet=true, canBeNull=false, foreign=true)
-	private Order order;
-	@DatabaseField(useGetSet=true, canBeNull=false, foreign=true)
-	private Product product;
-	
-	public ProductOrder() {
-	}
+public class ProductOrderImpl extends ProductOrder {
 
 	public int getQuantity() {
 		return quantity;

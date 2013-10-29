@@ -1,25 +1,9 @@
 package com.thinksoft.models.dtos.impl;
 
-import com.j256.ormlite.field.DatabaseField;
-import com.j256.ormlite.table.DatabaseTable;
+import com.thinksoft.models.dtos.Product;
 
-@DatabaseTable
-public class Product {
+public class ProductImpl extends Product{
 
-	@DatabaseField(generatedId=true, useGetSet=true)
-	private int idProduct;
-	@DatabaseField(useGetSet=true, canBeNull=false, unique=true)
-	private String code;
-	@DatabaseField(useGetSet=true, canBeNull=false)
-	private String name;
-	@DatabaseField(useGetSet=true, canBeNull=false, defaultValue="0")
-	private float quantity;
-	@DatabaseField(useGetSet=true, canBeNull=false, defaultValue="0")
-	private float price;
-
-	public Product() {
-	}
-	
 	public int getIdProduct() {
 		return idProduct;
 	}

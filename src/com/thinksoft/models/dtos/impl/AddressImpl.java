@@ -1,26 +1,8 @@
 package com.thinksoft.models.dtos.impl;
 
-import com.j256.ormlite.field.DatabaseField;
-import com.j256.ormlite.table.DatabaseTable;
+import com.thinksoft.models.dtos.Address;
 
-@DatabaseTable
-public class Address{
-
-	@DatabaseField(generatedId = true, useGetSet = true)
-	private int idAddress;
-	@DatabaseField(useGetSet = true, canBeNull=false)
-	private int state;
-	@DatabaseField(useGetSet = true, canBeNull=false)
-	private int city;
-	@DatabaseField(useGetSet = true, canBeNull=false)
-	private int disctric;
-	@DatabaseField(useGetSet = true)
-	private int specificSigns;
-	@DatabaseField(useGetSet = true)
-	private int mapURL;
-	
-	public Address() {
-	}
+public class AddressImpl extends Address{	
 	
 	public int getIdAddress() {
 		return idAddress;

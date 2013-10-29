@@ -4,29 +4,11 @@ import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
+import com.thinksoft.models.dtos.Client;
+import com.thinksoft.models.dtos.ClientAddress;
 
-@DatabaseTable
-public class Client {
-	@DatabaseField(generatedId=true, useGetSet=true)
-	private int clientId;
-	
-	@DatabaseField(useGetSet=true, canBeNull=false)
-	private String name;
-	
-	@DatabaseField(useGetSet=true, canBeNull=false)
-	private String firstLastName;
-	
-	@DatabaseField(useGetSet=true)
-	private String secondLastName;
-	
-	@DatabaseField(defaultValue="false",useGetSet=true, canBeNull=false)
-	private boolean accountState;
-	
-	@ForeignCollectionField(eager=false, foreignFieldName="client")
-	private ForeignCollection<ClientAddress> addresses;
 
-	public Client() {
-	}
+public class ClientImpl extends Client{
 	
 	public int getClientId() {
 		return clientId;

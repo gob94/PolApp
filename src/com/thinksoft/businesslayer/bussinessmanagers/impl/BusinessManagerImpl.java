@@ -6,141 +6,141 @@ import com.thinksoft.models.dtos.impl.*;
 
 public class BusinessManagerImpl implements BusinessManager {
 	
-	private Dao<Address, Integer> addressDao;
-	private Dao<Brand, Integer> brandDao;
-	private Dao<Client, Integer> clientDao;
-	private Dao<ClientAddress, Void> clientAddress;
-	private Dao<Employee, Integer> employee;
-	private Dao<Order, Integer> orderDao;
-	private Dao<Payment, Integer> paymentDao;
-	private Dao<PaymentFrequency, Void> paymentFrequencyDao;
-	private Dao<Product, Integer> productDao;
-	private Dao<ProductOrder, Void> productOrder;
-	private Dao<User, Integer> userDao;
-	private Dao<Vehicle, Integer> vehicleDao;
+	private Dao<AddressImpl, Integer> addressDao;
+	private Dao<BrandImpl, Integer> brandDao;
+	private Dao<ClientImpl, Integer> clientDao;
+	private Dao<ClientAddressImpl, Void> clientAddress;
+	private Dao<EmployeeImpl, Integer> employee;
+	private Dao<OrderImpl, Integer> orderDao;
+	private Dao<PaymentImpl, Integer> paymentDao;
+	private Dao<PaymentFrequencyImpl, Void> paymentFrequencyDao;
+	private Dao<ProductImpl, Integer> productDao;
+	private Dao<ProductOrderImpl, Void> productOrder;
+	private Dao<UserImpl, Integer> userDao;
+	private Dao<VehicleImpl, Integer> vehicleDao;
 
 
 	public BusinessManagerImpl() {
 	}
 
 
-	public Dao<Address, Integer> getAddressDao() {
+	public Dao<AddressImpl, Integer> getAddressDao() {
 		return addressDao;
 	}
 
 
-	public Dao<Brand, Integer> getBrandDao() {
+	public Dao<BrandImpl, Integer> getBrandDao() {
 		return brandDao;
 	}
 
 
-	public Dao<Client, Integer> getClientDao() {
+	public Dao<ClientImpl, Integer> getClientDao() {
 		return clientDao;
 	}
 
 
-	public Dao<ClientAddress, Void> getClientAddress() {
+	public Dao<ClientAddressImpl, Void> getClientAddress() {
 		return clientAddress;
 	}
 
 
-	public Dao<Employee, Integer> getEmployee() {
+	public Dao<EmployeeImpl, Integer> getEmployee() {
 		return employee;
 	}
 
 
-	public Dao<Order, Integer> getOrderDao() {
+	public Dao<OrderImpl, Integer> getOrderDao() {
 		return orderDao;
 	}
 
 
-	public Dao<Payment, Integer> getPaymentDao() {
+	public Dao<PaymentImpl, Integer> getPaymentDao() {
 		return paymentDao;
 	}
 
 
-	public Dao<PaymentFrequency, Void> getPaymentFrequencyDao() {
+	public Dao<PaymentFrequencyImpl, Void> getPaymentFrequencyDao() {
 		return paymentFrequencyDao;
 	}
 
 
-	public Dao<Product, Integer> getProductDao() {
+	public Dao<ProductImpl, Integer> getProductDao() {
 		return productDao;
 	}
 
 
-	public Dao<ProductOrder, Void> getProductOrder() {
+	public Dao<ProductOrderImpl, Void> getProductOrder() {
 		return productOrder;
 	}
 
 
-	public Dao<User, Integer> getUserDao() {
+	public Dao<UserImpl, Integer> getUserDao() {
 		return userDao;
 	}
 
 
-	public Dao<Vehicle, Integer> getVehicleDao() {
+	public Dao<VehicleImpl, Integer> getVehicleDao() {
 		return vehicleDao;
 	}
 
 
-	public void setAddressDao(Dao<Address, Integer> addressDao) {
+	public void setAddressDao(Dao<AddressImpl, Integer> addressDao) {
 		this.addressDao = addressDao;
 	}
 
 
-	public void setBrandDao(Dao<Brand, Integer> brandDao) {
+	public void setBrandDao(Dao<BrandImpl, Integer> brandDao) {
 		this.brandDao = brandDao;
 	}
 
 
-	public void setClientDao(Dao<Client, Integer> clientDao) {
+	public void setClientDao(Dao<ClientImpl, Integer> clientDao) {
 		this.clientDao = clientDao;
 	}
 
 
-	public void setClientAddress(Dao<ClientAddress, Void> clientAddress) {
+	public void setClientAddress(Dao<ClientAddressImpl, Void> clientAddress) {
 		this.clientAddress = clientAddress;
 	}
 
 
-	public void setEmployee(Dao<Employee, Integer> employee) {
+	public void setEmployee(Dao<EmployeeImpl, Integer> employee) {
 		this.employee = employee;
 	}
 
 
-	public void setOrderDao(Dao<Order, Integer> orderDao) {
+	public void setOrderDao(Dao<OrderImpl, Integer> orderDao) {
 		this.orderDao = orderDao;
 	}
 
 
-	public void setPaymentDao(Dao<Payment, Integer> paymentDao) {
+	public void setPaymentDao(Dao<PaymentImpl, Integer> paymentDao) {
 		this.paymentDao = paymentDao;
 	}
 
 
 	public void setPaymentFrequencyDao(
-			Dao<PaymentFrequency, Void> paymentFrequencyDao) {
+			Dao<PaymentFrequencyImpl, Void> paymentFrequencyDao) {
 		this.paymentFrequencyDao = paymentFrequencyDao;
 	}
 
 
-	public void setProductDao(Dao<Product, Integer> productDao) {
+	public void setProductDao(Dao<ProductImpl, Integer> productDao) {
 		this.productDao = productDao;
 	}
 
 
-	public void setProductOrder(Dao<ProductOrder, Void> productOrder) {
+	public void setProductOrder(Dao<ProductOrderImpl, Void> productOrder) {
 		this.productOrder = productOrder;
 	}
 
 
-	public void setUserDao(Dao<User, Integer> userDao) {
+	public void setUserDao(Dao<UserImpl, Integer> userDao) {
 		this.userDao = userDao;
 	}
 
 
-	public void setVehicleDao(Dao<Vehicle, Integer> vehicleDao) {
+	public void setVehicleDao(Dao<VehicleImpl, Integer> vehicleDao) {
 		this.vehicleDao = vehicleDao;
 	}
 

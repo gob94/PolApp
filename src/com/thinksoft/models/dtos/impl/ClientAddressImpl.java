@@ -1,21 +1,10 @@
 package com.thinksoft.models.dtos.impl;
 
-import com.j256.ormlite.field.DatabaseField;
-import com.j256.ormlite.table.DatabaseTable;
 import com.thinksoft.models.dtos.Address;
+import com.thinksoft.models.dtos.Client;
+import com.thinksoft.models.dtos.ClientAddress;
 
-@DatabaseTable
-public class ClientAddress {
-
-	@DatabaseField(useGetSet=true, foreign=true, foreignAutoCreate=true)
-	private Client client;
-	@DatabaseField(useGetSet=true, foreign=true, foreignAutoCreate=true)
-	private Address address;
-	@DatabaseField(useGetSet=true)
-	private int phoneNumber;
-	
-	public ClientAddress() {
-	}
+public class ClientAddressImpl extends ClientAddress {
 
 	public Client getClient() {
 		return client;

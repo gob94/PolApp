@@ -9,7 +9,18 @@ import android.util.Log;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
-import com.thinksoft.models.dtos.impl.*;
+import com.thinksoft.models.dtos.impl.AddressImpl;
+import com.thinksoft.models.dtos.impl.BrandImpl;
+import com.thinksoft.models.dtos.impl.ClientImpl;
+import com.thinksoft.models.dtos.impl.ClientAddressImpl;
+import com.thinksoft.models.dtos.impl.EmployeeImpl;
+import com.thinksoft.models.dtos.impl.OrderImpl;
+import com.thinksoft.models.dtos.impl.PaymentImpl;
+import com.thinksoft.models.dtos.impl.PaymentFrequencyImpl;
+import com.thinksoft.models.dtos.impl.ProductImpl;
+import com.thinksoft.models.dtos.impl.ProductOrderImpl;
+import com.thinksoft.models.dtos.impl.UserImpl;
+import com.thinksoft.models.dtos.impl.VehicleImpl;
 import com.thinksoft.polapp.R;
 
 public class PolAppHelper extends OrmLiteSqliteOpenHelper {
@@ -23,18 +34,18 @@ public class PolAppHelper extends OrmLiteSqliteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase database, ConnectionSource connectionSource) {
 		try {
-			TableUtils.createTable(connectionSource, Address.class);
-			TableUtils.createTable(connectionSource, Brand.class);
-			TableUtils.createTable(connectionSource, Client.class);
-			TableUtils.createTable(connectionSource, Vehicle.class);
-			TableUtils.createTable(connectionSource, Employee.class);
-			TableUtils.createTable(connectionSource, PaymentFrequency.class);
-			TableUtils.createTable(connectionSource, Product.class);
-			TableUtils.createTable(connectionSource, User.class);
-			TableUtils.createTable(connectionSource, ClientAddress.class);
-			TableUtils.createTable(connectionSource, Order.class);
-			TableUtils.createTable(connectionSource, ProductOrder.class);
-			TableUtils.createTable(connectionSource, Payment.class);
+			TableUtils.createTable(connectionSource, AddressImpl.class);
+			TableUtils.createTable(connectionSource, BrandImpl.class);
+			TableUtils.createTable(connectionSource, ClientImpl.class);
+			TableUtils.createTable(connectionSource, VehicleImpl.class);
+			TableUtils.createTable(connectionSource, EmployeeImpl.class);
+			TableUtils.createTable(connectionSource, PaymentFrequencyImpl.class);
+			TableUtils.createTable(connectionSource, ProductImpl.class);
+			TableUtils.createTable(connectionSource, UserImpl.class);
+			TableUtils.createTable(connectionSource, ClientAddressImpl.class);
+			TableUtils.createTable(connectionSource, OrderImpl.class);
+			TableUtils.createTable(connectionSource, ProductOrderImpl.class);
+			TableUtils.createTable(connectionSource, PaymentImpl.class);
 		} catch (SQLException e) {
 			Log.e(PolAppHelper.class.getName(), "Unable to create datbases", e);
 		}
@@ -45,18 +56,18 @@ public class PolAppHelper extends OrmLiteSqliteOpenHelper {
 	public void onUpgrade(SQLiteDatabase database, ConnectionSource connectionSource, int arg2,
 			int arg3) {
 		try {
-			TableUtils.createTable(connectionSource, User.class);
-			TableUtils.createTable(connectionSource, Address.class);
-			TableUtils.createTable(connectionSource, Client.class);
-			TableUtils.createTable(connectionSource, Product.class);
-			TableUtils.createTable(connectionSource, Brand.class);
-			TableUtils.createTable(connectionSource, PaymentFrequency.class);
-			TableUtils.createTable(connectionSource, Vehicle.class);
-			TableUtils.createTable(connectionSource, Employee.class);
-			TableUtils.createTable(connectionSource, ClientAddress.class);
-			TableUtils.createTable(connectionSource, Order.class);
-			TableUtils.createTable(connectionSource, ProductOrder.class);
-			TableUtils.createTable(connectionSource, Payment.class);
+			TableUtils.createTable(connectionSource, UserImpl.class);
+			TableUtils.createTable(connectionSource, AddressImpl.class);
+			TableUtils.createTable(connectionSource, ClientImpl.class);
+			TableUtils.createTable(connectionSource, ProductImpl.class);
+			TableUtils.createTable(connectionSource, BrandImpl.class);
+			TableUtils.createTable(connectionSource, PaymentFrequencyImpl.class);
+			TableUtils.createTable(connectionSource, VehicleImpl.class);
+			TableUtils.createTable(connectionSource, EmployeeImpl.class);
+			TableUtils.createTable(connectionSource, ClientAddressImpl.class);
+			TableUtils.createTable(connectionSource, OrderImpl.class);
+			TableUtils.createTable(connectionSource, ProductOrderImpl.class);
+			TableUtils.createTable(connectionSource, PaymentImpl.class);
 		} catch (SQLException e) {
 			Log.e(PolAppHelper.class.getName(), "Unable to create datbases", e);
 		}

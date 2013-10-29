@@ -1,33 +1,11 @@
 package com.thinksoft.models.dtos.impl;
 
-import com.j256.ormlite.field.DatabaseField;
-import com.j256.ormlite.table.DatabaseTable;
+import com.thinksoft.models.dtos.Employee;
+import com.thinksoft.models.dtos.Vehicle;
 
-@DatabaseTable
-public class Employee {
 
-	@DatabaseField(useGetSet=true, generatedId=true)
-	private int idEmployee;
-	@DatabaseField(useGetSet=true, canBeNull=false, unique=true)
-	private String identification;
+public class EmployeeImpl extends Employee {
 
-	@DatabaseField(useGetSet=true, canBeNull=false)
-	private String name;
-
-	@DatabaseField(useGetSet=true, canBeNull=false )
-	private String middle_name;
-
-	@DatabaseField(useGetSet=true, canBeNull=false )
-	private String lastName;
-	
-	@DatabaseField(useGetSet=true)
-	private int phoneNumber;
-	
-	@DatabaseField(useGetSet=true, foreign=true, foreignAutoCreate=true)
-	private Vehicle vehicle;
-	
-	public Employee() {
-	}
 
 	public int getIdEmployee() {
 		return idEmployee;

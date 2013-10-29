@@ -2,33 +2,13 @@ package com.thinksoft.models.dtos.impl;
 
 import java.util.Date;
 
-import com.j256.ormlite.field.DatabaseField;
-import com.j256.ormlite.table.DatabaseTable;
+import com.thinksoft.models.dtos.Client;
+import com.thinksoft.models.dtos.Order;
+import com.thinksoft.models.dtos.PaymentFrequency;
+import com.thinksoft.models.dtos.User;
 
-@DatabaseTable
-public class Order {
-	
-	@DatabaseField(generatedId=true, useGetSet=true)
-	private int orderId;
-	@DatabaseField(useGetSet=true, canBeNull=false)
-	private Date creationDate;
-	@DatabaseField(useGetSet=true, canBeNull=false)
-	private Date nextPaymentDate;
-	@DatabaseField(useGetSet=true, defaultValue="0")
-	private float finalBalance;
-	@DatabaseField(useGetSet=true, defaultValue="0")
-	private float actualBalance;
-	@DatabaseField(useGetSet=true, foreign=true, foreignAutoCreate=true)
-	private User userId;
-	@DatabaseField(useGetSet=true, canBeNull=false, foreign=true, foreignAutoCreate=true)
-	private Client clientId;
-	@DatabaseField(useGetSet=true, canBeNull=false, foreign=true, foreignAutoCreate=true)
-	private PaymentFrequency paymentFrequencyId;
-	
-	
-	public Order() {
-	}
 
+public class OrderImpl extends Order{
 
 	public int getOrderId() {
 		return orderId;
