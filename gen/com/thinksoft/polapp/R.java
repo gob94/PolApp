@@ -226,5 +226,9 @@ public final class R {
  All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f070001;
+        public static final int TextStyle=0x7f070002;
+        public static final int TextStyle_green=0x7f070005;
+        public static final int TextStyle_purple=0x7f070003;
+        public static final int TextStyle_turquoise=0x7f070004;
     }
 }
