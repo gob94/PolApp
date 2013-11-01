@@ -1,29 +1,34 @@
 package com.thinksoft.models.dtos;
 
-import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable
-public abstract class User {
+public interface User {
+	public int getIdUser();
 
-	@DatabaseField(generatedId=true, useGetSet=true )
-	protected int idUser;
+	public void setIdUser(int idUser);
 
-	@DatabaseField(useGetSet=true, canBeNull=false, unique=true)
-	protected String username;
+	public String getUsername();
 
-	@DatabaseField(useGetSet=true, canBeNull=false)
-	protected String password;
+	public void setUsername(String username);
 
-	@DatabaseField(useGetSet=true, canBeNull=false, unique=true)
-	protected String identification;
+	public String getPassword();
 
-	@DatabaseField(useGetSet=true, canBeNull=false)
-	protected String name;
+	public void setPassword(String password);
 
-	@DatabaseField(useGetSet=true, canBeNull=false )
-	protected String firstLastName;
+	public String getName();
 
-	@DatabaseField(useGetSet=true)
-	protected String secondLastName;
+	public void setName(String name);
+
+	public String getFirstLastName();
+
+	public String getSecondLastName();
+
+	public void setFirstLastName(String firstLastName);
+
+	public void setSecondLastName(String secondLastName);
+
+	public String getIdentification();
+
+	public void setIdentification(String identification); 
 }

@@ -18,5 +18,5 @@ public class EditarClienteActivity extends Activity {
 		getMenuInflater().inflate(R.menu.editar_cliente, menu);
 		return true;
 	}
-
+ 
 }

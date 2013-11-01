@@ -2,11 +2,31 @@ package com.thinksoft.models.dtos.impl;
 
 import java.util.Date;
 
-import com.thinksoft.models.dtos.Brand;
+import com.j256.ormlite.field.DatabaseField;
 import com.thinksoft.models.dtos.Vehicle;
 
-public class VehicleImpl extends Vehicle {
+public class VehicleImpl implements Vehicle {
 
+	
+	@DatabaseField(generatedId=true, useGetSet=true)
+	protected int idVehicle;
+	@DatabaseField(useGetSet=true, canBeNull=false)
+	protected String licensePlate;
+	@DatabaseField(useGetSet=true, canBeNull=false)
+	protected boolean functional;
+	@DatabaseField(useGetSet=true, canBeNull=false)
+	protected Date rtv;
+	@DatabaseField(useGetSet=true)
+	protected float expenditure;
+	@DatabaseField(useGetSet=true)
+	protected String model;
+	@DatabaseField(useGetSet=true, canBeNull=false, foreign=true, foreignAutoCreate=true)
+	protected BrandImpl brand;
+	
+	public VehicleImpl() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	public int getIdVehicle() {
 		return idVehicle;
 	}
@@ -15,14 +35,14 @@ public class VehicleImpl extends Vehicle {
 		return licensePlate;
 	}
 
-	public boolean isFunctional() {
+	public boolean getFunctional() {
 		return functional;
 	}
 
 	public Date getRtv() {
 		return rtv;
 	}
-
+  
 	public float getExpenditure() {
 		return expenditure;
 	}
@@ -31,7 +51,7 @@ public class VehicleImpl extends Vehicle {
 		return model;
 	}
 
-	public Brand getBrand() {
+	public BrandImpl getBrand() {
 		return brand;
 	}
 
@@ -59,7 +79,7 @@ public class VehicleImpl extends Vehicle {
 		this.model = model;
 	}
 
-	public void setBrand(Brand brand) {
+	public void setBrand(BrandImpl brand) {
 		this.brand = brand;
 	}
 

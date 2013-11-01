@@ -18,5 +18,5 @@ public class ClientesActivity extends Activity {
 		getMenuInflater().inflate(R.menu.clientes, menu);
 		return true;
 	}
-
+ 
 }

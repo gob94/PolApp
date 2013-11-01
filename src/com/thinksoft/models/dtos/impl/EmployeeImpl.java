@@ -1,11 +1,34 @@
 package com.thinksoft.models.dtos.impl;
 
+import com.j256.ormlite.field.DatabaseField;
 import com.thinksoft.models.dtos.Employee;
-import com.thinksoft.models.dtos.Vehicle;
 
 
-public class EmployeeImpl extends Employee {
+public class EmployeeImpl implements Employee {
+	
+	@DatabaseField(useGetSet=true, generatedId=true)
+	protected int idEmployee;
+	@DatabaseField(useGetSet=true, canBeNull=false, unique=true)
+	protected String identification;
 
+	@DatabaseField(useGetSet=true, canBeNull=false)
+	protected String name;
+
+	@DatabaseField(useGetSet=true, canBeNull=false )
+	protected String middle_name;
+
+	@DatabaseField(useGetSet=true, canBeNull=false )
+	protected String lastName;
+	
+	@DatabaseField(useGetSet=true)
+	protected int phoneNumber;
+	
+	@DatabaseField(useGetSet=true, foreign=true, foreignAutoCreate=true)
+	protected VehicleImpl vehicle;
+	
+	public EmployeeImpl() {
+		// TODO Auto-generated constructor stub
+	}
 
 	public int getIdEmployee() {
 		return idEmployee;
@@ -31,7 +54,7 @@ public class EmployeeImpl extends Employee {
 		return phoneNumber;
 	}
 
-	public Vehicle getVehicle() {
+	public VehicleImpl getVehicle() {
 		return vehicle;
 	}
 
@@ -45,7 +68,7 @@ public class EmployeeImpl extends Employee {
 
 	public void setName(String name) {
 		this.name = name;
-	}
+	}  
 
 	public void setMiddle_name(String middle_name) {
 		this.middle_name = middle_name;
@@ -59,7 +82,7 @@ public class EmployeeImpl extends Employee {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public void setVehicle(Vehicle vehicle) {
+	public void setVehicle(VehicleImpl vehicle) {
 		this.vehicle = vehicle;
 	}
 	

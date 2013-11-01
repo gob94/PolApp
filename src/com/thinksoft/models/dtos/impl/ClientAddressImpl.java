@@ -1,16 +1,26 @@
 package com.thinksoft.models.dtos.impl;
 
-import com.thinksoft.models.dtos.Address;
-import com.thinksoft.models.dtos.Client;
+import com.j256.ormlite.field.DatabaseField;
 import com.thinksoft.models.dtos.ClientAddress;
 
-public class ClientAddressImpl extends ClientAddress {
+public class ClientAddressImpl implements ClientAddress {
+	
+	@DatabaseField(useGetSet = true, foreign = true)
+	protected ClientImpl client;
+	@DatabaseField(useGetSet = true, foreign = true)
+	protected AddressImpl address;
+	@DatabaseField(useGetSet = true)
+	protected int phoneNumber;
 
-	public Client getClient() {
+	public ClientAddressImpl() {
+		// TODO Auto-generated constructor stub
+	}
+	 
+	public ClientImpl getClient() {
 		return client;
 	}
 
-	public Address getAddress() {
+	public AddressImpl getAddress() {
 		return address;
 	}
 
@@ -18,17 +28,16 @@ public class ClientAddressImpl extends ClientAddress {
 		return phoneNumber;
 	}
 
-	public void setClient(Client client) {
+	public void setClient(ClientImpl client) {
 		this.client = client;
 	}
 
-	public void setAddress(Address address) {
+	public void setAddress(AddressImpl address) {
 		this.address = address;
 	}
 
 	public void setPhoneNumber(int phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-	
-	
+
 }

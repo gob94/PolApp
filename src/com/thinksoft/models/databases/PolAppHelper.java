@@ -39,7 +39,7 @@ public class PolAppHelper extends OrmLiteSqliteOpenHelper {
 			TableUtils.createTable(connectionSource, ClientImpl.class);
 			TableUtils.createTable(connectionSource, VehicleImpl.class);
 			TableUtils.createTable(connectionSource, EmployeeImpl.class);
-			TableUtils.createTable(connectionSource, PaymentFrequencyImpl.class);
+		 	TableUtils.createTable(connectionSource, PaymentFrequencyImpl.class);
 			TableUtils.createTable(connectionSource, ProductImpl.class);
 			TableUtils.createTable(connectionSource, UserImpl.class);
 			TableUtils.createTable(connectionSource, ClientAddressImpl.class);

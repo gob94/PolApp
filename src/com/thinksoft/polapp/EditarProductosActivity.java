@@ -18,5 +18,5 @@ public class EditarProductosActivity extends Activity {
 		getMenuInflater().inflate(R.menu.editar_productos, menu);
 		return true;
 	}
-
+ 
 }

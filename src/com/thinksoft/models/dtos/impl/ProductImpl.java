@@ -1,9 +1,26 @@
 package com.thinksoft.models.dtos.impl;
 
+import com.j256.ormlite.field.DatabaseField;
 import com.thinksoft.models.dtos.Product;
 
-public class ProductImpl extends Product{
+public class ProductImpl implements Product{
+	
+	@DatabaseField(generatedId=true, useGetSet=true)
+	protected int idProduct;
+	@DatabaseField(useGetSet=true, canBeNull=false, unique=true)
+	protected String code;
+	@DatabaseField(useGetSet=true, canBeNull=false)
+	protected String name;
+	@DatabaseField(useGetSet=true, canBeNull=false, defaultValue="0")
+	protected float quantity;
+	@DatabaseField(useGetSet=true, canBeNull=false, defaultValue="0")
+	protected float price;
+	
 
+	public ProductImpl() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	public int getIdProduct() {
 		return idProduct;
 	}
@@ -11,7 +28,7 @@ public class ProductImpl extends Product{
 	public void setIdProduct(int idProduct) {
 		this.idProduct = idProduct;
 	}
-
+ 
 	public String getCode() {
 		return code;
 	}
