@@ -54,8 +54,7 @@ public class SignIn extends OrmLiteBaseActivity<PolAppHelper> {
 					Intent intent = new Intent(SignIn.this, HomeScreenActivity.class);
 					startActivity(intent);
 				}else{
-					Toast error = new Toast(SignIn.this);
-					error.setText("Username/Password are incorrect, please type them again");
+					Toast error = Toast.makeText(SignIn.this,"Username/Password are incorrect, please type them again", Toast.LENGTH_LONG);
 					error.show();
 				}
 			}

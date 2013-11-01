@@ -24,6 +24,9 @@ public class BusinessManagerImpl implements BusinessManager {
 		try {
 			 userReturned = polAppDaoManager.getUserDao().queryForEq("username", userName);
 			 user = userReturned.get(0);
+			 if(user.getPassword().equals(password)){
+				 result = true;
+			 }
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
