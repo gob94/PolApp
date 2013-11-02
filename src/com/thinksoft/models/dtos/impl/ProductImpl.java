@@ -21,6 +21,15 @@ public class ProductImpl implements Product{
 		// TODO Auto-generated constructor stub
 	}
 	
+	public ProductImpl(String code, String name, float quantity,
+			float price) {
+		super();
+		this.code = code;
+		this.name = name;
+		this.quantity = quantity;
+		this.price = price;
+	}
+
 	public int getIdProduct() {
 		return idProduct;
 	}

@@ -5,17 +5,29 @@ import com.thinksoft.models.databases.PolAppHelper;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.Resources;
+import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TabHost;
 
 public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 
+	ImageView btnAdd;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home_screen);
-		
+		btnAdd =(ImageView) findViewById(R.id.imgAgregarProductos);
 		Resources res = getResources();
 		 
 		TabHost tabs=(TabHost)findViewById(android.R.id.tabhost);
@@ -46,7 +58,36 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 		tabs.addTab(spec);
 		 
 		tabs.setCurrentTab(0);
+		
+		btnAdd.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// custom dialog
+				final Dialog dialog = new Dialog(HomeScreenActivity.this);
+				dialog.setContentView(R.layout.activity_productos);
+				dialog.setTitle("Agregar producto");
+	 /*
+				// set the custom dialog components - text, image and button
+				TextView text = (TextView) dialog.findViewById(R.id.text);
+				text.setText("Android custom dialog example!");
+				ImageView image = (ImageView) dialog.findViewById(R.id.image);
+				image.setImageResource(R.drawable.ic_launcher);
+		**/
+	 
+				Button dialogButton = (Button) dialog.findViewById(R.id.btnSaveProduct);
+				// if button is clicked, close the custom dialog
+				dialogButton.setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						dialog.dismiss();
+					}
+				});
+	 
+				dialog.show();
+			  
 	}
+			});}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -54,5 +95,6 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 		getMenuInflater().inflate(R.menu.home_screen, menu);
 		return true;
 	}
+	
 
 }

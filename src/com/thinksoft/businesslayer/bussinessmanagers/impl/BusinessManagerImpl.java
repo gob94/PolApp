@@ -49,7 +49,8 @@ public class BusinessManagerImpl implements BusinessManager {
 	public boolean addProduct(Product product) {
 		boolean result = false;
 		try {
-			polAppDaoManager.getProductDao().createIfNotExists(product);
+			polAppDaoManager.getProductDao().create(product);
+			result= true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
