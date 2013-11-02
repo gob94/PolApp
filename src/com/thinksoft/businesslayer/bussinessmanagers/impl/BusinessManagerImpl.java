@@ -7,6 +7,7 @@ import com.j256.ormlite.support.ConnectionSource;
 import com.thinksoft.businesslayer.bussinessmanagers.BusinessManager;
 import com.thinksoft.models.daos.PolAppDaoManager;
 import com.thinksoft.models.daos.impl.PolAppDaoManagerImpl;
+import com.thinksoft.models.dtos.Product;
 import com.thinksoft.models.dtos.User;
 
 public class BusinessManagerImpl implements BusinessManager {
@@ -21,15 +22,15 @@ public class BusinessManagerImpl implements BusinessManager {
 		boolean result = false;
 		List<User> userReturned = null;
 		User user = null;
-		try {
-			 userReturned = polAppDaoManager.getUserDao().queryForEq("username", userName);
-			 user = userReturned.get(0);
-			 if(user.getPassword().equals(password)){
-				 result = true;
-			 }
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+			try {
+				 userReturned = polAppDaoManager.getUserDao().queryForEq("username", userName);
+				 user = userReturned.get(0);
+				 if(user.getPassword().equals(password)){
+					 result = true;
+				 }
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		return result;
 	}
  
@@ -43,4 +44,16 @@ public class BusinessManagerImpl implements BusinessManager {
 		}
 		return result;
 	}
+	
+	@Override
+	public boolean addProduct(Product product) {
+		boolean result = false;
+		try {
+			polAppDaoManager.getProductDao().createIfNotExists(product);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
 }

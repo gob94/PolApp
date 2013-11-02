@@ -8,9 +8,11 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
+import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
+import com.thinksoft.models.databases.PolAppHelper;
 import com.thinksoft.polapp.R;
 
-public class SignUp extends Activity {
+public class SignUp extends OrmLiteBaseActivity<PolAppHelper> {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

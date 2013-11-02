@@ -1,10 +1,13 @@
 package com.thinksoft.polapp;
 
+import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
+import com.thinksoft.models.databases.PolAppHelper;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 
-public class ListaProductosActivity extends Activity {
+public class ListaProductosActivity extends OrmLiteBaseActivity<PolAppHelper> {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

@@ -1,12 +1,15 @@
 package com.thinksoft.polapp;
 
+import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
+import com.thinksoft.models.databases.PolAppHelper;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.res.Resources;
 import android.view.Menu;
 import android.widget.TabHost;
 
-public class HomeScreenActivity extends Activity {
+public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
