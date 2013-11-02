@@ -2,203 +2,235 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-	android:orientation="vertical"
+    android:background="#FFFFFF"
+    android:orientation="vertical"
     tools:context=".SignUp" >
-      <Space android:layout_height="20dp" />
-      
-      <TableRow 
-        android:layout_width="wrap_content"
-    	android:layout_height="wrap_content"
-    	android:padding="5dip">
-        <TextView
-        android:id="@+id/lblUserName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-		android:paddingLeft="10dp"
-		android:fontFamily="roboto-light"
-        android:textColor="#FF01A7EB"
-        android:textSize="16sp"
-        android:text="@string/lblUserName" />
 
-    <EditText
-        android:id="@+id/txtUserName"
-        android:layout_width="179dp"
-        android:layout_height="wrap_content"
-      	android:paddingLeft="10dp"
-      	android:fontFamily="roboto-light"
-        android:textColor="#FF01A7EB"
-        android:textSize="16sp"
-        android:ems="10" />
-    </TableRow>
-
-      <Space android:layout_height="10dp" />
-    
-<TableRow 
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:padding="5dip">
-     <TextView
-        android:id="@+id/lblPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="10dp"
-        android:fontFamily="roboto-light"
-        android:textColor="#FF01A7EB"
-        android:textSize="16sp"
-        android:text="@string/lblPassword" />
-
-    <EditText
-        android:id="@+id/txtPassword"
-        android:layout_width="182dp"
-        android:layout_height="wrap_content"
-        android:paddingLeft="10dp"
-        android:ems="10"
-        android:inputType="textPassword" />
-</TableRow>
-   
-  <Space android:layout_height="10dp" />
-      
-<TableRow 
-     android:layout_width="wrap_content"
-     android:layout_height="wrap_content"
-     android:padding="5dip">
-    <TextView
-        android:id="@+id/lblName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="roboto-light"
-        android:textColor="#FF01A7EB"
-        android:textSize="16sp"
-        android:paddingLeft="10dp"
-        android:text="@string/lblName" />
-
-    <EditText
-        android:id="@+id/txtName"
-        android:layout_width="182dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="roboto-light"
-		android:textSize="16sp"
-        android:paddingLeft="10dp"
-        android:ems="10" >
-
-        <requestFocus />
-    </EditText>
-</TableRow>
-
-<Space android:layout_height="10dp" />
-    <TableRow 
-        android:layout_width="wrap_content"
-    	android:layout_height="wrap_content"
-    	android:padding="5dip">
-        <TextView
-        android:id="@+id/lblLastName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-		android:paddingLeft="10dp"
-		android:fontFamily="roboto-light"
-        android:textColor="#FF01A7EB"
-        android:textSize="16sp"
-        android:text="@string/lblApellido1" />
-
-    <EditText
-        android:id="@+id/txtLastName"
-        android:layout_width="179dp"
-        android:layout_height="wrap_content"
-      	android:paddingLeft="10dp"
-      	android:fontFamily="roboto-light"
-        android:textColor="#FF01A7EB"
-        android:textSize="16sp"
-        android:ems="10" />
-    </TableRow>
-    
-    
     <Space android:layout_height="10dp" />
-    <TableRow 
+
+    <TableRow
         android:layout_width="wrap_content"
-    	android:layout_height="wrap_content"
-    	android:padding="5dip">
+        android:layout_height="wrap_content"
+        android:padding="5dip" >
+
         <TextView
-        android:id="@+id/lblIdentity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-		android:paddingLeft="10dp"
-		android:fontFamily="roboto-light"
-        android:textColor="#FF01A7EB"
-        android:textSize="16sp"
-        android:text="@string/lblIdentity" />
-
-    <EditText
-        android:id="@+id/txtIdentity"
-        android:layout_width="179dp"
-        android:layout_height="wrap_content"
-      	android:paddingLeft="10dp"
-      	android:fontFamily="roboto-light"
-        android:textColor="#FF01A7EB"
-        android:textSize="16sp"
-        android:ems="10" />
-    </TableRow>
-      
-  <Space android:layout_height="10dp" />
-
-<TableRow 
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:padding="5dip">
-    <TextView
-        android:id="@+id/lblPhone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="roboto-light"
-        android:textColor="#FF01A7EB"
-        android:textSize="16sp"
-        android:paddingLeft="10dp"
-        android:text="@string/lblPhone" />
-
-    <EditText
-        android:id="@+id/txtPhone"
-        android:layout_width="182dp"
-        android:layout_height="wrap_content"
-        android:paddingLeft="10dp"
-        android:fontFamily="roboto-light"
-        android:textSize="16sp"
-        android:ems="10"
-        android:inputType="phone" />
-</TableRow>
-
-  <Space android:layout_height="10dp" />
-    
-
-<TableRow
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:weightSum="3">
-
-    <Button
-            android:id="@+id/btnRegister"
-            android:background="#FFFFFF"
+            android:id="@+id/lblUserNameSignUp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="10dp"
             android:fontFamily="roboto-light"
-            android:textColor="#91A5AE"
-            android:textSize="16sp"
+            android:paddingLeft="10dp"
+            android:text="@string/lblUserName"
+            android:textColor="#FF01A7EB"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/txtUserNameSignUp"
+            android:layout_width="179dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:fontFamily="roboto-light"
+            android:paddingLeft="10dp"
+            android:textColor="#FF01A7EB"
+            android:textSize="16sp" />
+    </TableRow>
+
+    <Space android:layout_height="5dp" />
+
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dip" >
+
+        <TextView
+            android:id="@+id/lblPasswordSignUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="roboto-light"
+            android:paddingLeft="10dp"
+            android:text="@string/lblPassword"
+            android:textColor="#FF01A7EB"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/txtPasswordSignUp"
+            android:layout_width="182dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:paddingLeft="10dp" />
+    </TableRow>
+
+    <Space android:layout_height="5dp" />
+
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dip" >
+
+        <TextView
+            android:id="@+id/lblPasswordVerificationSignUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="roboto-light"
+            android:paddingLeft="10dp"
+            android:text="@string/lblVerificationPassword"
+            android:textColor="#FF01A7EB"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/txtPasswordVerificationSignUp"
+            android:layout_width="182dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:paddingLeft="10dp" />
+    </TableRow>
+
+    <Space android:layout_height="5dp" />
+
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dip" >
+
+        <TextView
+            android:id="@+id/lblNameSignUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="roboto-light"
+            android:paddingLeft="10dp"
+            android:text="@string/lblName"
+            android:textColor="#FF01A7EB"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/txtNameSignUp"
+            android:layout_width="182dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:fontFamily="roboto-light"
+            android:paddingLeft="10dp"
+            android:textSize="16sp" >
+
+            <requestFocus />
+        </EditText>
+    </TableRow>
+
+    <Space android:layout_height="5dp" />
+
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dip" >
+
+        <TextView
+            android:id="@+id/lblLastNameSignUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="roboto-light"
+            android:paddingLeft="10dp"
+            android:text="@string/lblApellido1"
+            android:textColor="#FF01A7EB"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/txtLastNameSignUp"
+            android:layout_width="179dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:fontFamily="roboto-light"
+            android:paddingLeft="10dp"
+            android:textColor="#FF01A7EB"
+            android:textSize="16sp" />
+    </TableRow>
+
+    <Space android:layout_height="5dp" />
+
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dip" >
+
+        <TextView
+            android:id="@+id/lblIdentitySignUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="roboto-light"
+            android:paddingLeft="10dp"
+            android:text="@string/lblIdentity"
+            android:textColor="#FF01A7EB"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/txtIdentitySignUp"
+            android:layout_width="179dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:fontFamily="roboto-light"
+            android:paddingLeft="10dp"
+            android:textColor="#FF01A7EB"
+            android:textSize="16sp" />
+    </TableRow>
+
+    <Space android:layout_height="5dp" />
+
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dip" >
+
+        <TextView
+            android:id="@+id/lblPhoneSignUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="roboto-light"
+            android:paddingLeft="10dp"
+            android:text="@string/lblPhone"
+            android:textColor="#FF01A7EB"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/txtPhoneSignUp"
+            android:layout_width="182dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:fontFamily="roboto-light"
+            android:inputType="phone"
+            android:paddingLeft="10dp"
+            android:textSize="16sp" />
+    </TableRow>
+
+    <Space android:layout_height="5dp" />
+
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal" >
+
+        <Button
+            android:id="@+id/btnRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
             android:drawableLeft="@drawable/check32px"
-            android:text="@string/btnAccept" />
+            android:fontFamily="roboto-light"
+            android:paddingLeft="10dp"
+            android:text="@string/btnAccept"
+            android:textColor="#91A5AE"
+            android:textSize="16sp" />
 
         <Button
             android:id="@+id/btnCancelSignUp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:fontFamily="roboto-light"
             android:background="#FFFFFF"
-            android:textColor="#91A5AE"
-            android:textSize="16sp"
-            android:paddingRight="10dp"
             android:drawableLeft="@drawable/cancel32px"
-            android:text="@string/btnCancel" />
-    
-</TableRow>
-    
+            android:fontFamily="roboto-light"
+            android:paddingRight="10dp"
+            android:text="@string/btnCancel"
+            android:textColor="#91A5AE"
+            android:textSize="16sp" />
+    </TableRow>
 
 </TableLayout>

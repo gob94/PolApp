@@ -60,6 +60,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="roboto-light"
             android:textSize="16sp"
+            android:inputType="textPersonName"
             android:layout_marginLeft="10dp"
             android:ems="10" >
 
@@ -92,6 +93,7 @@
             android:fontFamily="roboto-light"
             android:textSize="16sp"
             android:layout_marginLeft="10dp"
+            android:inputType="number"
             android:ems="10" >
 
             <requestFocus />
@@ -121,6 +123,7 @@
             android:layout_width="154dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
+            android:inputType="number"
             android:ems="10" >
 
             <requestFocus />
