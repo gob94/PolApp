@@ -12,6 +12,7 @@
     <string name="lblName">Nombre</string>
     <string name="lblPhone">Telefono</string>
     <string name="lblCode">Código</string>
+    <string name="lblIdentity">Cedula</string>
     <string name="lblPrice">Precio</string>
     <string name="lblCantidad">Cantidad</string>
     <string name="lblDescription">Descripción</string>
@@ -32,7 +33,7 @@
     <string name="lblTel">Teléfono</string>
     <string name="lblProductos">Productos comprados</string>
     <string name="lblDireccion">Direccion</string>
-    <string name="lblApellido1">Primer Apellido</string>
+    <string name="lblApellido1">Apellido</string>
     <string name="lblApellido2">Segundo Apellido</string>
   
 

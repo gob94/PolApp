@@ -4,53 +4,9 @@
     android:layout_height="wrap_content"
 	android:orientation="vertical"
     tools:context=".SignUp" >
-      <Space android:layout_height="50dp" />
-<TableRow 
-     android:layout_width="wrap_content"
-     android:layout_height="wrap_content"
-     android:padding="5dip">
-    <TextView
-        android:id="@+id/lblName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="10dp"
-        android:text="@string/lblName" />
-
-    <EditText
-        android:id="@+id/txtName"
-        android:layout_width="182dp"
-        android:layout_height="wrap_content"
-        android:paddingLeft="10dp"
-        android:ems="10" >
-
-        <requestFocus />
-    </EditText>
-</TableRow>
+      <Space android:layout_height="20dp" />
       
-  <Space android:layout_height="20dp" />
-
-<TableRow 
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:padding="5dip">
-    <TextView
-        android:id="@+id/lblPhone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="10dp"
-        android:text="@string/lblPhone" />
-
-    <EditText
-        android:id="@+id/txtPhone"
-        android:layout_width="182dp"
-        android:layout_height="wrap_content"
-        android:paddingLeft="10dp"
-        android:ems="10"
-        android:inputType="phone" />
-</TableRow>
-
-  <Space android:layout_height="20dp" />
-    <TableRow 
+      <TableRow 
         android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
     	android:padding="5dip">
@@ -59,6 +15,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 		android:paddingLeft="10dp"
+		android:fontFamily="roboto-light"
+        android:textColor="#FF01A7EB"
+        android:textSize="16sp"
         android:text="@string/lblUserName" />
 
     <EditText
@@ -66,10 +25,13 @@
         android:layout_width="179dp"
         android:layout_height="wrap_content"
       	android:paddingLeft="10dp"
+      	android:fontFamily="roboto-light"
+        android:textColor="#FF01A7EB"
+        android:textSize="16sp"
         android:ems="10" />
     </TableRow>
 
-      <Space android:layout_height="20dp" />
+      <Space android:layout_height="10dp" />
     
 <TableRow 
     android:layout_width="wrap_content"
@@ -80,6 +42,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="10dp"
+        android:fontFamily="roboto-light"
+        android:textColor="#FF01A7EB"
+        android:textSize="16sp"
         android:text="@string/lblPassword" />
 
     <EditText
@@ -91,7 +56,117 @@
         android:inputType="textPassword" />
 </TableRow>
    
-  <Space android:layout_height="20dp" />
+  <Space android:layout_height="10dp" />
+      
+<TableRow 
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:padding="5dip">
+    <TextView
+        android:id="@+id/lblName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="roboto-light"
+        android:textColor="#FF01A7EB"
+        android:textSize="16sp"
+        android:paddingLeft="10dp"
+        android:text="@string/lblName" />
+
+    <EditText
+        android:id="@+id/txtName"
+        android:layout_width="182dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="roboto-light"
+		android:textSize="16sp"
+        android:paddingLeft="10dp"
+        android:ems="10" >
+
+        <requestFocus />
+    </EditText>
+</TableRow>
+
+<Space android:layout_height="10dp" />
+    <TableRow 
+        android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:padding="5dip">
+        <TextView
+        android:id="@+id/lblLastName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+		android:paddingLeft="10dp"
+		android:fontFamily="roboto-light"
+        android:textColor="#FF01A7EB"
+        android:textSize="16sp"
+        android:text="@string/lblApellido1" />
+
+    <EditText
+        android:id="@+id/txtLastName"
+        android:layout_width="179dp"
+        android:layout_height="wrap_content"
+      	android:paddingLeft="10dp"
+      	android:fontFamily="roboto-light"
+        android:textColor="#FF01A7EB"
+        android:textSize="16sp"
+        android:ems="10" />
+    </TableRow>
+    
+    
+    <Space android:layout_height="10dp" />
+    <TableRow 
+        android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:padding="5dip">
+        <TextView
+        android:id="@+id/lblIdentity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+		android:paddingLeft="10dp"
+		android:fontFamily="roboto-light"
+        android:textColor="#FF01A7EB"
+        android:textSize="16sp"
+        android:text="@string/lblIdentity" />
+
+    <EditText
+        android:id="@+id/txtIdentity"
+        android:layout_width="179dp"
+        android:layout_height="wrap_content"
+      	android:paddingLeft="10dp"
+      	android:fontFamily="roboto-light"
+        android:textColor="#FF01A7EB"
+        android:textSize="16sp"
+        android:ems="10" />
+    </TableRow>
+      
+  <Space android:layout_height="10dp" />
+
+<TableRow 
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="5dip">
+    <TextView
+        android:id="@+id/lblPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="roboto-light"
+        android:textColor="#FF01A7EB"
+        android:textSize="16sp"
+        android:paddingLeft="10dp"
+        android:text="@string/lblPhone" />
+
+    <EditText
+        android:id="@+id/txtPhone"
+        android:layout_width="182dp"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:fontFamily="roboto-light"
+        android:textSize="16sp"
+        android:ems="10"
+        android:inputType="phone" />
+</TableRow>
+
+  <Space android:layout_height="10dp" />
+    
 
 <TableRow
     android:layout_width="wrap_content"
@@ -99,13 +174,29 @@
     android:weightSum="3">
 
     <Button
-        android:id="@+id/btnRegistrar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_column="1"
-        android:background="#FFFFFF"
-        android:shadowColor="#ADEAEA"
-        android:text="@string/btnRegister" />
+            android:id="@+id/btnRegister"
+            android:background="#FFFFFF"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:fontFamily="roboto-light"
+            android:textColor="#91A5AE"
+            android:textSize="16sp"
+            android:drawableLeft="@drawable/check32px"
+            android:text="@string/btnAccept" />
+
+        <Button
+            android:id="@+id/btnCancelSignUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:fontFamily="roboto-light"
+            android:background="#FFFFFF"
+            android:textColor="#91A5AE"
+            android:textSize="16sp"
+            android:paddingRight="10dp"
+            android:drawableLeft="@drawable/cancel32px"
+            android:text="@string/btnCancel" />
     
 </TableRow>
     
