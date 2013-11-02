@@ -20,21 +20,22 @@ import com.thinksoft.polapp.HomeScreenActivity;
 import com.thinksoft.polapp.R;
 
 public class SignIn extends OrmLiteBaseActivity<PolAppHelper> {
-	
+
 	private BusinessManager bussinnessLayer;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_sign_in);
-		bussinnessLayer = new BusinessManagerImpl(getHelper().getConnectionSource());
-		User user = new UserImpl("admin","superadmin","1","Administrator","Polaco","Application");
+		bussinnessLayer = new BusinessManagerImpl(getHelper() .getConnectionSource());
+		User user = new UserImpl("admin", "superadmin", "1", "Administrator", "Polaco", "Application");
 		bussinnessLayer.addUser(user);
-		final EditText username = (EditText)findViewById(R.id.txtUserName);
-		final EditText password = (EditText)findViewById(R.id.txtPassword);
-		TextView signUp = (TextView)findViewById(R.id.lblSignUp);
-		Button btnEntrar = (Button)findViewById(R.id.btnEntrar);
 		
+		final EditText username = (EditText) findViewById(R.id.txtUserName);
+		final EditText password = (EditText) findViewById(R.id.txtPassword);
+		TextView signUp = (TextView) findViewById(R.id.lblSignUp);
+		Button btnEntrar = (Button) findViewById(R.id.btnEntrar);
+
 		signUp.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -43,23 +44,26 @@ public class SignIn extends OrmLiteBaseActivity<PolAppHelper> {
 				startActivity(intent);
 			}
 		});
-		 
+
 		btnEntrar.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				String usernameString = username.getText().toString();
 				String passString = password.getText().toString();
-				if(bussinnessLayer.checkUserCredentials(usernameString, passString)){
-					Intent intent = new Intent(SignIn.this, HomeScreenActivity.class);
-					startActivity(intent);
-				}else{
-					Toast error = Toast.makeText(SignIn.this,"Username/Password are incorrect, please type them again", Toast.LENGTH_LONG);
-					error.show();
+					if (bussinnessLayer.checkUserCredentials(usernameString,passString)) {
+						Intent intent = new Intent(SignIn.this, HomeScreenActivity.class);
+						startActivity(intent);
+					} else {
+						Toast error = Toast
+								.makeText(
+										SignIn.this,
+										"Username/Password are incorrect, please type them again",
+										Toast.LENGTH_LONG);
+						error.show();
+					}
 				}
-			}
-		});
-		
+			});
 	}
 
 	@Override
