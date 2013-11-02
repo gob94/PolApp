@@ -9,6 +9,7 @@ import com.thinksoft.models.daos.PolAppDaoManager;
 import com.thinksoft.models.daos.impl.PolAppDaoManagerImpl;
 import com.thinksoft.models.dtos.Product;
 import com.thinksoft.models.dtos.User;
+import com.thinksoft.models.dtos.impl.UserImpl;
 
 public class BusinessManagerImpl implements BusinessManager {
 	
@@ -56,4 +57,26 @@ public class BusinessManagerImpl implements BusinessManager {
 		return result;
 	}
 	
+	@Override
+	public User verifyUserInformation(String userName, String password, String name, String firstLastName, String secondLastName, String identification){
+		User user = null;
+		
+		if(!userName.equals("")&&!password.equals("")&&!name.equals("")&&!firstLastName.equals("")&&!secondLastName.equals("")&&!identification.equals("")){
+			user = new UserImpl(userName,password,identification,name,firstLastName,secondLastName);
+		}
+		
+		return user;
+	}
+
+	@Override
+	public int registerUser(User user)  {
+		int result = -2;
+		try {
+			polAppDaoManager.getUserDao().create(user);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
 }

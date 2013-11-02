@@ -9,4 +9,9 @@ public interface BusinessManager {
 	public boolean addUser(User user); 
 	
 	public boolean addProduct(Product product);
+
+	public User verifyUserInformation(String userName, String password, String name,
+			String firstLastName, String secondLastName, String identification);
+
+	public int registerUser(User user);
 }
