@@ -1,19 +1,19 @@
 package com.thinksoft.login;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
 import com.thinksoft.models.databases.PolAppHelper;
 import com.thinksoft.polapp.R;
 
 public class SignUp extends OrmLiteBaseActivity<PolAppHelper> {
-
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -25,7 +25,7 @@ public class SignUp extends OrmLiteBaseActivity<PolAppHelper> {
 			
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
+				
 				Intent intent = new Intent(SignUp.this, SignIn.class);
 				startActivity(intent);
 			}

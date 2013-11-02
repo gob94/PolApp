@@ -11,49 +11,53 @@ import com.thinksoft.models.dtos.Product;
 import com.thinksoft.models.dtos.User;
 
 public class BusinessManagerImpl implements BusinessManager {
-	
+
 	private PolAppDaoManager polAppDaoManager;
-	
+
 	public BusinessManagerImpl(ConnectionSource connection) {
-		polAppDaoManager = new  PolAppDaoManagerImpl(connection);
+		polAppDaoManager = new PolAppDaoManagerImpl(connection);
 	}
-	
-	public boolean checkUserCredentials(String userName, String password){
+
+	public boolean checkUserCredentials(String userName, String password) {
 		boolean result = false;
 		List<User> userReturned = null;
 		User user = null;
-			try {
-				 userReturned = polAppDaoManager.getUserDao().queryForEq("username", userName);
-				 user = userReturned.get(0);
-				 if(user.getPassword().equals(password)){
-					 result = true;
-				 }
-			} catch (SQLException e) {
-				e.printStackTrace();
+		try {
+			if (!userName.equals("") && !password.equals("")) {
+				userReturned = polAppDaoManager.getUserDao().queryForEq("username", userName);
+				user = userReturned.get(0);
+				if (user.getPassword().equals(password)) {
+					result = true;
+				}
 			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return result;
 	}
- 
+
 	@Override
 	public boolean addUser(User user) {
 		boolean result = false;
 		try {
-			polAppDaoManager.getUserDao().createIfNotExists(user);
+			polAppDaoManager.getUserDao().create(user);
+			result = true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return result;
 	}
-	
+
 	@Override
 	public boolean addProduct(Product product) {
 		boolean result = false;
 		try {
-			polAppDaoManager.getProductDao().createIfNotExists(product);
+			polAppDaoManager.getProductDao().create(product);
+			result = true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return result;
 	}
-	
+
 }
