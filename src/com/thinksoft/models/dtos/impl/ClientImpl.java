@@ -3,7 +3,7 @@ package com.thinksoft.models.dtos.impl;
 import com.j256.ormlite.field.DatabaseField;
 import com.thinksoft.models.dtos.Client;
 
-public class ClientImpl extends Client {
+public class ClientImpl implements Client {
 	@DatabaseField(generatedId = true, useGetSet = true)
 	protected int clientId;
 

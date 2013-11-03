@@ -2,6 +2,7 @@ package com.thinksoft.login;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -20,10 +21,10 @@ public class SignUp extends OrmLiteBaseActivity<PolAppHelper> {
 	BusinessManager businessLayer;
 	Button btnRegister;
 	Button btnCancel;
-	final static String MESSAGE_USERNAME_ERROR =  "Username already exists";
+	final static String MESSAGE_ERROR =  " already exists";
 	final static String MESSAGE_REGISTRATION_SUCCESFUL =  "Success: User Added";
-	final static String MESSAGE_ID_ERROR = "Identification already exists";
 	final static int MESSAGE_DURATION = 10000;
+	final static String MESSAGE_NO_SECOND = "No existe segundo nombre";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -33,10 +34,11 @@ public class SignUp extends OrmLiteBaseActivity<PolAppHelper> {
 		
 		btnRegister = (Button)findViewById(R.id.btnRegister);
 		btnCancel = (Button) findViewById(R.id.btnCancelSignUp);
-		final EditText txtUserName = (EditText) findViewById(R.id.txtUserName);
-		final EditText txtPassword = (EditText) findViewById(R.id.txtPassword);
+		final EditText txtUserName = (EditText) findViewById(R.id.txtUserNameSignUp);
+		final EditText txtPassword = (EditText) findViewById(R.id.txtPasswordSignUp);
+		final EditText txtPasswordVerification = (EditText) findViewById(R.id.txtPasswordVerificationSignUp);
 		final EditText txtName = (EditText) findViewById(R.id.txtNameSignUp);
-		final EditText txtLastName = (EditText) findViewById(R.id.txtLastName);
+		final EditText txtLastName = (EditText) findViewById(R.id.txtLastNameSignUp);
 		final EditText txtIdentification = (EditText) findViewById(R.id.txtIdentitySignUp);
 		
 		btnRegister.setOnClickListener(new OnClickListener() {
@@ -53,29 +55,27 @@ public class SignUp extends OrmLiteBaseActivity<PolAppHelper> {
 				User user = businessLayer.verifyUserInformation(userName, password, name, firstLastName, secondLastName, identification);
 				
 				if(user!=null){
-					int addResult = businessLayer.registerUser(user);
-					if(addResult==0){
-						sendToSignIn();
+					String registrationResult = businessLayer.registerUser(user);
+					if(registrationResult == "inserted"){
 						Toast msg = Toast.makeText(SignUp.this, MESSAGE_REGISTRATION_SUCCESFUL , MESSAGE_DURATION);
 						msg.show();
-					}else if(addResult==1){
-						Toast msg = Toast.makeText(SignUp.this, MESSAGE_USERNAME_ERROR , MESSAGE_DURATION);
-						msg.show();
-					}else if(addResult==-1){
-						Toast msg = Toast.makeText(SignUp.this,MESSAGE_ID_ERROR , MESSAGE_DURATION);
+						sendToSignIn();
+					}else {
+						Toast msg = Toast.makeText(SignUp.this,registrationResult + MESSAGE_ERROR, MESSAGE_DURATION);
 						msg.show();
 					}
 				}
-				
-				
 			}
-
-
 		});
 		btnCancel.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
+				txtUserName.setText("");
+				txtPassword.setText("");
+				txtName.setText("");
+				txtLastName.setText("");
+				txtIdentification.setText("");
 				sendToSignIn();
 			}
 		});
@@ -96,6 +96,12 @@ public class SignUp extends OrmLiteBaseActivity<PolAppHelper> {
 		return lastName.split(" ")[0];
 	}
 	private String retrieveSecondLastName(String lastName) {
-		return lastName.split(" ")[1];
+		String secondLastName="";
+		try{
+			secondLastName = lastName.split(" ")[1];
+		}catch(NullPointerException e){
+			Log.e(MESSAGE_NO_SECOND,e.getCause().toString());
+		}
+		return secondLastName;
 	}
 }

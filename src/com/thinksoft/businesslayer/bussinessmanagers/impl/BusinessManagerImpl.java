@@ -3,6 +3,8 @@ package com.thinksoft.businesslayer.bussinessmanagers.impl;
 import java.sql.SQLException;
 import java.util.List;
 
+import android.util.Log;
+
 import com.j256.ormlite.support.ConnectionSource;
 import com.thinksoft.businesslayer.bussinessmanagers.BusinessManager;
 import com.thinksoft.models.daos.PolAppDaoManager;
@@ -25,11 +27,15 @@ public class BusinessManagerImpl implements BusinessManager {
 		User user = null;
 			try {
 				 userReturned = polAppDaoManager.getUserDao().queryForEq("username", userName);
-				 user = userReturned.get(0);
-				 if(user.getPassword().equals(password)){
-					 result = true;
+				 if(userReturned.size()>0){
+					 user = userReturned.get(0);
+					 if(user.getPassword().equals(password)){
+						 result = true;
+					 }
 				 }
 			} catch (SQLException e) {
+				e.printStackTrace();
+			} catch (ArrayIndexOutOfBoundsException e){
 				e.printStackTrace();
 			}
 		return result;
@@ -39,9 +45,10 @@ public class BusinessManagerImpl implements BusinessManager {
 	public boolean addUser(User user) {
 		boolean result = false;
 		try {
-			polAppDaoManager.getUserDao().createIfNotExists(user);
+			polAppDaoManager.getUserDao().create(user);
+			result = true;
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Log.e("Error insertandousuario",e.getCause().toString());
 		}
 		return result;
 	}
@@ -51,6 +58,7 @@ public class BusinessManagerImpl implements BusinessManager {
 		boolean result = false;
 		try {
 			polAppDaoManager.getProductDao().createIfNotExists(product);
+			result = true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -61,7 +69,7 @@ public class BusinessManagerImpl implements BusinessManager {
 	public User verifyUserInformation(String userName, String password, String name, String firstLastName, String secondLastName, String identification){
 		User user = null;
 		
-		if(!userName.equals("")&&!password.equals("")&&!name.equals("")&&!firstLastName.equals("")&&!secondLastName.equals("")&&!identification.equals("")){
+		if((!userName.equals("")&&!password.equals("")&&!name.equals("")&&!firstLastName.equals("")&&!identification.equals(""))||!secondLastName.equals("")){
 			user = new UserImpl(userName,password,identification,name,firstLastName,secondLastName);
 		}
 		
@@ -69,13 +77,26 @@ public class BusinessManagerImpl implements BusinessManager {
 	}
 
 	@Override
-	public int registerUser(User user)  {
-		int result = -2;
+	public String registerUser(User user)  {
+		String result = "inserted";
+		List<User> userReturned;
 		try {
-			polAppDaoManager.getUserDao().create(user);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+			 userReturned = polAppDaoManager.getUserDao().queryForEq("identification", user.getIdentification());
+			 if(userReturned.size()<0){
+				 userReturned.addAll(polAppDaoManager.getUserDao().queryForEq("username", user.getUsername()));
+				 if(userReturned.size()<0){
+					 addUser(user);
+				 }else{
+					 result = "username";
+				 }
+			 }else{
+				 result = "identification";
+			 }
+			} catch (SQLException e) {
+				Log.e("Error verificando credenciales",e.getCause().toString());
+			} catch (ArrayIndexOutOfBoundsException e){
+				Log.e("Error verificando credenciales",e.getCause().toString());
+			}
 		return result;
 	}
 

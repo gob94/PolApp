@@ -58,7 +58,7 @@ public class SignIn extends OrmLiteBaseActivity<PolAppHelper> {
 						Toast error = Toast
 								.makeText(
 										SignIn.this,
-										"Username/Password are incorrect, please type them again",
+										"El nombre de usuario o contraseña es incorrecto, ingreselos de nuevo",
 										Toast.LENGTH_LONG);
 						error.show();
 					}
