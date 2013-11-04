@@ -3,8 +3,7 @@
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
-	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/Users/Gustavo/Desktop/Eclipse/android-sdk/platforms/android-16/android.jar">
+	<classpathentry exported="true" kind="lib" path="C:/Users/Johnny/Documents/adt-bundle-windows-x86_64-20130917/sdk/platforms/android-16/android.jar">
 		<attributes>
 			<attribute name="javadoc_location" value="file:/C:/Users/Gustavo/Desktop/Eclipse/android-sdk/docs/reference"/>
 		</attributes>
@@ -12,7 +11,7 @@
 			<accessrule kind="nonaccessible" pattern="com/android/internal/**"/>
 		</accessrules>
 	</classpathentry>
-	<classpathentry kind="src" path="/Toast"/>
+	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

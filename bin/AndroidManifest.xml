@@ -20,7 +20,7 @@
         <activity
             android:name="com.thinksoft.login.SignIn"
             android:label="@string/title_activity_sign_in"
-            android:theme="@android:style/Theme.NoTitleBar" >
+            android:theme="@android:style/Theme.Light.NoTitleBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,7 +31,8 @@
 
         <activity
             android:name="com.thinksoft.login.SignUp"
-            android:label="@string/title_activity_sign_up" >
+            android:label="@string/title_activity_sign_up" 
+            android:theme="@android:style/Theme.Holo.Light.Dialog">
         </activity>
         <activity
             android:name="com.thinksoft.polapp.HomeScreenActivity"
@@ -53,7 +54,7 @@
         <activity
             android:name="com.thinksoft.polapp.ProductosActivity"
             android:label="@string/title_activity_productos" 
-            android:theme="@android:style/Theme.Holo.Dialog" >
+            android:theme="@android:style/Theme.Holo.Light.Dialog" >
         </activity>
         <activity
             android:name="com.thinksoft.polapp.ListaProductosActivity"

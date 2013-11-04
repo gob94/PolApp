@@ -1,34 +1,41 @@
-package com.thinksoft.polapp;
+package com.thinksoft.polapp.listviewProductos;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.thinksoft.models.dtos.Product;
-import com.thinksoft.models.dtos.impl.ProductImpl;
-
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
-import android.widget.TextView;
 
-public class CheckBoxListAdapter extends BaseAdapter implements OnClickListener {
-	
-	
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import com.thinksoft.businesslayer.bussinessmanagers.BusinessManager;
+import com.thinksoft.businesslayer.bussinessmanagers.impl.BusinessManagerImpl;
+import com.thinksoft.models.dtos.Product;
+import com.thinksoft.models.dtos.impl.ProductImpl;
+import com.thinksoft.polapp.R;
+import com.thinksoft.polapp.SampleDataCobros;
+ 
+import android.app.Activity;
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View.OnClickListener;
+import android.widget.TextView;
+ 
+public class ListViewProductosAdapter extends BaseAdapter implements OnClickListener{
+ 
 	/** The inflator used to inflate the XML layout */
 	private LayoutInflater inflator;
+	private BusinessManager bl;
  
 	/** A list containing some sample data to show. */
 	Product product = new ProductImpl();
 	private List<ProductImpl> dataList;
  
-	public CheckBoxListAdapter(LayoutInflater inflator) {
+	public ListViewProductosAdapter(LayoutInflater inflator) {
 		super();
 		this.inflator = inflator;
 		dataList = new ArrayList();
-		
 		/**Cargar la lista con la BD**/
 	}
 	@Override
@@ -75,5 +82,9 @@ public class CheckBoxListAdapter extends BaseAdapter implements OnClickListener 
 		SampleDataCobros data = (SampleDataCobros) view.getTag();
 		data.setSelected(((CheckBox) view).isChecked());
 	}
-
+	
+	public void addList(){
+		
+		
+	}
 }
