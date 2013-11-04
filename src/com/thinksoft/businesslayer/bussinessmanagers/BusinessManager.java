@@ -10,8 +10,8 @@ public interface BusinessManager {
 	
 	public boolean addProduct(Product product);
 
-	public User verifyUserInformation(String userName, String password, String name,
-			String firstLastName, String secondLastName, String identification);
-
 	public String registerUser(User user);
+
+	public User verifyUserInformation(String userName, String password,
+			String name, String[] lastName, String identification);
 }

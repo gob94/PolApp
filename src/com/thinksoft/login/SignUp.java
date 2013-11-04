@@ -21,10 +21,12 @@ public class SignUp extends OrmLiteBaseActivity<PolAppHelper> {
 	BusinessManager businessLayer;
 	Button btnRegister;
 	Button btnCancel;
-	final static String MESSAGE_ERROR =  " already exists";
-	final static String MESSAGE_REGISTRATION_SUCCESFUL =  "Success: User Added";
+	final static String MESSAGE_ALREADY_EXISTS =  " ya existe";
+	final static String MESSAGE_REGISTRATION_SUCCESFUL =  "Usuario agregado";
 	final static int MESSAGE_DURATION = 10000;
 	final static String MESSAGE_NO_SECOND = "No existe segundo nombre";
+	final static String MESSAGE_PASSWORD_MISMATCH = "Contraseñas no coinciden";
+	final static String MESSAGE_FIELDS_ERROR = "Faltan datos por digitar";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -47,24 +49,29 @@ public class SignUp extends OrmLiteBaseActivity<PolAppHelper> {
 			public void onClick(View v) {
 				String userName = txtUserName.getText().toString();
 				String password = txtPassword.getText().toString();
+				String passwordVerification = txtPassword.getText().toString();
 				String name = txtName.getText().toString();
-				String firstLastName = retrieveFirstLastName(txtLastName.getText().toString());
-				String secondLastName =  retrieveSecondLastName(txtLastName.getText().toString());
+				String[] lastName = txtLastName.getText().toString().split(" ");
 				String identification = txtIdentification.getText().toString();
-				
-				User user = businessLayer.verifyUserInformation(userName, password, name, firstLastName, secondLastName, identification);
-				
-				if(user!=null){
-					String registrationResult = businessLayer.registerUser(user);
-					if(registrationResult == "inserted"){
-						Toast msg = Toast.makeText(SignUp.this, MESSAGE_REGISTRATION_SUCCESFUL , MESSAGE_DURATION);
-						msg.show();
-						sendToSignIn();
-					}else {
-						Toast msg = Toast.makeText(SignUp.this,registrationResult + MESSAGE_ERROR, MESSAGE_DURATION);
-						msg.show();
+				Toast msg = null;
+				if(passwordVerification.equals(password)){
+					User user = businessLayer.verifyUserInformation(userName, password, name, lastName, identification);
+					if(user!=null){
+						String registrationResult = businessLayer.registerUser(user);
+						if(registrationResult == "inserted"){
+							msg = Toast.makeText(SignUp.this, MESSAGE_REGISTRATION_SUCCESFUL , MESSAGE_DURATION);
+							msg.show();
+							sendToSignIn();
+						}else {
+							msg = Toast.makeText(SignUp.this, registrationResult + MESSAGE_ALREADY_EXISTS, MESSAGE_DURATION);
+						}
+					}else{
+						msg = Toast.makeText(SignUp.this,MESSAGE_FIELDS_ERROR, MESSAGE_DURATION);
 					}
+				}else{
+					msg = Toast.makeText(SignUp.this, MESSAGE_PASSWORD_MISMATCH, MESSAGE_DURATION);
 				}
+				msg.show();
 			}
 		});
 		btnCancel.setOnClickListener(new OnClickListener() {
@@ -73,6 +80,7 @@ public class SignUp extends OrmLiteBaseActivity<PolAppHelper> {
 			public void onClick(View v) {
 				txtUserName.setText("");
 				txtPassword.setText("");
+				txtPasswordVerification.setText("");
 				txtName.setText("");
 				txtLastName.setText("");
 				txtIdentification.setText("");
@@ -93,14 +101,29 @@ public class SignUp extends OrmLiteBaseActivity<PolAppHelper> {
 	}
 	
 	private String retrieveFirstLastName(String lastName) {
-		return lastName.split(" ")[0];
+		String firstLastName="";
+		try{
+
+			Log.e(MESSAGE_NO_SECOND,lastName);
+			if(lastName != ""){
+				firstLastName = lastName.split(" ")[0];
+			}
+		}catch(NullPointerException e){
+			Log.e(MESSAGE_NO_SECOND,e.getCause().toString());
+		}catch(ArrayIndexOutOfBoundsException e){
+			Log.e(MESSAGE_NO_SECOND,e.getCause().toString());
+		}
+		return firstLastName;
 	}
 	private String retrieveSecondLastName(String lastName) {
 		String secondLastName="";
 		try{
-			secondLastName = lastName.split(" ")[1];
-		}catch(NullPointerException e){
-			Log.e(MESSAGE_NO_SECOND,e.getCause().toString());
+			Log.e(MESSAGE_NO_SECOND,lastName);
+			if(lastName != ""){
+				secondLastName = lastName.split(" ")[1];
+			}
+		}catch(ArrayIndexOutOfBoundsException ex){
+			Log.e(MESSAGE_NO_SECOND,ex.getCause().toString());
 		}
 		return secondLastName;
 	}

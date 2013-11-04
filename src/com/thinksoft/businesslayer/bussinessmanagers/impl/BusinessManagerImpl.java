@@ -66,13 +66,17 @@ public class BusinessManagerImpl implements BusinessManager {
 	}
 	
 	@Override
-	public User verifyUserInformation(String userName, String password, String name, String firstLastName, String secondLastName, String identification){
+	public User verifyUserInformation(String userName, String password, String name,String[] lastName, String identification){
 		User user = null;
-		
-		if((!userName.equals("")&&!password.equals("")&&!name.equals("")&&!firstLastName.equals("")&&!identification.equals(""))||!secondLastName.equals("")){
-			user = new UserImpl(userName,password,identification,name,firstLastName,secondLastName);
+		if(lastName.length>1){
+			if((!userName.equals("")&&!password.equals("")&&!name.equals("")&&!lastName[0].equals("")&&!identification.equals(""))){
+				user = new UserImpl(userName,password,identification,name,lastName[0],lastName[1]);
+			}
+		}else{
+			if((!userName.equals("")&&!password.equals("")&&!name.equals("")&&!lastName[0].equals("")&&!identification.equals(""))){
+				user = new UserImpl(userName,password,identification,name,lastName[0],"");
+			}
 		}
-		
 		return user;
 	}
 
@@ -82,9 +86,9 @@ public class BusinessManagerImpl implements BusinessManager {
 		List<User> userReturned;
 		try {
 			 userReturned = polAppDaoManager.getUserDao().queryForEq("identification", user.getIdentification());
-			 if(userReturned.size()<0){
+			 if(userReturned.size()==0){
 				 userReturned.addAll(polAppDaoManager.getUserDao().queryForEq("username", user.getUsername()));
-				 if(userReturned.size()<0){
+				 if(userReturned.size()==0){
 					 addUser(user);
 				 }else{
 					 result = "username";
