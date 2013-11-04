@@ -21,6 +21,10 @@ public class ProductosActivity extends OrmLiteBaseActivity<PolAppHelper> {
 	private final static int ZERO= 0;
 	Button btnAdd;
 	Button btnCancel;
+	EditText txtCode;
+	EditText txtName;
+	EditText txtQuantity;
+	EditText txtPrice;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +89,23 @@ public class ProductosActivity extends OrmLiteBaseActivity<PolAppHelper> {
 			product = new ProductImpl(code, name, quantity, price);
 		}
 		return product;
+	}
+	
+	public void registerProduct (){
+		String code = txtCode.getText().toString();
+		String name= txtName.getText().toString();
+		float quantity=Float.parseFloat(txtQuantity.getText().toString());
+		float price= Integer.parseInt(txtPrice.getText().toString());
+		
+		Product product = createProduct(code, name, quantity, price);
+		if(bussinesManager.addProduct(product)){
+		
+		Toast toast= Toast.makeText(ProductosActivity.this, "Producto agregado exitosamente", Toast.LENGTH_LONG);
+		toast.show();
+		}else{
+			Toast toast= Toast.makeText(ProductosActivity.this, "Producto ya existente", Toast.LENGTH_LONG);
+			toast.show();
+		}
 	}
 
 }

@@ -10,10 +10,12 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.text.style.BulletSpan;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -58,36 +60,17 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 		tabs.addTab(spec);
 		 
 		tabs.setCurrentTab(0);
-		
+
 		btnAdd.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				// custom dialog
-				final Dialog dialog = new Dialog(HomeScreenActivity.this);
-				dialog.setContentView(R.layout.activity_productos);
-				dialog.setTitle("Agregar producto");
-	 /*
-				// set the custom dialog components - text, image and button
-				TextView text = (TextView) dialog.findViewById(R.id.text);
-				text.setText("Android custom dialog example!");
-				ImageView image = (ImageView) dialog.findViewById(R.id.image);
-				image.setImageResource(R.drawable.ic_launcher);
-		**/
-	 
-				Button dialogButton = (Button) dialog.findViewById(R.id.btnSaveProduct);
-				// if button is clicked, close the custom dialog
-				dialogButton.setOnClickListener(new OnClickListener() {
-					@Override
-					public void onClick(View v) {
-						dialog.dismiss();
-					}
-				});
-	 
-				dialog.show();
-			  
+				
+				Intent intent=new Intent(getApplicationContext(), ProductosActivity.class);
+				startActivity(intent);
+			}
+		});
 	}
-			});}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

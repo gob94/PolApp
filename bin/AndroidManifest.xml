@@ -52,7 +52,8 @@
         </activity>
         <activity
             android:name="com.thinksoft.polapp.ProductosActivity"
-            android:label="@string/title_activity_productos" >
+            android:label="@string/title_activity_productos" 
+            android:theme="@android:style/Theme.Holo.Dialog" >
         </activity>
         <activity
             android:name="com.thinksoft.polapp.ListaProductosActivity"
