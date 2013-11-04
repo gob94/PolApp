@@ -2,7 +2,6 @@ package com.thinksoft.login;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -98,33 +97,5 @@ public class SignUp extends OrmLiteBaseActivity<PolAppHelper> {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.sign_up, menu);
 		return true;
-	}
-	
-	private String retrieveFirstLastName(String lastName) {
-		String firstLastName="";
-		try{
-
-			Log.e(MESSAGE_NO_SECOND,lastName);
-			if(lastName != ""){
-				firstLastName = lastName.split(" ")[0];
-			}
-		}catch(NullPointerException e){
-			Log.e(MESSAGE_NO_SECOND,e.getCause().toString());
-		}catch(ArrayIndexOutOfBoundsException e){
-			Log.e(MESSAGE_NO_SECOND,e.getCause().toString());
-		}
-		return firstLastName;
-	}
-	private String retrieveSecondLastName(String lastName) {
-		String secondLastName="";
-		try{
-			Log.e(MESSAGE_NO_SECOND,lastName);
-			if(lastName != ""){
-				secondLastName = lastName.split(" ")[1];
-			}
-		}catch(ArrayIndexOutOfBoundsException ex){
-			Log.e(MESSAGE_NO_SECOND,ex.getCause().toString());
-		}
-		return secondLastName;
 	}
 }
