@@ -32,6 +32,10 @@
     <string name="lblAgregarCliente">Agregar cliente</string>
     <string name="lblNombCliente">Nombre</string>
     <string name="lblTel">Teléfono</string>
+    <string name="lblTotal">Total</string>
+    <string name="lblCliente">Cliente</string>
+    <string name="lblVendedor">Vendedor</string>
+    <string name="lblFechaCobro">Modo de cobro</string>
     <string name="lblProductos">Productos comprados</string>
     <string name="lblDireccion">Direccion</string>
     <string name="lblApellido1">Apellido</string>
