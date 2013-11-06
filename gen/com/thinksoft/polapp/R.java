@@ -73,7 +73,11 @@ public final class R {
         public static final int write24px=0x7f020031;
     }
     public static final class id {
-        public static final int action_settings=0x7f09005e;
+        public static final int AccountStateClientListRow=0x7f090061;
+        public static final int FirstLastNameClientListRow=0x7f09005f;
+        public static final int NameClientListRow=0x7f09005e;
+        public static final int SecondLastNameClientListRow=0x7f090060;
+        public static final int action_settings=0x7f090062;
         public static final int btnAdd=0x7f090008;
         public static final int btnCancelClientEdit=0x7f09002a;
         public static final int btnCancelCobro=0x7f090014;
@@ -184,6 +188,7 @@ public final class R {
         public static final int activity_productos=0x7f03000b;
         public static final int activity_sign_in=0x7f03000c;
         public static final int activity_sign_up=0x7f03000d;
+        public static final int client_list_view_row=0x7f03000e;
     }
     public static final class menu {
         public static final int agregar_clientes=0x7f080000;

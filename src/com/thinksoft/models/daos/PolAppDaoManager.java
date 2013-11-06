@@ -7,7 +7,6 @@ import com.j256.ormlite.support.ConnectionSource;
 import com.thinksoft.models.dtos.Address;
 import com.thinksoft.models.dtos.Brand;
 import com.thinksoft.models.dtos.Client;
-import com.thinksoft.models.dtos.ClientAddress;
 import com.thinksoft.models.dtos.Employee;
 import com.thinksoft.models.dtos.Order;
 import com.thinksoft.models.dtos.Payment;
@@ -24,8 +23,6 @@ public interface PolAppDaoManager {
 	public Dao<Brand, Integer> getBrandDao();
 
 	public Dao<Client, Integer> getClientDao();
-
-	public Dao<ClientAddress, Void> getClientAddress();
 
 	public Dao<Employee, Integer> getEmployee();
 
@@ -49,9 +46,6 @@ public interface PolAppDaoManager {
 	public <T> void setBrandDao(Class<T> classImpl, ConnectionSource connection) throws SQLException;
 
 	public <T> void setClientDao(Class<T> classImpl, ConnectionSource connection) throws SQLException;
-
-	public <T> void setClientAddress(Class<T> classImpl,
-			ConnectionSource connection) throws SQLException;
 
 	public <T> void setEmployee(Class<T> classImpl, ConnectionSource connection) throws SQLException;
 

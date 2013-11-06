@@ -1,14 +1,16 @@
 package com.thinksoft.businesslayer.bussinessmanagers.impl;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import android.util.Log;
-
 import com.j256.ormlite.support.ConnectionSource;
 import com.thinksoft.businesslayer.bussinessmanagers.BusinessManager;
 import com.thinksoft.models.daos.PolAppDaoManager;
 import com.thinksoft.models.daos.impl.PolAppDaoManagerImpl;
+import com.thinksoft.models.dtos.Client;
 import com.thinksoft.models.dtos.Product;
 import com.thinksoft.models.dtos.User;
 import com.thinksoft.models.dtos.impl.UserImpl;
@@ -16,6 +18,7 @@ import com.thinksoft.models.dtos.impl.UserImpl;
 public class BusinessManagerImpl implements BusinessManager {
 	
 	private PolAppDaoManager polAppDaoManager;
+	
 	
 	public BusinessManagerImpl(ConnectionSource connection) {
 		polAppDaoManager = new  PolAppDaoManagerImpl(connection);
@@ -104,4 +107,46 @@ public class BusinessManagerImpl implements BusinessManager {
 		return result;
 	}
 
+	@Override
+	public List<HashMap<String,String>> getAllClients(){
+		List<HashMap<String,String>> listOfClients = null;
+		List<Client> rawClients = null;
+		HashMap<String, String> clientItem = null;
+		try {
+			listOfClients = new ArrayList<HashMap<String,String>>();
+			rawClients = polAppDaoManager.getClientDao().queryForAll();
+			
+			for (Client client : rawClients) {
+					
+				clientItem = new HashMap<String, String>();
+				
+				clientItem.put(com.thinksoft.businesslayer.utils.constants.RowConstants.NAME_COLUMN, client.getName());
+
+				clientItem.put(com.thinksoft.businesslayer.utils.constants.RowConstants.FIRST_LASTNAME_COLUMN, client.getFirstLastName());
+
+				clientItem.put(com.thinksoft.businesslayer.utils.constants.RowConstants.SECOND_LASTNAME_COLUMN, client.getSecondLastName());
+				
+				clientItem.put(com.thinksoft.businesslayer.utils.constants.RowConstants.STATUS_COLUMN, String.valueOf(client.getAccountState()));
+				
+				listOfClients.add(clientItem);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return listOfClients;
+	}
+
+	@Override
+	public boolean addClient(Client client) {
+		boolean result = false;
+		try {
+			polAppDaoManager.getClientDao().create(client);
+			result = true;
+		} catch (SQLException e) {
+			Log.e("Error insertando Cliente",e.getCause().toString());
+		}
+		return result;
+	}
+	
 }

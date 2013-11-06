@@ -12,11 +12,10 @@ import com.j256.ormlite.table.TableUtils;
 import com.thinksoft.models.dtos.impl.AddressImpl;
 import com.thinksoft.models.dtos.impl.BrandImpl;
 import com.thinksoft.models.dtos.impl.ClientImpl;
-import com.thinksoft.models.dtos.impl.ClientAddressImpl;
 import com.thinksoft.models.dtos.impl.EmployeeImpl;
 import com.thinksoft.models.dtos.impl.OrderImpl;
-import com.thinksoft.models.dtos.impl.PaymentImpl;
 import com.thinksoft.models.dtos.impl.PaymentFrequencyImpl;
+import com.thinksoft.models.dtos.impl.PaymentImpl;
 import com.thinksoft.models.dtos.impl.ProductImpl;
 import com.thinksoft.models.dtos.impl.ProductOrderImpl;
 import com.thinksoft.models.dtos.impl.UserImpl;
@@ -42,7 +41,6 @@ public class PolAppHelper extends OrmLiteSqliteOpenHelper {
 		 	TableUtils.createTable(connectionSource, PaymentFrequencyImpl.class);
 			TableUtils.createTable(connectionSource, ProductImpl.class);
 			TableUtils.createTable(connectionSource, UserImpl.class);
-			TableUtils.createTable(connectionSource, ClientAddressImpl.class);
 			TableUtils.createTable(connectionSource, OrderImpl.class);
 			TableUtils.createTable(connectionSource, ProductOrderImpl.class);
 			TableUtils.createTable(connectionSource, PaymentImpl.class);
@@ -64,7 +62,6 @@ public class PolAppHelper extends OrmLiteSqliteOpenHelper {
 			TableUtils.createTable(connectionSource, PaymentFrequencyImpl.class);
 			TableUtils.createTable(connectionSource, VehicleImpl.class);
 			TableUtils.createTable(connectionSource, EmployeeImpl.class);
-			TableUtils.createTable(connectionSource, ClientAddressImpl.class);
 			TableUtils.createTable(connectionSource, OrderImpl.class);
 			TableUtils.createTable(connectionSource, ProductOrderImpl.class);
 			TableUtils.createTable(connectionSource, PaymentImpl.class);

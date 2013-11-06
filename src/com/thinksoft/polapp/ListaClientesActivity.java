@@ -13,6 +13,7 @@ public class ListaClientesActivity extends OrmLiteBaseActivity<PolAppHelper> {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_lista_clientes);
+		 
 	}
 
 	@Override

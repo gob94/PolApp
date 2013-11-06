@@ -9,7 +9,6 @@ import com.thinksoft.models.daos.PolAppDaoManager;
 import com.thinksoft.models.dtos.*;
 import com.thinksoft.models.dtos.impl.AddressImpl;
 import com.thinksoft.models.dtos.impl.BrandImpl;
-import com.thinksoft.models.dtos.impl.ClientAddressImpl;
 import com.thinksoft.models.dtos.impl.ClientImpl;
 import com.thinksoft.models.dtos.impl.EmployeeImpl;
 import com.thinksoft.models.dtos.impl.OrderImpl;
@@ -25,7 +24,6 @@ public class PolAppDaoManagerImpl implements PolAppDaoManager {
 	private Dao<Address, Integer> addressDao;
 	private Dao<Brand, Integer> brandDao;
 	private Dao<Client, Integer> clientDao;
-	private Dao<ClientAddress, Void> clientAddressDao;
 	private Dao<Employee, Integer> employeeDao;
 	private Dao<Order, Integer> orderDao;
 	private Dao<Payment, Integer> paymentDao;
@@ -40,7 +38,6 @@ public class PolAppDaoManagerImpl implements PolAppDaoManager {
 			addressDao = DaoManager.createDao(connection, AddressImpl.class);
 			brandDao = DaoManager.createDao(connection, BrandImpl.class);
 			clientDao = DaoManager.createDao(connection, ClientImpl.class);
-			clientAddressDao = DaoManager.createDao(connection, ClientAddressImpl.class);
 			employeeDao = DaoManager.createDao(connection, EmployeeImpl.class);
 			orderDao = DaoManager.createDao(connection, OrderImpl.class);
 			paymentDao = DaoManager.createDao(connection, PaymentImpl.class);
@@ -72,10 +69,6 @@ public class PolAppDaoManagerImpl implements PolAppDaoManager {
 
 	public Dao<Client, Integer> getClientDao() {
 		return clientDao;
-	}
-
-	public Dao<ClientAddress, Void> getClientAddress() {
-		return clientAddressDao;
 	}
 
 	public Dao<Employee, Integer> getEmployee() {
@@ -120,11 +113,6 @@ public class PolAppDaoManagerImpl implements PolAppDaoManager {
 
 	public <T> void setClientDao(Class<T> classImpl, ConnectionSource connection) throws SQLException {
 		clientDao = DaoManager.createDao(connection, classImpl);
-	}
-
-	public <T> void setClientAddress(Class<T> classImpl,
-			ConnectionSource connection) throws SQLException {
-		clientAddressDao = DaoManager.createDao(connection, classImpl);
 	}
 
 	public <T> void setEmployee(Class<T> classImpl, ConnectionSource connection) throws SQLException {

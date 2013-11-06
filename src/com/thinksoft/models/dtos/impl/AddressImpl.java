@@ -18,6 +18,10 @@ public class AddressImpl implements Address{
 	protected int specificSigns;
 	@DatabaseField(useGetSet = true)
 	protected int mapURL;
+	@DatabaseField(useGetSet = true, foreign=true, foreignAutoCreate=true)
+	protected ClientImpl client;
+	@DatabaseField(useGetSet = true)
+	protected boolean active;
 	
 	public AddressImpl() {
 	}
@@ -49,6 +53,9 @@ public class AddressImpl implements Address{
 	public int getSpecificSigns() {
 		return specificSigns;
 	}
+	public ClientImpl getClient() {
+		return client;
+	}
 	public void setSpecificSigns(int specificSigns) {
 		this.specificSigns = specificSigns;
 	}
@@ -59,6 +66,16 @@ public class AddressImpl implements Address{
 		this.mapURL = mapURL;
 	}
 	
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+	public void setClient(ClientImpl client) {
+		this.client = client;
+	}
+	
+	public boolean getActive() {
+		return active;
+	}
 	
 	
 }

@@ -1,6 +1,8 @@
 package com.thinksoft.models.dtos.impl;
 
+import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.field.ForeignCollectionField;
 import com.thinksoft.models.dtos.Client;
 
 public class ClientImpl implements Client {
@@ -18,10 +20,26 @@ public class ClientImpl implements Client {
 
 	@DatabaseField(defaultValue = "false", useGetSet = true, canBeNull = false)
 	protected boolean accountState;
- 
+	
+	@ForeignCollectionField(eager=true, foreignFieldName="client")
+    private ForeignCollection<AddressImpl> clientAddresses;
+	
 	public ClientImpl() {
 	}
 	
+	
+	
+	public ClientImpl(String name, String firstLastName,
+			String secondLastName, boolean accountState) {
+		super();
+		this.name = name;
+		this.firstLastName = firstLastName;
+		this.secondLastName = secondLastName;
+		this.accountState = accountState;
+	}
+
+
+
 	public int getClientId() {
 		return clientId;
 	}
@@ -61,5 +79,11 @@ public class ClientImpl implements Client {
 	public void setAccountState(boolean accountState) {
 		this.accountState = accountState;
 	}
-
+	public void setClientAddresses(
+			ForeignCollection<AddressImpl> clientAddresses) {
+		this.clientAddresses = clientAddresses;
+	}
+	public ForeignCollection<AddressImpl> getClientAddresses() {
+		return clientAddresses;
+	}
 }

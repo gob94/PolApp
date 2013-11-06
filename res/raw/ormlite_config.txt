@@ -1,5 +1,5 @@
 #
-# generated on 2013/11/01 11:59:12
+# generated on 2013/11/05 10:25:52
 #
 # --table-start--
 dataClass=com.thinksoft.models.dtos.impl.AddressImpl
@@ -33,6 +33,17 @@ useGetSet=true
 fieldName=mapURL
 useGetSet=true
 # --field-end--
+# --field-start--
+fieldName=client
+columnName=client_id
+foreign=true
+useGetSet=true
+foreignAutoCreate=true
+# --field-end--
+# --field-start--
+fieldName=active
+useGetSet=true
+# --field-end--
 # --table-fields-end--
 # --table-end--
 #################################
@@ -50,27 +61,6 @@ fieldName=brandName
 canBeNull=false
 useGetSet=true
 unique=true
-# --field-end--
-# --table-fields-end--
-# --table-end--
-#################################
-# --table-start--
-dataClass=com.thinksoft.models.dtos.impl.ClientAddressImpl
-tableName=clientaddressimpl
-# --table-fields-start--
-# --field-start--
-fieldName=client
-foreign=true
-useGetSet=true
-# --field-end--
-# --field-start--
-fieldName=address
-foreign=true
-useGetSet=true
-# --field-end--
-# --field-start--
-fieldName=phoneNumber
-useGetSet=true
 # --field-end--
 # --table-fields-end--
 # --table-end--
@@ -103,6 +93,12 @@ fieldName=accountState
 defaultValue=false
 canBeNull=false
 useGetSet=true
+# --field-end--
+# --field-start--
+fieldName=clientAddresses
+foreignCollection=true
+foreignCollectionEager=true
+foreignCollectionForeignFieldName=client
 # --field-end--
 # --table-fields-end--
 # --table-end--
