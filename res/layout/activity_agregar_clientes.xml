@@ -2,97 +2,173 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".AgregarClientesActivity" >    
-    
-    <TextView
-        android:id="@+id/lblAgregarCliente"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/lblAgregarCliente" />
+	android:orientation="vertical"
+    android:background="#FFFFFF"
+    tools:context=".AgregarClientesActivity" >
+   
     
     <Space android:layout_height="50dp" />
 
-    <TableRow>
-    	<TextView
-        	android:id="@+id/lblNombCliente"
-        	android:layout_width="wrap_content"
-        	android:layout_height="wrap_content"
-        	android:text="@string/lblNombCliente" />
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="1dip" >
 
-   	 	<EditText
-        	android:id="@+id/txtNombre"
-        	android:layout_width="200dp"
-        	android:layout_height="wrap_content"
-        	android:ems="10" />
+        <TextView
+            android:id="@+id/lblNombCliente"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:paddingLeft="10dp"
+            android:text="@string/lblNombCliente"
+            android:textColor="#045FB4" />
+
+        <EditText
+            android:id="@+id/txtNombre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:ems="10" />
+    </TableRow>
     
+    <Space android:layout_height="10dp" />
+    
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="1dip" >
+
+        <TextView
+            android:id="@+id/lblApellidoCliente"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:paddingLeft="10dp"
+            android:text="@string/lblApellido1"
+            android:textColor="#045FB4" />
+
+        <EditText
+            android:id="@+id/txtApellidoCliente"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10" >
+
+            <requestFocus />
+        </EditText>
     </TableRow>
     
   <Space android:layout_height="10dp" />
     
-    
-    <TableRow>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="1dip" >
 
         <TextView
             android:id="@+id/lblTelefono"
-            android:layout_width="150dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/lblTel" />
+            android:layout_gravity="left"
+            android:layout_weight="1"
+            android:paddingLeft="10dp"
+            android:text="@string/lblTel"
+            android:textColor="#045FB4" />
 
         <EditText
             android:id="@+id/txtTelefono"
-            android:layout_width="200dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:ems="10" >
 
             <requestFocus />
         </EditText>
     </TableRow>
 
-    <TableRow>
+<Space android:layout_height="10dp" />
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" 
+        android:padding="1dip">
+
     <TextView
         android:id="@+id/lblProductos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="left"
         android:layout_marginTop="38dp"
-        android:text="@string/lblProductos" />
-    </TableRow>
-    
-    <TableRow >
-
-    <Spinner
-        android:id="@+id/spnProductos"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="19dp" />
+        android:paddingLeft="10dp"
+        android:text="@string/lblProductos"
+        android:textColor="#045FB4" />
 
     </TableRow>
+    <Space android:layout_height="10dp" />
+    <TableRow 
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" 
+        android:padding="1dip">
+        <ScrollView
+            android:id="@+id/scrollView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical" >
+                
+             <ListView
+            android:id="@+id/listView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+        </ListView>
+            </LinearLayout>
+        </ScrollView>
+
+    </TableRow>
     
-    <TableRow >
+    <Space android:layout_height="10dp" />
+    
+    <TableRow 
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" 
+        android:padding="1dip">
+
     <TextView
         android:id="@+id/lblDireccion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="19dp"
-        android:text="@string/lblDireccion" />
+        android:clickable="true"
+        android:text="@string/lblDireccion"
+        android:textColor="#013ADF"
+        android:textColorLink="#013ADF" />
     
     </TableRow>
 
-    <TableRow >
+    <Space android:layout_height="10dp" />
+    
+    <TableRow 
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" 
+        android:padding="1dip">
         
-    <ImageButton
+    <Button
         android:id="@+id/btnAdd"
-        android:layout_width="90dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="#228B22"
+        android:background="#FFFFFF"
+        android:drawableLeft="@drawable/check32px"
+        android:text="@string/btnAccept"
         android:contentDescription="@string/btnAccept"
         android:src="@drawable/save24px" />
 
     </TableRow>
     
 </TableLayout>
+
