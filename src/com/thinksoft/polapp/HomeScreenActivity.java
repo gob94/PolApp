@@ -1,8 +1,5 @@
 package com.thinksoft.polapp;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -21,7 +18,6 @@ import com.thinksoft.businesslayer.utils.ClientListViewAdapter;
 import com.thinksoft.businesslayer.utils.ProductListViewAdapter;
 import com.thinksoft.models.databases.PolAppHelper;
 
-
 public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 	BusinessManager businessLayer;
 	ImageView btnAdd;
@@ -34,7 +30,7 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 		businessLayer = new BusinessManagerImpl(getHelper()
 				.getConnectionSource());
 		btnAdd = (ImageView) findViewById(R.id.imgAgregarProductos);
-
+		
 		Resources res = getResources();
 
 		final TabHost tabs = (TabHost) findViewById(android.R.id.tabhost);
@@ -61,7 +57,11 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 		tabs.addTab(spec);
 
 		tabs.setCurrentTab(0);
-
+		
+		final ListView listaProductos = (ListView) tabs.findViewById(R.id.lvProductos);
+		ProductListViewAdapter adapter = new ProductListViewAdapter(HomeScreenActivity.this, businessLayer.getAllProducts());
+		listaProductos.setAdapter(adapter);
+		
 		btnAdd.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -78,24 +78,16 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 			public void onTabChanged(String tabId) {
 				try {
 					if (tabId.equals("tabClientes")) {
-						final ListView listaClientes = (ListView) tabs
-								.findViewById(R.id.lvClientes);
-						ClientListViewAdapter adapter = new ClientListViewAdapter(
-								HomeScreenActivity.this,
-								(ArrayList<HashMap<String, String>>) businessLayer
-										.getAllClients());
+						final ListView listaClientes = (ListView) tabs.findViewById(R.id.lvClientes);
+						ClientListViewAdapter adapter = new ClientListViewAdapter(HomeScreenActivity.this,businessLayer.getAllClients());
 						listaClientes.setAdapter(adapter);
 
 					} else if (tabId.equals("tabProductos")) {
-							final ListView listaProductos = (ListView) tabs
-									.findViewById(R.id.lvProductos);
-							ProductListViewAdapter adapter = new ProductListViewAdapter(
-									HomeScreenActivity.this,
-									(ArrayList<HashMap<String, String>>) businessLayer
-											.getAllProducts());
-							listaProductos.setAdapter(adapter);
-						}
-					
+						final ListView listaProductos = (ListView) tabs.findViewById(R.id.lvProductos);
+						ProductListViewAdapter adapter = new ProductListViewAdapter(HomeScreenActivity.this, businessLayer.getAllProducts());
+						listaProductos.setAdapter(adapter);
+					}
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

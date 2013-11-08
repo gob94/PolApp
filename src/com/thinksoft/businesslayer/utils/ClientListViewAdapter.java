@@ -1,7 +1,7 @@
 package com.thinksoft.businesslayer.utils;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
@@ -13,18 +13,14 @@ import android.widget.TextView;
 import com.thinksoft.polapp.R;
 
 public class ClientListViewAdapter extends BaseAdapter {
-	public static final String NAME_COLUMN = "Name";
-	public static final String FIRST_LASTNAME_COLUMN = "First Last Name";
-	public static final String SECOND_LASTNAME_COLUMN = "Second Last Name";
-	public static final String ADDRESS_COLUMN = "Address";
-	public static final String STATUS_COLUMN = "Status";
-	public ArrayList<HashMap<String,String>> list;
+
+	public List<Map<String,String>> list;
 	Activity activity;
 
-	public ClientListViewAdapter(Activity activity, ArrayList<HashMap<String,String>> list) {
+	public ClientListViewAdapter(Activity activity, List<Map<String, String>> list2) {
 		super();
 		this.activity = activity;
-		this.list = list;
+		this.list = list2;
 	}
 
 	@Override
@@ -71,11 +67,11 @@ public class ClientListViewAdapter extends BaseAdapter {
 			holder = (ViewHolder) convertView.getTag();
 		}
 
-		HashMap<String,String> map = list.get(position);
-		holder.txtName.setText((CharSequence) map.get(NAME_COLUMN));
-		holder.txtFirstLastName.setText((CharSequence) map.get(FIRST_LASTNAME_COLUMN));
-		holder.txtSecondLastName.setText((CharSequence) map.get(SECOND_LASTNAME_COLUMN));
-		holder.txtStatus.setText((CharSequence) map.get(STATUS_COLUMN));
+		Map<String,String> map = list.get(position);
+		holder.txtName.setText((CharSequence) map.get(com.thinksoft.businesslayer.utils.constants.RowConstants.NAME_COLUMN));
+		holder.txtFirstLastName.setText((CharSequence) map.get(com.thinksoft.businesslayer.utils.constants.RowConstants.FIRST_LASTNAME_COLUMN));
+		holder.txtSecondLastName.setText((CharSequence) map.get(com.thinksoft.businesslayer.utils.constants.RowConstants.SECOND_LASTNAME_COLUMN));
+		holder.txtStatus.setText((CharSequence) map.get(com.thinksoft.businesslayer.utils.constants.RowConstants.STATUS_COLUMN));
 
 		return convertView;
 	}

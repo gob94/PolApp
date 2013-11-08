@@ -1,9 +1,7 @@
 package com.thinksoft.businesslayer.utils;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import com.thinksoft.polapp.R;
+import java.util.List;
+import java.util.Map;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
@@ -12,18 +10,18 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-public class ProductListViewAdapter extends BaseAdapter {
-	public static final String NAME_COLUNM = "Nombre";
-	public static final String CODE_COLUNM = "Código";
-	public static final String QUANTITY_COLUNM = "Cantidad";
-	public static final String PRICE_COLUNM = "Precio";
-	public ArrayList<HashMap<String,String>> list;
-	Activity activity;
+import com.thinksoft.polapp.R;
 
-	public ProductListViewAdapter(Activity activity, ArrayList<HashMap<String,String>> list) {
+public class ProductListViewAdapter extends BaseAdapter {
+	public  List<Map<String, String>> list;
+	Activity activity;
+    public static final String CODE_COLUMN = "Code";
+    public static final String PRICE_COLUMN = "Price";
+    public static final String QUANTITY_COLUMN = "Quantity";
+	public ProductListViewAdapter(Activity activity, List<Map<String, String>> list2) {
 		super();
 		this.activity = activity;
-		this.list = list;
+		this.list = list2;
 	}
 
 	@Override
@@ -72,11 +70,11 @@ public class ProductListViewAdapter extends BaseAdapter {
 			holder = (ViewHolder) convertView.getTag();
 		}
 
-		HashMap<String,String> map = list.get(position);
-		holder.txtName.setText((CharSequence) map.get(NAME_COLUNM));
-		holder.txtCode.setText((CharSequence) map.get(CODE_COLUNM));
-		holder.txtPrice.setText((CharSequence) map.get(PRICE_COLUNM));
-		holder.txtQuantity.setText((CharSequence) map.get(QUANTITY_COLUNM));
+		Map<String,String> map = list.get(position);
+		holder.txtName.setText((CharSequence) map.get(com.thinksoft.businesslayer.utils.constants.RowConstants.NAME_COLUMN));
+		holder.txtCode.setText((CharSequence) map.get(com.thinksoft.businesslayer.utils.constants.RowConstants.CODE_COLUMN));
+		holder.txtPrice.setText((CharSequence) map.get(com.thinksoft.businesslayer.utils.constants.RowConstants.PRICE_COLUMN));
+		holder.txtQuantity.setText((CharSequence) map.get(com.thinksoft.businesslayer.utils.constants.RowConstants.QUANTITY_COLUMN));
 
 		return convertView;
 	}

@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import android.util.Log;
 import com.j256.ormlite.support.ConnectionSource;
@@ -69,12 +70,12 @@ public class BusinessManagerImpl implements BusinessManager {
 		return result;
 	}
 	
-	public List<HashMap<String,String>> getAllProducts(){
-		List<HashMap<String,String>> productList = null;
+	public List<Map<String,String>> getAllProducts(){
+		List<Map<String,String>> productList = null;
 		List<Product> rawProducts = null;
-		HashMap<String, String> productItem = null;
+		Map<String, String> productItem = null;
 		try {
-			productList = new ArrayList<HashMap<String,String>>();
+			productList = new ArrayList<Map<String,String>>();
 			rawProducts = polAppDaoManager.getProductDao().queryForAll();
 			for (Product product : rawProducts) {
 					
@@ -136,12 +137,12 @@ public class BusinessManagerImpl implements BusinessManager {
 	}
 
 	@Override
-	public List<HashMap<String,String>> getAllClients(){
-		List<HashMap<String,String>> listOfClients = null;
+	public List<Map<String,String>> getAllClients(){
+		List<Map<String,String>> listOfClients = null;
 		List<Client> rawClients = null;
-		HashMap<String, String> clientItem = null;
+		Map<String, String> clientItem = null;
 		try {
-			listOfClients = new ArrayList<HashMap<String,String>>();
+			listOfClients = new ArrayList<Map<String,String>>();
 			rawClients = polAppDaoManager.getClientDao().queryForAll();
 			for (Client client : rawClients) {
 					

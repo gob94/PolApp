@@ -2,6 +2,7 @@ package com.thinksoft.businesslayer.bussinessmanagers;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.thinksoft.models.dtos.Client;
 import com.thinksoft.models.dtos.Product;
@@ -20,10 +21,10 @@ public interface BusinessManager {
 			String name, String[] lastName, String identification);
 
 
-	public List<HashMap<String, String>> getAllClients();
+	public List<Map<String, String>> getAllClients();
 
 	public boolean addClient(Client client);
 	
-	public List<HashMap<String,String>> getAllProducts();
+	public List<Map<String, String>> getAllProducts();
 
 }

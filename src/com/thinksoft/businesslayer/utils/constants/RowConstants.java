@@ -11,6 +11,5 @@ public class RowConstants {
     public static final String PRICE_COLUMN = "Price";
     public static final String QUANTITY_COLUMN = "Quantity";
 
-
     
 }
