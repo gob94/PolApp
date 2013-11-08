@@ -18,7 +18,7 @@ public class AddressImpl implements Address{
 	protected int specificSigns;
 	@DatabaseField(useGetSet = true)
 	protected int mapURL;
-	@DatabaseField(useGetSet = true, foreign=true, foreignAutoCreate=true)
+	@DatabaseField(useGetSet = true, foreign=true, foreignAutoCreate=true, columnName="client")
 	protected ClientImpl client;
 	@DatabaseField(useGetSet = true)
 	protected boolean active;

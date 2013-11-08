@@ -76,9 +76,8 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 			@Override
 			public void onTabChanged(String tabId) {
 				try {
-					Log.i("Aqui puede ver los nombres de los tabs", tabId);
 					if (tabId.equals("tabClientes")) {
-						ListView listaClientes = (ListView) tabs.getCurrentTabView().findViewById(R.id.lvClientes);
+						final ListView listaClientes = (ListView) tabs.findViewById(R.id.lvClientes);
 						ClientListViewAdapter adapter = new ClientListViewAdapter(HomeScreenActivity.this,(ArrayList<HashMap<String, String>>) businessLayer.getAllClients());
 						listaClientes.setAdapter(adapter);
 					}

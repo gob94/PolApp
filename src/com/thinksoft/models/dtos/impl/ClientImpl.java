@@ -21,7 +21,7 @@ public class ClientImpl implements Client {
 	@DatabaseField(defaultValue = "false", useGetSet = true, canBeNull = false)
 	protected boolean accountState;
 	
-	@ForeignCollectionField(eager=true, foreignFieldName="client")
+	@ForeignCollectionField(eager=false)
     private ForeignCollection<AddressImpl> clientAddresses;
 	
 	public ClientImpl() {

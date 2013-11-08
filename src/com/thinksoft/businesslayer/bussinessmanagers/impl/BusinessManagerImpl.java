@@ -115,7 +115,6 @@ public class BusinessManagerImpl implements BusinessManager {
 		try {
 			listOfClients = new ArrayList<HashMap<String,String>>();
 			rawClients = polAppDaoManager.getClientDao().queryForAll();
-			
 			for (Client client : rawClients) {
 					
 				clientItem = new HashMap<String, String>();
@@ -131,7 +130,6 @@ public class BusinessManagerImpl implements BusinessManager {
 				listOfClients.add(clientItem);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return listOfClients;
