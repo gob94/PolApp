@@ -22,4 +22,7 @@ public interface BusinessManager {
 	public List<HashMap<String, String>> getAllClients();
 
 	public boolean addClient(Client client);
+	
+	public List<HashMap<String,String>> getAllProducts();
+
 }

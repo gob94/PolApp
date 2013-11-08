@@ -68,6 +68,33 @@ public class BusinessManagerImpl implements BusinessManager {
 		return result;
 	}
 	
+	public List<HashMap<String,String>> getAllProducts(){
+		List<HashMap<String,String>> productList = null;
+		List<Product> rawProducts = null;
+		HashMap<String, String> productItem = null;
+		try {
+			productList = new ArrayList<HashMap<String,String>>();
+			rawProducts = polAppDaoManager.getProductDao().queryForAll();
+			for (Product product : rawProducts) {
+					
+				productItem = new HashMap<String, String>();
+				
+				productItem.put(com.thinksoft.businesslayer.utils.constants.RowConstants.NAME_COLUMN, product.getName());
+
+				productItem.put(com.thinksoft.businesslayer.utils.constants.RowConstants.CODE_COLUMN, product.getCode());
+
+				productItem.put(com.thinksoft.businesslayer.utils.constants.RowConstants.PRICE_COLUMN, String.valueOf(product.getPrice()));
+				
+				productItem.put(com.thinksoft.businesslayer.utils.constants.RowConstants.QUANTITY_COLUMN, String.valueOf(product.getQuantity()));
+				
+				productList.add(productItem);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return productList;
+	}
+	
 	@Override
 	public User verifyUserInformation(String userName, String password, String name,String[] lastName, String identification){
 		User user = null;
