@@ -26,6 +26,7 @@ import com.thinksoft.polapp.R;
 public class SignIn extends OrmLiteBaseActivity<PolAppHelper> {
 
 	private BusinessManager bussinnessLayer;
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

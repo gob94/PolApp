@@ -20,6 +20,7 @@ public class BusinessManagerImpl implements BusinessManager {
 	private PolAppDaoManager polAppDaoManager;
 	
 	
+	
 	public BusinessManagerImpl(ConnectionSource connection) {
 		polAppDaoManager = new  PolAppDaoManagerImpl(connection);
 	}

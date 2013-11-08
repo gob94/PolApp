@@ -17,6 +17,7 @@ import com.thinksoft.models.dtos.User;
 import com.thinksoft.polapp.R;
 
 public class SignUp extends OrmLiteBaseActivity<PolAppHelper> {
+	
 	BusinessManager businessLayer;
 	Button btnRegister;
 	Button btnCancel;

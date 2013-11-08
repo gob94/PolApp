@@ -7,6 +7,7 @@ import com.thinksoft.models.dtos.Client;
 import com.thinksoft.models.dtos.Product;
 import com.thinksoft.models.dtos.User;
 public interface BusinessManager {
+	
 	public boolean checkUserCredentials(String userName, String password);
 	
 	public boolean addUser(User user); 
