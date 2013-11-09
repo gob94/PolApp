@@ -76,6 +76,15 @@ public class ProductListViewAdapter extends BaseAdapter {
 		holder.txtPrice.setText((CharSequence) map.get(com.thinksoft.businesslayer.utils.constants.RowConstants.PRICE_COLUMN));
 		holder.txtQuantity.setText((CharSequence) map.get(com.thinksoft.businesslayer.utils.constants.RowConstants.QUANTITY_COLUMN));
 
+		   
 		return convertView;
 	}
+	
+	 class MyDat {
+         
+         Object item;
+        
+     }
+
+	
 }

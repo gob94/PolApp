@@ -40,7 +40,10 @@
     <string name="lblDireccion">Direccion</string>
     <string name="lblApellido1">Apellido</string>
     <string name="lblApellido2">Segundo Apellido</string>
-  
+    <string name="lblEditProductPopUp">Editar</string>
+    <string name="lblEliminarProductoPopUp">Eliminar</string>
+    
+    
 
 
 </resources>

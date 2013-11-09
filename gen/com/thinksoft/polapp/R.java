@@ -80,12 +80,14 @@ public final class R {
         public static final int AccountStateClientListRow=0x7f090062;
         public static final int CodeProductListRow=0x7f090064;
         public static final int FirstLastNameClientListRow=0x7f090060;
+        public static final int MenuHomeScreenEditar=0x7f09006b;
+        public static final int MenuHomeScreenEliminar=0x7f09006a;
         public static final int NameClientListRow=0x7f09005f;
         public static final int NameProductListRow=0x7f090063;
         public static final int PriceProductListRow=0x7f090065;
         public static final int QuantityProductListRow=0x7f090066;
         public static final int SecondLastNameClientListRow=0x7f090061;
-        public static final int action_settings=0x7f090067;
+        public static final int action_settings=0x7f090069;
         public static final int btnAdd=0x7f09000a;
         public static final int btnCancelClientEdit=0x7f09002c;
         public static final int btnCancelCobro=0x7f090016;
@@ -117,6 +119,8 @@ public final class R {
         public static final int lblDireccion=0x7f090009;
         public static final int lblDirection=0x7f09001f;
         public static final int lblDirectionEdit=0x7f090029;
+        public static final int lblEditProductPopUp=0x7f090067;
+        public static final int lblEliminarProductoPopUp=0x7f090068;
         public static final int lblIdentitySignUp=0x7f090059;
         public static final int lblLastName=0x7f09001b;
         public static final int lblLastNameEdit=0x7f090025;
@@ -199,6 +203,7 @@ public final class R {
         public static final int activity_sign_up=0x7f03000d;
         public static final int client_list_view_row=0x7f03000e;
         public static final int product_list_view_row=0x7f03000f;
+        public static final int product_popup_window=0x7f030010;
     }
     public static final class menu {
         public static final int agregar_clientes=0x7f080000;
@@ -235,6 +240,8 @@ public final class R {
         public static final int lblCode=0x7f06000b;
         public static final int lblDescription=0x7f06000f;
         public static final int lblDireccion=0x7f060024;
+        public static final int lblEditProductPopUp=0x7f060027;
+        public static final int lblEliminarProductoPopUp=0x7f060028;
         public static final int lblFechaCobro=0x7f060022;
         public static final int lblIdentity=0x7f06000c;
         public static final int lblName=0x7f060009;

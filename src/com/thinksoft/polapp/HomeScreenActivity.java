@@ -1,15 +1,25 @@
 package com.thinksoft.polapp;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemLongClickListener;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
 import com.thinksoft.businesslayer.bussinessmanagers.BusinessManager;
@@ -17,10 +27,11 @@ import com.thinksoft.businesslayer.bussinessmanagers.impl.BusinessManagerImpl;
 import com.thinksoft.businesslayer.utils.ClientListViewAdapter;
 import com.thinksoft.businesslayer.utils.ProductListViewAdapter;
 import com.thinksoft.models.databases.PolAppHelper;
+import com.thinsoft.popupwindow.ProductPopUp;
 
 public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 	BusinessManager businessLayer;
-	ImageView btnAdd;
+	ImageView btnAdd; 
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +41,10 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 		businessLayer = new BusinessManagerImpl(getHelper()
 				.getConnectionSource());
 		btnAdd = (ImageView) findViewById(R.id.imgAgregarProductos);
+		
+	   
+		
+		
 		
 		Resources res = getResources();
 
@@ -61,7 +76,7 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 		final ListView listaProductos = (ListView) tabs.findViewById(R.id.lvProductos);
 		ProductListViewAdapter adapter = new ProductListViewAdapter(HomeScreenActivity.this, businessLayer.getAllProducts());
 		listaProductos.setAdapter(adapter);
-		
+
 		btnAdd.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -72,6 +87,7 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 				startActivity(intent);
 			}
 		});
+		
 		tabs.setOnTabChangedListener(new OnTabChangeListener() {
 
 			@Override
@@ -93,13 +109,79 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 				}
 			}
 		});
+		
+		
+		
+		listaProductos.setOnItemLongClickListener(new OnItemLongClickListener() {
+
+			@Override
+			public boolean onItemLongClick(AdapterView<?> arg0, View view,
+					int pos, long arg3) {
+				
+		        registerForContextMenu(view);
+		        openContextMenu( view );
+		        unregisterForContextMenu(view);
+		       /** final Dialog dialog = new Dialog(HomeScreenActivity.this);
+				dialog.setContentView(R.layout.product_popup_window);
+				TextView dialogButton = (TextView) dialog.findViewById(R.id.lblEliminarProductoPopUp);
+				// if button is clicked, close the custom dialog
+				dialogButton.setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						dialog.dismiss();
+					}
+				});
+	 
+				dialog.show();**/
+				return true;
+			}
+			
+		});
+				
+				
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
+		
 		getMenuInflater().inflate(R.menu.home_screen, menu);
 		return true;
 	}
-
+	public void onCreateContextMenu(ContextMenu menu, View v,ContextMenuInfo menuInfo) {
+	    super.onCreateContextMenu(menu, v, menuInfo);
+	    TextView lblEliminarPopUp = (TextView) findViewById(R.id.lblEliminarProductoPopUp);
+	    registerForContextMenu(lblEliminarPopUp);
+	    
+	    TextView lblEditarPopUp = (TextView) findViewById(R.id.lblEditProductPopUp);
+	    registerForContextMenu(lblEditarPopUp);
+	    
+	    if(v.getId()==R.id.lblEliminarProductoPopUp)
+	        getMenuInflater().inflate(R.menu.home_screen, menu);
+	    
+	    if(v.getId()==R.id.lblEditProductPopUp)
+	        getMenuInflater().inflate(R.menu.home_screen, menu);
+	    
+	    
+	    
+	}
+	
+	@Override
+	public boolean onContextItemSelected(MenuItem item) {
+	 
+	    switch (item.getItemId()) {
+	    case R.id.MenuHomeScreenEditar:
+	        Toast.makeText(getApplicationContext(), "Has pulsado la opción Editar", Toast.LENGTH_SHORT).show();
+	        return true;
+	    case R.id.MenuHomeScreenEliminar:
+	        Toast.makeText(getApplicationContext(), "Has pulsado la opción Eliminar", Toast.LENGTH_SHORT).show();
+	        return true;
+	    
+	    default:
+	        return super.onContextItemSelected(item);
+	    }
+	}
+	
 }
+
+
