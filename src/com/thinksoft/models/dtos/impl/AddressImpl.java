@@ -22,6 +22,8 @@ public class AddressImpl implements Address{
 	protected ClientImpl client;
 	@DatabaseField(useGetSet = true)
 	protected boolean active;
+	@DatabaseField(useGetSet = true)
+	protected int phoneNumber;
 	
 	public AddressImpl() {
 	}
@@ -77,5 +79,11 @@ public class AddressImpl implements Address{
 		return active;
 	}
 	
+	public int getPhoneNumber() {
+		return phoneNumber;
+	}
 	
+	public void setPhoneNumber(int phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
 }

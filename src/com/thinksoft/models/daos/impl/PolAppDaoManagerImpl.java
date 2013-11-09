@@ -91,7 +91,7 @@ public class PolAppDaoManagerImpl implements PolAppDaoManager {
 		return productDao;
 	}
 
-	public Dao<ProductOrder, Void> getProductOrder() {
+	public Dao<ProductOrder, Void> getProductOrderDao() {
 		return productOrderDao;
 	}
 
@@ -138,7 +138,7 @@ public class PolAppDaoManagerImpl implements PolAppDaoManager {
 		productDao = DaoManager.createDao(connection, classImpl);
 	}
 
-	public <T> void setProductOrder(Class<T> classImpl,
+	public <T> void setProductOrderDao(Class<T> classImpl,
 			ConnectionSource connection) throws SQLException {
 		productOrderDao = DaoManager.createDao(connection, classImpl);
 	}

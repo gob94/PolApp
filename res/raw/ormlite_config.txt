@@ -1,5 +1,5 @@
 #
-# generated on 2013/11/07 07:35:56
+# generated on 2013/11/08 08:51:02
 #
 # --table-start--
 dataClass=com.thinksoft.models.dtos.impl.AddressImpl
@@ -42,6 +42,10 @@ foreignAutoCreate=true
 # --field-end--
 # --field-start--
 fieldName=active
+useGetSet=true
+# --field-end--
+# --field-start--
+fieldName=phoneNumber
 useGetSet=true
 # --field-end--
 # --table-fields-end--
@@ -97,7 +101,6 @@ useGetSet=true
 # --field-start--
 fieldName=clientAddresses
 foreignCollection=true
-foreignCollectionForeignFieldName=client
 # --field-end--
 # --table-fields-end--
 # --table-end--
@@ -182,6 +185,7 @@ foreignAutoCreate=true
 # --field-end--
 # --field-start--
 fieldName=clientId
+columnName=clientId
 canBeNull=false
 foreign=true
 useGetSet=true

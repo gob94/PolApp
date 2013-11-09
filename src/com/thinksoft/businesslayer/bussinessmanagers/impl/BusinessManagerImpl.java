@@ -12,14 +12,18 @@ import com.thinksoft.businesslayer.bussinessmanagers.BusinessManager;
 import com.thinksoft.models.daos.PolAppDaoManager;
 import com.thinksoft.models.daos.impl.PolAppDaoManagerImpl;
 import com.thinksoft.models.dtos.Client;
+import com.thinksoft.models.dtos.Order;
 import com.thinksoft.models.dtos.Product;
+import com.thinksoft.models.dtos.ProductOrder;
 import com.thinksoft.models.dtos.User;
+import com.thinksoft.models.dtos.impl.AddressImpl;
+import com.thinksoft.models.dtos.impl.OrderImpl;
 import com.thinksoft.models.dtos.impl.UserImpl;
 
 public class BusinessManagerImpl implements BusinessManager {
 	
 	private PolAppDaoManager polAppDaoManager;
-	
+	private static String GET_CLIENT_ERROR_TAG = "Error obteniendo Cliente";
 	
 	
 	public BusinessManagerImpl(ConnectionSource connection) {
@@ -174,5 +178,63 @@ public class BusinessManagerImpl implements BusinessManager {
 		}
 		return result;
 	}
+
+	@Override
+	public Client getClientById(int id) {
+		Client client = null;
+		try {
+			client =  (Client) polAppDaoManager.getClientDao().queryBuilder().where().idEq(id);
+		} catch (SQLException e) {
+			Log.e(GET_CLIENT_ERROR_TAG, "Error Obteniendo client en la base, a continuacion el msj" + e.getMessage());
+		}
+		return client;
+	}
+
+	@Override
+	public String getClientPhoneNumber(int clientId) {
+		String number = null;
+		if(clientId!=0){
+			List<AddressImpl> addresses =  new ArrayList<AddressImpl>( getClientById(clientId).getClientAddresses());
+	    	if(addresses.size()>0){
+	    		 number = String.valueOf(addresses.get(0).getPhoneNumber());
+	    	}
+		}
+    	return number;
+	}
+
+	@Override
+	public List<Map<String, String>> getClientProducts(int clientId) {
+		List<Map<String,String>> productList = null;
+		List<Order> actualOrders = null;
+		Map<String,String> productItem = null;
+		
+		try {
+			actualOrders = polAppDaoManager.getOrderDao().queryBuilder().where().eq("clientId", clientId).query();
+			productList = new ArrayList<Map<String,String>>();
+			for (Order order : actualOrders) {
+				List<ProductOrder> productListOfOrder = polAppDaoManager.getProductOrderDao().queryBuilder().where().eq("order_id", order.getOrderId()).query();
+				/*for (ProductOrder productOrder : productListOfOrder) {
+					int result = polAppDaoManager.getProductOrderDao().refresh(productOrder);
+					productItem = new HashMap<String, String>();
+					
+					productItem.put(com.thinksoft.businesslayer.utils.constants.RowConstants.NAME_COLUMN, ());
+
+					productItem.put(com.thinksoft.businesslayer.utils.constants.RowConstants.CODE_COLUMN, product.getCode());
+
+					productItem.put(com.thinksoft.businesslayer.utils.constants.RowConstants.PRICE_COLUMN, String.valueOf(product.getPrice()));
+					
+					productItem.put(com.thinksoft.businesslayer.utils.constants.RowConstants.QUANTITY_COLUMN, String.valueOf(product.getQuantity()));
+					
+					productList.add(productItem);
+				}*/	
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return productList;
+	}
+	
+	
 	
 }

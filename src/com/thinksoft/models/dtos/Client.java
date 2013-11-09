@@ -19,6 +19,7 @@ public interface Client {
 	public String getFirstLastName();
 
 	public String getSecondLastName();
+	
 	public void setFirstLastName(String firstLastName);
 
 	public void setSecondLastName(String secondLastName);

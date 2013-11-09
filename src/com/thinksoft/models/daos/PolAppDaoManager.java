@@ -34,7 +34,7 @@ public interface PolAppDaoManager {
  
 	public Dao<Product, Integer> getProductDao();
 
-	public Dao<ProductOrder, Void> getProductOrder();
+	public Dao<ProductOrder, Void> getProductOrderDao();
 
 	public Dao<User, Integer> getUserDao();
 
@@ -60,7 +60,7 @@ public interface PolAppDaoManager {
 	public <T> void setProductDao(Class<T> classImpl,
 			ConnectionSource connection) throws SQLException;
 
-	public <T> void setProductOrder(Class<T> classImpl,
+	public <T> void setProductOrderDao(Class<T> classImpl,
 			ConnectionSource connection) throws SQLException;
 
 	public <T> void setUserDao(Class<T> classImpl, ConnectionSource connection) throws SQLException;

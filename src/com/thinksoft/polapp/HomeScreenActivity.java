@@ -31,8 +31,14 @@ import com.thinsoft.popupwindow.ProductPopUp;
 
 public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 	BusinessManager businessLayer;
+<<<<<<< Updated upstream
 	ImageView btnAdd; 
 
+=======
+	ImageView btnAddProduct;
+	ImageView btnAddClient;
+	
+>>>>>>> Stashed changes
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -40,12 +46,17 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 
 		businessLayer = new BusinessManagerImpl(getHelper()
 				.getConnectionSource());
+<<<<<<< Updated upstream
 		btnAdd = (ImageView) findViewById(R.id.imgAgregarProductos);
 		
 	   
 		
 		
 		
+=======
+		btnAddProduct = (ImageView) findViewById(R.id.imgAgregarProductos);
+		btnAddClient = (ImageView) findViewById(R.id.imgAgregarClientes);
+>>>>>>> Stashed changes
 		Resources res = getResources();
 
 		final TabHost tabs = (TabHost) findViewById(android.R.id.tabhost);
@@ -82,12 +93,16 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 
 =======
 		
+<<<<<<< Updated upstream
 		final ListView listaClientes = (ListView) tabs.findViewById(R.id.lvClientes);
 		View header= getLayoutInflater().inflate(R.layout.client_header, null);
 		listaClientes.addHeaderView(header);
 		
 >>>>>>> Stashed changes
 		btnAdd.setOnClickListener(new OnClickListener() {
+=======
+		btnAddProduct.setOnClickListener(new OnClickListener() {
+>>>>>>> Stashed changes
 
 			@Override
 			public void onClick(View v) {
@@ -97,7 +112,20 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 				startActivity(intent);
 			}
 		});
+<<<<<<< Updated upstream
 		
+=======
+		btnAddClient.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+
+				Intent intent = new Intent(getApplicationContext(),
+						ClienteActivity.class);
+				startActivity(intent);
+			}
+		});
+>>>>>>> Stashed changes
 		tabs.setOnTabChangedListener(new OnTabChangeListener() {
 
 			@Override

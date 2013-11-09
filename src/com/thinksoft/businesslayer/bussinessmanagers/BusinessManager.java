@@ -26,5 +26,10 @@ public interface BusinessManager {
 	public boolean addClient(Client client);
 	
 	public List<Map<String, String>> getAllProducts();
-
+	
+	public Client getClientById(int id);
+	
+	public String getClientPhoneNumber(int clientId);
+	
+	public List<Map<String, String>> getClientProducts(int clientId);
 }
