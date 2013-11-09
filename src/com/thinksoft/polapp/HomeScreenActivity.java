@@ -1,6 +1,5 @@
 package com.thinksoft.polapp;
 
-import android.app.Dialog;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -10,12 +9,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemLongClickListener;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.PopupWindow;
 import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TextView;
@@ -27,18 +23,11 @@ import com.thinksoft.businesslayer.bussinessmanagers.impl.BusinessManagerImpl;
 import com.thinksoft.businesslayer.utils.ClientListViewAdapter;
 import com.thinksoft.businesslayer.utils.ProductListViewAdapter;
 import com.thinksoft.models.databases.PolAppHelper;
-import com.thinsoft.popupwindow.ProductPopUp;
 
 public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 	BusinessManager businessLayer;
-<<<<<<< Updated upstream
-	ImageView btnAdd; 
-
-=======
 	ImageView btnAddProduct;
 	ImageView btnAddClient;
-	
->>>>>>> Stashed changes
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -46,17 +35,8 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 
 		businessLayer = new BusinessManagerImpl(getHelper()
 				.getConnectionSource());
-<<<<<<< Updated upstream
-		btnAdd = (ImageView) findViewById(R.id.imgAgregarProductos);
-		
-	   
-		
-		
-		
-=======
 		btnAddProduct = (ImageView) findViewById(R.id.imgAgregarProductos);
 		btnAddClient = (ImageView) findViewById(R.id.imgAgregarClientes);
->>>>>>> Stashed changes
 		Resources res = getResources();
 
 		final TabHost tabs = (TabHost) findViewById(android.R.id.tabhost);
@@ -89,20 +69,13 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 		final ListView listaProductos = (ListView) tabs.findViewById(R.id.lvProductos);
 		ProductListViewAdapter adapter = new ProductListViewAdapter(HomeScreenActivity.this, businessLayer.getAllProducts());
 		listaProductos.setAdapter(adapter);
-<<<<<<< Updated upstream
-
-=======
-		
-<<<<<<< Updated upstream
 		final ListView listaClientes = (ListView) tabs.findViewById(R.id.lvClientes);
 		View header= getLayoutInflater().inflate(R.layout.client_header, null);
 		listaClientes.addHeaderView(header);
 		
->>>>>>> Stashed changes
-		btnAdd.setOnClickListener(new OnClickListener() {
-=======
+
+
 		btnAddProduct.setOnClickListener(new OnClickListener() {
->>>>>>> Stashed changes
 
 			@Override
 			public void onClick(View v) {
@@ -112,9 +85,6 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 				startActivity(intent);
 			}
 		});
-<<<<<<< Updated upstream
-		
-=======
 		btnAddClient.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -125,7 +95,6 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 				startActivity(intent);
 			}
 		});
->>>>>>> Stashed changes
 		tabs.setOnTabChangedListener(new OnTabChangeListener() {
 
 			@Override
@@ -148,7 +117,7 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 		});
 		
 		
-		
+		/*
 		listaProductos.setOnItemLongClickListener(new OnItemLongClickListener() {
 
 			@Override
@@ -170,12 +139,10 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 				});
 	 
 				dialog.show();**/
-				return true;
+				/*return true;
 			}
 			
-		});
-				
-				
+		});		*/
 	}
 
 	@Override
@@ -187,7 +154,7 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 	}
 	public void onCreateContextMenu(ContextMenu menu, View v,ContextMenuInfo menuInfo) {
 	    super.onCreateContextMenu(menu, v, menuInfo);
-	    TextView lblEliminarPopUp = (TextView) findViewById(R.id.lblEliminarProductoPopUp);
+	  /*  TextView lblEliminarPopUp = (TextView) findViewById(R.id.lblEliminarProductoPopUp);
 	    registerForContextMenu(lblEliminarPopUp);
 	    
 	    TextView lblEditarPopUp = (TextView) findViewById(R.id.lblEditProductPopUp);
@@ -200,7 +167,7 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 	        getMenuInflater().inflate(R.menu.home_screen, menu);
 	    
 	    
-	    
+	    */
 	}
 	
 	@Override
