@@ -18,7 +18,8 @@ public class ProductListViewAdapter extends BaseAdapter {
     public static final String CODE_COLUMN = "Code";
     public static final String PRICE_COLUMN = "Price";
     public static final String QUANTITY_COLUMN = "Quantity";
-	public ProductListViewAdapter(Activity activity, List<Map<String, String>> list2) {
+
+    public ProductListViewAdapter(Activity activity, List<Map<String, String>> list2) {
 		super();
 		this.activity = activity;
 		this.list = list2;
@@ -69,8 +70,9 @@ public class ProductListViewAdapter extends BaseAdapter {
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 		}
-
+		
 		Map<String,String> map = list.get(position);
+
 		holder.txtName.setText((CharSequence) map.get(com.thinksoft.businesslayer.utils.constants.RowConstants.NAME_COLUMN));
 		holder.txtCode.setText((CharSequence) map.get(com.thinksoft.businesslayer.utils.constants.RowConstants.CODE_COLUMN));
 		holder.txtPrice.setText((CharSequence) map.get(com.thinksoft.businesslayer.utils.constants.RowConstants.PRICE_COLUMN));

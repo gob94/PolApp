@@ -73,10 +73,20 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 
 		tabs.setCurrentTab(0);
 		
+		
+		
 		final ListView listaProductos = (ListView) tabs.findViewById(R.id.lvProductos);
 		ProductListViewAdapter adapter = new ProductListViewAdapter(HomeScreenActivity.this, businessLayer.getAllProducts());
 		listaProductos.setAdapter(adapter);
+<<<<<<< Updated upstream
 
+=======
+		
+		final ListView listaClientes = (ListView) tabs.findViewById(R.id.lvClientes);
+		View header= getLayoutInflater().inflate(R.layout.client_header, null);
+		listaClientes.addHeaderView(header);
+		
+>>>>>>> Stashed changes
 		btnAdd.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -94,7 +104,6 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 			public void onTabChanged(String tabId) {
 				try {
 					if (tabId.equals("tabClientes")) {
-						final ListView listaClientes = (ListView) tabs.findViewById(R.id.lvClientes);
 						ClientListViewAdapter adapter = new ClientListViewAdapter(HomeScreenActivity.this,businessLayer.getAllClients());
 						listaClientes.setAdapter(adapter);
 

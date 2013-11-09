@@ -141,11 +141,10 @@ public class BusinessManagerImpl implements BusinessManager {
 		List<Map<String,String>> listOfClients = null;
 		List<Client> rawClients = null;
 		Map<String, String> clientItem = null;
-		try {
-			listOfClients = new ArrayList<Map<String,String>>();
+		try {			
 			rawClients = polAppDaoManager.getClientDao().queryForAll();
 			for (Client client : rawClients) {
-					
+				listOfClients = new ArrayList<Map<String,String>>();
 				clientItem = new HashMap<String, String>();
 				
 				clientItem.put(com.thinksoft.businesslayer.utils.constants.RowConstants.NAME_COLUMN, client.getName());

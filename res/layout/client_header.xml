@@ -9,9 +9,10 @@
         android:layout_width="40dp"
         android:layout_height="30dp"
         android:layout_weight="1"
-        android:background="@drawable/shape"
+        android:background="#045FB4"
         android:gravity="center"
-        android:text="Nombre" >
+        android:text="Nombre" 
+        android:textColor="#FFFFFF">
     </TextView>
 
     <TextView
@@ -19,9 +20,10 @@
         android:layout_width="40dp"
         android:layout_height="30dp"
         android:layout_weight="2"
-        android:background="@drawable/shape"
+        android:background="#045FB4"
         android:gravity="center"
-        android:text="Apellido1" >
+        android:text="Apellido1" 
+        android:textColor="#FFFFFF">
     </TextView>
 
     <TextView
@@ -29,9 +31,10 @@
         android:layout_width="40dp"
         android:layout_height="30dp"
         android:layout_weight="1"
-        android:background="@drawable/shape"
+        android:background="#045FB4"
         android:gravity="center"
-        android:text="Apellido2" >
+        android:text="Apellido2" 
+         android:textColor="#FFFFFF">
     </TextView>
 
     <TextView
@@ -39,9 +42,10 @@
         android:layout_width="40dp"
         android:layout_height="30dp"
         android:layout_weight="1"
-        android:background="@drawable/shape"
+        android:background="#045FB4"
         android:gravity="center"
-        android:text="Estado" >
+        android:text="Estado" 
+        android:textColor="#FFFFFF">
     </TextView>
 
 </LinearLayout>
