@@ -7,17 +7,19 @@ import java.util.List;
 import java.util.Map;
 
 import android.util.Log;
+
 import com.j256.ormlite.support.ConnectionSource;
 import com.thinksoft.businesslayer.bussinessmanagers.BusinessManager;
 import com.thinksoft.models.daos.PolAppDaoManager;
 import com.thinksoft.models.daos.impl.PolAppDaoManagerImpl;
+import com.thinksoft.models.dtos.Brand;
 import com.thinksoft.models.dtos.Client;
 import com.thinksoft.models.dtos.Order;
 import com.thinksoft.models.dtos.Product;
 import com.thinksoft.models.dtos.ProductOrder;
 import com.thinksoft.models.dtos.User;
+import com.thinksoft.models.dtos.Vehicle;
 import com.thinksoft.models.dtos.impl.AddressImpl;
-import com.thinksoft.models.dtos.impl.OrderImpl;
 import com.thinksoft.models.dtos.impl.UserImpl;
 
 public class BusinessManagerImpl implements BusinessManager {
@@ -233,6 +235,61 @@ public class BusinessManagerImpl implements BusinessManager {
 			e.printStackTrace();
 		}
 		return productList;
+	}
+
+	@Override
+	public List<Map<String, String>> getAllVehicles() {
+		List<Map<String,String>> listOfVehicles = null;
+		List<Vehicle> rawVehicles = null;
+		Map<String, String> vehicleItem = null;
+		try {			
+			rawVehicles = polAppDaoManager.getVehicleDao().queryForAll();
+			for (Vehicle vehicle : rawVehicles) {
+				listOfVehicles = new ArrayList<Map<String,String>>();
+				vehicleItem = new HashMap<String, String>();
+				
+				vehicleItem.put(com.thinksoft.businesslayer.utils.constants.RowConstants.LICENCE_COLUMN, vehicle.getLicensePlate().toString());
+
+				vehicleItem.put(com.thinksoft.businesslayer.utils.constants.RowConstants.BRAND_COLUMN, vehicle.getBrand().toString());
+
+				vehicleItem.put(com.thinksoft.businesslayer.utils.constants.RowConstants.MODEL_COLUMN, vehicle.getModel());
+				
+				vehicleItem.put(com.thinksoft.businesslayer.utils.constants.RowConstants.RTV_COLUMN, String.valueOf(vehicle.getRtv()));
+				
+				vehicleItem.put(com.thinksoft.businesslayer.utils.constants.RowConstants.EXPEDITURE_COLUMN, String.valueOf(vehicle.getExpenditure()));
+
+				vehicleItem.put(com.thinksoft.businesslayer.utils.constants.RowConstants.FUNCTIONAL_COLUMN, String.valueOf(vehicle.getFunctional()));
+
+				listOfVehicles.add(vehicleItem);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return listOfVehicles;
+	}
+
+	@Override
+	public boolean addVechicle(Vehicle vehicle) {
+		boolean result = false;
+		try {
+			polAppDaoManager.getVehicleDao().create(vehicle);
+			result = true;
+		} catch (SQLException e) {
+			Log.e("Error insertando vehículo",e.getCause().toString());
+		}
+		return result;
+	}
+
+	@Override
+	public boolean addBrand(Brand brand) {
+		boolean result = false;
+		try {
+			polAppDaoManager.getBrandDao().create(brand);
+			result = true;
+		} catch (SQLException e) {
+			Log.e("Error insertando marca",e.getCause().toString());
+		}
+		return result;
 	}
 	
 	

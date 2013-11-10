@@ -42,7 +42,7 @@ public class ProductListViewAdapter extends BaseAdapter {
 		return 0;
 	}
 
-	private class ViewHolder {
+	public class ViewHolder {
 		TextView txtName;
 		TextView txtCode;
 		TextView txtQuantity;
@@ -81,12 +81,5 @@ public class ProductListViewAdapter extends BaseAdapter {
 		   
 		return convertView;
 	}
-	
-	 class MyDat {
-         
-         Object item;
-        
-     }
-
 	
 }

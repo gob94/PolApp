@@ -21,6 +21,7 @@ import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
 import com.thinksoft.businesslayer.bussinessmanagers.BusinessManager;
 import com.thinksoft.businesslayer.bussinessmanagers.impl.BusinessManagerImpl;
 import com.thinksoft.businesslayer.utils.ClientListViewAdapter;
+import com.thinksoft.businesslayer.utils.FleetListViewAdapter;
 import com.thinksoft.businesslayer.utils.ProductListViewAdapter;
 import com.thinksoft.models.databases.PolAppHelper;
 
@@ -68,11 +69,16 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 
 		final ListView listaClientes = (ListView) tabs.findViewById(R.id.lvClientes);
 		
+		final ListView listaVehiculos = (ListView) tabs.findViewById(R.id.lvFlotillas);
+
 		View clientHeader= getLayoutInflater().inflate(R.layout.client_header, null);
 		listaClientes.addHeaderView(clientHeader);
 		
 		View productHeader= getLayoutInflater().inflate(R.layout.product_list_header, null);
 		listaProductos.addHeaderView(productHeader);
+		
+		View vehiclesHeader= getLayoutInflater().inflate(R.layout.fleet_list_header, null);
+		listaVehiculos.addHeaderView(vehiclesHeader);
 		
 		ClientListViewAdapter adapter = new ClientListViewAdapter(HomeScreenActivity.this,businessLayer.getAllClients());
 		listaClientes.setAdapter(adapter);
@@ -110,6 +116,10 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 					} else if (tabId.equals("tabProductos")) {
 						ProductListViewAdapter adapter = new ProductListViewAdapter(HomeScreenActivity.this, businessLayer.getAllProducts());
 						listaProductos.setAdapter(adapter);
+						
+					} else if (tabId.equals("tabFlotilla")) {
+						FleetListViewAdapter adapter = new FleetListViewAdapter(HomeScreenActivity.this, businessLayer.getAllVehicles());
+						listaVehiculos.setAdapter(adapter);
 					}
 
 				} catch (Exception e) {
@@ -142,8 +152,19 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 				return false;
 			}
 			});		
-		}
+		
+	
+	listaVehiculos.setOnItemLongClickListener(new OnItemLongClickListener() {
 
+		@Override
+		public boolean onItemLongClick(AdapterView<?> arg0, View view,
+				int pos, long arg3) {
+				
+	        registerForContextMenu(listaVehiculos);
+				return false;
+		}
+		});		
+	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.

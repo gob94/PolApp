@@ -10,6 +10,12 @@ public class RowConstants {
     public static final String CODE_COLUMN = "Code";
     public static final String PRICE_COLUMN = "Price";
     public static final String QUANTITY_COLUMN = "Quantity";
+    public static final String LICENCE_COLUMN = "Licence";
+    public static final String FUNCTIONAL_COLUMN = "Functional";
+    public static final String RTV_COLUMN = "RTV";
+    public static final String EXPEDITURE_COLUMN = "Expediture";
+    public static final String MODEL_COLUMN = "Model";
+    public static final String BRAND_COLUMN = "Brand";
 
     
 }

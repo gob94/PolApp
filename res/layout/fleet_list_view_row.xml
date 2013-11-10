@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+
+    <TextView
+        android:id="@+id/LicenceFleetListRow"
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:layout_weight="1"
+        android:background="@drawable/shape"
+        android:gravity="center"
+        android:text="Licencia" >
+    </TextView>
+
+    <TextView
+        android:id="@+id/BrandFleetListRow"
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:layout_weight="2"
+        android:background="@drawable/shape"
+        android:gravity="center"
+        android:text="Marca" >
+    </TextView>
+
+    
+    <TextView
+        android:id="@+id/ModelFleetListRow"
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:layout_weight="2"
+        android:background="@drawable/shape"
+        android:gravity="center"
+        android:text="Modelo" >
+    </TextView>
+    <TextView
+        android:id="@+id/RtvFleetListRow"
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:layout_weight="1"
+        android:background="@drawable/shape"
+        android:gravity="center"
+        android:text="RTV" >
+    </TextView>
+
+    <TextView
+        android:id="@+id/ExpenditureFleetListRow"
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:layout_weight="1"
+        android:background="@drawable/shape"
+        android:gravity="center"
+        android:text="Vencimiento" >
+        </TextView>
+        
+    <TextView
+        android:id="@+id/FunctionalFleetListRow"
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:layout_weight="1"
+        android:background="@drawable/shape"
+        android:gravity="center"
+        android:text="Disponible" >
+    </TextView>
+
+</LinearLayout>

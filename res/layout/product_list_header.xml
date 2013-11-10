@@ -12,7 +12,7 @@
         android:background="#045FB4"
         android:gravity="center"
         android:text="Nombre"
-        android:textColor="#FFFFFF" >
+        android:textColor="#FFFFFF">
     </TextView>
 
     <TextView

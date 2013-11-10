@@ -27,6 +27,21 @@ public class VehicleImpl implements Vehicle {
 		// TODO Auto-generated constructor stub
 	}
 	
+	
+	
+	public VehicleImpl(String licensePlate, boolean functional,
+			Date rtv, float expenditure, String model, BrandImpl brand) {
+		super();
+		this.licensePlate = licensePlate;
+		this.functional = functional;
+		this.rtv = rtv;
+		this.expenditure = expenditure;
+		this.model = model;
+		this.brand = brand;
+	}
+
+
+
 	public int getIdVehicle() {
 		return idVehicle;
 	}

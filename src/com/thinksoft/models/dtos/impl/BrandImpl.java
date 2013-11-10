@@ -14,6 +14,15 @@ public class BrandImpl implements Brand {
 		// TODO Auto-generated constructor stub
 	}
 	
+	
+	
+	public BrandImpl(String brandName) {
+		super();
+		this.brandName = brandName;
+	}
+
+
+
 	public int getBrandId() {
 		return brandId;
 	}
