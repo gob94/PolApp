@@ -177,6 +177,7 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
      public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo)
      {
              super.onCreateContextMenu(menu, v, menuInfo);
+             menu.add(0, v.getId(), 0, "Ver información");
              menu.add(0, v.getId(), 0, "Editar"); 
              menu.add(0, v.getId(), 0, "Eliminar");
 
@@ -190,8 +191,7 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 	        return true;
 	    case R.id.MenuHomeScreenEliminar:
 	        Toast.makeText(getApplicationContext(), "Has pulsado la opción Eliminar", Toast.LENGTH_SHORT).show();
-	        return true;
-	    
+	        return true;	    
 	    default:
 	        return super.onContextItemSelected(item);
 	    }
