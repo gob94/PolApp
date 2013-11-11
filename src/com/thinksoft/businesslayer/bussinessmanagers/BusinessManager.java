@@ -40,4 +40,8 @@ public interface BusinessManager {
 	
 	public List<Map<String, String>> getAllVehicles();
 
+	public boolean clientHasOrders(int clientId);
+
+	public String verifyClientInformation(String name, String[] lastName,int phoneNumber);
+	
 }

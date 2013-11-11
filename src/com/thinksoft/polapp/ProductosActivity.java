@@ -1,6 +1,7 @@
 package com.thinksoft.polapp;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
 import com.thinksoft.businesslayer.bussinessmanagers.BusinessManager;
 import com.thinksoft.businesslayer.bussinessmanagers.impl.BusinessManagerImpl;
+import com.thinksoft.login.SignIn;
 import com.thinksoft.models.databases.PolAppHelper;
 import com.thinksoft.models.dtos.Product;
 import com.thinksoft.models.dtos.impl.ProductImpl;
@@ -58,6 +60,8 @@ public class ProductosActivity extends OrmLiteBaseActivity<PolAppHelper> {
 				
 				Toast toast= Toast.makeText(ProductosActivity.this, "Producto agregado exitosamente", Toast.LENGTH_LONG);
 				toast.show();
+				Intent intent = new Intent(ProductosActivity.this, HomeScreenActivity.class);
+				startActivity(intent);
 				}else{
 					Toast toast= Toast.makeText(ProductosActivity.this, "Producto ya existente", Toast.LENGTH_LONG);
 					toast.show();
@@ -73,6 +77,8 @@ public class ProductosActivity extends OrmLiteBaseActivity<PolAppHelper> {
 				txtName.setText("");
 				txtQuantity.setText("");
 				txtPrice.setText("");
+				Intent intent = new Intent(ProductosActivity.this, HomeScreenActivity.class);
+				startActivity(intent);
 			}
 		});
 	}
@@ -103,6 +109,7 @@ public class ProductosActivity extends OrmLiteBaseActivity<PolAppHelper> {
 		
 		Toast toast= Toast.makeText(ProductosActivity.this, "Producto agregado exitosamente", Toast.LENGTH_LONG);
 		toast.show();
+		
 		}else{
 			Toast toast= Toast.makeText(ProductosActivity.this, "Producto ya existente", Toast.LENGTH_LONG);
 			toast.show();

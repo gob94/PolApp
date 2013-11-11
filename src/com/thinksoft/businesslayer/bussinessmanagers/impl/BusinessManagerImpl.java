@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import android.util.Log;
 
 import com.j256.ormlite.support.ConnectionSource;
@@ -21,12 +20,13 @@ import com.thinksoft.models.dtos.User;
 import com.thinksoft.models.dtos.Vehicle;
 import com.thinksoft.models.dtos.impl.AddressImpl;
 import com.thinksoft.models.dtos.impl.UserImpl;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.*;
+import static com.thinksoft.businesslayer.utils.constants.RowConstants.*;
 
 public class BusinessManagerImpl implements BusinessManager {
 	
 	private PolAppDaoManager polAppDaoManager;
-	private static String GET_CLIENT_ERROR_TAG = "Error obteniendo Cliente";
-	
+
 	
 	public BusinessManagerImpl(ConnectionSource connection) {
 		polAppDaoManager = new  PolAppDaoManagerImpl(connection);
@@ -37,7 +37,7 @@ public class BusinessManagerImpl implements BusinessManager {
 		List<User> userReturned = null;
 		User user = null;
 			try {
-				 userReturned = polAppDaoManager.getUserDao().queryForEq("username", userName);
+				 userReturned = polAppDaoManager.getUserDao().queryForEq(COLUMN_USERNAME, userName);
 				 if(userReturned.size()>0){
 					 user = userReturned.get(0);
 					 if(user.getPassword().equals(password)){
@@ -45,9 +45,9 @@ public class BusinessManagerImpl implements BusinessManager {
 					 }
 				 }
 			} catch (SQLException e) {
-				e.printStackTrace();
+				Log.e(GET_USER_ERROR_TAG,e.getMessage());
 			} catch (ArrayIndexOutOfBoundsException e){
-				e.printStackTrace();
+				Log.e(GET_USER_ERROR_TAG,e.getMessage());
 			}
 		return result;
 	}
@@ -59,7 +59,7 @@ public class BusinessManagerImpl implements BusinessManager {
 			polAppDaoManager.getUserDao().create(user);
 			result = true;
 		} catch (SQLException e) {
-			Log.e("Error insertandousuario",e.getCause().toString());
+			Log.e(GET_USER_ERROR_TAG,e.getMessage());
 		}
 		return result;
 	}
@@ -71,7 +71,7 @@ public class BusinessManagerImpl implements BusinessManager {
 			polAppDaoManager.getProductDao().createIfNotExists(product);
 			result = true;
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Log.e(GET_PRODUCT_ERROR_TAG, e.getMessage());
 		}
 		return result;
 	}
@@ -87,18 +87,18 @@ public class BusinessManagerImpl implements BusinessManager {
 					
 				productItem = new HashMap<String, String>();
 				
-				productItem.put(com.thinksoft.businesslayer.utils.constants.RowConstants.NAME_COLUMN, product.getName());
+				productItem.put(NAME_COLUMN, product.getName());
 
-				productItem.put(com.thinksoft.businesslayer.utils.constants.RowConstants.CODE_COLUMN, product.getCode());
+				productItem.put(CODE_COLUMN, product.getCode());
 
-				productItem.put(com.thinksoft.businesslayer.utils.constants.RowConstants.PRICE_COLUMN, String.valueOf(product.getPrice()));
+				productItem.put(PRICE_COLUMN, String.valueOf(product.getPrice()));
 				
-				productItem.put(com.thinksoft.businesslayer.utils.constants.RowConstants.QUANTITY_COLUMN, String.valueOf(product.getQuantity()));
+				productItem.put(QUANTITY_COLUMN, String.valueOf(product.getQuantity()));
 				
 				productList.add(productItem);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Log.e(GET_PRODUCT_ERROR_TAG,e.getMessage());
 		}
 		return productList;
 	}
@@ -107,12 +107,12 @@ public class BusinessManagerImpl implements BusinessManager {
 	public User verifyUserInformation(String userName, String password, String name,String[] lastName, String identification){
 		User user = null;
 		if(lastName.length>1){
-			if((!userName.equals("")&&!password.equals("")&&!name.equals("")&&!lastName[0].equals("")&&!identification.equals(""))){
+			if((!userName.equals(EMPTY_STRING)&&!password.equals(EMPTY_STRING)&&!name.equals(EMPTY_STRING)&&!lastName[0].equals(EMPTY_STRING)&&!identification.equals(EMPTY_STRING))){
 				user = new UserImpl(userName,password,identification,name,lastName[0],lastName[1]);
 			}
 		}else{
-			if((!userName.equals("")&&!password.equals("")&&!name.equals("")&&!lastName[0].equals("")&&!identification.equals(""))){
-				user = new UserImpl(userName,password,identification,name,lastName[0],"");
+			if((!userName.equals(EMPTY_STRING)&&!password.equals(EMPTY_STRING)&&!name.equals(EMPTY_STRING)&&!lastName[0].equals(EMPTY_STRING)&&!identification.equals(EMPTY_STRING))){
+				user = new UserImpl(userName,password,identification,name,lastName[0],EMPTY_STRING);
 			}
 		}
 		return user;
@@ -120,24 +120,24 @@ public class BusinessManagerImpl implements BusinessManager {
 
 	@Override
 	public String registerUser(User user)  {
-		String result = "inserted";
+		String result = USER_INSERTED;
 		List<User> userReturned;
 		try {
-			 userReturned = polAppDaoManager.getUserDao().queryForEq("identification", user.getIdentification());
+			 userReturned = polAppDaoManager.getUserDao().queryForEq(COLUMN_IDENTIFICATION, user.getIdentification());
 			 if(userReturned.size()==0){
-				 userReturned.addAll(polAppDaoManager.getUserDao().queryForEq("username", user.getUsername()));
+				 userReturned.addAll(polAppDaoManager.getUserDao().queryForEq(COLUMN_USERNAME, user.getUsername()));
 				 if(userReturned.size()==0){
 					 addUser(user);
 				 }else{
-					 result = "username";
+					 result = USER_INSERTED;
 				 }
 			 }else{
-				 result = "identification";
+				 result = COLUMN_IDENTIFICATION;
 			 }
 			} catch (SQLException e) {
-				Log.e("Error verificando credenciales",e.getCause().toString());
+				Log.e(GET_USER_ERROR_TAG,e.getMessage());
 			} catch (ArrayIndexOutOfBoundsException e){
-				Log.e("Error verificando credenciales",e.getCause().toString());
+				Log.e(GET_USER_ERROR_TAG,e.getMessage());
 			}
 		return result;
 	}
@@ -149,22 +149,23 @@ public class BusinessManagerImpl implements BusinessManager {
 		Map<String, String> clientItem = null;
 		try {			
 			rawClients = polAppDaoManager.getClientDao().queryForAll();
+			listOfClients = new ArrayList<Map<String,String>>();
 			for (Client client : rawClients) {
-				listOfClients = new ArrayList<Map<String,String>>();
+				
 				clientItem = new HashMap<String, String>();
 				
-				clientItem.put(com.thinksoft.businesslayer.utils.constants.RowConstants.NAME_COLUMN, client.getName());
+				clientItem.put(NAME_COLUMN, client.getName());
 
-				clientItem.put(com.thinksoft.businesslayer.utils.constants.RowConstants.FIRST_LASTNAME_COLUMN, client.getFirstLastName());
+				clientItem.put(FIRST_LASTNAME_COLUMN, client.getFirstLastName());
 
-				clientItem.put(com.thinksoft.businesslayer.utils.constants.RowConstants.SECOND_LASTNAME_COLUMN, client.getSecondLastName());
+				clientItem.put(SECOND_LASTNAME_COLUMN, client.getSecondLastName());
 				
-				clientItem.put(com.thinksoft.businesslayer.utils.constants.RowConstants.STATUS_COLUMN, String.valueOf(client.getAccountState()));
+				clientItem.put(STATUS_COLUMN, String.valueOf(client.getAccountState()));
 				
 				listOfClients.add(clientItem);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Log.e(GET_CLIENT_ERROR_TAG,e.getMessage());
 		}
 		return listOfClients;
 	}
@@ -173,10 +174,10 @@ public class BusinessManagerImpl implements BusinessManager {
 	public boolean addClient(Client client) {
 		boolean result = false;
 		try {
-			polAppDaoManager.getClientDao().create(client);
+			polAppDaoManager.getClientDao().createOrUpdate(client);
 			result = true;
 		} catch (SQLException e) {
-			Log.e("Error insertando Cliente",e.getCause().toString());
+			Log.e(GET_CLIENT_ERROR_TAG,e.getMessage());
 		}
 		return result;
 	}
@@ -187,7 +188,7 @@ public class BusinessManagerImpl implements BusinessManager {
 		try {
 			client =  (Client) polAppDaoManager.getClientDao().queryBuilder().where().idEq(id);
 		} catch (SQLException e) {
-			Log.e(GET_CLIENT_ERROR_TAG, "Error Obteniendo client en la base, a continuacion el msj" + e.getMessage());
+			Log.e(GET_CLIENT_ERROR_TAG, e.getMessage());
 		}
 		return client;
 	}
@@ -211,25 +212,28 @@ public class BusinessManagerImpl implements BusinessManager {
 		Map<String,String> productItem = null;
 		
 		try {
-			actualOrders = polAppDaoManager.getOrderDao().queryBuilder().where().eq("clientId", clientId).query();
+			actualOrders = polAppDaoManager.getOrderDao().queryBuilder().where().eq(COLUMN_CLIENTID, clientId).query();
 			productList = new ArrayList<Map<String,String>>();
 			for (Order order : actualOrders) {
-				List<ProductOrder> productListOfOrder = polAppDaoManager.getProductOrderDao().queryBuilder().where().eq("order_id", order.getOrderId()).query();
-				/*for (ProductOrder productOrder : productListOfOrder) {
-					int result = polAppDaoManager.getProductOrderDao().refresh(productOrder);
+				List<ProductOrder> productListOfOrder = polAppDaoManager.getProductOrderDao().queryBuilder().where().eq(COLUMN_ORDERID, order .getOrderId()).query();
+				if (productList.size()>2) {
+					productList = productList.subList(0, 2);
+				}
+				for (ProductOrder productOrder : productListOfOrder) {
+					polAppDaoManager.getProductOrderDao().refresh(productOrder);
 					productItem = new HashMap<String, String>();
 					
-					productItem.put(com.thinksoft.businesslayer.utils.constants.RowConstants.NAME_COLUMN, ());
+					productItem.put(NAME_COLUMN, productOrder.getProduct().getName());
 
-					productItem.put(com.thinksoft.businesslayer.utils.constants.RowConstants.CODE_COLUMN, product.getCode());
+					productItem.put(CODE_COLUMN, productOrder.getProduct().getCode());
 
-					productItem.put(com.thinksoft.businesslayer.utils.constants.RowConstants.PRICE_COLUMN, String.valueOf(product.getPrice()));
+					productItem.put(PRICE_COLUMN, String.valueOf(productOrder.getProduct().getPrice()));
 					
-					productItem.put(com.thinksoft.businesslayer.utils.constants.RowConstants.QUANTITY_COLUMN, String.valueOf(product.getQuantity()));
+					productItem.put(QUANTITY_COLUMN, String.valueOf(productOrder.getProduct().getQuantity()));
 					
 					productList.add(productItem);
-				}*/	
-			}
+				}
+			} 
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -279,6 +283,18 @@ public class BusinessManagerImpl implements BusinessManager {
 		}
 		return result;
 	}
+	public boolean clientHasOrders(int clientId) {
+		boolean result = false;
+		try {
+			int size = polAppDaoManager.getOrderDao().queryBuilder().where().eq(COLUMN_CLIENTID, clientId).and().eq(COLUMN_ORDERSTATE, true).query().size();
+			if (size>0) {
+				result = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 
 	@Override
 	public boolean addBrand(Brand brand) {
@@ -288,6 +304,25 @@ public class BusinessManagerImpl implements BusinessManager {
 			result = true;
 		} catch (SQLException e) {
 			Log.e("Error insertando marca",e.getCause().toString());
+		}
+		return result;
+	}
+	public String verifyClientInformation(String name, String[] lastName, int phoneNumber) {
+		String result = EMPTY_STRING;
+		try{
+			if(name!=null&&!name.equalsIgnoreCase(EMPTY_STRING)){
+				if(String.valueOf(phoneNumber).length()>=MINIMUM_PHONENUMBER_DIGITS){
+					if(lastName==null||lastName.equals(EMPTY_STRING)){
+						result =COLUMN_LASTNAME;
+					}
+				}else{
+					result = COLUMN_PHONENUMBER;
+				}
+			}else{
+				result = COLUMN_NAME;
+			}
+		}catch(Exception e){
+			e.printStackTrace();
 		}
 		return result;
 	}

@@ -24,6 +24,8 @@ public interface Order {
 	public ClientImpl getClientId();
 
 	public PaymentFrequencyImpl getPaymentFrequencyId();
+	
+	public boolean getOrderState();
 
 	public void setOrderId(int orderId);
 
@@ -40,4 +42,6 @@ public interface Order {
 	public void setClientId(ClientImpl clientId);
 
 	public void setPaymentFrequencyId(PaymentFrequencyImpl paymentFrequencyId);
+	
+	public void setOrderState(boolean orderState);
 }

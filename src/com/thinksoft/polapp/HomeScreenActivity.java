@@ -33,7 +33,6 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home_screen);
-
 		businessLayer = new BusinessManagerImpl(getHelper()
 				.getConnectionSource());
 		btnAddProduct = (ImageView) findViewById(R.id.imgAgregarProductos);
@@ -76,13 +75,13 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 		
 		View productHeader= getLayoutInflater().inflate(R.layout.product_list_header, null);
 		listaProductos.addHeaderView(productHeader);
-		
 		View vehiclesHeader= getLayoutInflater().inflate(R.layout.fleet_list_header, null);
 		listaVehiculos.addHeaderView(vehiclesHeader);
 		
 		ClientListViewAdapter adapter = new ClientListViewAdapter(HomeScreenActivity.this,businessLayer.getAllClients());
 		listaClientes.setAdapter(adapter);
-		
+		ProductListViewAdapter adapter2 = new ProductListViewAdapter(HomeScreenActivity.this, businessLayer.getAllProducts());
+		listaProductos.setAdapter(adapter2);
 
 		btnAddProduct.setOnClickListener(new OnClickListener() {
 
@@ -100,7 +99,7 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 			public void onClick(View v) {
 
 				Intent intent = new Intent(getApplicationContext(),
-						ClienteActivity.class);
+						AgregarClienteActivity.class);
 				startActivity(intent);
 			}
 		});
@@ -187,12 +186,12 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 	 
 	    switch (item.getItemId()) {
 	    case R.id.MenuHomeScreenEditar:
-	        Toast.makeText(getApplicationContext(), "Has pulsado la opción Editar", Toast.LENGTH_SHORT).show();
+	        Toast.makeText(getApplicationContext(), "Has pulsado la opci��n Editar", Toast.LENGTH_SHORT).show();
 	        return true;
 	    case R.id.MenuHomeScreenEliminar:
 	        Toast.makeText(getApplicationContext(), "Has pulsado la opción Eliminar", Toast.LENGTH_SHORT).show();
 	        return true;	    
-	    default:
+		default:
 	        return super.onContextItemSelected(item);
 	    }
 	}

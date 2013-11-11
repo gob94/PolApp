@@ -17,6 +17,8 @@ public class OrderImpl implements Order {
 	protected float finalBalance;
 	@DatabaseField(useGetSet = true, defaultValue = "0")
 	protected float actualBalance;
+	@DatabaseField(useGetSet = true, defaultValue = "0")
+	protected boolean orderState;
 	@DatabaseField(useGetSet = true, foreign = true, foreignAutoCreate = true)
 	protected UserImpl userId;
 	@DatabaseField(useGetSet = true, canBeNull = false, foreign = true, foreignAutoCreate = true, columnName="clientId")
@@ -25,7 +27,6 @@ public class OrderImpl implements Order {
 	protected PaymentFrequencyImpl paymentFrequencyId;
 
 	public OrderImpl() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public int getOrderId() {
@@ -60,6 +61,10 @@ public class OrderImpl implements Order {
 		return paymentFrequencyId;
 	}
 
+	@Override
+	public boolean getOrderState() {
+		return orderState;
+	}
 	public void setOrderId(int orderId) {
 		this.orderId = orderId;
 	}
@@ -92,4 +97,7 @@ public class OrderImpl implements Order {
 		this.paymentFrequencyId = paymentFrequencyId;
 	}
 
+	public void setOrderState(boolean orderState) {
+		this.orderState = orderState;
+	}
 }

@@ -61,7 +61,6 @@ public class SignIn extends OrmLiteBaseActivity<PolAppHelper> {
 		bussinnessLayer.addBrand(brand);
 		Vehicle veh= new VehicleImpl("5616423", true, d, 5161, "YVR", (BrandImpl) brand);
 		bussinnessLayer.addVechicle(veh);
-		
 
 		final EditText username = (EditText) findViewById(R.id.txtUserName);
 		final EditText password = (EditText) findViewById(R.id.txtPassword);

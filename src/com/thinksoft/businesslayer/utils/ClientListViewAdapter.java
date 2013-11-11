@@ -2,14 +2,13 @@ package com.thinksoft.businesslayer.utils;
 
 import java.util.List;
 import java.util.Map;
-
 import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-
+import static com.thinksoft.businesslayer.utils.constants.RowConstants.*;
 import com.thinksoft.polapp.R;
 
 public class ClientListViewAdapter extends BaseAdapter {
@@ -68,10 +67,10 @@ public class ClientListViewAdapter extends BaseAdapter {
 		}
 
 		Map<String,String> map = list.get(position);
-		holder.txtName.setText((CharSequence) map.get(com.thinksoft.businesslayer.utils.constants.RowConstants.NAME_COLUMN));
-		holder.txtFirstLastName.setText((CharSequence) map.get(com.thinksoft.businesslayer.utils.constants.RowConstants.FIRST_LASTNAME_COLUMN));
-		holder.txtSecondLastName.setText((CharSequence) map.get(com.thinksoft.businesslayer.utils.constants.RowConstants.SECOND_LASTNAME_COLUMN));
-		holder.txtStatus.setText((CharSequence) map.get(com.thinksoft.businesslayer.utils.constants.RowConstants.STATUS_COLUMN));
+		holder.txtName.setText((CharSequence) map.get(NAME_COLUMN));
+		holder.txtFirstLastName.setText((CharSequence) map.get(FIRST_LASTNAME_COLUMN));
+		holder.txtSecondLastName.setText((CharSequence) map.get(SECOND_LASTNAME_COLUMN));
+		holder.txtStatus.setText((CharSequence) map.get(STATUS_COLUMN));
 
 		return convertView;
 	}

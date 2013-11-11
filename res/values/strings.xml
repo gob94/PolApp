@@ -23,6 +23,7 @@
     <string name="title_activity_home_screen">HomeScreenActivity</string>
     <string name="title_activity_clientes">Clientes</string>
     <string name="title_activity_agregar_clientes">Agregar Clientes</string>
+    <string name="title_activity_agregar_cobro">Agregar Cobro</string>
     <string name="title_activity_lista_clientes">ListaClientesActivity</string>
     <string name="title_activity_productos">Agregar Productos</string>
     <string name="title_activity_lista_productos">Lista Productos</string>
