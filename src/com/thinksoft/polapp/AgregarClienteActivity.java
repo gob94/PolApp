@@ -69,8 +69,7 @@ public class AgregarClienteActivity extends OrmLiteBaseActivity<PolAppHelper> {
 				Intent intent = new Intent(AgregarClienteActivity.this, HomeScreenActivity.class);
 				startActivity(intent);
 			}
-		}else{
-			
+		}else{		
 			Toast msg = Toast.makeText(AgregarClienteActivity.this,"Hay campos con errores", MESSAGE_DURATION);
 			msg.show();
 		}
