@@ -30,6 +30,7 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 	ImageView btnAddProduct;
 	ImageView btnAddClient;
 	ImageView btnBills;
+	ImageView btnAddCobro;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -39,6 +40,7 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 		btnAddProduct = (ImageView) findViewById(R.id.imgAgregarProductos);
 		btnAddClient = (ImageView) findViewById(R.id.imgAgregarClientes);
 		btnBills = (ImageView) findViewById(R.id.imgAgregarCobros);
+		btnAddCobro = (ImageView) findViewById(R.id.imgAgregarCobros);
 		Resources res = getResources();
 
 		final TabHost tabs = (TabHost) findViewById(android.R.id.tabhost);
@@ -86,7 +88,6 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 		listaProductos.setAdapter(adapter2);
 
 		btnAddProduct.setOnClickListener(new OnClickListener() {
-
 			@Override
 			public void onClick(View v) {
 
@@ -96,7 +97,6 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 			}
 		});
 		btnAddClient.setOnClickListener(new OnClickListener() {
-
 			@Override
 			public void onClick(View v) {
 
@@ -115,7 +115,13 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 				startActivity(intent);
 			}
 		});
-		
+		btnAddCobro.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(getApplicationContext(),AgregarCobroActivity.class);
+				startActivity(intent);
+			}
+		});
 		tabs.setOnTabChangedListener(new OnTabChangeListener() {
 
 			@Override
