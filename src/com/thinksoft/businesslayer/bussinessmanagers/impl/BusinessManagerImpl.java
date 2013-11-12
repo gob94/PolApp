@@ -248,13 +248,15 @@ public class BusinessManagerImpl implements BusinessManager {
 		Map<String, String> vehicleItem = null;
 		try {			
 			rawVehicles = polAppDaoManager.getVehicleDao().queryForAll();
+			listOfVehicles = new ArrayList<Map<String,String>>();
+			
 			for (Vehicle vehicle : rawVehicles) {
-				listOfVehicles = new ArrayList<Map<String,String>>();
 				vehicleItem = new HashMap<String, String>();
+				polAppDaoManager.getBrandDao().refresh(vehicle.getBrand());
 				
 				vehicleItem.put(com.thinksoft.businesslayer.utils.constants.RowConstants.LICENCE_COLUMN, vehicle.getLicensePlate().toString());
 
-				vehicleItem.put(com.thinksoft.businesslayer.utils.constants.RowConstants.BRAND_COLUMN, vehicle.getBrand().toString());
+				vehicleItem.put(com.thinksoft.businesslayer.utils.constants.RowConstants.BRAND_COLUMN, vehicle.getBrand().getBrandName());
 
 				vehicleItem.put(com.thinksoft.businesslayer.utils.constants.RowConstants.MODEL_COLUMN, vehicle.getModel());
 				

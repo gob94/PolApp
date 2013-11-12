@@ -35,15 +35,17 @@
         </activity>
         <activity
             android:name="com.thinksoft.polapp.HomeScreenActivity"
-            android:label="@string/title_activity_home_screen" >
+            android:label="@string/mainMenu" >
         </activity>
         <activity
             android:name="com.thinksoft.polapp.AgregarClienteActivity"
-            android:label="@string/title_activity_clientes" >
+            android:label="@string/title_activity_clientes" 
+            android:theme="@android:style/Theme.Holo.Light.Dialog">
         </activity>
         <activity
             android:name="com.thinksoft.polapp.AgregarCobroActivity"
-            android:label="@string/title_activity_agregar_cobro" >
+            android:label="@string/title_activity_agregar_cobro" 
+            android:theme="@android:style/Theme.Holo.Light.Dialog">
         </activity>
         <activity
             android:name="com.thinksoft.polapp.ListaClientesActivity"

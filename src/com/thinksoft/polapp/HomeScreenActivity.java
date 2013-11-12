@@ -29,6 +29,7 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 	BusinessManager businessLayer;
 	ImageView btnAddProduct;
 	ImageView btnAddClient;
+	ImageView btnBills;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -37,6 +38,7 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 				.getConnectionSource());
 		btnAddProduct = (ImageView) findViewById(R.id.imgAgregarProductos);
 		btnAddClient = (ImageView) findViewById(R.id.imgAgregarClientes);
+		btnBills = (ImageView) findViewById(R.id.imgAgregarCobros);
 		Resources res = getResources();
 
 		final TabHost tabs = (TabHost) findViewById(android.R.id.tabhost);
@@ -103,6 +105,17 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 				startActivity(intent);
 			}
 		});
+		
+		btnBills.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(getApplicationContext(),
+						AgregarCobroActivity.class);
+				startActivity(intent);
+			}
+		});
+		
 		tabs.setOnTabChangedListener(new OnTabChangeListener() {
 
 			@Override
@@ -186,10 +199,10 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 	 
 	    switch (item.getItemId()) {
 	    case R.id.MenuHomeScreenEditar:
-	        Toast.makeText(getApplicationContext(), "Has pulsado la opci��n Editar", Toast.LENGTH_SHORT).show();
+	        Toast.makeText(getApplicationContext(), "Has pulsado la opci��n Editar", Toast.LENGTH_LONG).show();
 	        return true;
 	    case R.id.MenuHomeScreenEliminar:
-	        Toast.makeText(getApplicationContext(), "Has pulsado la opción Eliminar", Toast.LENGTH_SHORT).show();
+	        Toast.makeText(getApplicationContext(), "Has pulsado la opción Eliminar", Toast.LENGTH_LONG).show();
 	        return true;	    
 		default:
 	        return super.onContextItemSelected(item);

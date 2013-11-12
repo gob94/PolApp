@@ -9,7 +9,7 @@
         android:layout_width="40dp"
         android:layout_height="30dp"
         android:layout_weight="1"
-        android:background="#045FB4"
+        android:background="#B40431"
         android:gravity="center"
         android:text="Nombre"
         android:textColor="#FFFFFF">
@@ -20,7 +20,7 @@
         android:layout_width="40dp"
         android:layout_height="30dp"
         android:layout_weight="1"
-        android:background="#045FB4"
+        android:background="#B40431"
         android:gravity="center"
         android:text="Código"
         android:textColor="#FFFFFF" >
@@ -31,7 +31,7 @@
         android:layout_width="40dp"
         android:layout_height="30dp"
         android:layout_weight="1"
-        android:background="#045FB4"
+        android:background="#B40431"
         android:gravity="center"
         android:text="Precio"
         android:textColor="#FFFFFF" >
@@ -42,7 +42,7 @@
         android:layout_width="40dp"
         android:layout_height="30dp"
         android:layout_weight="1"
-        android:background="#045FB4"
+        android:background="#B40431"
         android:gravity="center"
         android:text="Cantidad"
         android:textColor="#FFFFFF" >

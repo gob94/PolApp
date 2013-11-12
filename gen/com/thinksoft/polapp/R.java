@@ -80,21 +80,20 @@ public final class R {
     public static final class id {
         public static final int AccountStateClientListRow=0x7f09005a;
         public static final int BrandFleetListRow=0x7f09005c;
-        public static final int CodeProductListRow=0x7f090062;
-        public static final int ExpenditureFleetListRow=0x7f09005f;
+        public static final int CodeProductListRow=0x7f090061;
         public static final int FirstLastNameClientListRow=0x7f090058;
-        public static final int FunctionalFleetListRow=0x7f090060;
+        public static final int FunctionalFleetListRow=0x7f09005f;
         public static final int LicenceFleetListRow=0x7f09005b;
-        public static final int MenuHomeScreenEditar=0x7f090067;
-        public static final int MenuHomeScreenEliminar=0x7f090066;
+        public static final int MenuHomeScreenEditar=0x7f090066;
+        public static final int MenuHomeScreenEliminar=0x7f090065;
         public static final int ModelFleetListRow=0x7f09005d;
         public static final int NameClientListRow=0x7f090057;
-        public static final int NameProductListRow=0x7f090061;
-        public static final int PriceProductListRow=0x7f090063;
-        public static final int QuantityProductListRow=0x7f090064;
+        public static final int NameProductListRow=0x7f090060;
+        public static final int PriceProductListRow=0x7f090062;
+        public static final int QuantityProductListRow=0x7f090063;
         public static final int RtvFleetListRow=0x7f09005e;
         public static final int SecondLastNameClientListRow=0x7f090059;
-        public static final int action_settings=0x7f090065;
+        public static final int action_settings=0x7f090064;
         public static final int btnAgregarCliente=0x7f09000c;
         public static final int btnCancelClientEdit=0x7f090023;
         public static final int btnCancelCobro=0x7f090018;
@@ -255,6 +254,7 @@ public final class R {
         public static final int lblUserName=0x7f060005;
         public static final int lblVendedor=0x7f060022;
         public static final int lblVerificationPassword=0x7f060007;
+        public static final int mainMenu=0x7f06002a;
         public static final int title_activity_agregar_clientes=0x7f060015;
         public static final int title_activity_agregar_cobro=0x7f060016;
         public static final int title_activity_clientes=0x7f060014;

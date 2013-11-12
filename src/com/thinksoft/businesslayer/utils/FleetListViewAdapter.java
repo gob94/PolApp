@@ -4,10 +4,12 @@ import java.util.List;
 import java.util.Map;
 
 import android.app.Activity;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.thinksoft.polapp.R;
@@ -19,9 +21,11 @@ public class FleetListViewAdapter extends BaseAdapter {
     public static final String LICENCE_COLUMN = "Licence";
     public static final String FUNCTIONAL_COLUMN = "Functional";
     public static final String RTV_COLUMN = "Rtv";
-    public static final String EXPEDITURE_COLUMN = "Expediture";
+    //public static final String EXPEDITURE_COLUMN = "Expediture";
     public static final String MODEL_COLUMN = "Model";
     public static final String BRAND_COLUMN = "Brand";
+    public static Drawable imgTrue= null;
+    public static Drawable imgFalse= null;
     
     public FleetListViewAdapter() {
 		// TODO Auto-generated constructor stub
@@ -57,9 +61,9 @@ public class FleetListViewAdapter extends BaseAdapter {
 	
 	private class ViewHolder {
 		TextView txtLicence;
-		TextView txtFunctional;
+		ImageView txtFunctional;
 		TextView txtRtv;
-		TextView txtExpediture;
+		//TextView txtExpediture;
 		TextView txtModel;
 		TextView txtBrand;
 	}
@@ -69,7 +73,9 @@ public class FleetListViewAdapter extends BaseAdapter {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		ViewHolder holder;
 		LayoutInflater inflater = activity.getLayoutInflater();
-
+		imgTrue= activity.getResources().getDrawable(R.drawable.check16px);
+		imgFalse= activity.getResources().getDrawable(R.drawable.cancel32px);
+		
 		if (convertView == null) {
 			convertView = inflater.inflate(R.layout.fleet_list_view_row, null);
 			holder = new ViewHolder();
@@ -77,13 +83,13 @@ public class FleetListViewAdapter extends BaseAdapter {
 					.findViewById(R.id.LicenceFleetListRow);
 			holder.txtRtv = (TextView) convertView
 					.findViewById(R.id.RtvFleetListRow);
-			holder.txtExpediture = (TextView) convertView
-					.findViewById(R.id.ExpenditureFleetListRow);
+		//	holder.txtExpediture = (TextView) convertView
+			//		.findViewById(R.id.ExpenditureFleetListRow);
 			holder.txtModel = (TextView) convertView
 					.findViewById(R.id.ModelFleetListRow);
 			holder.txtBrand = (TextView) convertView
 					.findViewById(R.id.BrandFleetListRow);
-			holder.txtFunctional = (TextView) convertView
+			holder.txtFunctional = (ImageView) convertView
 					.findViewById(R.id.FunctionalFleetListRow);
 			convertView.setTag(holder);
 		} else {
@@ -94,12 +100,17 @@ public class FleetListViewAdapter extends BaseAdapter {
 
 		holder.txtLicence.setText((CharSequence) map.get(com.thinksoft.businesslayer.utils.constants.RowConstants.LICENCE_COLUMN));
 		holder.txtRtv.setText((CharSequence) map.get(com.thinksoft.businesslayer.utils.constants.RowConstants.RTV_COLUMN));
-		holder.txtExpediture.setText((CharSequence) map.get(com.thinksoft.businesslayer.utils.constants.RowConstants.EXPEDITURE_COLUMN));
+		//holder.txtExpediture.setText((CharSequence) map.get(com.thinksoft.businesslayer.utils.constants.RowConstants.EXPEDITURE_COLUMN));
 		holder.txtModel.setText((CharSequence) map.get(com.thinksoft.businesslayer.utils.constants.RowConstants.MODEL_COLUMN));
 		holder.txtBrand.setText((CharSequence) map.get(com.thinksoft.businesslayer.utils.constants.RowConstants.BRAND_COLUMN));
-		holder.txtFunctional.setText((CharSequence) map.get(com.thinksoft.businesslayer.utils.constants.RowConstants.FUNCTIONAL_COLUMN));
+		
+		if(map.get(com.thinksoft.businesslayer.utils.constants.RowConstants.FUNCTIONAL_COLUMN).equalsIgnoreCase("true")){
+			holder.txtFunctional.setImageDrawable(imgTrue);
+		}else{
+			holder.txtFunctional.setImageDrawable(imgFalse);
+		}
 
-		   
+		
 		return convertView;
 	}
 
