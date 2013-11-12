@@ -1,10 +1,12 @@
 package com.thinksoft.businesslayer.utils;
 
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.imgFalse;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.imgTrue;
+
 import java.util.List;
 import java.util.Map;
 
 import android.app.Activity;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,8 +26,6 @@ public class FleetListViewAdapter extends BaseAdapter {
     //public static final String EXPEDITURE_COLUMN = "Expediture";
     public static final String MODEL_COLUMN = "Model";
     public static final String BRAND_COLUMN = "Brand";
-    public static Drawable imgTrue= null;
-    public static Drawable imgFalse= null;
     
     public FleetListViewAdapter() {
 		// TODO Auto-generated constructor stub
@@ -37,9 +37,6 @@ public class FleetListViewAdapter extends BaseAdapter {
 		this.list = list;
 		this.activity = activity;
 	}
-
-
-
 
 	@Override
 	public int getCount() {

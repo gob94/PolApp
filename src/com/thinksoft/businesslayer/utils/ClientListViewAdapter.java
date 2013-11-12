@@ -7,8 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 import static com.thinksoft.businesslayer.utils.constants.RowConstants.*;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.*;
+
 import com.thinksoft.polapp.R;
 
 public class ClientListViewAdapter extends BaseAdapter {
@@ -41,7 +44,7 @@ public class ClientListViewAdapter extends BaseAdapter {
 		TextView txtName;
 		TextView txtFirstLastName;
 		TextView txtSecondLastName;
-		TextView txtStatus;
+		ImageView txtStatus;
 	}
 
 	@Override
@@ -49,6 +52,8 @@ public class ClientListViewAdapter extends BaseAdapter {
 
 		ViewHolder holder;
 		LayoutInflater inflater = activity.getLayoutInflater();
+		imgTrue= activity.getResources().getDrawable(R.drawable.check16px);
+		imgFalse= activity.getResources().getDrawable(R.drawable.cancel32px);
 
 		if (convertView == null) {
 			convertView = inflater.inflate(R.layout.client_list_view_row, null);
@@ -59,7 +64,7 @@ public class ClientListViewAdapter extends BaseAdapter {
 					.findViewById(R.id.FirstLastNameClientListRow);
 			holder.txtSecondLastName = (TextView) convertView
 					.findViewById(R.id.SecondLastNameClientListRow);
-			holder.txtStatus = (TextView) convertView
+			holder.txtStatus = (ImageView) convertView
 					.findViewById(R.id.AccountStateClientListRow);
 			convertView.setTag(holder);
 		} else {
@@ -70,7 +75,12 @@ public class ClientListViewAdapter extends BaseAdapter {
 		holder.txtName.setText((CharSequence) map.get(NAME_COLUMN));
 		holder.txtFirstLastName.setText((CharSequence) map.get(FIRST_LASTNAME_COLUMN));
 		holder.txtSecondLastName.setText((CharSequence) map.get(SECOND_LASTNAME_COLUMN));
-		holder.txtStatus.setText((CharSequence) map.get(STATUS_COLUMN));
+		
+		if(map.get(STATUS_COLUMN).equalsIgnoreCase("true")){
+			holder.txtStatus.setImageDrawable(imgTrue);
+		}else{
+			holder.txtStatus.setImageDrawable(imgFalse);
+		}
 
 		return convertView;
 	}

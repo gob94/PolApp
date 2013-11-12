@@ -1,5 +1,7 @@
 package com.thinksoft.businesslayer.utils.constants;
 
+import android.graphics.drawable.Drawable;
+
 public class DatabaseConstants {
 	public static String GET_CLIENT_ERROR_TAG = "Error en la tabla Cliente";
 	public static String GET_USER_ERROR_TAG = "Error en la tabla Usuario";
@@ -15,4 +17,6 @@ public class DatabaseConstants {
 	public static String COLUMN_NAME = "name";
 	public static String COLUMN_LASTNAME = "lastname";
 	public static String COLUMN_PHONENUMBER = "lastname";
+    public static Drawable imgTrue= null;
+    public static Drawable imgFalse= null;
 }

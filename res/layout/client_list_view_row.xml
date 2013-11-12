@@ -40,7 +40,7 @@
    	    android:ellipsize="end">
     </TextView>
 
-    <TextView
+    <ImageView
         android:id="@+id/AccountStateClientListRow"
         android:layout_width="40dp"
         android:layout_height="30dp"
@@ -50,6 +50,6 @@
         android:text="Estado" 
         android:maxLines="1"
    	    android:ellipsize="end">
-    </TextView>
+    </ImageView>
 
 </LinearLayout>
