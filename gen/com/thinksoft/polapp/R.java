@@ -30,70 +30,75 @@ public final class R {
         public static final int check16px=0x7f020006;
         public static final int check24px=0x7f020007;
         public static final int check32px=0x7f020008;
-        public static final int clientprincipal=0x7f020009;
-        public static final int cobros24px=0x7f02000a;
-        public static final int cobros32px=0x7f02000b;
-        public static final int cobrosprincipal=0x7f02000c;
-        public static final int coin32px=0x7f02000d;
-        public static final int contact16px=0x7f02000e;
-        public static final int contact24px=0x7f02000f;
-        public static final int correct16px=0x7f020010;
-        public static final int correct24px=0x7f020011;
-        public static final int delete16px=0x7f020012;
-        public static final int delete24px=0x7f020013;
-        public static final int dude16px=0x7f020014;
-        public static final int dude24px=0x7f020015;
-        public static final int edit32px=0x7f020016;
-        public static final int error16px=0x7f020017;
-        public static final int error24px=0x7f020018;
-        public static final int ic_launcher=0x7f020019;
-        public static final int information16px=0x7f02001a;
-        public static final int information24px=0x7f02001b;
-        public static final int key26=0x7f02001c;
-        public static final int login24px=0x7f02001d;
-        public static final int maps16px=0x7f02001e;
-        public static final int maps24px=0x7f02001f;
-        public static final int nameicon32px=0x7f020020;
-        public static final int peopegroup24px=0x7f020021;
-        public static final int people24px=0x7f020022;
-        public static final int peoplegroup32px=0x7f020023;
-        public static final int peopleicon16px=0x7f020024;
-        public static final int peopleicon24px=0x7f020025;
-        public static final int peoplepurple=0x7f020026;
-        public static final int phone24px=0x7f020027;
-        public static final int producticon48px=0x7f020028;
-        public static final int productprincipal=0x7f020029;
-        public static final int refresh16px=0x7f02002a;
-        public static final int refresh24px=0x7f02002b;
-        public static final int rename32px=0x7f02002c;
-        public static final int save24px=0x7f02002d;
-        public static final int saved24px=0x7f02002e;
-        public static final int search16px=0x7f02002f;
-        public static final int search24px=0x7f020030;
-        public static final int shape=0x7f020031;
-        public static final int tacometro24px=0x7f020032;
-        public static final int task16px=0x7f020033;
-        public static final int task24px=0x7f020034;
-        public static final int user26=0x7f020035;
-        public static final int write24px=0x7f020036;
+        public static final int checkpresionado=0x7f020009;
+        public static final int clientprincipal=0x7f02000a;
+        public static final int cobros24px=0x7f02000b;
+        public static final int cobros32px=0x7f02000c;
+        public static final int cobrosprincipal=0x7f02000d;
+        public static final int coin32px=0x7f02000e;
+        public static final int contact16px=0x7f02000f;
+        public static final int contact24px=0x7f020010;
+        public static final int correct16px=0x7f020011;
+        public static final int correct24px=0x7f020012;
+        public static final int delete16px=0x7f020013;
+        public static final int delete24px=0x7f020014;
+        public static final int dude16px=0x7f020015;
+        public static final int dude24px=0x7f020016;
+        public static final int edit32px=0x7f020017;
+        public static final int error16px=0x7f020018;
+        public static final int error24px=0x7f020019;
+        public static final int home32px=0x7f02001a;
+        public static final int ic_launcher=0x7f02001b;
+        public static final int information16px=0x7f02001c;
+        public static final int information24px=0x7f02001d;
+        public static final int key26=0x7f02001e;
+        public static final int login24px=0x7f02001f;
+        public static final int maps16px=0x7f020020;
+        public static final int maps24px=0x7f020021;
+        public static final int menulateral32px=0x7f020022;
+        public static final int nameicon32px=0x7f020023;
+        public static final int peopegroup24px=0x7f020024;
+        public static final int people24px=0x7f020025;
+        public static final int peoplegroup32px=0x7f020026;
+        public static final int peopleicon16px=0x7f020027;
+        public static final int peopleicon24px=0x7f020028;
+        public static final int peoplepurple=0x7f020029;
+        public static final int phone24px=0x7f02002a;
+        public static final int producticon48px=0x7f02002b;
+        public static final int productpresionado=0x7f02002c;
+        public static final int productprincipal=0x7f02002d;
+        public static final int profile32px=0x7f02002e;
+        public static final int refresh16px=0x7f02002f;
+        public static final int refresh24px=0x7f020030;
+        public static final int rename32px=0x7f020031;
+        public static final int save24px=0x7f020032;
+        public static final int saved24px=0x7f020033;
+        public static final int search16px=0x7f020034;
+        public static final int search24px=0x7f020035;
+        public static final int shape=0x7f020036;
+        public static final int tacometro24px=0x7f020037;
+        public static final int task16px=0x7f020038;
+        public static final int task24px=0x7f020039;
+        public static final int user26=0x7f02003a;
+        public static final int write24px=0x7f02003b;
     }
     public static final class id {
         public static final int AccountStateClientListRow=0x7f09005a;
         public static final int BrandFleetListRow=0x7f09005c;
-        public static final int CodeProductListRow=0x7f090061;
+        public static final int CodeProductListRow=0x7f090064;
         public static final int FirstLastNameClientListRow=0x7f090058;
         public static final int FunctionalFleetListRow=0x7f09005f;
         public static final int LicenceFleetListRow=0x7f09005b;
-        public static final int MenuHomeScreenEditar=0x7f090066;
-        public static final int MenuHomeScreenEliminar=0x7f090065;
+        public static final int MenuHomeScreenEditar=0x7f090069;
+        public static final int MenuHomeScreenEliminar=0x7f090068;
         public static final int ModelFleetListRow=0x7f09005d;
         public static final int NameClientListRow=0x7f090057;
-        public static final int NameProductListRow=0x7f090060;
-        public static final int PriceProductListRow=0x7f090062;
-        public static final int QuantityProductListRow=0x7f090063;
+        public static final int NameProductListRow=0x7f090063;
+        public static final int PriceProductListRow=0x7f090065;
+        public static final int QuantityProductListRow=0x7f090066;
         public static final int RtvFleetListRow=0x7f09005e;
         public static final int SecondLastNameClientListRow=0x7f090059;
-        public static final int action_settings=0x7f090064;
+        public static final int action_settings=0x7f090067;
         public static final int btnAgregarCliente=0x7f09000c;
         public static final int btnCancelClientEdit=0x7f090023;
         public static final int btnCancelCobro=0x7f090018;
@@ -105,6 +110,8 @@ public final class R {
         public static final int btnSaveCobro=0x7f090017;
         public static final int btnSaveProduct=0x7f090039;
         public static final int checkBoxCobros=0x7f090001;
+        public static final int imageView2=0x7f090060;
+        public static final int imageView3=0x7f090062;
         public static final int imgAgregarClientes=0x7f090028;
         public static final int imgAgregarCobros=0x7f09002b;
         public static final int imgAgregarFlotilla=0x7f09002e;
@@ -158,6 +165,7 @@ public final class R {
         public static final int tab3=0x7f09002a;
         public static final int tab4=0x7f09002d;
         public static final int tableRow1=0x7f090021;
+        public static final int textView2=0x7f090061;
         public static final int txtAddOrden=0x7f09000e;
         public static final int txtAddOrdenClient=0x7f090010;
         public static final int txtAddOrdenTotal=0x7f090014;
@@ -200,8 +208,9 @@ public final class R {
         public static final int client_list_view_row=0x7f03000e;
         public static final int fleet_list_header=0x7f03000f;
         public static final int fleet_list_view_row=0x7f030010;
-        public static final int product_list_header=0x7f030011;
-        public static final int product_list_view_row=0x7f030012;
+        public static final int menulateral=0x7f030011;
+        public static final int product_list_header=0x7f030012;
+        public static final int product_list_view_row=0x7f030013;
     }
     public static final class menu {
         public static final int agregar_clientes=0x7f080000;
@@ -271,11 +280,13 @@ public final class R {
         /** 
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+
     
 
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
             backward-compatibility can go here.
+
         
 
         Base application theme for API 11+. This theme completely replaces
@@ -294,9 +305,10 @@ public final class R {
  All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f070001;
-        public static final int TextStyle=0x7f070002;
-        public static final int TextStyle_green=0x7f070005;
-        public static final int TextStyle_purple=0x7f070003;
-        public static final int TextStyle_turquoise=0x7f070004;
+        public static final int TextStyle=0x7f070003;
+        public static final int TextStyle_green=0x7f070006;
+        public static final int TextStyle_purple=0x7f070004;
+        public static final int TextStyle_turquoise=0x7f070005;
+        public static final int TextoMenu=0x7f070002;
     }
 }

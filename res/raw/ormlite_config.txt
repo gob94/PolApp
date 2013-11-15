@@ -1,240 +1,6 @@
 #
-# generated on 2013/11/11 08:11:30
+# generated on 2013/11/14 09:39:22
 #
-# --table-start--
-dataClass=com.thinksoft.models.dtos.impl.PaymentFrequencyImpl
-tableName=paymentfrequencyimpl
-# --table-fields-start--
-# --field-start--
-fieldName=idPaymentFrequency
-generatedId=true
-useGetSet=true
-# --field-end--
-# --field-start--
-fieldName=name
-canBeNull=false
-useGetSet=true
-unique=true
-# --field-end--
-# --field-start--
-fieldName=lapse
-canBeNull=false
-useGetSet=true
-unique=true
-# --field-end--
-# --field-start--
-fieldName=ammount
-defaultValue=0
-canBeNull=false
-useGetSet=true
-# --field-end--
-# --table-fields-end--
-# --table-end--
-#################################
-# --table-start--
-dataClass=com.thinksoft.models.dtos.impl.ProductOrderImpl
-tableName=productorderimpl
-# --table-fields-start--
-# --field-start--
-fieldName=quantity
-canBeNull=false
-useGetSet=true
-# --field-end--
-# --field-start--
-fieldName=total
-canBeNull=false
-useGetSet=true
-# --field-end--
-# --field-start--
-fieldName=order
-canBeNull=false
-foreign=true
-useGetSet=true
-# --field-end--
-# --field-start--
-fieldName=product
-canBeNull=false
-foreign=true
-useGetSet=true
-# --field-end--
-# --table-fields-end--
-# --table-end--
-#################################
-# --table-start--
-dataClass=com.thinksoft.models.dtos.impl.EmployeeImpl
-tableName=employeeimpl
-# --table-fields-start--
-# --field-start--
-fieldName=idEmployee
-generatedId=true
-useGetSet=true
-# --field-end--
-# --field-start--
-fieldName=identification
-canBeNull=false
-useGetSet=true
-unique=true
-# --field-end--
-# --field-start--
-fieldName=name
-canBeNull=false
-useGetSet=true
-# --field-end--
-# --field-start--
-fieldName=middle_name
-canBeNull=false
-useGetSet=true
-# --field-end--
-# --field-start--
-fieldName=lastName
-canBeNull=false
-useGetSet=true
-# --field-end--
-# --field-start--
-fieldName=phoneNumber
-useGetSet=true
-# --field-end--
-# --field-start--
-fieldName=vehicle
-foreign=true
-useGetSet=true
-foreignAutoCreate=true
-# --field-end--
-# --table-fields-end--
-# --table-end--
-#################################
-# --table-start--
-dataClass=com.thinksoft.models.dtos.impl.ProductImpl
-tableName=productimpl
-# --table-fields-start--
-# --field-start--
-fieldName=idProduct
-generatedId=true
-useGetSet=true
-# --field-end--
-# --field-start--
-fieldName=code
-canBeNull=false
-useGetSet=true
-unique=true
-# --field-end--
-# --field-start--
-fieldName=name
-canBeNull=false
-useGetSet=true
-# --field-end--
-# --field-start--
-fieldName=quantity
-defaultValue=0
-canBeNull=false
-useGetSet=true
-# --field-end--
-# --field-start--
-fieldName=price
-defaultValue=0
-canBeNull=false
-useGetSet=true
-# --field-end--
-# --table-fields-end--
-# --table-end--
-#################################
-# --table-start--
-dataClass=com.thinksoft.models.dtos.impl.BrandImpl
-tableName=brandimpl
-# --table-fields-start--
-# --field-start--
-fieldName=brandId
-generatedId=true
-useGetSet=true
-# --field-end--
-# --field-start--
-fieldName=brandName
-canBeNull=false
-useGetSet=true
-unique=true
-# --field-end--
-# --table-fields-end--
-# --table-end--
-#################################
-# --table-start--
-dataClass=com.thinksoft.models.dtos.impl.UserImpl
-tableName=userimpl
-# --table-fields-start--
-# --field-start--
-fieldName=idUser
-generatedId=true
-useGetSet=true
-# --field-end--
-# --field-start--
-fieldName=username
-canBeNull=false
-useGetSet=true
-unique=true
-# --field-end--
-# --field-start--
-fieldName=password
-canBeNull=false
-useGetSet=true
-# --field-end--
-# --field-start--
-fieldName=identification
-canBeNull=false
-useGetSet=true
-unique=true
-# --field-end--
-# --field-start--
-fieldName=name
-canBeNull=false
-useGetSet=true
-# --field-end--
-# --field-start--
-fieldName=firstLastName
-canBeNull=false
-useGetSet=true
-# --field-end--
-# --field-start--
-fieldName=secondLastName
-useGetSet=true
-# --field-end--
-# --table-fields-end--
-# --table-end--
-#################################
-# --table-start--
-dataClass=com.thinksoft.models.dtos.impl.PaymentImpl
-tableName=paymentimpl
-# --table-fields-start--
-# --field-start--
-fieldName=idPayment
-generatedId=true
-useGetSet=true
-# --field-end--
-# --field-start--
-fieldName=paymentDate
-canBeNull=false
-useGetSet=true
-# --field-end--
-# --field-start--
-fieldName=order
-canBeNull=false
-foreign=true
-useGetSet=true
-foreignAutoCreate=true
-# --field-end--
-# --field-start--
-fieldName=employee
-canBeNull=false
-foreign=true
-useGetSet=true
-foreignAutoCreate=true
-# --field-end--
-# --field-start--
-fieldName=ammount
-canBeNull=false
-useGetSet=true
-# --field-end--
-# --table-fields-end--
-# --table-end--
-#################################
 # --table-start--
 dataClass=com.thinksoft.models.dtos.impl.AddressImpl
 tableName=addressimpl
@@ -286,40 +52,95 @@ useGetSet=true
 # --table-end--
 #################################
 # --table-start--
-dataClass=com.thinksoft.models.dtos.impl.VehicleImpl
-tableName=vehicleimpl
+dataClass=com.thinksoft.models.dtos.impl.BrandImpl
+tableName=brandimpl
 # --table-fields-start--
 # --field-start--
-fieldName=idVehicle
+fieldName=brandId
 generatedId=true
 useGetSet=true
 # --field-end--
 # --field-start--
-fieldName=licensePlate
+fieldName=brandName
+canBeNull=false
+useGetSet=true
+unique=true
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=com.thinksoft.models.dtos.impl.ClientImpl
+tableName=clientimpl
+# --table-fields-start--
+# --field-start--
+fieldName=clientId
+generatedId=true
+useGetSet=true
+# --field-end--
+# --field-start--
+fieldName=name
 canBeNull=false
 useGetSet=true
 # --field-end--
 # --field-start--
-fieldName=functional
+fieldName=firstLastName
 canBeNull=false
 useGetSet=true
 # --field-end--
 # --field-start--
-fieldName=rtv
+fieldName=secondLastName
+useGetSet=true
+# --field-end--
+# --field-start--
+fieldName=accountState
+defaultValue=false
 canBeNull=false
 useGetSet=true
 # --field-end--
 # --field-start--
-fieldName=expenditure
+fieldName=clientAddresses
+foreignCollection=true
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=com.thinksoft.models.dtos.impl.EmployeeImpl
+tableName=employeeimpl
+# --table-fields-start--
+# --field-start--
+fieldName=idEmployee
+generatedId=true
 useGetSet=true
 # --field-end--
 # --field-start--
-fieldName=model
-useGetSet=true
-# --field-end--
-# --field-start--
-fieldName=brand
+fieldName=identification
 canBeNull=false
+useGetSet=true
+unique=true
+# --field-end--
+# --field-start--
+fieldName=name
+canBeNull=false
+useGetSet=true
+# --field-end--
+# --field-start--
+fieldName=middle_name
+canBeNull=false
+useGetSet=true
+# --field-end--
+# --field-start--
+fieldName=lastName
+canBeNull=false
+useGetSet=true
+# --field-end--
+# --field-start--
+fieldName=phoneNumber
+useGetSet=true
+# --field-end--
+# --field-start--
+fieldName=vehicle
 foreign=true
 useGetSet=true
 foreignAutoCreate=true
@@ -386,13 +207,160 @@ foreignAutoCreate=true
 # --table-end--
 #################################
 # --table-start--
-dataClass=com.thinksoft.models.dtos.impl.ClientImpl
-tableName=clientimpl
+dataClass=com.thinksoft.models.dtos.impl.PaymentFrequencyImpl
+tableName=paymentfrequencyimpl
 # --table-fields-start--
 # --field-start--
-fieldName=clientId
+fieldName=idPaymentFrequency
 generatedId=true
 useGetSet=true
+# --field-end--
+# --field-start--
+fieldName=name
+canBeNull=false
+useGetSet=true
+unique=true
+# --field-end--
+# --field-start--
+fieldName=lapse
+canBeNull=false
+useGetSet=true
+unique=true
+# --field-end--
+# --field-start--
+fieldName=ammount
+defaultValue=0
+canBeNull=false
+useGetSet=true
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=com.thinksoft.models.dtos.impl.PaymentImpl
+tableName=paymentimpl
+# --table-fields-start--
+# --field-start--
+fieldName=idPayment
+generatedId=true
+useGetSet=true
+# --field-end--
+# --field-start--
+fieldName=paymentDate
+canBeNull=false
+useGetSet=true
+# --field-end--
+# --field-start--
+fieldName=order
+canBeNull=false
+foreign=true
+useGetSet=true
+foreignAutoCreate=true
+# --field-end--
+# --field-start--
+fieldName=employee
+canBeNull=false
+foreign=true
+useGetSet=true
+foreignAutoCreate=true
+# --field-end--
+# --field-start--
+fieldName=ammount
+canBeNull=false
+useGetSet=true
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=com.thinksoft.models.dtos.impl.ProductImpl
+tableName=productimpl
+# --table-fields-start--
+# --field-start--
+fieldName=idProduct
+generatedId=true
+useGetSet=true
+# --field-end--
+# --field-start--
+fieldName=code
+canBeNull=false
+useGetSet=true
+unique=true
+# --field-end--
+# --field-start--
+fieldName=name
+canBeNull=false
+useGetSet=true
+# --field-end--
+# --field-start--
+fieldName=quantity
+defaultValue=0
+canBeNull=false
+useGetSet=true
+# --field-end--
+# --field-start--
+fieldName=price
+defaultValue=0
+canBeNull=false
+useGetSet=true
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=com.thinksoft.models.dtos.impl.ProductOrderImpl
+tableName=productorderimpl
+# --table-fields-start--
+# --field-start--
+fieldName=quantity
+canBeNull=false
+useGetSet=true
+# --field-end--
+# --field-start--
+fieldName=total
+canBeNull=false
+useGetSet=true
+# --field-end--
+# --field-start--
+fieldName=order
+canBeNull=false
+foreign=true
+useGetSet=true
+# --field-end--
+# --field-start--
+fieldName=product
+canBeNull=false
+foreign=true
+useGetSet=true
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=com.thinksoft.models.dtos.impl.UserImpl
+tableName=userimpl
+# --table-fields-start--
+# --field-start--
+fieldName=idUser
+generatedId=true
+useGetSet=true
+# --field-end--
+# --field-start--
+fieldName=username
+canBeNull=false
+useGetSet=true
+unique=true
+# --field-end--
+# --field-start--
+fieldName=password
+canBeNull=false
+useGetSet=true
+# --field-end--
+# --field-start--
+fieldName=identification
+canBeNull=false
+useGetSet=true
+unique=true
 # --field-end--
 # --field-start--
 fieldName=name
@@ -408,15 +376,47 @@ useGetSet=true
 fieldName=secondLastName
 useGetSet=true
 # --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=com.thinksoft.models.dtos.impl.VehicleImpl
+tableName=vehicleimpl
+# --table-fields-start--
 # --field-start--
-fieldName=accountState
-defaultValue=false
+fieldName=idVehicle
+generatedId=true
+useGetSet=true
+# --field-end--
+# --field-start--
+fieldName=licensePlate
 canBeNull=false
 useGetSet=true
 # --field-end--
 # --field-start--
-fieldName=clientAddresses
-foreignCollection=true
+fieldName=functional
+canBeNull=false
+useGetSet=true
+# --field-end--
+# --field-start--
+fieldName=rtv
+canBeNull=false
+useGetSet=true
+# --field-end--
+# --field-start--
+fieldName=expenditure
+useGetSet=true
+# --field-end--
+# --field-start--
+fieldName=model
+useGetSet=true
+# --field-end--
+# --field-start--
+fieldName=brand
+canBeNull=false
+foreign=true
+useGetSet=true
+foreignAutoCreate=true
 # --field-end--
 # --table-fields-end--
 # --table-end--

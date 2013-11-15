@@ -2,9 +2,11 @@ package com.thinksoft.polapp;
 
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
+import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,6 +20,7 @@ import android.widget.TabHost.OnTabChangeListener;
 import android.widget.Toast;
 
 import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.thinksoft.businesslayer.bussinessmanagers.BusinessManager;
 import com.thinksoft.businesslayer.bussinessmanagers.impl.BusinessManagerImpl;
 import com.thinksoft.businesslayer.utils.ClientListViewAdapter;
@@ -31,6 +34,7 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 	ImageView btnAddClient;
 	ImageView btnBills;
 	ImageView btnAddCobro;
+	SlidingMenu menu;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -42,12 +46,29 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 		btnBills = (ImageView) findViewById(R.id.imgAgregarCobros);
 		btnAddCobro = (ImageView) findViewById(R.id.imgAgregarCobros);
 		Resources res = getResources();
+		
+		Display display = getWindowManager().getDefaultDisplay();
+		@SuppressWarnings("deprecation")
+		int width = display.getWidth();
+		
+		
+	    menu = new SlidingMenu(this);
+	    menu.setMode(SlidingMenu.LEFT);
+	    menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
+	   
+	    menu.setShadowWidth(20);
+	    menu.setBehindOffset(30);
+	    menu.setFadeDegree(0.25f);
+	    menu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
+	    menu.setBehindWidth(width-60);
+	    menu.setMenu(R.layout.menulateral);
+	    menu.showMenu(true);
 
 		final TabHost tabs = (TabHost) findViewById(android.R.id.tabhost);
 		tabs.setup();
 
 		TabHost.TabSpec spec = tabs.newTabSpec("tabCobros");
-		spec.setContent(R.id.tab1);
+		spec.setContent(R.id.tab3);
 		spec.setIndicator("", res.getDrawable(R.drawable.cobros32px));
 		tabs.addTab(spec);
 
@@ -57,13 +78,13 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 		tabs.addTab(spec);
 
 		spec = tabs.newTabSpec("tabProductos");
-		spec.setContent(R.id.tab3);
-		spec.setIndicator("", res.getDrawable(R.drawable.task24px));
+		spec.setContent(R.id.tab1);
+		spec.setIndicator("", res.getDrawable(R.drawable.productprincipal));
 		tabs.addTab(spec);
 
 		spec = tabs.newTabSpec("tabFlotilla");
 		spec.setContent(R.id.tab4);
-		spec.setIndicator("", res.getDrawable(R.drawable.car24px));
+		spec.setIndicator("", res.getDrawable(R.drawable.carprincipal));
 		tabs.addTab(spec);
 
 		tabs.setCurrentTab(0);
@@ -130,14 +151,17 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 					if (tabId.equals("tabClientes")) {
 						ClientListViewAdapter adapter = new ClientListViewAdapter(HomeScreenActivity.this,businessLayer.getAllClients());
 						listaClientes.setAdapter(adapter);
+						listaClientes.setDivider(new ColorDrawable(0x045FB4));
 
 					} else if (tabId.equals("tabProductos")) {
 						ProductListViewAdapter adapter = new ProductListViewAdapter(HomeScreenActivity.this, businessLayer.getAllProducts());
 						listaProductos.setAdapter(adapter);
+						listaClientes.setDivider(new ColorDrawable(0xB40431));
 						
 					} else if (tabId.equals("tabFlotilla")) {
 						FleetListViewAdapter adapter = new FleetListViewAdapter(HomeScreenActivity.this, businessLayer.getAllVehicles());
 						listaVehiculos.setAdapter(adapter);
+						listaClientes.setDivider(new ColorDrawable(0x008B00));
 					}
 
 				} catch (Exception e) {
@@ -213,6 +237,13 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 		default:
 	        return super.onContextItemSelected(item);
 	    }
+	}
+	
+	@Override
+	public void onBackPressed() {
+		if(menu.isMenuShowing()){menu.toggle();}
+		else {finish();}
+		
 	}
 	
 }
