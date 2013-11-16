@@ -20,6 +20,7 @@ import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
 import com.thinksoft.businesslayer.bussinessmanagers.BusinessManager;
 import com.thinksoft.businesslayer.bussinessmanagers.impl.BusinessManagerImpl;
 import com.thinksoft.models.databases.PolAppHelper;
+import com.thinksoft.polapp.R;
 
 public class ClientListViewAdapter extends BaseAdapter implements Filterable {
 	
