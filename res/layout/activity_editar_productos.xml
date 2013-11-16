@@ -1,16 +1,167 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".EditarProductosActivity" >
+    android:background="#FFFFFF"
+    tools:context=".ProductosActivity" >
+    
+    <Space android:layout_height="25dp" />
 
-    <TextView
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" 
+        android:padding="1dip">
+
+        <TextView
+            android:id="@+id/lblEditCode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="roboto-light"
+            android:textColor="#FF01A7EB"
+            android:textSize="16sp"
+            android:layout_marginLeft="2dp"
+            android:text="@string/lblCode" />
+
+        <EditText
+            android:id="@+id/txtEditCode"
+            android:layout_width="154dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="roboto-light"
+            android:textSize="16sp"
+            android:layout_marginLeft="2dp"
+            android:ems="10" />
+
+    </TableRow>
+
+    <Space android:layout_height="20dp" />
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" 
+        android:padding="5dip">
+
+        <TextView
+            android:id="@+id/lblEditNameProduct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:fontFamily="roboto-light"
+            android:textColor="#FF01A7EB"
+            android:textSize="16sp"
+            android:layout_marginLeft="2dp"
+            android:text="@string/lblName" />
+
+        <EditText
+            android:id="@+id/txtEditNameProduct"
+            android:layout_width="154dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="roboto-light"
+            android:textSize="16sp"
+            android:inputType="textPersonName"
+            android:layout_marginLeft="10dp"
+            android:ems="10" >
+
+            <requestFocus />
+        </EditText>
+    </TableRow>
+
+    <Space android:layout_height="20dp" />
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" 
+        android:padding="5dip">
+
+        <TextView
+            android:id="@+id/lblEditCost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:fontFamily="roboto-light"
+            android:textColor="#FF01A7EB"
+            android:textSize="16sp"
+            android:layout_marginLeft="2dp"
+            android:text="@string/lblPrice" />
+
+        <EditText
+            android:id="@+id/txtEditCost"
+            android:layout_width="154dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="roboto-light"
+            android:textSize="16sp"
+            android:layout_marginLeft="10dp"
+            android:inputType="number"
+            android:ems="10" >
+
+            <requestFocus />
+        </EditText>
+    </TableRow>
+
+    <Space android:layout_height="20dp" />
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" 
+        android:padding="5dip">
+
+        <TextView
+            android:id="@+id/lblEditCantidadProduct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="2dp"
+            android:fontFamily="roboto-light"
+            android:textColor="#FF01A7EB"
+            android:textSize="16sp"
+            android:text="@string/lblCantidad" />
+
+        <EditText
+            android:id="@+id/txtEditCantidadProduct"
+            android:layout_width="154dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:inputType="number"
+            android:ems="10" >
+
+            <requestFocus />
+        </EditText>
+    </TableRow>
+
+    <Space android:layout_height="20dp" />
+    
+    <TableRow
+        android:id="@+id/EdittableRow1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:layout_height="wrap_content">
 
-</RelativeLayout>
+        <Button
+            android:id="@+id/btnEditSaveProduct"
+            android:background="#FFFFFF"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:fontFamily="roboto-light"
+            android:textColor="#91A5AE"
+            android:textSize="16sp"
+            android:drawableLeft="@drawable/check32px"
+            android:text="@string/btnAccept" />
+
+        <Button
+            android:id="@+id/btnEditCancelProduct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:fontFamily="roboto-light"
+            android:background="#FFFFFF"
+            android:textColor="#91A5AE"
+            android:textSize="16sp"
+            android:paddingRight="10dp"
+            android:drawableLeft="@drawable/cancel32px"
+            android:text="@string/btnCancel" />
+
+    </TableRow>
+
+ 
+
+</TableLayout>
+

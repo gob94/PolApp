@@ -42,15 +42,15 @@
     <string name="lblApellido1">Apellido</string>
     <string name="lblApellido2">Segundo Apellido</string>
     <string name="lblEditProductPopUp">Editar</string>
+    <string name="lblPlaca">Placa</string>
+    <string name="lblBrand">Marca</string>
+    <string name="lblModel">Modelo</string>
+    <string name="lblCostPerKm">Costo por Km</string>
+    <string name="lblRTV">Fecha RTV</string>
+    <string name="lblDisponible">Disponible</string>
     <string name="lblEliminarProductoPopUp">Eliminar</string>
-    <string name="mainMenu"> Menú principal
-        
-        
-        
-        
-        </string>
-    
-    
-
+    <string name="mainMenu"> Menú principal</string>
+    <string name="title_activity_agregar_vehiculo">AgregarVehiculo</string>
+    <string name="title_activity_editar_vehiculo">Editar Vehiculo</string>
 
 </resources>

@@ -1,0 +1,224 @@
+<TableLayout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AgregarVehiculo" >
+
+    <Space android:layout_height="15dp" />
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="1dip" >
+
+        <TextView
+            android:id="@+id/lblEditPlaca"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:fontFamily="roboto-light"
+            android:text="@string/lblPlaca"
+            android:textColor="#088A4B"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/txtEditPlaca"
+            android:layout_width="154dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:ems="10"
+            android:fontFamily="roboto-light"
+            android:textSize="16sp" />
+    </TableRow>
+
+    <Space android:layout_height="10dp" />
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="5dip" >
+
+        <TextView
+            android:id="@+id/lblEditBrand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="2dp"
+            android:fontFamily="roboto-light"
+            android:text="@string/lblBrand"
+            android:textColor="#088A4B"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/txtEditBrand"
+            android:layout_width="154dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:ems="10"
+            android:fontFamily="roboto-light"
+            android:inputType="textPersonName"
+            android:textSize="16sp" >
+
+            <requestFocus />
+        </EditText>
+    </TableRow>
+
+    <Space android:layout_height="10dp" />
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="5dip" >
+
+        <TextView
+            android:id="@+id/lblEditCostPerKm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="2dp"
+            android:fontFamily="roboto-light"
+            android:text="@string/lblCostPerKm"
+            android:textColor="#088A4B"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/txtEditCostPerKm"
+            android:layout_width="154dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:ems="10"
+            android:fontFamily="roboto-light"
+            android:inputType="number"
+            android:textSize="16sp" >
+
+            <requestFocus />
+        </EditText>
+    </TableRow>
+
+    <Space android:layout_height="10dp" />
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="5dip" >
+
+        <TextView
+            android:id="@+id/lblEditModel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="2dp"
+            android:fontFamily="roboto-light"
+            android:text="@string/lblModel"
+            android:textColor="#088A4B"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/txtEditModel"
+            android:layout_width="154dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:ems="10"
+            android:inputType="number" >
+
+            <requestFocus />
+        </EditText>
+    </TableRow>
+
+    <Space android:layout_height="10dp" />
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="5dip" >
+
+        <TextView
+            android:id="@+id/lblEditRTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="2dp"
+            android:fontFamily="roboto-light"
+            android:text="@string/lblRTV"
+            android:textColor="#088A4B"
+            android:textSize="16sp" />
+
+        <DatePicker
+            android:id="@+id/dpEditRTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </TableRow>
+
+    <Space android:layout_height="10dp" />
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="5dip" >
+
+        <TextView
+            android:id="@+id/lblEditDisponible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="2dp"
+            android:fontFamily="roboto-light"
+            android:text="@string/lblDisponible"
+            android:textColor="#088A4B"
+            android:textSize="16sp" />
+
+        <RadioGroup
+            android:id="@+id/rgEditDisponible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <RadioButton
+                android:id="@+id/rbEditYes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Si" />
+
+            <RadioButton
+                android:id="@+id/rbEditNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No" />
+        </RadioGroup>
+
+    </TableRow>
+
+    <Space android:layout_height="10dp" />
+
+    <TableRow
+        android:id="@+id/EdittableRowVehiculo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/btnEditSaveCar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:drawableLeft="@drawable/check32px"
+            android:fontFamily="roboto-light"
+            android:paddingLeft="10dp"
+            android:text="@string/btnAccept"
+            android:textColor="#91A5AE"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btnEditCancelCar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:background="#FFFFFF"
+            android:drawableLeft="@drawable/cancel32px"
+            android:fontFamily="roboto-light"
+            android:paddingRight="10dp"
+            android:text="@string/btnCancel"
+            android:textColor="#91A5AE"
+            android:textSize="16sp" />
+    </TableRow>
+
+</TableLayout>

@@ -27,11 +27,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name="com.thinksoft.login.SignUp"
-            android:label="@string/title_activity_sign_up" 
-            android:theme="@android:style/Theme.Holo.Light.Dialog">
+            android:label="@string/title_activity_sign_up"
+            android:theme="@android:style/Theme.Holo.Light.Dialog" >
         </activity>
         <activity
             android:name="com.thinksoft.polapp.HomeScreenActivity"
@@ -39,13 +38,13 @@
         </activity>
         <activity
             android:name="com.thinksoft.polapp.AgregarClienteActivity"
-            android:label="@string/title_activity_clientes" 
-            android:theme="@android:style/Theme.Holo.Light.Dialog">
+            android:label="@string/title_activity_clientes"
+            android:theme="@android:style/Theme.Holo.Light.Dialog" >
         </activity>
         <activity
             android:name="com.thinksoft.polapp.AgregarCobroActivity"
-            android:label="@string/title_activity_agregar_cobro" 
-            android:theme="@android:style/Theme.Holo.Light.Dialog">
+            android:label="@string/title_activity_agregar_cobro"
+            android:theme="@android:style/Theme.Holo.Light.Dialog" >
         </activity>
         <activity
             android:name="com.thinksoft.polapp.ListaClientesActivity"
@@ -53,7 +52,7 @@
         </activity>
         <activity
             android:name="com.thinksoft.polapp.ProductosActivity"
-            android:label="@string/title_activity_productos" 
+            android:label="@string/title_activity_productos"
             android:theme="@android:style/Theme.Holo.Light.Dialog" >
         </activity>
         <activity
@@ -67,6 +66,14 @@
         <activity
             android:name="com.thinksoft.polapp.EditarClienteActivity"
             android:label="@string/title_activity_editar_cliente" >
+        </activity>
+        <activity
+            android:name="com.thinksoft.polapp.AgregarVehiculo"
+            android:label="@string/title_activity_agregar_vehiculo" >
+        </activity>
+        <activity
+            android:name="com.thinksoft.polapp.EditarVehiculo"
+            android:label="@string/title_activity_editar_vehiculo" >
         </activity>
     </application>
 

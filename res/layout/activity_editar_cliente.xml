@@ -1,137 +1,141 @@
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollViewEditarCliente"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".EditarClienteActivity" >
+    android:layout_height="match_parent" >
 
-    <Space android:layout_height="25dp" />
-
-    <TableRow
+    <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" 
-        android:padding="5dip">
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:orientation="vertical"
+        tools:context=".AgregarClienteActivity" >
 
-        <TextView
-            android:id="@+id/lblNameClientEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="10dp"
-            android:text="@string/lblName" />
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="25dp"
+            android:padding="1dip" >
 
-        <EditText
-            android:id="@+id/txtNameclientEdit"
-            android:layout_width="154dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:ems="10" >
+            <TextView
+                android:id="@+id/lblEditNombCliente"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:paddingLeft="10dp"
+                android:text="@string/lblNombCliente"
+                android:textColor="#045FB4" />
 
-            <requestFocus />
-        </EditText>
-    </TableRow>
+            <EditText
+                android:id="@+id/txtEditNombreClient"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@+id/lbEditlNombCliente"
+                android:layout_weight="0"
+                android:ems="10" />
+        </TableRow>
 
-    <Space android:layout_height="20dp" />
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:padding="1dip" >
 
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" 
-        android:padding="5dip">
+            <TextView
+                android:id="@+id/lblEditApellidoCliente"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:drawableRight="@+id/txtEditApellidoCliente"
+                android:text="@string/lblApellido1"
+                android:textColor="#045FB4" />
 
-        <TextView
-            android:id="@+id/lblLastNameEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="10dp"
-            android:text="@string/lblApellido1" />
+            <EditText
+                android:id="@+id/txtEditApellidoCliente"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@+id/lblEditApellidoCliente"
+                android:ems="10" />
 
-        <EditText
-            android:id="@+id/txtLastNameEdit"
-            android:layout_width="154dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:ems="10" >
+        </TableRow>
 
-            <requestFocus />
-        </EditText>
-    </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:padding="1dip" >
 
-    <Space android:layout_height="20dp" />
+            <TextView
+                android:id="@+id/lblEditTelefono"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:paddingLeft="10dp"
+                android:drawableRight="@+id/txtEditTelefonoCliente"
+                android:text="@string/lblTel"
+                android:textColor="#045FB4" />
 
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" 
-        android:padding="5dip">
+            <EditText
+                android:id="@+id/txtEditTelefonoCliente"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@+id/lblTelefono"
+                android:layout_weight="1"
+                android:ems="10" >
 
-        <TextView
-            android:id="@+id/lblSecondLastNameEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="10dp"
-            android:text="@string/lblApellido2" />
+                <requestFocus />
+            </EditText>
+        </TableRow>
 
-        <EditText
-            android:id="@+id/txtSecondLastNameEdit"
-            android:layout_width="154dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:ems="10" >
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:padding="1dip" >
 
-            <requestFocus />
-        </EditText>
-    </TableRow>
+            <TextView
+                android:id="@+id/lblEditDireccion"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="19dp"
+                android:clickable="true"
+                android:layout_gravity="right"
+                android:text="Agregar Direccion del cliente"
+                android:textColor="#013ADF"
+                android:textColorLink="#013ADF" />
+        </TableRow>
 
-    <Space android:layout_height="20dp" />
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:padding="1dip" >
 
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" 
-        android:padding="5dip">
+            <Button
+                android:id="@+id/btnEditAgregarCliente"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginLeft="10dp"
+                android:background="#FFFFFF"
+                android:contentDescription="@string/btnAccept"
+                android:drawableLeft="@drawable/check32px"
+                android:src="@drawable/save24px"
+                android:text="@string/btnAccept" />
 
-        <TextView
-            android:id="@+id/lblDirectionEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="10dp"
-            android:text="@string/lblDireccion" />
+            <Button
+                android:id="@+id/btnEditCancelarCliente"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:background="#FFFFFF"
+                android:contentDescription="@string/btnCancel"
+                android:drawableLeft="@drawable/cancel32px"
+                android:src="@drawable/cancel32px"
+                android:text="@string/btnCancel" />
+        </TableRow>
+    </TableLayout>
 
-        <EditText
-            android:id="@+id/txtDirectionEdit"
-            android:layout_width="154dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:ems="10" >
-
-            <requestFocus />
-        </EditText>
-    </TableRow>
-
-    <Space android:layout_height="20dp" />
-    
-    <TableRow
-        android:id="@+id/tableRow1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <Button
-            android:id="@+id/btnSaveClientEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_column="0"
-            android:text="@string/btnAccept" />
-        <Button
-            android:id="@+id/btnCancelClientEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_column="1"
-            android:text="@string/btnCancel" />
-        
-    </TableRow>
-
-</TableLayout>
+</ScrollView>
