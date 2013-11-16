@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import android.util.Log;
 
+import com.j256.ormlite.stmt.QueryBuilder;
 import com.j256.ormlite.support.ConnectionSource;
 import com.thinksoft.businesslayer.bussinessmanagers.BusinessManager;
 import com.thinksoft.models.daos.PolAppDaoManager;
@@ -19,6 +20,7 @@ import com.thinksoft.models.dtos.ProductOrder;
 import com.thinksoft.models.dtos.User;
 import com.thinksoft.models.dtos.Vehicle;
 import com.thinksoft.models.dtos.impl.AddressImpl;
+import com.thinksoft.models.dtos.impl.ClientImpl;
 import com.thinksoft.models.dtos.impl.UserImpl;
 import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.*;
 import static com.thinksoft.businesslayer.utils.constants.RowConstants.*;
@@ -327,6 +329,66 @@ public class BusinessManagerImpl implements BusinessManager {
 			e.printStackTrace();
 		}
 		return result;
+	}
+
+	@Override
+	public List<Map<String, String>> getSpecifiedNumberOfClients(long number) {
+		List<Map<String,String>> listOfClients = null;
+		List<Client> rawClients = null;
+		Map<String, String> clientItem = null;
+		try {			
+			rawClients = polAppDaoManager.getClientDao().queryBuilder().limit(number).query();
+			listOfClients = new ArrayList<Map<String,String>>();
+			for (Client client : rawClients) {
+				
+				clientItem = new HashMap<String, String>();
+				
+				clientItem.put(NAME_COLUMN, client.getName());
+
+				clientItem.put(FIRST_LASTNAME_COLUMN, client.getFirstLastName());
+
+				clientItem.put(SECOND_LASTNAME_COLUMN, client.getSecondLastName());
+				
+				clientItem.put(STATUS_COLUMN, String.valueOf(client.getAccountState()));
+				
+				listOfClients.add(clientItem);
+			}
+		} catch (SQLException e) {
+			Log.e(GET_CLIENT_ERROR_TAG,e.getMessage());
+		}
+		return listOfClients;
+	}
+
+	@Override
+	public List<Map<String, String>> searchClients(String query) {
+		List<Map<String,String>> listOfClients = null;
+		List<Client> rawClients = null;
+		Map<String, String> clientItem = null;
+		try {			
+			rawClients = polAppDaoManager.getClientDao().queryBuilder().where().like(NAME_COLUMN, query).or()
+					   														   .like(FIRST_LASTNAME_COLUMN,query).or()
+					   														   .like(SECOND_LASTNAME_COLUMN,query).or()
+					   														   .like(STATUS_COLUMN,query).query();
+			listOfClients = new ArrayList<Map<String,String>>();
+			for (Client client : rawClients) {
+				
+				clientItem = new HashMap<String, String>();
+				
+				clientItem.put(NAME_COLUMN, client.getName());
+
+				clientItem.put(FIRST_LASTNAME_COLUMN, client.getFirstLastName());
+
+				clientItem.put(SECOND_LASTNAME_COLUMN, client.getSecondLastName());
+				
+				clientItem.put(STATUS_COLUMN, String.valueOf(client.getAccountState()));
+				
+				listOfClients.add(clientItem);
+			}
+		} catch (SQLException e) {
+			Log.e(GET_CLIENT_ERROR_TAG,e.getMessage());
+		}
+		return listOfClients;
+		
 	}
 	
 	

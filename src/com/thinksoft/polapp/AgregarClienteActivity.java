@@ -15,6 +15,11 @@ import com.thinksoft.businesslayer.bussinessmanagers.impl.BusinessManagerImpl;
 import com.thinksoft.models.databases.PolAppHelper;
 import com.thinksoft.models.dtos.Client;
 import com.thinksoft.models.dtos.impl.ClientImpl;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.EMPTY_STRING;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_NAME;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_LASTNAME;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_PHONENUMBER;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.MINIMUM_PHONENUMBER_DIGITS;;
 
 public class AgregarClienteActivity extends OrmLiteBaseActivity<PolAppHelper> {
 	 public BusinessManager businessLayer;
@@ -25,6 +30,10 @@ public class AgregarClienteActivity extends OrmLiteBaseActivity<PolAppHelper> {
 	 public Button btnAddClient;
 	 public static int MESSAGE_DURATION =10000;
 	 public static String NO_SECOND_LASTNAME ="N/A";
+	 public static String MESSAGE_NO_NAME ="El campo nombre esta vacio";
+	 public static String MESSAGE_NO_LASTNAME ="Primer apellido no especificado, especifica un primer apellido	";
+	 public static String MESSAGE_WRONG_PHONE_NUMBER ="Numero de telefono vacio o no es correcto, digite al menos "+ MINIMUM_PHONENUMBER_DIGITS +" caracteres";
+	 public static String MESSAGE_GENERIC_ERROR ="Hay error con la aplicacion, reinicie la aplicacion";
 	 public static boolean NO_DEBTS =false;
 	 
 	@Override
@@ -57,7 +66,9 @@ public class AgregarClienteActivity extends OrmLiteBaseActivity<PolAppHelper> {
 	}
 	
 	public void registerClient(String name, String[] lastName, int phoneNumber){
-		if (businessLayer.verifyClientInformation(name,lastName,phoneNumber)=="") {
+		Toast msg = null;
+		String result = businessLayer.verifyClientInformation(name,lastName,phoneNumber);
+		if (EMPTY_STRING.equals(result)) {
 			Client client = null;
 				if(lastName.length>1){
 					client= new ClientImpl(name, lastName[0], lastName[1], NO_DEBTS);			
@@ -66,13 +77,21 @@ public class AgregarClienteActivity extends OrmLiteBaseActivity<PolAppHelper> {
 				}
 			
 			if(businessLayer.addClient(client)){
+				msg = Toast.makeText(AgregarClienteActivity.this,"Hay campos con errores", MESSAGE_DURATION);
+				msg.show();
 				Intent intent = new Intent(AgregarClienteActivity.this, HomeScreenActivity.class);
 				startActivity(intent);
 			}
-		}else{		
-			Toast msg = Toast.makeText(AgregarClienteActivity.this,"Hay campos con errores", MESSAGE_DURATION);
-			msg.show();
+		}else if(COLUMN_NAME.equalsIgnoreCase(result)){		
+			msg = Toast.makeText(AgregarClienteActivity.this,MESSAGE_NO_NAME, MESSAGE_DURATION);
+		}else if (COLUMN_LASTNAME.equalsIgnoreCase(result)) {
+			msg = Toast.makeText(AgregarClienteActivity.this,MESSAGE_NO_LASTNAME, MESSAGE_DURATION);
+		} else if (COLUMN_PHONENUMBER.equalsIgnoreCase(result)) {
+			msg = Toast.makeText(AgregarClienteActivity.this,MESSAGE_WRONG_PHONE_NUMBER, MESSAGE_DURATION);
+		} else {
+			msg = Toast.makeText(AgregarClienteActivity.this,MESSAGE_GENERIC_ERROR, MESSAGE_DURATION);
 		}
+		msg.show();
 	}
  
 }

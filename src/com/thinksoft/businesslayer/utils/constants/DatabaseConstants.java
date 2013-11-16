@@ -15,8 +15,8 @@ public class DatabaseConstants {
 	public static String COLUMN_ORDERID = "order_id";
 	public static String COLUMN_ORDERSTATE = "orderState";
 	public static String COLUMN_NAME = "name";
-	public static String COLUMN_LASTNAME = "lastname";
-	public static String COLUMN_PHONENUMBER = "lastname";
+	public static String COLUMN_LASTNAME = "lastName";
+	public static String COLUMN_PHONENUMBER = "phoneNumber";
     public static Drawable imgTrue= null;
     public static Drawable imgFalse= null;
 }

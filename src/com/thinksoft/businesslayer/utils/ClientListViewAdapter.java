@@ -1,28 +1,40 @@
 package com.thinksoft.businesslayer.utils;
 
+import static com.thinksoft.businesslayer.utils.constants.RowConstants.FIRST_LASTNAME_COLUMN;
+import static com.thinksoft.businesslayer.utils.constants.RowConstants.NAME_COLUMN;
+import static com.thinksoft.businesslayer.utils.constants.RowConstants.SECOND_LASTNAME_COLUMN;
+import static com.thinksoft.businesslayer.utils.constants.RowConstants.STARTING_CLIENT_NUMBER;
+import static com.thinksoft.businesslayer.utils.constants.RowConstants.STATUS_COLUMN;
 import java.util.List;
 import java.util.Map;
-import android.app.Activity;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
-import static com.thinksoft.businesslayer.utils.constants.RowConstants.*;
-import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.*;
+import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
+import com.thinksoft.businesslayer.bussinessmanagers.BusinessManager;
+import com.thinksoft.businesslayer.bussinessmanagers.impl.BusinessManagerImpl;
+import com.thinksoft.models.databases.PolAppHelper;
 
-import com.thinksoft.polapp.R;
+public class ClientListViewAdapter extends BaseAdapter implements Filterable {
+	
+	public BusinessManager bussinessLayer = null;
+	public List<Map<String,String>> list = null;
+	public List<Map<String,String>> defaultList= null;
+	public OrmLiteBaseActivity<PolAppHelper> activity;
+	private Drawable imgTrue;
+	private Drawable imgFalse;
 
-public class ClientListViewAdapter extends BaseAdapter {
-
-	public List<Map<String,String>> list;
-	Activity activity;
-
-	public ClientListViewAdapter(Activity activity, List<Map<String, String>> list2) {
+	public ClientListViewAdapter(OrmLiteBaseActivity<PolAppHelper> activity, List<Map<String, String>> list) {
 		super();
 		this.activity = activity;
-		this.list = list2;
+		bussinessLayer = new BusinessManagerImpl(activity.getHelper().getConnectionSource());
+		this.list = list;
 	}
 
 	@Override
@@ -83,5 +95,36 @@ public class ClientListViewAdapter extends BaseAdapter {
 		}
 
 		return convertView;
+	}
+
+	@Override
+	public Filter getFilter() {
+		return new Filter() {
+			
+			@SuppressWarnings("unchecked")
+			@Override
+			protected void publishResults(CharSequence constraint, FilterResults results) {
+				if (results.count == 0)
+		            notifyDataSetInvalidated();
+		        else {
+		            list = (List<Map<String, String>>) results.values;
+		            ClientListViewAdapter.this.notifyDataSetChanged();
+		        }
+			}
+			
+			@Override
+			protected FilterResults performFiltering(CharSequence constraint) {
+				  FilterResults results = new FilterResults();
+
+			        if (constraint == null || constraint.length() == 0) {
+			        	bussinessLayer.getSpecifiedNumberOfClients(STARTING_CLIENT_NUMBER);
+			        } else { // We perform filtering operation
+			            List<Map<String, String>> filteredRowItems = bussinessLayer.searchClients(constraint.toString());
+			            results.values = filteredRowItems;
+			            results.count = filteredRowItems.size();
+			        }
+			        return results;
+			}
+		};
 	}
 }

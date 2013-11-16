@@ -51,7 +51,7 @@ public class SignIn extends OrmLiteBaseActivity<PolAppHelper> {
 		} 
 
 		bussinnessLayer = new BusinessManagerImpl(getHelper() .getConnectionSource());
-		User user = new UserImpl("admin", "superadmin", "1", "Administrator", "Polaco", "Application");
+		User user = new UserImpl("admin", "123", "1", "Administrator", "Polaco", "Application");
 		bussinnessLayer.addUser(user);
 		Client client = new ClientImpl("Johnny","Xu","Liang",true);
 		bussinnessLayer.addClient(client);

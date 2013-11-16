@@ -28,6 +28,8 @@ public interface BusinessManager {
 
 	public List<Map<String, String>> getAllClients();
 
+	public List<Map<String, String>> getSpecifiedNumberOfClients(long number);
+	
 	public boolean addClient(Client client);
 	
 	public List<Map<String, String>> getAllProducts();
@@ -39,6 +41,8 @@ public interface BusinessManager {
 	public List<Map<String, String>> getClientProducts(int clientId);
 	
 	public List<Map<String, String>> getAllVehicles();
+	
+	public List<Map<String, String>> searchClients(String query);
 
 	public boolean clientHasOrders(int clientId);
 
