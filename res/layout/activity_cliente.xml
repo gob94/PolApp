@@ -1,174 +1,141 @@
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView2"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-	android:orientation="vertical"
-    android:background="#FFFFFF"
-    tools:context=".AgregarClienteActivity" >
-   
-    
-    <Space android:layout_height="50dp" />
+    android:layout_height="match_parent" >
 
-    <TableRow
+    <TableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="1dip" >
+        android:background="#FFFFFF"
+        android:orientation="vertical"
+        tools:context=".AgregarClienteActivity" >
 
-        <TextView
-            android:id="@+id/lblNombCliente"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:paddingLeft="10dp"
-            android:text="@string/lblNombCliente"
-            android:textColor="#045FB4" />
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="25dp"
+            android:padding="1dip" >
 
-        <EditText
-            android:id="@+id/txtNombreClient"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0"
-            android:ems="10" />
-    </TableRow>
-    
-    <Space android:layout_height="10dp" />
-    
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="1dip" >
+            <TextView
+                android:id="@+id/lblNombCliente"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:paddingLeft="10dp"
+                android:text="@string/lblNombCliente"
+                android:textColor="#045FB4" />
 
-        <TextView
-            android:id="@+id/lblApellidoCliente"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:paddingLeft="10dp"
-            android:text="@string/lblApellido1"
-            android:textColor="#045FB4" />
+            <EditText
+                android:id="@+id/txtNombreClient"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@+id/lblNombCliente"
+                android:layout_weight="0"
+                android:ems="10" />
+        </TableRow>
 
-        <EditText
-            android:id="@+id/txtApellidoCliente"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10" >
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:padding="1dip" >
 
-            <requestFocus />
-        </EditText>
-    </TableRow>
-    
-  <Space android:layout_height="10dp" />
-    
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="1dip" >
+            <TextView
+                android:id="@+id/lblApellidoCliente"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:drawableRight="@+id/txtApellidoCliente"
+                android:text="@string/lblApellido1"
+                android:textColor="#045FB4" />
 
-        <TextView
-            android:id="@+id/lblTelefono"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:layout_weight="1"
-            android:paddingLeft="10dp"
-            android:text="@string/lblTel"
-            android:textColor="#045FB4" />
+            <EditText
+                android:id="@+id/txtApellidoCliente"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@+id/lblApellidoCliente"
+                android:ems="10" />
 
-        <EditText
-            android:id="@+id/txtTelefonoCliente"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10" >
+        </TableRow>
 
-            <requestFocus />
-        </EditText>
-    </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:padding="1dip" >
 
-<Space android:layout_height="10dp" />
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" 
-        android:padding="1dip">
+            <TextView
+                android:id="@+id/lblTelefono"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:paddingLeft="10dp"
+                android:drawableRight="@+id/txtTelefonoCliente"
+                android:text="@string/lblTel"
+                android:textColor="#045FB4" />
 
-    <TextView
-        android:id="@+id/lblProductos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:layout_marginTop="38dp"
-        android:paddingLeft="10dp"
-        android:text="@string/lblProductos"
-        android:textColor="#045FB4" />
+            <EditText
+                android:id="@+id/txtTelefonoCliente"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@+id/lblTelefono"
+                android:layout_weight="1"
+                android:ems="10" >
 
-    </TableRow>
-    <Space android:layout_height="10dp" />
-    <TableRow 
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" 
-        android:padding="1dip">
-        <ScrollView
-            android:id="@+id/scrollView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+                <requestFocus />
+            </EditText>
+        </TableRow>
 
-            <LinearLayout
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:padding="1dip" >
+
+            <TextView
+                android:id="@+id/lblDireccion"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical" >
-                
-             <ListView
-            android:id="@+id/lstVProductosCliente"
+                android:layout_marginTop="19dp"
+                android:clickable="true"
+                android:layout_gravity="right"
+                android:text="Agregar Direccion del cliente"
+                android:textColor="#013ADF"
+                android:textColorLink="#013ADF" />
+        </TableRow>
+
+        <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
-        </ListView>
-            </LinearLayout>
-        </ScrollView>
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:padding="1dip" >
 
-    </TableRow>
-    
-    <Space android:layout_height="10dp" />
-    
-    <TableRow 
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" 
-        android:padding="1dip">
+            <Button
+                android:id="@+id/btnAgregarCliente"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginLeft="10dp"
+                android:background="#FFFFFF"
+                android:contentDescription="@string/btnAccept"
+                android:drawableLeft="@drawable/check32px"
+                android:src="@drawable/save24px"
+                android:text="@string/btnAccept" />
 
-    <TextView
-        android:id="@+id/lblDireccion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="19dp"
-        android:clickable="true"
-        android:text="@string/lblDireccion"
-        android:textColor="#013ADF"
-        android:textColorLink="#013ADF" />
-    
-    </TableRow>
+            <Button
+                android:id="@+id/btnCancelarCliente"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:background="#FFFFFF"
+                android:contentDescription="@string/btnCancel"
+                android:drawableLeft="@drawable/cancel32px"
+                android:src="@drawable/cancel32px"
+                android:text="@string/btnCancel" />
+        </TableRow>
+    </TableLayout>
 
-    <Space android:layout_height="10dp" />
-    
-    <TableRow 
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" 
-        android:padding="1dip">
-        
-    <Button
-        android:id="@+id/btnAgregarCliente"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:background="#FFFFFF"
-        android:drawableLeft="@drawable/check32px"
-        android:text="@string/btnAccept"
-        android:contentDescription="@string/btnAccept"
-        android:src="@drawable/save24px" />
-
-    </TableRow>
-    
-</TableLayout>
-
+</ScrollView>

@@ -35,7 +35,7 @@ public class AgregarClienteActivity extends OrmLiteBaseActivity<PolAppHelper> {
 	    txtName = (EditText) findViewById(R.id.txtNombreClient);
 	    txtLastName = (EditText) findViewById(R.id.txtApellidoCliente);
 	    txtPhone = (EditText) findViewById(R.id.txtTelefonoCliente);
-	    productList = (ListView) findViewById(R.id.lstVProductosCliente);
+
 	    btnAddClient = (Button) findViewById(R.id.btnAgregarCliente);
 	    
 	    btnAddClient.setOnClickListener(new OnClickListener() {
