@@ -17,6 +17,9 @@ public class DatabaseConstants {
 	public static String COLUMN_NAME = "name";
 	public static String COLUMN_LASTNAME = "lastName";
 	public static String COLUMN_PHONENUMBER = "phoneNumber";
-    public static Drawable imgTrue= null;
+	public static String COLUMN_FIRST_LASTNAME = "firstLastName";
+	public static String COLUMN_SECOND_LASTNAME = "secondLastName";
+	public static String COLUMN_ACCOUNT_STATE = "accountState";
+	public static Drawable imgTrue= null;
     public static Drawable imgFalse= null;
 }

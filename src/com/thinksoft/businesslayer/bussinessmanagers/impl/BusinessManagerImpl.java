@@ -1,13 +1,39 @@
 package com.thinksoft.businesslayer.bussinessmanagers.impl;
 
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_ACCOUNT_STATE;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_CLIENTID;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_FIRST_LASTNAME;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_IDENTIFICATION;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_LASTNAME;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_NAME;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_ORDERID;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_ORDERSTATE;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_PHONENUMBER;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_SECOND_LASTNAME;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_USERNAME;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.EMPTY_STRING;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.GET_CLIENT_ERROR_TAG;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.GET_PRODUCT_ERROR_TAG;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.GET_USER_ERROR_TAG;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.MINIMUM_PHONENUMBER_DIGITS;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.USER_INSERTED;
+import static com.thinksoft.businesslayer.utils.constants.RowConstants.CODE_COLUMN;
+import static com.thinksoft.businesslayer.utils.constants.RowConstants.FIRST_LASTNAME_COLUMN;
+import static com.thinksoft.businesslayer.utils.constants.RowConstants.NAME_COLUMN;
+import static com.thinksoft.businesslayer.utils.constants.RowConstants.PRICE_COLUMN;
+import static com.thinksoft.businesslayer.utils.constants.RowConstants.QUANTITY_COLUMN;
+import static com.thinksoft.businesslayer.utils.constants.RowConstants.SECOND_LASTNAME_COLUMN;
+import static com.thinksoft.businesslayer.utils.constants.RowConstants.STATUS_COLUMN;
+import static com.thinksoft.businesslayer.utils.constants.Constants.ACCOUNT_STATE_FALSE;
+import static com.thinksoft.businesslayer.utils.constants.Constants.ACCOUNT_STATE_INACTIVE;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import android.util.Log;
 
-import com.j256.ormlite.stmt.QueryBuilder;
 import com.j256.ormlite.support.ConnectionSource;
 import com.thinksoft.businesslayer.bussinessmanagers.BusinessManager;
 import com.thinksoft.models.daos.PolAppDaoManager;
@@ -20,10 +46,7 @@ import com.thinksoft.models.dtos.ProductOrder;
 import com.thinksoft.models.dtos.User;
 import com.thinksoft.models.dtos.Vehicle;
 import com.thinksoft.models.dtos.impl.AddressImpl;
-import com.thinksoft.models.dtos.impl.ClientImpl;
 import com.thinksoft.models.dtos.impl.UserImpl;
-import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.*;
-import static com.thinksoft.businesslayer.utils.constants.RowConstants.*;
 
 public class BusinessManagerImpl implements BusinessManager {
 	
@@ -364,11 +387,12 @@ public class BusinessManagerImpl implements BusinessManager {
 		List<Map<String,String>> listOfClients = null;
 		List<Client> rawClients = null;
 		Map<String, String> clientItem = null;
+		//boolean accountState = (query.equalsIgnoreCase(ACCOUNT_STATE_FALSE)||query.equalsIgnoreCase(ACCOUNT_STATE_INACTIVE)) ? false : true;
 		try {			
-			rawClients = polAppDaoManager.getClientDao().queryBuilder().where().like(NAME_COLUMN, query).or()
-					   														   .like(FIRST_LASTNAME_COLUMN,query).or()
-					   														   .like(SECOND_LASTNAME_COLUMN,query).or()
-					   														   .like(STATUS_COLUMN,query).query();
+			rawClients = polAppDaoManager.getClientDao().queryBuilder().where().eq(COLUMN_NAME, query).or()
+					   														   .eq(COLUMN_FIRST_LASTNAME,query).or()
+					   														   .eq(COLUMN_SECOND_LASTNAME,query)/*.or()
+					   														   .like(COLUMN_ACCOUNT_STATE,accountState)*/.query();
 			listOfClients = new ArrayList<Map<String,String>>();
 			for (Client client : rawClients) {
 				
