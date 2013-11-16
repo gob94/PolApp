@@ -39,17 +39,18 @@
                         android:layout_height="match_parent"
                         android:orientation="vertical" >
 
-                        <Space android:layout_height="15dp" />
+                       
 
                         <ImageView
                             android:id="@+id/imgAgregarProductos"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:clickable="true"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginBottom="15dp"
                             android:src="@drawable/add24px" />
 
-                        <Space android:layout_height="15dp" />
-
+                       
                         <ListView
                             android:id="@+id/lvProductos"
                             android:layout_width="match_parent"
@@ -63,15 +64,17 @@
                         android:layout_height="match_parent"
                         android:orientation="vertical" >
 
-                        <Space android:layout_height="15dp" />
+                       
 
                         <ImageView
                             android:id="@+id/imgAgregarClientes"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginBottom="15dp"
                             android:src="@drawable/add24px" />
 
-                        <Space android:layout_height="15dp" />
+                        
 
                         <ListView
                             android:id="@+id/lvClientes"
@@ -86,16 +89,17 @@
                         android:layout_height="match_parent"
                         android:orientation="vertical" >
 
-                        <Space android:layout_height="15dp" />
+                        
 
                         <ImageView
                             android:id="@+id/imgAgregarCobros"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginBottom="15dp"
                             android:src="@drawable/add24px" />
 
-                        <Space android:layout_height="15dp" />
-
+                        
                         <ListView
                             android:id="@+id/lvCobros"
                             android:layout_width="match_parent"
@@ -109,15 +113,17 @@
                         android:layout_height="match_parent"
                         android:orientation="vertical" >
 
-                        <Space android:layout_height="15dp" />
+                      
 
                         <ImageView
                             android:id="@+id/imgAgregarFlotilla"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginBottom="15dp"
                             android:src="@drawable/add24px" />
 
-                        <Space android:layout_height="15dp" />
+                        
 
                         <ListView
                             android:id="@+id/lvFlotillas"
