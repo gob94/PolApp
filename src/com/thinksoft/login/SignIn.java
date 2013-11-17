@@ -53,14 +53,14 @@ public class SignIn extends OrmLiteBaseActivity<PolAppHelper> {
 		bussinnessLayer = new BusinessManagerImpl(getHelper() .getConnectionSource());
 		User user = new UserImpl("admin", "123", "1", "Administrator", "Polaco", "Application");
 		bussinnessLayer.addUser(user);
-		Client client = new ClientImpl("Johnny","Xu","Liang",true);
-		bussinnessLayer.addClient(client);
-		Product pro= new ProductImpl("TELEV", "Samsung LED TV 32'", 14000000, 5);
-		bussinnessLayer.addProduct(pro);
-		Brand brand= new BrandImpl("Honda");
-		bussinnessLayer.addBrand(brand);
-		Vehicle veh= new VehicleImpl("5616423", true, d, 5161, "YVR", (BrandImpl) brand);
-		bussinnessLayer.addVechicle(veh);
+		//Client client = new ClientImpl("Jonathan","Ruiz","Fallas",true);
+		//bussinnessLayer.addClient(client);
+		// pro= new ProductImpl("TELEV", "Samsung LED TV 32'", 14000000, 5);
+		//bussinnessLayer.addProduct(pro);
+		//Brand brand= new BrandImpl("Honda");
+		//bussinnessLayer.addBrand(brand);
+		//Vehicle veh= new VehicleImpl("5616423", true, d, 5161, "YVR", (BrandImpl) brand);
+		//bussinnessLayer.addVechicle(veh);
 
 		final EditText username = (EditText) findViewById(R.id.txtUserName);
 		final EditText password = (EditText) findViewById(R.id.txtPassword);

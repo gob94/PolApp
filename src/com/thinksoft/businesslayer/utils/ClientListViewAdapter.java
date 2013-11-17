@@ -5,8 +5,12 @@ import static com.thinksoft.businesslayer.utils.constants.RowConstants.NAME_COLU
 import static com.thinksoft.businesslayer.utils.constants.RowConstants.SECOND_LASTNAME_COLUMN;
 import static com.thinksoft.businesslayer.utils.constants.RowConstants.STARTING_CLIENT_NUMBER;
 import static com.thinksoft.businesslayer.utils.constants.RowConstants.STATUS_COLUMN;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +20,7 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
 import com.thinksoft.businesslayer.bussinessmanagers.BusinessManager;
 import com.thinksoft.businesslayer.bussinessmanagers.impl.BusinessManagerImpl;
@@ -26,7 +31,6 @@ public class ClientListViewAdapter extends BaseAdapter implements Filterable {
 	
 	public BusinessManager bussinessLayer = null;
 	public List<Map<String,String>> list = null;
-	public List<Map<String,String>> defaultList= null;
 	public OrmLiteBaseActivity<PolAppHelper> activity;
 	private Drawable imgTrue;
 	private Drawable imgFalse;
@@ -40,6 +44,8 @@ public class ClientListViewAdapter extends BaseAdapter implements Filterable {
 
 	@Override
 	public int getCount() {
+		if(list==null)
+			return 0;
 		return list.size();
 	}
 
@@ -60,6 +66,8 @@ public class ClientListViewAdapter extends BaseAdapter implements Filterable {
 		ImageView txtStatus;
 	}
 
+	
+	
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 
@@ -105,27 +113,43 @@ public class ClientListViewAdapter extends BaseAdapter implements Filterable {
 			@SuppressWarnings("unchecked")
 			@Override
 			protected void publishResults(CharSequence constraint, FilterResults results) {
-				if (results.count == 0)
-		            notifyDataSetInvalidated();
-		        else {
-		            list = (List<Map<String, String>>) results.values;
-		            ClientListViewAdapter.this.notifyDataSetChanged();
-		        }
+				list = (List<Map<String, String>>) results.values;
+				notifyDataSetChanged();
 			}
 			
 			@Override
 			protected FilterResults performFiltering(CharSequence constraint) {
-				  FilterResults results = new FilterResults();
-
-			        if (constraint == null || constraint.length() == 0) {
-			        	bussinessLayer.getSpecifiedNumberOfClients(STARTING_CLIENT_NUMBER);
-			        } else { // We perform filtering operation
-			            List<Map<String, String>> filteredRowItems = bussinessLayer.searchClients(constraint.toString());
-			            results.values = filteredRowItems;
-			            results.count = filteredRowItems.size();
-			        }
-			        return results;
+			  	FilterResults results = new FilterResults();
+		        if (constraint == null || constraint.length() == 0) {
+		        	bussinessLayer.getSpecifiedNumberOfClients(STARTING_CLIENT_NUMBER);
+		        } else { 
+		        	
+		        	String[] wordsToSearch = getWordsToSearch(constraint);
+		            List<Map<String, String>> filteredRowItems = bussinessLayer.searchClients(wordsToSearch);
+		            if(filteredRowItems==null||filteredRowItems.isEmpty()){
+		            	filteredRowItems= bussinessLayer.getSpecifiedNumberOfClients(STARTING_CLIENT_NUMBER);
+		            }
+		            results.values = filteredRowItems;
+		            results.count = filteredRowItems.size();
+		        }
+		        return results;
 			}
 		};
+	}
+	
+	
+	private String[] getWordsToSearch(CharSequence constraint){
+		String searchText = constraint.toString();
+		String [] arrayToIterate = searchText.split(".");
+		ArrayList<String> words = new ArrayList<String>();
+		if (arrayToIterate.length==0) {
+			arrayToIterate = searchText.split(" ");
+			return arrayToIterate;
+		} else {
+			for (String phrase : arrayToIterate) {
+				words.addAll((Arrays.asList(phrase.split(" "))));
+			}
+			return words.toArray(new String[0]);
+		}
 	}
 }

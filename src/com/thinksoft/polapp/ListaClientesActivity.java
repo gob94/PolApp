@@ -1,20 +1,17 @@
 package com.thinksoft.polapp;
 
-import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
-import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
-import com.thinksoft.businesslayer.bussinessmanagers.BusinessManager;
-import com.thinksoft.businesslayer.bussinessmanagers.impl.BusinessManagerImpl;
-import com.thinksoft.businesslayer.utils.ClientListViewAdapter;
-import com.thinksoft.models.databases.PolAppHelper;
-
 import android.os.Bundle;
-import android.app.Activity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ListView;
+
+import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
+import com.thinksoft.businesslayer.bussinessmanagers.BusinessManager;
+import com.thinksoft.businesslayer.bussinessmanagers.impl.BusinessManagerImpl;
+import com.thinksoft.businesslayer.utils.ClientListViewAdapter;
+import com.thinksoft.models.databases.PolAppHelper;
 
 public class ListaClientesActivity extends OrmLiteBaseActivity<PolAppHelper> {
 	BusinessManager businessLayer;

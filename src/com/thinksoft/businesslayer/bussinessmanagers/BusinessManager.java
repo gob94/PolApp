@@ -42,7 +42,7 @@ public interface BusinessManager {
 	
 	public List<Map<String, String>> getAllVehicles();
 	
-	public List<Map<String, String>> searchClients(String query);
+	public List<Map<String, String>> searchClients(String[] queryString);
 
 	public boolean clientHasOrders(int clientId);
 

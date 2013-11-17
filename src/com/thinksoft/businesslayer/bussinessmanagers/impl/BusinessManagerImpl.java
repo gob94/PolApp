@@ -1,6 +1,6 @@
 package com.thinksoft.businesslayer.bussinessmanagers.impl;
 
-import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_ACCOUNT_STATE;
+import static com.thinksoft.businesslayer.utils.constants.Constants.WILDCARD_MATCH;
 import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_CLIENTID;
 import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_FIRST_LASTNAME;
 import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_IDENTIFICATION;
@@ -24,8 +24,7 @@ import static com.thinksoft.businesslayer.utils.constants.RowConstants.PRICE_COL
 import static com.thinksoft.businesslayer.utils.constants.RowConstants.QUANTITY_COLUMN;
 import static com.thinksoft.businesslayer.utils.constants.RowConstants.SECOND_LASTNAME_COLUMN;
 import static com.thinksoft.businesslayer.utils.constants.RowConstants.STATUS_COLUMN;
-import static com.thinksoft.businesslayer.utils.constants.Constants.ACCOUNT_STATE_FALSE;
-import static com.thinksoft.businesslayer.utils.constants.Constants.ACCOUNT_STATE_INACTIVE;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -34,6 +33,8 @@ import java.util.Map;
 
 import android.util.Log;
 
+import com.j256.ormlite.stmt.QueryBuilder;
+import com.j256.ormlite.stmt.Where;
 import com.j256.ormlite.support.ConnectionSource;
 import com.thinksoft.businesslayer.bussinessmanagers.BusinessManager;
 import com.thinksoft.models.daos.PolAppDaoManager;
@@ -383,38 +384,55 @@ public class BusinessManagerImpl implements BusinessManager {
 	}
 
 	@Override
-	public List<Map<String, String>> searchClients(String query) {
+	public List<Map<String, String>> searchClients(String[] queryString) {
 		List<Map<String,String>> listOfClients = null;
 		List<Client> rawClients = null;
 		Map<String, String> clientItem = null;
 		//boolean accountState = (query.equalsIgnoreCase(ACCOUNT_STATE_FALSE)||query.equalsIgnoreCase(ACCOUNT_STATE_INACTIVE)) ? false : true;
-		try {			
-			rawClients = polAppDaoManager.getClientDao().queryBuilder().where().eq(COLUMN_NAME, query).or()
-					   														   .eq(COLUMN_FIRST_LASTNAME,query).or()
-					   														   .eq(COLUMN_SECOND_LASTNAME,query)/*.or()
-					   														   .like(COLUMN_ACCOUNT_STATE,accountState)*/.query();
-			listOfClients = new ArrayList<Map<String,String>>();
-			for (Client client : rawClients) {
+		if(queryString.length>0){
+			try {		
+				QueryBuilder<Client, Integer> query = polAppDaoManager.getClientDao().queryBuilder();
+				Where<Client, Integer> where  = query.where();
+				for(int i=0; i<queryString.length;i++){
+					String word = queryString[i];
+					if(i==queryString.length-1){
+						where.like(COLUMN_NAME,setWildCardMatch(word)).or()
+						   .like(COLUMN_FIRST_LASTNAME,setWildCardMatch(word)).or()
+						   .like(COLUMN_SECOND_LASTNAME,setWildCardMatch(word));
+					}else{
+						where.like(COLUMN_NAME,setWildCardMatch(word)).or()
+						   .like(COLUMN_FIRST_LASTNAME,setWildCardMatch(word)).or()
+						   .like(COLUMN_SECOND_LASTNAME,setWildCardMatch(word)).or();
+					}
+				}
+				query.setWhere(where);
+				rawClients = query.query();
 				
-				clientItem = new HashMap<String, String>();
-				
-				clientItem.put(NAME_COLUMN, client.getName());
-
-				clientItem.put(FIRST_LASTNAME_COLUMN, client.getFirstLastName());
-
-				clientItem.put(SECOND_LASTNAME_COLUMN, client.getSecondLastName());
-				
-				clientItem.put(STATUS_COLUMN, String.valueOf(client.getAccountState()));
-				
-				listOfClients.add(clientItem);
+				listOfClients = new ArrayList<Map<String,String>>();
+				for (Client client : rawClients) {
+					
+					clientItem = new HashMap<String, String>();
+					
+					clientItem.put(NAME_COLUMN, client.getName());
+	
+					clientItem.put(FIRST_LASTNAME_COLUMN, client.getFirstLastName());
+	
+					clientItem.put(SECOND_LASTNAME_COLUMN, client.getSecondLastName());
+					
+					clientItem.put(STATUS_COLUMN, String.valueOf(client.getAccountState()));
+					
+					listOfClients.add(clientItem);
+				}
+			} catch (SQLException e) {
+				Log.e(GET_CLIENT_ERROR_TAG,e.getMessage());
 			}
-		} catch (SQLException e) {
-			Log.e(GET_CLIENT_ERROR_TAG,e.getMessage());
 		}
 		return listOfClients;
 		
 	}
 	
-	
+	private String setWildCardMatch(String queryString){
+		return WILDCARD_MATCH+queryString+WILDCARD_MATCH;
+	}
 	
 }
