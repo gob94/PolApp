@@ -6,7 +6,6 @@
 
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:background="#FFFFFF"
         android:orientation="vertical"
         tools:context=".AgregarClienteActivity" >
@@ -18,22 +17,23 @@
             android:padding="1dip" >
 
             <TextView
-                android:id="@+id/lblNombCliente"
+                android:id="@+id/lblNameAddClient"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:paddingLeft="10dp"
-                android:text="@string/lblNombCliente"
+                android:text="@string/lblName"
                 android:textColor="#045FB4" />
 
             <EditText
-                android:id="@+id/txtNombreClient"
+                android:id="@+id/txtNameAddClient"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@+id/lblNombCliente"
                 android:layout_weight="0"
-                android:ems="10" />
+                android:ems="10" 
+                android:inputType="text"/>
         </TableRow>
 
         <TableRow
@@ -43,21 +43,22 @@
             android:padding="1dip" >
 
             <TextView
-                android:id="@+id/lblApellidoCliente"
+                android:id="@+id/lblLastNameAddClient"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:paddingLeft="10dp"
                 android:drawableRight="@+id/txtApellidoCliente"
-                android:text="@string/lblApellido1"
+                android:text="@string/lblFirstLastName"
                 android:textColor="#045FB4" />
 
             <EditText
-                android:id="@+id/txtApellidoCliente"
+                android:id="@+id/txtLastNameAddClient"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@+id/lblApellidoCliente"
-                android:ems="10" />
+                android:ems="10" 
+                android:inputType="text"/>
 
         </TableRow>
 
@@ -68,25 +69,26 @@
             android:padding="1dip" >
 
             <TextView
-                android:id="@+id/lblTelefono"
+                android:id="@+id/lblPhoneAddClient"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
                 android:paddingLeft="10dp"
                 android:drawableRight="@+id/txtTelefonoCliente"
-                android:text="@string/lblTel"
-                android:textColor="#045FB4" />
+                android:text="@string/lblPhone"
+                android:textColor="#045FB4" 
+                />
 
             <EditText
-                android:id="@+id/txtTelefonoCliente"
+                android:id="@+id/txtPhoneAddClient"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@+id/lblTelefono"
                 android:layout_weight="1"
-                android:ems="10" >
+                android:ems="10" 
+                android:inputType="phone"/>
 
                 <requestFocus />
-            </EditText>
         </TableRow>
 
         <TableRow
@@ -102,7 +104,7 @@
                 android:layout_marginTop="19dp"
                 android:clickable="true"
                 android:layout_gravity="right"
-                android:text="Agregar Direccion del cliente"
+                android:text="@string/lblClientAddressAdd"
                 android:textColor="#013ADF"
                 android:textColorLink="#013ADF" />
         </TableRow>
@@ -114,7 +116,7 @@
             android:padding="1dip" >
 
             <Button
-                android:id="@+id/btnAgregarCliente"
+                android:id="@+id/btnSaveAddClient"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
@@ -126,7 +128,7 @@
                 android:text="@string/btnAccept" />
 
             <Button
-                android:id="@+id/btnCancelarCliente"
+                android:id="@+id/btnCancelAddClient"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"

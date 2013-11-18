@@ -5,6 +5,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_sign_in">Ingresar</string>
     <string name="title_activity_sign_up">Registrarse</string>
+    
     <string name="lblUserName">Usuario</string>
     <string name="lblPassword">Contraseña</string>
     <string name="lblVerificationPassword">Verifique</string>
@@ -14,11 +15,37 @@
     <string name="lblCode">Código</string>
     <string name="lblIdentity">Cedula</string>
     <string name="lblPrice">Precio</string>
-    <string name="lblCantidad">Cantidad</string>
+    <string name="lblQuantity">Cantidad</string>
     <string name="lblDescription">Descripción</string>
+    <string name="lblAddProducts">Agregar productos</string>
+    <string name="lblAddClient">Agregar cliente</string>
+    <string name="lblTotal">Total</string>
+    <string name="lblClient">Cliente</string>
+    <string name="lblSeller">Vendedor</string>
+    <string name="lblPaymentFrequency">Modo de cobro</string>
+    <string name="lblProducts">Productos comprados</string>
+    <string name="lblAddress">Dirección</string>
+    <string name="lblFirstLastName">Apellido</string>
+    <string name="lblSecondLastName">Segundo Apellido</string>
+    <string name="lblEditProductPopUp">Editar</string>
+    <string name="lblPlate">Placa</string>
+    <string name="lblBrand">Marca</string>
+    <string name="lblModel">Modelo</string>
+    <string name="lblCostPerKm">Costo por Km</string>
+    <string name="lblRTV">Fecha RTV</string>
+    <string name="lblAvailable">Disponible</string>
+    <string name="lblDeleteProductPopUp">Eliminar</string>
+    <string name="lblSearch">Buscar</string>
+    <string name="lblYes">Sí</string>
+    <string name="lblNo">No</string>
+    <string name="lblClientAddressAdd">Agregar Dirección del cliente</string>
+    <string name="lblState">Inicio</string>
     <string name="btnRegister">Registrar</string>
     <string name="btnAccept">Aceptar</string>
     <string name="btnCancel">Cancelar</string>
+    <string name="lblStart">Inicio</string>
+    <string name="lblClientState">Estado del Cliente</string>
+    
     <string name="title_activity_home_screen">HomeScreenActivity</string>
     <string name="title_activity_clientes">Clientes</string>
     <string name="title_activity_agregar_clientes">Agregar Clientes</string>
@@ -28,30 +55,11 @@
     <string name="title_activity_lista_productos">Lista Productos</string>
     <string name="title_activity_editar_productos">EditarProductosActivity</string>
     <string name="title_activity_editar_cliente">EditarClienteActivity</string>
-    <string name="lblAgregarProductos">Agregar productos</string>
-    <string name="lblAgregarCliente">Agregar cliente</string>
-    <string name="lblNombCliente">Nombre</string>
-    <string name="lblTel">Teléfono</string>
-    <string name="lblTotal">Total</string>
-    <string name="lblCliente">Cliente</string>
-    <string name="lblVendedor">Vendedor</string>
-    <string name="lblFechaCobro">Modo de cobro</string>
-    <string name="lblProductos">Productos comprados</string>
-    <string name="lblDireccion">Direccion</string>
-    <string name="lblApellido1">Apellido</string>
-    <string name="lblApellido2">Segundo Apellido</string>
-    <string name="lblEditProductPopUp">Editar</string>
-    <string name="lblPlaca">Placa</string>
-    <string name="lblBrand">Marca</string>
-    <string name="lblModel">Modelo</string>
-    <string name="lblCostPerKm">Costo por Km</string>
-    <string name="lblRTV">Fecha RTV</string>
-    <string name="lblDisponible">Disponible</string>
-    <string name="lblEliminarProductoPopUp">Eliminar</string>
-    <string name="mainMenu"> Menú principal</string>
+    
+    
     <string name="title_activity_agregar_vehiculo">AgregarVehiculo</string>
     <string name="title_activity_editar_vehiculo">Editar Vehiculo</string>
-     <string name="lblSearch">Buscar</string>
+    <string name="mainMenu"> Menú principal</string>
 
 
 </resources>

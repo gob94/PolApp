@@ -39,13 +39,13 @@ public class AgregarClienteActivity extends OrmLiteBaseActivity<PolAppHelper> {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_cliente);
+		setContentView(R.layout.activity_agregar_cliente);
 		businessLayer = new BusinessManagerImpl(getHelper().getConnectionSource());
-	    txtName = (EditText) findViewById(R.id.txtNombreClient);
-	    txtLastName = (EditText) findViewById(R.id.txtApellidoCliente);
-	    txtPhone = (EditText) findViewById(R.id.txtTelefonoCliente);
+	    txtName = (EditText) findViewById(R.id.txtNameAddClient);
+	    txtLastName = (EditText) findViewById(R.id.txtLastNameAddClient);
+	    txtPhone = (EditText) findViewById(R.id.txtPhoneAddClient);
 
-	    btnAddClient = (Button) findViewById(R.id.btnAgregarCliente);
+	    btnAddClient = (Button) findViewById(R.id.btnSaveAddClient);
 	    
 	    btnAddClient.setOnClickListener(new OnClickListener() {
 			@Override

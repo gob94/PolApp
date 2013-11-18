@@ -11,7 +11,7 @@
         android:layout_weight="1"
         android:background="@drawable/shape"
         android:gravity="center"
-        android:text="Nombre"
+        android:text="@string/lblName"
         android:maxLines="1"
    	    android:ellipsize="end" >
     </TextView>
@@ -23,7 +23,7 @@
         android:layout_weight="1"
         android:background="@drawable/shape"
         android:gravity="center"
-        android:text="Código" 
+        android:text="@string/lblCode" 
         android:maxLines="1"
    	    android:ellipsize="end">
     </TextView>
@@ -35,7 +35,7 @@
         android:layout_weight="1"
         android:background="@drawable/shape"
         android:gravity="center"
-        android:text="Precio" 
+        android:text="@string/lblPrice" 
         android:maxLines="1"
    	    android:ellipsize="end">
     </TextView>
@@ -47,7 +47,7 @@
         android:layout_weight="1"
         android:background="@drawable/shape"
         android:gravity="center"
-        android:text="Cantidad" 
+        android:text="@string/lblQuantity" 
         android:maxLines="1"
    	    android:ellipsize="end">
     </TextView>

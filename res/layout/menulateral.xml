@@ -6,7 +6,7 @@
     android:background="#2E2E2E" >
 
     <ScrollView
-        android:id="@+id/scrollView1"
+        android:id="@+id/scrollViewLateralMenu"
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
@@ -36,7 +36,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="33dp"
                     android:layout_toRightOf="@+id/imageView2"
-                    android:text="Inicio"
+                    android:text="@string/lblStart"
                   />
 
             </RelativeLayout>

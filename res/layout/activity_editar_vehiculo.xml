@@ -12,23 +12,24 @@
         android:padding="1dip" >
 
         <TextView
-            android:id="@+id/lblEditPlaca"
+            android:id="@+id/lblPlateEditVehicle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="2dp"
             android:fontFamily="roboto-light"
-            android:text="@string/lblPlaca"
+            android:text="@string/lblPlate"
             android:textColor="#088A4B"
             android:textSize="16sp" />
 
         <EditText
-            android:id="@+id/txtEditPlaca"
+            android:id="@+id/txtPlateEditVehicle"
             android:layout_width="154dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="2dp"
             android:ems="10"
             android:fontFamily="roboto-light"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+			android:inputType="text"/>
     </TableRow>
 
     <Space android:layout_height="10dp" />
@@ -39,7 +40,7 @@
         android:padding="5dip" >
 
         <TextView
-            android:id="@+id/lblEditBrand"
+            android:id="@+id/lblBrandEditVehicle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -50,7 +51,7 @@
             android:textSize="16sp" />
 
         <EditText
-            android:id="@+id/txtEditBrand"
+            android:id="@+id/txtBrandEditVehicle"
             android:layout_width="154dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -71,7 +72,7 @@
         android:padding="5dip" >
 
         <TextView
-            android:id="@+id/lblEditCostPerKm"
+            android:id="@+id/lblCostPerKmEditVehicle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -82,7 +83,7 @@
             android:textSize="16sp" />
 
         <EditText
-            android:id="@+id/txtEditCostPerKm"
+            android:id="@+id/txtCostPerKmEditVehicle"
             android:layout_width="154dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -103,7 +104,7 @@
         android:padding="5dip" >
 
         <TextView
-            android:id="@+id/lblEditModel"
+            android:id="@+id/lblModelEditVehicle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -114,7 +115,7 @@
             android:textSize="16sp" />
 
         <EditText
-            android:id="@+id/txtEditModel"
+            android:id="@+id/txtModelEditVehicle"
             android:layout_width="154dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -133,7 +134,7 @@
         android:padding="5dip" >
 
         <TextView
-            android:id="@+id/lblEditRTV"
+            android:id="@+id/lblRTVEditVehicle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -144,7 +145,7 @@
             android:textSize="16sp" />
 
         <DatePicker
-            android:id="@+id/dpEditRTV"
+            android:id="@+id/dpRTVEditVehicle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </TableRow>
@@ -157,33 +158,33 @@
         android:padding="5dip" >
 
         <TextView
-            android:id="@+id/lblEditDisponible"
+            android:id="@+id/lblAvailableEditVehicle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="2dp"
             android:fontFamily="roboto-light"
-            android:text="@string/lblDisponible"
+            android:text="@string/lblAvailable"
             android:textColor="#088A4B"
             android:textSize="16sp" />
 
         <RadioGroup
-            android:id="@+id/rgEditDisponible"
+            android:id="@+id/rgAvailableEditVehicle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
 
             <RadioButton
-                android:id="@+id/rbEditYes"
+                android:id="@+id/rbYesEditVehicle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
-                android:text="Si" />
+                android:text="@string/lblYes" />
 
             <RadioButton
-                android:id="@+id/rbEditNo"
+                android:id="@+id/rbNoEditVehicle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="No" />
+                android:text="@string/lblNo" />
         </RadioGroup>
 
     </TableRow>
@@ -191,12 +192,11 @@
     <Space android:layout_height="10dp" />
 
     <TableRow
-        android:id="@+id/EdittableRowVehiculo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" >
 
         <Button
-            android:id="@+id/btnEditSaveCar"
+            android:id="@+id/btnSaveCarEditVehicle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="#FFFFFF"
@@ -208,7 +208,7 @@
             android:textSize="16sp" />
 
         <Button
-            android:id="@+id/btnEditCancelCar"
+            android:id="@+id/btnCancelCarEditVehicle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"

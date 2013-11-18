@@ -1,7 +1,7 @@
 package com.thinksoft.businesslayer.utils.constants;
 
 public class RowConstants {
-	
+	public static final String CLIENT_ID_COLUMN="clientId";
 	public static final String NAME_COLUMN = "Name";
     public static final String FIRST_LASTNAME_COLUMN = "First Last Name";
     public static final String SECOND_LASTNAME_COLUMN = "Second Last Name";

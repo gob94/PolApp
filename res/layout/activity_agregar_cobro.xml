@@ -16,17 +16,17 @@
         android:padding="1dip" >
 
         <TextView
-            android:id="@+id/lblAddOrder"
+            android:id="@+id/lblProductsAddOrder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="2dp"
             android:fontFamily="roboto-light"
-            android:text="@string/lblProductos"
+            android:text="@string/lblAddProducts"
             android:textColor="#8A0886"
             android:textSize="16sp" />
 
         <MultiAutoCompleteTextView
-            android:id="@+id/txtAddOrden"
+            android:id="@+id/txtProductsAddOrder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -44,21 +44,22 @@
         android:padding="1dip" >
 
         <TextView
-            android:id="@+id/lblAddOrderClient"
+            android:id="@+id/lblClientAddOrder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="2dp"
             android:fontFamily="roboto-light"
-            android:text="@string/lblCliente"
+            android:text="@string/lblAddClient"
             android:textColor="#8A0886"
             android:textSize="16sp" />
 
         <MultiAutoCompleteTextView
-            android:id="@+id/txtAddOrdenClient"
+            android:id="@+id/txtClientAddOrder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:text="" >
+            android:text="" 
+            android:textSize="10sp">
 
             <requestFocus />
         </MultiAutoCompleteTextView>
@@ -72,17 +73,17 @@
         android:padding="1dip" >
 
         <TextView
-            android:id="@+id/lblAddOrderFechaCobro"
+            android:id="@+id/lblPaymentModeAddOrder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="2dp"
             android:fontFamily="roboto-light"
-            android:text="@string/lblFechaCobro"
+            android:text="@string/lblPaymentFrequency"
             android:textColor="#8A0886"
             android:textSize="16sp" />
 
         <Spinner
-            android:id="@+id/spnFechaCobro"
+            android:id="@+id/spnPaymentModeAddOrder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </TableRow>
@@ -95,7 +96,7 @@
         android:padding="1dip" >
 
         <TextView
-            android:id="@+id/lblAddOrderTotal"
+            android:id="@+id/lblTotalAddOrder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="2dp"
@@ -105,7 +106,7 @@
             android:textSize="16sp" />
 
         <EditText
-            android:id="@+id/txtAddOrdenTotal"
+            android:id="@+id/txtTotalAddOrder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -124,17 +125,17 @@
         android:padding="1dip" >
 
         <TextView
-            android:id="@+id/lblAddOrderVendedor"
+            android:id="@+id/lblAddSellerAddOrder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="2dp"
             android:fontFamily="roboto-light"
-            android:text="@string/lblVendedor"
+            android:text="@string/lblSeller"
             android:textColor="#8A0886"
             android:textSize="16sp" />
 
         <Spinner
-            android:id="@+id/spnAddOrderVendedor"
+            android:id="@+id/spnSellerAddOrder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </TableRow>
@@ -145,7 +146,7 @@
         android:padding="1dip" >
 
         <Button
-            android:id="@+id/btnSaveCobro"
+            android:id="@+id/btnSaveAddOrder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="#FFFFFF"
@@ -157,7 +158,7 @@
             android:textSize="16sp" />
 
         <Button
-            android:id="@+id/btnCancelCobro"
+            android:id="@+id/btnCancelAddOrder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"

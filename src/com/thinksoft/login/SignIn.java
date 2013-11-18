@@ -62,10 +62,10 @@ public class SignIn extends OrmLiteBaseActivity<PolAppHelper> {
 		//Vehicle veh= new VehicleImpl("5616423", true, d, 5161, "YVR", (BrandImpl) brand);
 		//bussinnessLayer.addVechicle(veh);
 
-		final EditText username = (EditText) findViewById(R.id.txtUserName);
-		final EditText password = (EditText) findViewById(R.id.txtPassword);
+		final EditText username = (EditText) findViewById(R.id.txtUserNameSignIn);
+		final EditText password = (EditText) findViewById(R.id.txtPasswordSignIn);
 		TextView signUp = (TextView) findViewById(R.id.lblSignUp);
-		Button btnEntrar = (Button) findViewById(R.id.btnEntrar);
+		Button btnEntrar = (Button) findViewById(R.id.btnSignIn);
 
 		signUp.setOnClickListener(new OnClickListener() {
 			@Override

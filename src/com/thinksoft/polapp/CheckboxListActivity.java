@@ -1,9 +1,7 @@
 package com.thinksoft.polapp;
 
-import android.os.Bundle;
-import android.app.Activity;
 import android.app.ListActivity;
-import android.view.LayoutInflater;
+import android.os.Bundle;
 import android.view.Menu;
 
 public class CheckboxListActivity  extends ListActivity {

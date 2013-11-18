@@ -13,7 +13,7 @@
         android:padding="1dip">
 
         <TextView
-            android:id="@+id/lblCode"
+            android:id="@+id/lblCodeAddProduct"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="roboto-light"
@@ -23,13 +23,14 @@
             android:text="@string/lblCode" />
 
         <EditText
-            android:id="@+id/txtCode"
+            android:id="@+id/txtCodeAddProduct"
             android:layout_width="154dp"
             android:layout_height="wrap_content"
             android:fontFamily="roboto-light"
             android:textSize="16sp"
             android:layout_marginLeft="2dp"
-            android:ems="10" />
+            android:ems="10" 
+            android:inputType="numberSigned"/>
 
     </TableRow>
 
@@ -41,7 +42,7 @@
         android:padding="5dip">
 
         <TextView
-            android:id="@+id/lblNameProduct"
+            android:id="@+id/lblNameProductAddProduct"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -52,7 +53,7 @@
             android:text="@string/lblName" />
 
         <EditText
-            android:id="@+id/txtNameProduct"
+            android:id="@+id/txtNameProductAddProduct"
             android:layout_width="154dp"
             android:layout_height="wrap_content"
             android:fontFamily="roboto-light"
@@ -73,7 +74,7 @@
         android:padding="5dip">
 
         <TextView
-            android:id="@+id/lblCost"
+            android:id="@+id/lblCostAddProduct"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -84,7 +85,7 @@
             android:text="@string/lblPrice" />
 
         <EditText
-            android:id="@+id/txtCost"
+            android:id="@+id/txtCostAddProduct"
             android:layout_width="154dp"
             android:layout_height="wrap_content"
             android:fontFamily="roboto-light"
@@ -105,7 +106,7 @@
         android:padding="5dip">
 
         <TextView
-            android:id="@+id/lblCantidadProduct"
+            android:id="@+id/lblQuantityAddProduct"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -113,10 +114,10 @@
             android:fontFamily="roboto-light"
             android:textColor="#FF01A7EB"
             android:textSize="16sp"
-            android:text="@string/lblCantidad" />
+            android:text="@string/lblQuantity" />
 
         <EditText
-            android:id="@+id/txtCantidadProduct"
+            android:id="@+id/txtQuantityAddProduct"
             android:layout_width="154dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -130,12 +131,11 @@
     <Space android:layout_height="20dp" />
     
     <TableRow
-        android:id="@+id/tableRow1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content" >
 
         <Button
-            android:id="@+id/btnSaveProduct"
+            android:id="@+id/btnSaveAddProduct"
             android:background="#FFFFFF"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -147,7 +147,7 @@
             android:text="@string/btnAccept" />
 
         <Button
-            android:id="@+id/btnCancelProduct"
+            android:id="@+id/btnCancelAddProduct"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"

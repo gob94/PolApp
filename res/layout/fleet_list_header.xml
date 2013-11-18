@@ -11,9 +11,9 @@
         android:layout_weight="1"
         android:background="#008B00"
         android:gravity="center"
-        android:text="Licencia" 
+        android:text="@string/lblPlate" 
         android:textColor="#FFFFFF" 
-        android:textSize="12dp">
+        android:textSize="12sp">
     </TextView>
 
     <TextView
@@ -23,9 +23,9 @@
         android:layout_weight="2"
         android:background="#008B00"
         android:gravity="center"
-        android:text="Marca" 
+        android:text="@string/lblBrand" 
         android:textColor="#FFFFFF" 
-        android:textSize="12dp">
+        android:textSize="12sp">
     </TextView>
 
     
@@ -36,10 +36,11 @@
         android:layout_weight="2"
         android:background="#008B00"
         android:gravity="center"
-        android:text="Modelo" 
+        android:text="@string/lblModel" 
         android:textColor="#FFFFFF" 
-        android:textSize="12dp">
+        android:textSize="12sp">
     </TextView>
+
     <TextView
         android:id="@+id/RtvFleetListRow"
         android:layout_width="40dp"
@@ -47,9 +48,10 @@
         android:layout_weight="1"
         android:background="#008B00"
         android:gravity="center"
-        android:text="RTV" 
-        android:textColor="#FFFFFF" 
-        android:textSize="12dp">
+        android:text="@string/lblRTV"
+        android:textColor="#FFFFFF"
+        android:textSize="10sp" >
+
     </TextView>
 
  <!--  
@@ -73,9 +75,9 @@
         android:layout_weight="1"
         android:background="#008B00"
         android:gravity="center"
-        android:text="Disponible" 
+        android:text="@string/lblAvailable" 
         android:textColor="#FFFFFF" 
-        android:textSize="9dp">
+        android:textSize="12sp">
     </TextView>
 
 </LinearLayout>

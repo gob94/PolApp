@@ -13,7 +13,6 @@ import android.widget.Toast;
 import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
 import com.thinksoft.businesslayer.bussinessmanagers.BusinessManager;
 import com.thinksoft.businesslayer.bussinessmanagers.impl.BusinessManagerImpl;
-import com.thinksoft.login.SignIn;
 import com.thinksoft.models.databases.PolAppHelper;
 import com.thinksoft.models.dtos.Product;
 import com.thinksoft.models.dtos.impl.ProductImpl;
@@ -32,17 +31,17 @@ public class ProductosActivity extends OrmLiteBaseActivity<PolAppHelper> {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_productos);
+		setContentView(R.layout.activity_agregar_productos);
 		
 		bussinesManager = new BusinessManagerImpl(getHelper().getConnectionSource());
 		
-		btnAdd = (Button)findViewById(R.id.btnSaveProduct);
-		btnCancel= (Button) findViewById(R.id.btnCancelProduct);
+		btnAdd = (Button)findViewById(R.id.btnSaveAddProduct);
+		btnCancel= (Button) findViewById(R.id.btnCancelAddProduct);
 		
-		final EditText txtCode= (EditText) findViewById(R.id.txtCode);
-		final EditText txtName= (EditText) findViewById(R.id.txtNameProduct);
-		final EditText txtQuantity= (EditText) findViewById(R.id.txtCantidadProduct);
-		final EditText txtPrice= (EditText) findViewById(R.id.txtCost);
+		final EditText txtCode= (EditText) findViewById(R.id.txtCodeAddProduct);
+		final EditText txtName= (EditText) findViewById(R.id.txtNameProductAddProduct);
+		final EditText txtQuantity= (EditText) findViewById(R.id.txtQuantityAddProduct);
+		final EditText txtPrice= (EditText) findViewById(R.id.txtCostAddProduct);
 		
 		
 		btnAdd.setOnClickListener(new OnClickListener() {

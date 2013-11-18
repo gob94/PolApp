@@ -5,46 +5,46 @@
     android:orientation="horizontal" >
 
     <TextView
-        android:id="@+id/NameProductListRow"
+        android:id="@+id/NameProductListHeader"
         android:layout_width="40dp"
         android:layout_height="30dp"
         android:layout_weight="1"
         android:background="#B40431"
         android:gravity="center"
-        android:text="Nombre"
+        android:text="@string/lblName"
         android:textColor="#FFFFFF">
     </TextView>
 
     <TextView
-        android:id="@+id/CodeProductListRow"
+        android:id="@+id/CodeProductListHeader"
         android:layout_width="40dp"
         android:layout_height="30dp"
         android:layout_weight="1"
         android:background="#B40431"
         android:gravity="center"
-        android:text="Código"
+        android:text="@string/lblCode"
         android:textColor="#FFFFFF" >
     </TextView>
 
     <TextView
-        android:id="@+id/PriceProductListRow"
+        android:id="@+id/PriceProductListHeader"
         android:layout_width="40dp"
         android:layout_height="30dp"
         android:layout_weight="1"
         android:background="#B40431"
         android:gravity="center"
-        android:text="Precio"
+        android:text="@string/lblPrice"
         android:textColor="#FFFFFF" >
     </TextView>
 
     <TextView
-        android:id="@+id/QuantityProductListRow"
+        android:id="@+id/QuantityProductListHeader"
         android:layout_width="40dp"
         android:layout_height="30dp"
         android:layout_weight="1"
         android:background="#B40431"
         android:gravity="center"
-        android:text="Cantidad"
+        android:text="@string/lblQuantity"
         android:textColor="#FFFFFF" >
     </TextView>
 

@@ -11,7 +11,7 @@
         android:layout_weight="1"
         android:background="@drawable/shape"
         android:gravity="center"
-        android:text="Licencia" 
+        android:text="@string/lblPlate" 
         android:maxLines="1"
    	    android:ellipsize="end">
     </TextView>
@@ -23,7 +23,7 @@
         android:layout_weight="2"
         android:background="@drawable/shape"
         android:gravity="center"
-        android:text="Marca" 
+        android:text="@string/lblBrand" 
         android:maxLines="1"
    	    android:ellipsize="end">
     </TextView>
@@ -36,7 +36,7 @@
         android:layout_weight="2"
         android:background="@drawable/shape"
         android:gravity="center"
-        android:text="Modelo" 
+        android:text="@string/lblModel" 
         android:maxLines="1"
    	    android:ellipsize="end">
     </TextView>
@@ -48,7 +48,7 @@
         android:layout_weight="1"
         android:background="@drawable/shape"
         android:gravity="center"
-        android:text="RTV" 
+        android:text="@string/lblRTV" 
         android:maxLines="1"
    	    android:ellipsize="end">
     </TextView>
@@ -72,9 +72,10 @@
         android:layout_weight="1"
         android:background="@drawable/shape"
         android:gravity="center"
-        android:text="Disponible"
+        android:text="@string/lblAvailable"
         android:maxLines="1"
-   	    android:ellipsize="end" >
+   	    android:ellipsize="end" 
+   	    android:contentDescription="@string/lblState">
     </ImageView>
 
 </LinearLayout>

@@ -1,5 +1,6 @@
 package com.thinksoft.businesslayer.utils;
 
+import static com.thinksoft.businesslayer.utils.constants.RowConstants.CLIENT_ID_COLUMN;
 import static com.thinksoft.businesslayer.utils.constants.RowConstants.FIRST_LASTNAME_COLUMN;
 import static com.thinksoft.businesslayer.utils.constants.RowConstants.NAME_COLUMN;
 import static com.thinksoft.businesslayer.utils.constants.RowConstants.SECOND_LASTNAME_COLUMN;
@@ -56,29 +57,20 @@ public class ClientListViewAdapter extends BaseAdapter implements Filterable {
 
 	@Override
 	public long getItemId(int position) {
-		return 0;
-	}
-
-	private class ViewHolder {
-		TextView txtName;
-		TextView txtFirstLastName;
-		TextView txtSecondLastName;
-		ImageView txtStatus;
-	}
-
-	
+		return Integer.parseInt(list.get(position).get( CLIENT_ID_COLUMN));
+	}	
 	
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 
-		ViewHolder holder;
+		ClientViewHolder holder;
 		LayoutInflater inflater = activity.getLayoutInflater();
 		imgTrue= activity.getResources().getDrawable(R.drawable.check16px);
 		imgFalse= activity.getResources().getDrawable(R.drawable.cancel32px);
 
 		if (convertView == null) {
 			convertView = inflater.inflate(R.layout.client_list_view_row, null);
-			holder = new ViewHolder();
+			holder = new ClientViewHolder();
 			holder.txtName = (TextView) convertView
 					.findViewById(R.id.NameClientListRow);
 			holder.txtFirstLastName = (TextView) convertView
@@ -89,20 +81,19 @@ public class ClientListViewAdapter extends BaseAdapter implements Filterable {
 					.findViewById(R.id.AccountStateClientListRow);
 			convertView.setTag(holder);
 		} else {
-			holder = (ViewHolder) convertView.getTag();
+			holder = (ClientViewHolder) convertView.getTag();
 		}
 
 		Map<String,String> map = list.get(position);
+		holder.clientId = Integer.parseInt(map.get(CLIENT_ID_COLUMN));
 		holder.txtName.setText((CharSequence) map.get(NAME_COLUMN));
 		holder.txtFirstLastName.setText((CharSequence) map.get(FIRST_LASTNAME_COLUMN));
 		holder.txtSecondLastName.setText((CharSequence) map.get(SECOND_LASTNAME_COLUMN));
-		
 		if(map.get(STATUS_COLUMN).equalsIgnoreCase("true")){
 			holder.txtStatus.setImageDrawable(imgTrue);
 		}else{
 			holder.txtStatus.setImageDrawable(imgFalse);
 		}
-
 		return convertView;
 	}
 

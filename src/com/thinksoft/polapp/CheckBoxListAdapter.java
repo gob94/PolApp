@@ -3,9 +3,6 @@ package com.thinksoft.polapp;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.thinksoft.models.dtos.Product;
-import com.thinksoft.models.dtos.impl.ProductImpl;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -13,6 +10,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.TextView;
+
+import com.thinksoft.models.dtos.Product;
+import com.thinksoft.models.dtos.impl.ProductImpl;
 
 public class CheckBoxListAdapter extends BaseAdapter implements OnClickListener {
 	

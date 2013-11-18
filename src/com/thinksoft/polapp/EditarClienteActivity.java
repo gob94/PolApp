@@ -1,11 +1,10 @@
 package com.thinksoft.polapp;
 
+import android.os.Bundle;
+import android.view.Menu;
+
 import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
 import com.thinksoft.models.databases.PolAppHelper;
-
-import android.os.Bundle;
-import android.app.Activity;
-import android.view.Menu;
 
 public class EditarClienteActivity extends OrmLiteBaseActivity<PolAppHelper> {
 

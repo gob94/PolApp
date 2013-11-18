@@ -24,7 +24,7 @@ import static com.thinksoft.businesslayer.utils.constants.RowConstants.PRICE_COL
 import static com.thinksoft.businesslayer.utils.constants.RowConstants.QUANTITY_COLUMN;
 import static com.thinksoft.businesslayer.utils.constants.RowConstants.SECOND_LASTNAME_COLUMN;
 import static com.thinksoft.businesslayer.utils.constants.RowConstants.STATUS_COLUMN;
-
+import static com.thinksoft.businesslayer.utils.constants.RowConstants.CLIENT_ID_COLUMN;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -179,6 +179,8 @@ public class BusinessManagerImpl implements BusinessManager {
 			for (Client client : rawClients) {
 				
 				clientItem = new HashMap<String, String>();
+				
+				clientItem.put(CLIENT_ID_COLUMN, String.valueOf(client.getClientId()));
 				
 				clientItem.put(NAME_COLUMN, client.getName());
 
@@ -367,6 +369,8 @@ public class BusinessManagerImpl implements BusinessManager {
 				
 				clientItem = new HashMap<String, String>();
 				
+				clientItem.put(CLIENT_ID_COLUMN, String.valueOf(client.getClientId()));
+				
 				clientItem.put(NAME_COLUMN, client.getName());
 
 				clientItem.put(FIRST_LASTNAME_COLUMN, client.getFirstLastName());
@@ -412,6 +416,8 @@ public class BusinessManagerImpl implements BusinessManager {
 				for (Client client : rawClients) {
 					
 					clientItem = new HashMap<String, String>();
+					
+					clientItem.put(CLIENT_ID_COLUMN, String.valueOf(client.getClientId()));
 					
 					clientItem.put(NAME_COLUMN, client.getName());
 	

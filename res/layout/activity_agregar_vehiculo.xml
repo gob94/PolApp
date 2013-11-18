@@ -12,17 +12,17 @@
         android:padding="1dip" >
 
         <TextView
-            android:id="@+id/lblPlaca"
+            android:id="@+id/lblPlateAddVehicle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="2dp"
             android:fontFamily="roboto-light"
-            android:text="@string/lblPlaca"
+            android:text="@string/lblPlate"
             android:textColor="#088A4B"
             android:textSize="16sp" />
 
         <EditText
-            android:id="@+id/txtPlaca"
+            android:id="@+id/txtPlateAddVehicle"
             android:layout_width="154dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="2dp"
@@ -39,7 +39,7 @@
         android:padding="5dip" >
 
         <TextView
-            android:id="@+id/lblBrand"
+            android:id="@+id/lblBrandAddVehicle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -50,7 +50,7 @@
             android:textSize="16sp" />
 
         <EditText
-            android:id="@+id/txtBrand"
+            android:id="@+id/txtBrandAddVehicle"
             android:layout_width="154dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -71,7 +71,7 @@
         android:padding="5dip" >
 
         <TextView
-            android:id="@+id/lblCostPerKm"
+            android:id="@+id/lblCostPerKmAddVehicle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -82,7 +82,7 @@
             android:textSize="16sp" />
 
         <EditText
-            android:id="@+id/txtCostPerKm"
+            android:id="@+id/txtCostPerKmAddVehicle"
             android:layout_width="154dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -103,7 +103,7 @@
         android:padding="5dip" >
 
         <TextView
-            android:id="@+id/lblModel"
+            android:id="@+id/lblModelAddVehicle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -114,7 +114,7 @@
             android:textSize="16sp" />
 
         <EditText
-            android:id="@+id/txtModel"
+            android:id="@+id/txtModelAddVehicle"
             android:layout_width="154dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -133,7 +133,7 @@
         android:padding="5dip" >
 
         <TextView
-            android:id="@+id/lblRTV"
+            android:id="@+id/lblRTVAddVehicle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -144,7 +144,7 @@
             android:textSize="16sp" />
 
         <DatePicker
-            android:id="@+id/dpRTV"
+            android:id="@+id/dpRTVAddVehicle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </TableRow>
@@ -157,33 +157,33 @@
         android:padding="5dip" >
 
         <TextView
-            android:id="@+id/lblDisponible"
+            android:id="@+id/lblAvailable"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="2dp"
             android:fontFamily="roboto-light"
-            android:text="@string/lblDisponible"
+            android:text="@string/lblAvailable"
             android:textColor="#088A4B"
             android:textSize="16sp" />
 
         <RadioGroup
-            android:id="@+id/rgDisponible"
+            android:id="@+id/rgAvailableAddVehicle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
 
             <RadioButton
-                android:id="@+id/rbYes"
+                android:id="@+id/rbYesAddVehicle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
-                android:text="Si" />
+                android:text="@string/lblYes" />
 
             <RadioButton
-                android:id="@+id/rbNo"
+                android:id="@+id/rbNoAddVehicle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="No" />
+                android:text="@string/lblNo" />
         </RadioGroup>
 
     </TableRow>
@@ -191,12 +191,12 @@
     <Space android:layout_height="10dp" />
 
     <TableRow
-        android:id="@+id/tableRow1"
+        android:id="@+id/tblRButtonPlace"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" >
 
         <Button
-            android:id="@+id/btnSaveCar"
+            android:id="@+id/btnSaveCarAddVehicle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="#FFFFFF"
@@ -208,7 +208,7 @@
             android:textSize="16sp" />
 
         <Button
-            android:id="@+id/btnCancelCar"
+            android:id="@+id/btnCancelCarAddVehicle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"

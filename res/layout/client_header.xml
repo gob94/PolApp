@@ -11,7 +11,7 @@
         android:layout_weight="1"
         android:background="#045FB4"
         android:gravity="center"
-        android:text="Nombre" 
+        android:text="@string/lblName" 
         android:textColor="#FFFFFF">
     </TextView>
 
@@ -22,7 +22,7 @@
         android:layout_weight="1"
         android:background="#045FB4"
         android:gravity="center"
-        android:text="Apellido1" 
+        android:text="@string/lblFirstLastName" 
         android:textColor="#FFFFFF">
     </TextView>
 
@@ -33,8 +33,10 @@
         android:layout_weight="1"
         android:background="#045FB4"
         android:gravity="center"
-        android:text="Apellido2" 
-         android:textColor="#FFFFFF">
+        android:text="@string/lblSecondLastName"
+        android:textColor="#FFFFFF"
+        android:textSize="9sp" >
+
     </TextView>
 
     <TextView
@@ -44,7 +46,7 @@
         android:layout_weight="1"
         android:background="#045FB4"
         android:gravity="center"
-        android:text="Estado" 
+        android:text="@string/lblState" 
         android:textColor="#FFFFFF">
     </TextView>
 

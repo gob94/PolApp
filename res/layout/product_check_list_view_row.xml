@@ -4,53 +4,59 @@
     android:layout_height="match_parent"
     android:orientation="horizontal" >
 
+    <CheckBox
+        android:id="@+id/chkProduct"
+        android:layout_width="5dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="" />
+    
     <TextView
-        android:id="@+id/NameClientListRow"
+        android:id="@+id/NameProductCheckListRow"
         android:layout_width="40dp"
         android:layout_height="30dp"
         android:layout_weight="1"
         android:background="@drawable/shape"
         android:gravity="center"
-        android:text="@string/lblName" 
+        android:text="@string/lblName"
         android:maxLines="1"
-   	    android:ellipsize="end">
+   	    android:ellipsize="end" >
     </TextView>
 
     <TextView
-        android:id="@+id/FirstLastNameClientListRow"
-        android:layout_width="40dp"
-        android:layout_height="30dp"
-        android:layout_weight="2"
-        android:background="@drawable/shape"
-        android:gravity="center"
-        android:text="@string/lblFirstLastName" 
-        android:maxLines="1"
-   	    android:ellipsize="end">
-    </TextView>
-
-    <TextView
-        android:id="@+id/SecondLastNameClientListRow"
+        android:id="@+id/CodeProductCheckListRow"
         android:layout_width="40dp"
         android:layout_height="30dp"
         android:layout_weight="1"
         android:background="@drawable/shape"
         android:gravity="center"
-        android:text="@string/lblSecondLastName" 
+        android:text="@string/lblCode" 
         android:maxLines="1"
    	    android:ellipsize="end">
     </TextView>
 
-    <ImageView
-        android:id="@+id/AccountStateClientListRow"
+    <TextView
+        android:id="@+id/PriceProductCheckListRow"
         android:layout_width="40dp"
         android:layout_height="30dp"
         android:layout_weight="1"
         android:background="@drawable/shape"
         android:gravity="center"
-        android:text="@string/lblState" 
+        android:text="@string/lblPrice" 
         android:maxLines="1"
-   	    android:ellipsize="end"
-   	    android:contentDescription="@string/lblClientState">
-    </ImageView>
+   	    android:ellipsize="end">
+    </TextView>
+
+    <TextView
+        android:id="@+id/QuantityProductCheckListRow"
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:layout_weight="1"
+        android:background="@drawable/shape"
+        android:gravity="center"
+        android:text="@string/lblQuantity" 
+        android:maxLines="1"
+   	    android:ellipsize="end">
+    </TextView>
 
 </LinearLayout>

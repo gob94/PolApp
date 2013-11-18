@@ -18,22 +18,23 @@
             android:padding="1dip" >
 
             <TextView
-                android:id="@+id/lblEditNombCliente"
+                android:id="@+id/lblNameEditClient"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:paddingLeft="10dp"
-                android:text="@string/lblNombCliente"
+                android:text="@string/lblName"
                 android:textColor="#045FB4" />
 
             <EditText
-                android:id="@+id/txtEditNombreClient"
+                android:id="@+id/txtNameEditClient"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@+id/lbEditlNombCliente"
                 android:layout_weight="0"
-                android:ems="10" />
+                android:ems="10" 
+                android:inputType="text"/>
         </TableRow>
 
         <TableRow
@@ -43,21 +44,22 @@
             android:padding="1dip" >
 
             <TextView
-                android:id="@+id/lblEditApellidoCliente"
+                android:id="@+id/lblFirstLastNameEditClient"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:paddingLeft="10dp"
                 android:drawableRight="@+id/txtEditApellidoCliente"
-                android:text="@string/lblApellido1"
+                android:text="@string/lblFirstLastName"
                 android:textColor="#045FB4" />
 
             <EditText
-                android:id="@+id/txtEditApellidoCliente"
+                android:id="@+id/txtFirstLastNameEditClient"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@+id/lblEditApellidoCliente"
-                android:ems="10" />
+                android:ems="10" 
+                android:inputType="text"/>
 
         </TableRow>
 
@@ -68,22 +70,23 @@
             android:padding="1dip" >
 
             <TextView
-                android:id="@+id/lblEditTelefono"
+                android:id="@+id/lblPhoneNumberEditClient"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
                 android:paddingLeft="10dp"
                 android:drawableRight="@+id/txtEditTelefonoCliente"
-                android:text="@string/lblTel"
+                android:text="@string/lblSecondLastName"
                 android:textColor="#045FB4" />
 
             <EditText
-                android:id="@+id/txtEditTelefonoCliente"
+                android:id="@+id/txtPhoneNumberEditClient"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@+id/lblTelefono"
                 android:layout_weight="1"
-                android:ems="10" >
+                android:ems="10"
+                android:inputType="phone" >
 
                 <requestFocus />
             </EditText>
@@ -96,13 +99,13 @@
             android:padding="1dip" >
 
             <TextView
-                android:id="@+id/lblEditDireccion"
+                android:id="@+id/lblAddressEditClient"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="19dp"
                 android:clickable="true"
                 android:layout_gravity="right"
-                android:text="Agregar Direccion del cliente"
+                android:text="@string/lblClientAddressAdd"
                 android:textColor="#013ADF"
                 android:textColorLink="#013ADF" />
         </TableRow>
