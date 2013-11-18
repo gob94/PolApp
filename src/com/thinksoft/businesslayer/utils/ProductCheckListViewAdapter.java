@@ -10,14 +10,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 public class ProductCheckListViewAdapter extends BaseAdapter {
 	public  List<Map<String, String>> list;
 	Activity activity;
-    public static final String CODE_COLUMN = "Code";
-    public static final String PRICE_COLUMN = "Price";
-    public static final String QUANTITY_COLUMN = "Quantity";
 
     public ProductCheckListViewAdapter(Activity activity, List<Map<String, String>> list) {
 		super();
@@ -45,27 +43,28 @@ public class ProductCheckListViewAdapter extends BaseAdapter {
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 
-		ProductViewHolder holder;
+		ProductCheckViewHolder holder;
 		LayoutInflater inflater = activity.getLayoutInflater();
 
 		if (convertView == null) {
-			convertView = inflater.inflate(R.layout.product_list_view_row, null);
-			holder = new ProductViewHolder();
+			convertView = inflater.inflate(R.layout.product_check_list_view_row, null);
+			holder = new ProductCheckViewHolder();
+			holder.chkProduct = (CheckBox)convertView.findViewById(R.id.chkProduct);
 			holder.txtName = (TextView) convertView
-					.findViewById(R.id.NameProductListRow);
+					.findViewById(R.id.NameProductCheckListRow);
 			holder.txtCode = (TextView) convertView
-					.findViewById(R.id.CodeProductListRow);
+					.findViewById(R.id.CodeProductCheckListRow);
 			holder.txtQuantity = (TextView) convertView
-					.findViewById(R.id.QuantityProductListRow);
+					.findViewById(R.id.QuantityProductCheckListRow);
 			holder.txtPrice = (TextView) convertView
-					.findViewById(R.id.PriceProductListRow);
+					.findViewById(R.id.PriceProductCheckListRow);
 			convertView.setTag(holder);
 		} else {
-			holder = (ProductViewHolder) convertView.getTag();
+			holder = (ProductCheckViewHolder) convertView.getTag();
 		}
 		
 		Map<String,String> map = list.get(position);
-
+		holder.chkProduct.setChecked(false);
 		holder.txtName.setText((CharSequence) map.get(com.thinksoft.businesslayer.utils.constants.RowConstants.NAME_COLUMN));
 		holder.txtCode.setText((CharSequence) map.get(com.thinksoft.businesslayer.utils.constants.RowConstants.CODE_COLUMN));
 		holder.txtPrice.setText((CharSequence) map.get(com.thinksoft.businesslayer.utils.constants.RowConstants.PRICE_COLUMN));
