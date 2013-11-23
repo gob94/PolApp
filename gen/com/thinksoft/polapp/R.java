@@ -93,6 +93,7 @@ public final class R {
         public static final int LicenceFleetListRow=0x7f09008f;
         public static final int MenuHomeScreenEditar=0x7f0900a7;
         public static final int MenuHomeScreenEliminar=0x7f0900a6;
+        public static final int MenuSlidingBar=0x7f0900a8;
         public static final int ModelFleetListRow=0x7f090091;
         public static final int NameClientListRow=0x7f09008b;
         public static final int NameProductCheckListRow=0x7f090099;

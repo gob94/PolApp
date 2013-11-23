@@ -210,11 +210,12 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 	
 	
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
+	public boolean onCreateOptionsMenu(Menu menu1) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		
-		getMenuInflater().inflate(R.menu.home_screen, menu);
+		getMenuInflater().inflate(R.menu.home_screen, menu1);
 		return true;
+
 	}
 	
 	 @Override
@@ -235,7 +236,7 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 	        return true;
 	    case R.id.MenuHomeScreenEliminar:
 	        Toast.makeText(getApplicationContext(), "Has pulsado la opción Eliminar", Toast.LENGTH_LONG).show();
-	        return true;	    
+	        return true;
 		default:
 	        return super.onContextItemSelected(item);
 	    }
@@ -247,6 +248,24 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 		else {finish();}
 		
 	}
+	
+
+@Override
+public boolean onOptionsItemSelected(MenuItem item) {
+
+    switch(item.getItemId())
+    {
+    case R.id.MenuSlidingBar:
+    	
+    	if(menu.isMenuShowing() == true){
+    		menu.toggle(false);
+    	}else{
+    		menu.toggle(true);
+    	}
+    	        return true;
+    }
+    return super.onOptionsItemSelected(item);
+}
 	
 }
 

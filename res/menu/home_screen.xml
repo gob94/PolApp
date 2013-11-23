@@ -2,6 +2,11 @@
     
 <item android:id="@+id/MenuHomeScreenEliminar" android:title="Eliminar"/>
 <item android:id="@+id/MenuHomeScreenEditar" android:title="Editar"/>
+<item
+        android:id="@+id/MenuSlidingBar"
+        android:icon="@drawable/menulateral32px"
+        android:orderInCategory="100"
+        android:showAsAction="always"/>
 
 
 </menu>
