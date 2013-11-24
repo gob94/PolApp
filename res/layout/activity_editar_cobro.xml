@@ -17,7 +17,7 @@
         android:padding="1dip" >
 
         <TextView
-            android:id="@+id/lblClientAddOrder"
+            android:id="@+id/lblEditClientAddOrder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="2dp"
@@ -27,7 +27,7 @@
             android:textSize="16sp" />
 
         <MultiAutoCompleteTextView
-            android:id="@+id/txtClientAddOrder"
+            android:id="@+id/txtEditClientAddOrder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -47,7 +47,7 @@
         android:padding="1dip" >
 
         <TextView
-            android:id="@+id/lblPaymentModeAddOrder"
+            android:id="@+id/lblEditPaymentModeAddOrder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="2dp"
@@ -57,7 +57,7 @@
             android:textSize="16sp" />
 
         <Spinner
-            android:id="@+id/spnPaymentModeAddOrder"
+            android:id="@+id/spnEditPaymentModeAddOrder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </TableRow>
@@ -71,7 +71,7 @@
         android:padding="1dip" >
 
         <TextView
-            android:id="@+id/lblTotalAddOrder"
+            android:id="@+id/lblEditTotalAddOrder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="2dp"
@@ -81,7 +81,7 @@
             android:textSize="16sp" />
 
         <EditText
-            android:id="@+id/txtTotalAddOrder"
+            android:id="@+id/txtEditTotalAddOrder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -101,7 +101,7 @@
         android:padding="1dip" >
 
         <TextView
-            android:id="@+id/lblAddSellerAddOrder"
+            android:id="@+id/lblEditAddSellerAddOrder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="2dp"
@@ -111,7 +111,7 @@
             android:textSize="16sp" />
 
         <Spinner
-            android:id="@+id/spnSellerAddOrder"
+            android:id="@+id/spnEditSellerAddOrder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </TableRow>
@@ -125,7 +125,7 @@
         android:padding="1dip" >
 
         <TextView
-            android:id="@+id/lblProductsAddOrder"
+            android:id="@+id/lblEditProductsAddOrder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="2dp"
@@ -147,7 +147,7 @@
         android:padding="1dip" >
 
         <Button
-            android:id="@+id/btnSaveAddOrder"
+            android:id="@+id/btnEditSaveAddOrder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="#FFFFFF"
@@ -159,7 +159,7 @@
             android:textSize="16sp" />
 
         <Button
-            android:id="@+id/btnCancelAddOrder"
+            android:id="@+id/btnEditCancelAddOrder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
@@ -173,3 +173,4 @@
     </TableRow>
 
 </TableLayout>
+

@@ -75,6 +75,10 @@
             android:name="com.thinksoft.polapp.EditarVehiculo"
             android:label="@string/title_activity_editar_vehiculo" >
         </activity>
+        <activity
+            android:name="com.thinksoft.polapp.EditarCobroActivity"
+            android:label="@string/title_activity_editar_cobro" >
+        </activity>
     </application>
 
 </manifest>
