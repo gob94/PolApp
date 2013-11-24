@@ -10,19 +10,19 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.thinksoft.businesslayer.bussinessmanagers.BusinessManager;
 import com.thinksoft.polapp.R;
 
 public class ProductListViewAdapter extends BaseAdapter {
+
+	public BusinessManager bussinessLayer = null;
 	public  List<Map<String, String>> list;
 	Activity activity;
-    public static final String CODE_COLUMN = "Code";
-    public static final String PRICE_COLUMN = "Price";
-    public static final String QUANTITY_COLUMN = "Quantity";
 
-    public ProductListViewAdapter(Activity activity, List<Map<String, String>> list2) {
+    public ProductListViewAdapter(Activity activity, List<Map<String, String>> list) {
 		super();
 		this.activity = activity;
-		this.list = list2;
+		this.list = list;
 	}
 
 	@Override

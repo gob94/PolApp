@@ -6,4 +6,8 @@ public class Constants {
 	public static String WILDCARD_MATCH = "%";
 	public static String WRONG_DATA = "El nombre de usuario o contraseña es incorrecto, ingreselos de nuevo";
 
+	public static int ZERO = 0;
+
+	public static int NUMBER_OF_PRODUCTS_TO_DISPLAY = 2;
+
 }

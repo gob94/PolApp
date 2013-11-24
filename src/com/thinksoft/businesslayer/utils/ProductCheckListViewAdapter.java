@@ -3,21 +3,28 @@ package com.thinksoft.businesslayer.utils;
 import java.util.List;
 import java.util.Map;
 
-import com.thinksoft.polapp.R;
-
-import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
-public class ProductCheckListViewAdapter extends BaseAdapter {
-	public  List<Map<String, String>> list;
-	Activity activity;
+import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
+import com.thinksoft.businesslayer.bussinessmanagers.BusinessManager;
+import com.thinksoft.businesslayer.utils.services.QueryService;
+import com.thinksoft.models.databases.PolAppHelper;
+import com.thinksoft.polapp.R;
 
-    public ProductCheckListViewAdapter(Activity activity, List<Map<String, String>> list) {
+public class ProductCheckListViewAdapter extends BaseAdapter implements Filterable{
+	public  List<Map<String, String>> list;
+	public  List<Map<String, String>> checkedList;
+	public BusinessManager bussinessLayer = null;
+	OrmLiteBaseActivity<PolAppHelper> activity;
+
+    public ProductCheckListViewAdapter(OrmLiteBaseActivity<PolAppHelper> activity, List<Map<String, String>> list) {
 		super();
 		this.activity = activity;
 		this.list = list;
@@ -72,6 +79,38 @@ public class ProductCheckListViewAdapter extends BaseAdapter {
 
 		   
 		return convertView;
+	}
+	
+	
+	@Override
+	public Filter getFilter() {
+		return new Filter() {
+			
+			@SuppressWarnings("unchecked")
+			@Override
+			protected void publishResults(CharSequence constraint, FilterResults results) {
+				list = (List<Map<String, String>>) results.values;
+				notifyDataSetChanged();
+			}
+			
+			@Override
+			protected FilterResults performFiltering(CharSequence constraint) {
+			  	FilterResults results = new FilterResults();
+		        if (constraint == null || constraint.length() == 0) {
+		        	bussinessLayer.getAllProducts();
+		        } else { 
+		        	
+		        	String[] wordsToSearch =  new QueryService().getWordsToSearch(constraint);
+		            List<Map<String, String>> filteredRowItems = bussinessLayer.searchProducts(wordsToSearch);
+		            if(filteredRowItems==null||filteredRowItems.isEmpty()){
+		            	filteredRowItems= bussinessLayer.getAllProducts();
+		            }
+		            results.values = filteredRowItems;
+		            results.count = filteredRowItems.size();
+		        }
+		        return results;
+			}
+		};
 	}
 
 }

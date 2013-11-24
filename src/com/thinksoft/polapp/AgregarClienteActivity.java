@@ -1,5 +1,10 @@
 package com.thinksoft.polapp;
 
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_LASTNAME;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_NAME;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_PHONENUMBER;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.EMPTY_STRING;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.MINIMUM_PHONENUMBER_DIGITS;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -9,17 +14,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
+
 import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
 import com.thinksoft.businesslayer.bussinessmanagers.BusinessManager;
 import com.thinksoft.businesslayer.bussinessmanagers.impl.BusinessManagerImpl;
 import com.thinksoft.models.databases.PolAppHelper;
 import com.thinksoft.models.dtos.Client;
 import com.thinksoft.models.dtos.impl.ClientImpl;
-import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.EMPTY_STRING;
-import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_NAME;
-import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_LASTNAME;
-import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_PHONENUMBER;
-import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.MINIMUM_PHONENUMBER_DIGITS;;
 
 public class AgregarClienteActivity extends OrmLiteBaseActivity<PolAppHelper> {
 	 public BusinessManager businessLayer;
@@ -52,7 +53,12 @@ public class AgregarClienteActivity extends OrmLiteBaseActivity<PolAppHelper> {
 			public void onClick(View view) {
 				String name = txtName.getText().toString();
 				String[] lastName = txtLastName.getText().toString().split(" ");
-				int phoneNumber = Integer.parseInt(txtPhone.getText().toString());
+				int phoneNumber = 0;
+				try{
+					phoneNumber = Integer.parseInt(txtPhone.getText().toString());
+				}catch(NumberFormatException ne){
+					ne.printStackTrace();
+				}
 				registerClient(name, lastName, phoneNumber);
 			}
 		});
@@ -75,10 +81,7 @@ public class AgregarClienteActivity extends OrmLiteBaseActivity<PolAppHelper> {
 				}else{
 					client= new ClientImpl(name, lastName[0], NO_SECOND_LASTNAME,NO_DEBTS);	
 				}
-			
 			if(businessLayer.addClient(client)){
-				msg = Toast.makeText(AgregarClienteActivity.this,"Hay campos con errores", MESSAGE_DURATION);
-				msg.show();
 				Intent intent = new Intent(AgregarClienteActivity.this, HomeScreenActivity.class);
 				startActivity(intent);
 			}

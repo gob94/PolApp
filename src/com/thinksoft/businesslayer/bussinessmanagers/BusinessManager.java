@@ -43,9 +43,11 @@ public interface BusinessManager {
 	public List<Map<String, String>> getAllVehicles();
 	
 	public List<Map<String, String>> searchClients(String[] queryString);
-
+	
 	public boolean clientHasOrders(int clientId);
 
 	public String verifyClientInformation(String name, String[] lastName,int phoneNumber);
+
+	public List<Map<String, String>> searchProducts(String[] queryString);
 	
 }

@@ -7,8 +7,6 @@ import static com.thinksoft.businesslayer.utils.constants.RowConstants.SECOND_LA
 import static com.thinksoft.businesslayer.utils.constants.RowConstants.STARTING_CLIENT_NUMBER;
 import static com.thinksoft.businesslayer.utils.constants.RowConstants.STATUS_COLUMN;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -25,6 +23,7 @@ import android.widget.TextView;
 import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
 import com.thinksoft.businesslayer.bussinessmanagers.BusinessManager;
 import com.thinksoft.businesslayer.bussinessmanagers.impl.BusinessManagerImpl;
+import com.thinksoft.businesslayer.utils.services.QueryService;
 import com.thinksoft.models.databases.PolAppHelper;
 import com.thinksoft.polapp.R;
 
@@ -115,7 +114,7 @@ public class ClientListViewAdapter extends BaseAdapter implements Filterable {
 		        	bussinessLayer.getSpecifiedNumberOfClients(STARTING_CLIENT_NUMBER);
 		        } else { 
 		        	
-		        	String[] wordsToSearch = getWordsToSearch(constraint);
+		        	String[] wordsToSearch = new QueryService().getWordsToSearch(constraint);
 		            List<Map<String, String>> filteredRowItems = bussinessLayer.searchClients(wordsToSearch);
 		            if(filteredRowItems==null||filteredRowItems.isEmpty()){
 		            	filteredRowItems= bussinessLayer.getSpecifiedNumberOfClients(STARTING_CLIENT_NUMBER);
@@ -129,18 +128,5 @@ public class ClientListViewAdapter extends BaseAdapter implements Filterable {
 	}
 	
 	
-	private String[] getWordsToSearch(CharSequence constraint){
-		String searchText = constraint.toString();
-		String [] arrayToIterate = searchText.split(".");
-		ArrayList<String> words = new ArrayList<String>();
-		if (arrayToIterate.length==0) {
-			arrayToIterate = searchText.split(" ");
-			return arrayToIterate;
-		} else {
-			for (String phrase : arrayToIterate) {
-				words.addAll((Arrays.asList(phrase.split(" "))));
-			}
-			return words.toArray(new String[0]);
-		}
-	}
+	
 }

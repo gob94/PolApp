@@ -3,9 +3,11 @@ package com.thinksoft.businesslayer.utils.constants;
 import android.graphics.drawable.Drawable;
 
 public class DatabaseConstants {
-	public static String GET_CLIENT_ERROR_TAG = "Error en la tabla Cliente";
-	public static String GET_USER_ERROR_TAG = "Error en la tabla Usuario";
-	public static String GET_PRODUCT_ERROR_TAG = "Error en la tabla Usuario";
+	public static String CLIENT_ERROR_TAG = "Error en la tabla Cliente";
+	public static String USER_ERROR_TAG = "Error en la tabla Usuario";
+	public static String PRODUCT_ERROR_TAG = "Error en la tabla Usuario";
+	public static String BRAND_ERROR_TAG = "Error insertando marca";
+	public static String VEHICLE_ERROR_TAG = "Error insertando vehículo";
 	public static String COLUMN_USERNAME = "username";
 	public static String EMPTY_STRING = "";
 	public static String USER_INSERTED = "inserted";

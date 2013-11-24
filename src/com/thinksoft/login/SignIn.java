@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
 import com.thinksoft.businesslayer.bussinessmanagers.BusinessManager;
+import com.thinksoft.businesslayer.bussinessmanagers.impl.BusinessManagerImpl;
 import com.thinksoft.models.databases.PolAppHelper;
 import com.thinksoft.polapp.HomeScreenActivity;
 import com.thinksoft.polapp.R;
@@ -24,6 +25,7 @@ public class SignIn extends OrmLiteBaseActivity<PolAppHelper> {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_sign_in);
+		bussinnessLayer = new BusinessManagerImpl(getHelper() .getConnectionSource());
 		/*
 		java.util.Date d = new Date();
 		java.text.DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
@@ -35,7 +37,7 @@ public class SignIn extends OrmLiteBaseActivity<PolAppHelper> {
 			e.printStackTrace();
 		} 
 
-		bussinnessLayer = new BusinessManagerImpl(getHelper() .getConnectionSource());
+		
 		User user = new UserImpl("admin", "123", "1", "Administrator", "Polaco", "Application");
 		bussinnessLayer.addUser(user);
 		Client client = new ClientImpl("Jonathan","Ruiz","Fallas",true);

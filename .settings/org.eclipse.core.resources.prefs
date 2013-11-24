@@ -1,6 +1,7 @@
 eclipse.preferences.version=1
 encoding//src/com/thinksoft/businesslayer/bussinessmanagers/impl/BusinessManagerImpl.java=UTF-8
 encoding//src/com/thinksoft/businesslayer/utils/constants/Constants.java=UTF-8
+encoding//src/com/thinksoft/businesslayer/utils/constants/DatabaseConstants.java=UTF-8
 encoding//src/com/thinksoft/login/SignIn.java=UTF-8
 encoding//src/com/thinksoft/login/SignUp.java=UTF-8
 encoding//src/com/thinksoft/polapp/HomeScreenActivity.java=UTF-8
