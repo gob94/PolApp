@@ -30,7 +30,7 @@
         <activity
             android:name="com.thinksoft.login.SignUp"
             android:label="@string/title_activity_sign_up"
-            android:theme="@android:style/Theme.Holo.Light.Dialog" >
+            android:theme="@android:style/Theme.Holo.Light.Dialog.NoActionBar" >
         </activity>
         <activity
             android:name="com.thinksoft.polapp.HomeScreenActivity"
@@ -78,6 +78,10 @@
         <activity
             android:name="com.thinksoft.polapp.EditarCobroActivity"
             android:label="@string/title_activity_editar_cobro" >
+        </activity>
+        <activity
+            android:name="com.thinksoft.polapp.PerfilClienteActivity"
+            android:label="@string/title_activity_perfil_cliente" >
         </activity>
     </application>
 
