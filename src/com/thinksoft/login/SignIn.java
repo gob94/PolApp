@@ -1,5 +1,6 @@
 package com.thinksoft.login;
 
+import static com.thinksoft.businesslayer.utils.constants.Constants.WRONG_DATA;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,14 +15,8 @@ import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
 import com.thinksoft.businesslayer.bussinessmanagers.BusinessManager;
 import com.thinksoft.businesslayer.bussinessmanagers.impl.BusinessManagerImpl;
 import com.thinksoft.models.databases.PolAppHelper;
-<<<<<<< HEAD
-=======
-import com.thinksoft.models.dtos.User;
-import com.thinksoft.models.dtos.impl.UserImpl;
->>>>>>> a56e7822a73b1fc5d3a23b832e122fcc1ac947e7
 import com.thinksoft.polapp.HomeScreenActivity;
 import com.thinksoft.polapp.R;
-import static com.thinksoft.businesslayer.utils.constants.Constants.WRONG_DATA;
 public class SignIn extends OrmLiteBaseActivity<PolAppHelper> {
 
 	private BusinessManager bussinnessLayer;
