@@ -15,6 +15,28 @@ import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
 import com.thinksoft.businesslayer.bussinessmanagers.BusinessManager;
 import com.thinksoft.businesslayer.bussinessmanagers.impl.BusinessManagerImpl;
 import com.thinksoft.models.databases.PolAppHelper;
+<<<<<<< HEAD
+=======
+<<<<<<< Updated upstream
+<<<<<<< HEAD
+=======
+=======
+import com.thinksoft.models.dtos.Brand;
+import com.thinksoft.models.dtos.Client;
+import com.thinksoft.models.dtos.Product;
+>>>>>>> Stashed changes
+import com.thinksoft.models.dtos.User;
+import com.thinksoft.models.dtos.Vehicle;
+import com.thinksoft.models.dtos.impl.BrandImpl;
+import com.thinksoft.models.dtos.impl.ClientImpl;
+import com.thinksoft.models.dtos.impl.ProductImpl;
+import com.thinksoft.models.dtos.impl.UserImpl;
+<<<<<<< Updated upstream
+>>>>>>> a56e7822a73b1fc5d3a23b832e122fcc1ac947e7
+=======
+import com.thinksoft.models.dtos.impl.VehicleImpl;
+>>>>>>> Stashed changes
+>>>>>>> 4532bdaeee6120d32875e09fcbf6ede2aedba166
 import com.thinksoft.polapp.HomeScreenActivity;
 import com.thinksoft.polapp.R;
 public class SignIn extends OrmLiteBaseActivity<PolAppHelper> {
@@ -42,13 +64,21 @@ public class SignIn extends OrmLiteBaseActivity<PolAppHelper> {
 		bussinnessLayer.addUser(user);
 		Client client = new ClientImpl("Jonathan","Ruiz","Fallas",true);
 		bussinnessLayer.addClient(client);
+<<<<<<< Updated upstream
 		pro= new ProductImpl("TELEV", "Samsung LED TV 32'", 14000000, 5);
+=======
+		Product pro = new ProductImpl("TELEV", "Samsung LED TV 32'", 14000000, 5);
+>>>>>>> Stashed changes
 		bussinnessLayer.addProduct(pro);
 		Brand brand= new BrandImpl("Honda");
 		bussinnessLayer.addBrand(brand);
 		Vehicle veh= new VehicleImpl("5616423", true, d, 5161, "YVR", (BrandImpl) brand);
 		bussinnessLayer.addVechicle(veh);
+<<<<<<< Updated upstream
 		*/
+=======
+
+>>>>>>> Stashed changes
 		final EditText username = (EditText) findViewById(R.id.txtUserNameSignIn);
 		final EditText password = (EditText) findViewById(R.id.txtPasswordSignIn);
 		TextView signUp = (TextView) findViewById(R.id.lblSignUp);
