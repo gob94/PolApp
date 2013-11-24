@@ -25,14 +25,14 @@
     <string name="lblPaymentFrequency">Modo de cobro</string>
     <string name="lblProducts">Productos comprados</string>
     <string name="lblAddress">Dirección</string>
-    <string name="lblFirstLastName">Apellido</string>
-    <string name="lblSecondLastName">Segundo Apellido</string>
+    <string name="lblFirstLastName">Apellido 1</string>
+    <string name="lblSecondLastName">Apellido 2</string>
     <string name="lblEditProductPopUp">Editar</string>
     <string name="lblPlate">Placa</string>
     <string name="lblBrand">Marca</string>
     <string name="lblModel">Modelo</string>
     <string name="lblCostPerKm">Costo por Km</string>
-    <string name="lblRTV">Fecha RTV</string>
+    <string name="lblRTV">RTV</string>
     <string name="lblAvailable">Disponible</string>
     <string name="lblDeleteProductPopUp">Eliminar</string>
     <string name="lblSearch">Buscar</string>

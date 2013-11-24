@@ -62,7 +62,7 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 	    menu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
 	    menu.setBehindWidth(width-60);
 	    menu.setMenu(R.layout.menulateral);
-	    menu.showMenu(true);
+	    //menu.showMenu(false);
 
 		final TabHost tabs = (TabHost) findViewById(android.R.id.tabhost);
 		tabs.setup();
