@@ -22,7 +22,7 @@
                 android:onClick="Inicio">
 
                 <ImageView
-                    android:id="@+id/imageView2"
+                    android:id="@+id/btnSlidingHome"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="26dp"
@@ -30,12 +30,12 @@
                     android:layout_marginTop="5dp"/>
 
                 <TextView style="@style/TextoMenu"
-                    android:id="@+id/textView2"
+                    android:id="@+id/txtSlidingHome"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="33dp"
-                    android:layout_toRightOf="@+id/imageView2"
+                    android:layout_toRightOf="@+id/btnSlidingHome"
                     android:text="@string/lblStart"
                   />
 
@@ -55,7 +55,7 @@
                 android:onClick="Productos">
 
                 <ImageView
-                    android:id="@+id/imageView3"
+                    android:id="@+id/btnSlidingProducts"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
@@ -64,13 +64,12 @@
                     android:src="@drawable/productpresionado" />
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/txtSlidingProducts"
                     style="@style/TextoMenu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                  
-                    android:layout_toRightOf="@+id/imageView3"
+                    android:layout_toRightOf="@+id/btnSlidingProducts"
                     android:text="Productos" />
 
             </RelativeLayout>

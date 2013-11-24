@@ -62,7 +62,7 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 	    menu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
 	    menu.setBehindWidth(width-60);
 	    menu.setMenu(R.layout.menulateral);
-	    menu.showMenu(true);
+	    //menu.showMenu(false);
 
 		final TabHost tabs = (TabHost) findViewById(android.R.id.tabhost);
 		tabs.setup();
@@ -229,10 +229,23 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
      } 
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
-	 
+		TabHost tabs = (TabHost) findViewById(android.R.id.tabhost);
+		tabs.setup();
 	    switch (item.getItemId()) {
 	    case R.id.MenuHomeScreenEditar:
-	        Toast.makeText(getApplicationContext(), "Has pulsado la opci��n Editar", Toast.LENGTH_LONG).show();
+	    	if(tabs.getCurrentTab()== R.id.tab1){
+	    		Intent intent = new Intent(HomeScreenActivity.this, EditarProductosActivity.class);
+	    		startActivity(intent);
+	    	}else if(tabs.getCurrentTab()== R.id.tab2){
+	    		Intent intent = new Intent(HomeScreenActivity.this, EditarClienteActivity.class);
+	    		startActivity(intent);
+	    	}else if(tabs.getCurrentTab()== R.id.tab3){
+	    		Intent intent = new Intent(HomeScreenActivity.this, EditarCobroActivity.class);
+	    		startActivity(intent);
+	    	} else if(tabs.getCurrentTab()== R.id.tab4){
+	    		Intent intent = new Intent(HomeScreenActivity.this, EditarVehiculo.class);
+	    		startActivity(intent);
+	    	}
 	        return true;
 	    case R.id.MenuHomeScreenEliminar:
 	        Toast.makeText(getApplicationContext(), "Has pulsado la opción Eliminar", Toast.LENGTH_LONG).show();
