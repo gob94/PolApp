@@ -111,7 +111,9 @@ public class ClientListViewAdapter extends BaseAdapter implements Filterable {
 			protected FilterResults performFiltering(CharSequence constraint) {
 			  	FilterResults results = new FilterResults();
 		        if (constraint == null || constraint.length() == 0) {
-		        	bussinessLayer.getSpecifiedNumberOfClients(STARTING_CLIENT_NUMBER);
+		        	list = bussinessLayer.getSpecifiedNumberOfClients(STARTING_CLIENT_NUMBER);
+		        	results.values = list;
+		            results.count = list.size();
 		        } else { 
 		        	
 		        	String[] wordsToSearch = new QueryService().getWordsToSearch(constraint);

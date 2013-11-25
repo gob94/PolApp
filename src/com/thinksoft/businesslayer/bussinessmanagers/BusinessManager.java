@@ -61,6 +61,10 @@ public interface BusinessManager {
 	public List<Map<String, String>> searchProducts(String[] queryString);
 	
 	public String verifyProductInformation(String code, String name, String quantity, String price);
-
+	public Product getProduct(int id);
+	
+	public double getProductPrice(int id);
+	
+	public void addDefaultOrderValues();
 	
 }

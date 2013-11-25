@@ -3,38 +3,8 @@ package com.thinksoft.businesslayer.bussinessmanagers.impl;
 import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.START_EMPTY_STRING;
 import static com.thinksoft.businesslayer.utils.constants.Constants.NUMBER_OF_PRODUCTS_TO_DISPLAY;
 import static com.thinksoft.businesslayer.utils.constants.Constants.ZERO;
-import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.BRAND_ERROR_TAG;
-import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.CLIENT_ERROR_TAG;
-import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_CLIENTID;
-import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_FIRST_LASTNAME;
-import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_IDENTIFICATION;
-import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_LASTNAME;
-import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_NAME;
-import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_ORDERID;
-import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_ORDERSTATE;
-import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_PHONENUMBER;
-import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_SECOND_LASTNAME;
-import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_USERNAME;
-import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.EMPTY_STRING;
-import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.MINIMUM_PHONENUMBER_DIGITS;
-import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.PRODUCT_ERROR_TAG;
-import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.USER_ERROR_TAG;
-import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.USER_INSERTED;
-import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.VEHICLE_ERROR_TAG;
-import static com.thinksoft.businesslayer.utils.constants.RowConstants.BRAND_COLUMN;
-import static com.thinksoft.businesslayer.utils.constants.RowConstants.CLIENT_ID_COLUMN;
-import static com.thinksoft.businesslayer.utils.constants.RowConstants.CODE_COLUMN;
-import static com.thinksoft.businesslayer.utils.constants.RowConstants.EXPEDITURE_COLUMN;
-import static com.thinksoft.businesslayer.utils.constants.RowConstants.FIRST_LASTNAME_COLUMN;
-import static com.thinksoft.businesslayer.utils.constants.RowConstants.FUNCTIONAL_COLUMN;
-import static com.thinksoft.businesslayer.utils.constants.RowConstants.LICENCE_COLUMN;
-import static com.thinksoft.businesslayer.utils.constants.RowConstants.MODEL_COLUMN;
-import static com.thinksoft.businesslayer.utils.constants.RowConstants.NAME_COLUMN;
-import static com.thinksoft.businesslayer.utils.constants.RowConstants.PRICE_COLUMN;
-import static com.thinksoft.businesslayer.utils.constants.RowConstants.QUANTITY_COLUMN;
-import static com.thinksoft.businesslayer.utils.constants.RowConstants.RTV_COLUMN;
-import static com.thinksoft.businesslayer.utils.constants.RowConstants.SECOND_LASTNAME_COLUMN;
-import static com.thinksoft.businesslayer.utils.constants.RowConstants.STATUS_COLUMN;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.*;
+import static com.thinksoft.businesslayer.utils.constants.RowConstants.*;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -54,11 +24,13 @@ import com.thinksoft.models.daos.impl.PolAppDaoManagerImpl;
 import com.thinksoft.models.dtos.Brand;
 import com.thinksoft.models.dtos.Client;
 import com.thinksoft.models.dtos.Order;
+import com.thinksoft.models.dtos.PaymentFrequency;
 import com.thinksoft.models.dtos.Product;
 import com.thinksoft.models.dtos.ProductOrder;
 import com.thinksoft.models.dtos.User;
 import com.thinksoft.models.dtos.Vehicle;
 import com.thinksoft.models.dtos.impl.AddressImpl;
+import com.thinksoft.models.dtos.impl.PaymentFrequencyImpl;
 import com.thinksoft.models.dtos.impl.UserImpl;
 import com.thinksoft.polapp.HomeScreenActivity;
 
@@ -312,6 +284,7 @@ public class BusinessManagerImpl implements BusinessManager {
 
 	private Map<String, String> getProductAsItem(Product product){
 		Map<String, String> productItem = new HashMap<String, String>();
+		productItem.put(PRODUCT_ID_COLUMN, String.valueOf(product.getIdProduct()));
 		
 		productItem.put(NAME_COLUMN, product.getName());
 
@@ -453,7 +426,7 @@ public class BusinessManagerImpl implements BusinessManager {
 									 .like(QUANTITY_COLUMN, number);
 					}
 					
-					
+					  
 					if(i!=lastWordPosition){
 						   query.where().or();
 					}
@@ -488,8 +461,6 @@ public class BusinessManagerImpl implements BusinessManager {
 		try{
 			if(name!=null&&!name.equalsIgnoreCase(EMPTY_STRING)){
 				if(String.valueOf(phoneNumber).length()>=MINIMUM_PHONENUMBER_DIGITS){
-					Log.i("jonathan es gay",String.valueOf(lastName.length));
-					Log.i("jonathan se la come",String.valueOf(lastName.length<=0));
 					if(lastName==null||lastName.length<=0||lastName[0].equals(EMPTY_STRING)){
 						result =COLUMN_LASTNAME;
 					}
@@ -502,7 +473,6 @@ public class BusinessManagerImpl implements BusinessManager {
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		Log.i("Jonathan sexy", result);
 		return result;
 	}
 	
@@ -520,6 +490,57 @@ public class BusinessManagerImpl implements BusinessManager {
 		}
 		return user;
 	}
+
+	@Override
+	public Product getProduct(int id) {
+		Product product = null;
+		try {
+			product = polAppDaoManager.getProductDao().queryForId(id);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return product;
+	}
+
+	@Override
+	public double getProductPrice(int id) {
+		double price = 0;
+		try {
+			price = polAppDaoManager.getProductDao().queryForId(id).getPrice();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return price;
+	}
+
+	@Override
+	public void addDefaultOrderValues() {
+		try {
+		PaymentFrequency frequency = new PaymentFrequencyImpl(1,"Semanal",15,5000);
+		polAppDaoManager.getPaymentFrequencyDao().createIfNotExists(frequency);
+		
+		frequency = new PaymentFrequencyImpl(2,"Semanal",15,1000);
+		polAppDaoManager.getPaymentFrequencyDao().createIfNotExists(frequency);
+		frequency = new PaymentFrequencyImpl(3,"Quincenal 2000",15,2000);
+		polAppDaoManager.getPaymentFrequencyDao().createIfNotExists(frequency);
+		frequency = new PaymentFrequencyImpl(4,"Quincenal 5000",15,5000);
+		polAppDaoManager.getPaymentFrequencyDao().createIfNotExists(frequency);
+		frequency = new PaymentFrequencyImpl(5,"Quincenal 10000",15,10000);
+		polAppDaoManager.getPaymentFrequencyDao().createIfNotExists(frequency);
+		frequency = new PaymentFrequencyImpl(6,"Mensual 5000",15,5000);
+		polAppDaoManager.getPaymentFrequencyDao().createIfNotExists(frequency);
+		frequency = new PaymentFrequencyImpl(7,"Mensual 10000",15,10000);
+		polAppDaoManager.getPaymentFrequencyDao().createIfNotExists(frequency);
+		frequency = new PaymentFrequencyImpl(8,"Mensual 20000",15,20000);
+		polAppDaoManager.getPaymentFrequencyDao().createIfNotExists(frequency);
+		frequency = new PaymentFrequencyImpl(9,"Mensual",15,5000);
+		polAppDaoManager.getPaymentFrequencyDao().createIfNotExists(frequency);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 	
 	@Override
 	public String verifyProductInformation(String code, String name, String quantity, String price) {
@@ -540,7 +561,6 @@ public class BusinessManagerImpl implements BusinessManager {
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		Log.i("Jonathan sexy", result);
 		return result;
 	}
 	

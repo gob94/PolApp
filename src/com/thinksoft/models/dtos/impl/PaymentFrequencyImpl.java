@@ -21,6 +21,19 @@ public class PaymentFrequencyImpl implements PaymentFrequency {
 		// TODO Auto-generated constructor stub
 	}
 
+	
+	
+	public PaymentFrequencyImpl(int idPaymentFrequency, String name, int lapse,
+			float ammount) {
+		super();
+		this.idPaymentFrequency = idPaymentFrequency;
+		this.name = name;
+		this.lapse = lapse;
+		this.ammount = ammount;
+	}
+
+
+
 	public int getIdPaymentFrequency() {
 		return idPaymentFrequency;
 	}

@@ -15,16 +15,6 @@ import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
 import com.thinksoft.businesslayer.bussinessmanagers.BusinessManager;
 import com.thinksoft.businesslayer.bussinessmanagers.impl.BusinessManagerImpl;
 import com.thinksoft.models.databases.PolAppHelper;
-import com.thinksoft.models.dtos.Brand;
-import com.thinksoft.models.dtos.Client;
-import com.thinksoft.models.dtos.Product;
-import com.thinksoft.models.dtos.User;
-import com.thinksoft.models.dtos.Vehicle;
-import com.thinksoft.models.dtos.impl.BrandImpl;
-import com.thinksoft.models.dtos.impl.ClientImpl;
-import com.thinksoft.models.dtos.impl.ProductImpl;
-import com.thinksoft.models.dtos.impl.UserImpl;
-import com.thinksoft.models.dtos.impl.VehicleImpl;
 import com.thinksoft.polapp.HomeScreenActivity;
 import com.thinksoft.polapp.R;
 public class SignIn extends OrmLiteBaseActivity<PolAppHelper> {

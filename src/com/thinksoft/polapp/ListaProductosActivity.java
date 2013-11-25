@@ -1,48 +1,60 @@
 package com.thinksoft.polapp;
 
+import static com.thinksoft.businesslayer.utils.constants.Constants.PRODUCTS_IDS_KEY;
+import static com.thinksoft.businesslayer.utils.constants.Constants.SELECTED_FLAG;
+import static com.thinksoft.businesslayer.utils.constants.RowConstants.PRODUCT_ID_COLUMN;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import android.app.Activity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
 import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
 import com.thinksoft.businesslayer.bussinessmanagers.BusinessManager;
 import com.thinksoft.businesslayer.bussinessmanagers.impl.BusinessManagerImpl;
-import com.thinksoft.businesslayer.utils.ClientListViewAdapter;
-import com.thinksoft.businesslayer.utils.ProductCheckViewHolder;
+import com.thinksoft.businesslayer.utils.ProductCheckListViewAdapter;
 import com.thinksoft.models.databases.PolAppHelper;
 
 public class ListaProductosActivity extends OrmLiteBaseActivity<PolAppHelper> {
 
 	private BusinessManager businessLayer;
 	private EditText txtSearchProduct;
-	private ClientListViewAdapter adapter;
+	private Button btnAccept;
+	private ProductCheckListViewAdapter adapter;
+	private ListView listCheckProduct;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_lista_productos);
-		
 		businessLayer = new BusinessManagerImpl(getHelper().getConnectionSource());
-		final ListView listSearchClient = (ListView) findViewById(R.id.lstViewSelectProductListActivity);
-		txtSearchProduct = (EditText) findViewById(R.id.txtSearchSelectProductListActivity);
-		adapter = new ClientListViewAdapter(ListaProductosActivity.this,businessLayer.getAllClients());
-		listSearchClient.setAdapter(adapter); 
-		listSearchClient.setOnItemClickListener(new OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> arg0, View item, int arg2,long arg3) {
-					ProductCheckViewHolder holder = (ProductCheckViewHolder) item.getTag();
-					if(holder.getChkProduct().isChecked()){
-						holder.getChkProduct().setChecked(false);
-					}else{
-						holder.getChkProduct().setChecked(true);
-					}		
+		List<Map<String,String>> list = businessLayer.getAllProducts();
+		Bundle bundle = getIntent().getExtras();
+		if(bundle!=null){
+
+			for (Map<String, String> map : list) {
+				if(bundle.getIntegerArrayList(PRODUCTS_IDS_KEY).contains(Integer.valueOf(map.get(PRODUCT_ID_COLUMN)))){
+					map.put(SELECTED_FLAG, SELECTED_FLAG);
+				}
 			}
-		});
+		}
+		
+		adapter = new ProductCheckListViewAdapter(ListaProductosActivity.this,list);
+		listCheckProduct= (ListView) findViewById(R.id.lstViewSelectProductListActivity);
+		txtSearchProduct = (EditText) findViewById(R.id.txtSearchSelectProductListActivity);
+		btnAccept = (Button) findViewById(R.id.btnDoneProductCheckList);
+		
+		listCheckProduct.setAdapter(adapter); 
 		txtSearchProduct.addTextChangedListener(new TextWatcher() {
 			
 			@Override
@@ -58,6 +70,18 @@ public class ListaProductosActivity extends OrmLiteBaseActivity<PolAppHelper> {
 			public void afterTextChanged(Editable s) {
 			}
 		});
+		
+		btnAccept.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				Bundle bundle =new Bundle();
+				bundle.putIntegerArrayList(PRODUCTS_IDS_KEY, (ArrayList<Integer>) adapter.checkedList);
+				getIntent().putExtras(bundle);
+				setResult(Activity.RESULT_OK, getIntent());
+				finish();
+			}
+		});
 	}
 
 	@Override
@@ -65,30 +89,5 @@ public class ListaProductosActivity extends OrmLiteBaseActivity<PolAppHelper> {
 		getMenuInflater().inflate(R.menu.lista_productos, menu);
 		return true;
 	}
-	/*
-	 @Override
-	 public void onCreateContextMenu(ContextMenu menu, final View view, ContextMenuInfo menuInfo)
-	 {
-	         super.onCreateContextMenu(menu, view, menuInfo);
-	         menu.add(OPTIONS_GROUP_ID, SELECT_OPTION_ID,FIRST_OPTION, SELECT_ITEM).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-				
-				@Override
-				public boolean onMenuItemClick(MenuItem item) {
-					ClientViewHolder client = (ClientViewHolder) view.getTag();
-					String clientName = client.txtName.getText().toString()+" "+client.txtFirstLastName.getText().toString()+" "+client.txtSecondLastName.getText().toString();
-					Bundle bundle = getIntent().getExtras()==null ? new Bundle():getIntent().getExtras();
-					
-					bundle.putInt(CLIENT_ID_COLUMN, client.clientId);
-					bundle.putString(NAME_COLUMN, clientName);
-					getIntent().putExtras(bundle);
-					
-					setResult(Activity.RESULT_OK, getIntent());
-					finish();
-					return true;
-				}
-			});
-	         menu.add(OPTIONS_GROUP_ID, CANCEL_OPTION_ID, SECOND_OPTION, CANCEL_SELECT_ITEM); 
-	
-	 } */
 
 }
