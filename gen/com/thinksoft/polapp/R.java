@@ -79,11 +79,14 @@ public final class R {
         public static final int search16px=0x7f020037;
         public static final int search24px=0x7f020038;
         public static final int shape=0x7f020039;
-        public static final int tacometro24px=0x7f02003a;
-        public static final int task16px=0x7f02003b;
-        public static final int task24px=0x7f02003c;
-        public static final int user26=0x7f02003d;
-        public static final int write24px=0x7f02003e;
+        public static final int shape_blue=0x7f02003a;
+        public static final int shape_green=0x7f02003b;
+        public static final int shape_red=0x7f02003c;
+        public static final int tacometro24px=0x7f02003d;
+        public static final int task16px=0x7f02003e;
+        public static final int task24px=0x7f02003f;
+        public static final int user26=0x7f020040;
+        public static final int write24px=0x7f020041;
     }
     public static final class id {
         public static final int AccountStateClientListRow=0x7f090095;
