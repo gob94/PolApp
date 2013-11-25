@@ -1,5 +1,6 @@
 package com.thinksoft.businesslayer.bussinessmanagers.impl;
 
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.START_EMPTY_STRING;
 import static com.thinksoft.businesslayer.utils.constants.Constants.NUMBER_OF_PRODUCTS_TO_DISPLAY;
 import static com.thinksoft.businesslayer.utils.constants.Constants.ZERO;
 import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.BRAND_ERROR_TAG;
@@ -42,6 +43,7 @@ import java.util.List;
 import java.util.Map;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import com.j256.ormlite.stmt.QueryBuilder;
 import com.j256.ormlite.support.ConnectionSource;
@@ -58,6 +60,7 @@ import com.thinksoft.models.dtos.User;
 import com.thinksoft.models.dtos.Vehicle;
 import com.thinksoft.models.dtos.impl.AddressImpl;
 import com.thinksoft.models.dtos.impl.UserImpl;
+import com.thinksoft.polapp.HomeScreenActivity;
 
 public class BusinessManagerImpl implements BusinessManager {
 	
@@ -96,8 +99,15 @@ public class BusinessManagerImpl implements BusinessManager {
 	public boolean addProduct(Product product) {
 		boolean result = false;
 		try {
-			polAppDaoManager.getProductDao().create(product);
-			result = true;
+			
+			if(product.getName().startsWith(" ") || product.getCode().startsWith(" ") 
+					|| product.getPrice() == ZERO || product.getQuantity() == ZERO){
+				result= false;
+			}else{
+				polAppDaoManager.getProductDao().create(product);
+				result = true;
+			}
+			
 		} catch (SQLException e) {
 			Log.e(PRODUCT_ERROR_TAG, e.getMessage());
 		}
@@ -240,6 +250,29 @@ public class BusinessManagerImpl implements BusinessManager {
 			Log.e(CLIENT_ERROR_TAG, e.getMessage());
 		}
 		return client;
+	}
+
+
+	@Override
+	public Product getProductById(int id) {
+		Product product = null;
+		try {
+			product =  (Product) polAppDaoManager.getProductDao().queryBuilder().where().idEq(id);
+		} catch (SQLException e) {
+			Log.e(CLIENT_ERROR_TAG, e.getMessage());
+		}
+		return product;
+	}
+	
+	@Override
+	public Product getProductByCode(String id) {
+		Product product = null;
+		try {
+			product =  (Product) polAppDaoManager.getProductDao().queryBuilder().where().eq("code", id);
+		} catch (SQLException e) {
+			Log.e(CLIENT_ERROR_TAG, e.getMessage());
+		}
+		return product;
 	}
 
 	@Override
@@ -455,8 +488,8 @@ public class BusinessManagerImpl implements BusinessManager {
 		try{
 			if(name!=null&&!name.equalsIgnoreCase(EMPTY_STRING)){
 				if(String.valueOf(phoneNumber).length()>=MINIMUM_PHONENUMBER_DIGITS){
-					Log.i("johnny es gay",String.valueOf(lastName.length));
-					Log.i("gustavo se la come",String.valueOf(lastName.length<=0));
+					Log.i("jonathan es gay",String.valueOf(lastName.length));
+					Log.i("jonathan se la come",String.valueOf(lastName.length<=0));
 					if(lastName==null||lastName.length<=0||lastName[0].equals(EMPTY_STRING)){
 						result =COLUMN_LASTNAME;
 					}
@@ -488,6 +521,28 @@ public class BusinessManagerImpl implements BusinessManager {
 		return user;
 	}
 	
+	@Override
+	public String verifyProductInformation(String code, String name, String quantity, String price) {
+		String result = EMPTY_STRING;
+		try{
+			
+			if(code.equals(EMPTY_STRING) || name.equals(EMPTY_STRING) || quantity.equals(EMPTY_STRING) 
+					|| price.equals(EMPTY_STRING)){
+				
+				result= EMPTY_STRING;
+				
+			}else if(code.startsWith(EMPTY_STRING) || name.startsWith(EMPTY_STRING) 
+						|| quantity.startsWith(EMPTY_STRING) || price.startsWith(EMPTY_STRING)){
+				
+				result= START_EMPTY_STRING;
+				
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		Log.i("Jonathan sexy", result);
+		return result;
+	}
 	
 	
 	

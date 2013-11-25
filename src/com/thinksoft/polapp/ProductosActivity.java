@@ -13,9 +13,14 @@ import android.widget.Toast;
 import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
 import com.thinksoft.businesslayer.bussinessmanagers.BusinessManager;
 import com.thinksoft.businesslayer.bussinessmanagers.impl.BusinessManagerImpl;
+import com.thinksoft.models.daos.PolAppDaoManager;
+import com.thinksoft.models.daos.impl.PolAppDaoManagerImpl;
 import com.thinksoft.models.databases.PolAppHelper;
 import com.thinksoft.models.dtos.Product;
 import com.thinksoft.models.dtos.impl.ProductImpl;
+import com.thinksoft.businesslayer.utils.constants.DatabaseConstants;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.START_EMPTY_STRING;
+
 
 public class ProductosActivity extends OrmLiteBaseActivity<PolAppHelper> {
 
@@ -43,29 +48,58 @@ public class ProductosActivity extends OrmLiteBaseActivity<PolAppHelper> {
 		final EditText txtQuantity= (EditText) findViewById(R.id.txtQuantityAddProduct);
 		final EditText txtPrice= (EditText) findViewById(R.id.txtCostAddProduct);
 		
-		
 		btnAdd.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-			
-				String code = txtCode.getText().toString();
-				String name= txtName.getText().toString();
-				float quantity=Float.parseFloat(txtQuantity.getText().toString());
-				float price= Integer.parseInt(txtPrice.getText().toString());
+	
+				String code= txtCode.toString();
+				String name= txtName.toString();
+				String quantity= txtQuantity.toString();
+				String price= txtPrice.toString();
 				
-				Product product = createProduct(code, name, quantity, price);
-				if(bussinesManager.addProduct(product)){
-				
-				Toast toast= Toast.makeText(ProductosActivity.this, "Producto agregado exitosamente", Toast.LENGTH_LONG);
-				toast.show();
-				Intent intent = new Intent(ProductosActivity.this, HomeScreenActivity.class);
-				startActivity(intent);
-				}else{
-					Toast toast= Toast.makeText(ProductosActivity.this, "Producto ya existente", Toast.LENGTH_LONG);
+				if (bussinesManager.verifyProductInformation(code, name, quantity, price) == "") {
+					
+					Toast toast = Toast.makeText(ProductosActivity.this,
+							"Por favor verifique sus datos",
+							Toast.LENGTH_LONG);
 					toast.show();
+				} else if(bussinesManager.verifyProductInformation(code, name, quantity, price) == START_EMPTY_STRING){
+					Toast toast = Toast.makeText(ProductosActivity.this,
+							"Algún campo empieza con espacio, por favor verifique sus datos",
+							Toast.LENGTH_LONG);
+					toast.show();
+					
+				}else{
+
+					 Float quantity1=Float.parseFloat(txtQuantity.getText().toString());
+					 Float price1= Float.parseFloat(txtPrice.getText().toString());
+					
+					Product product = createProduct(code, name, quantity1, price1);
+					if (bussinesManager.addProduct(product) == false) {
+						Toast toast = Toast.makeText(ProductosActivity.this,
+								"Por favor verifique sus datos",
+								Toast.LENGTH_LONG);
+						toast.show();
+					} else {
+						if (bussinesManager.getProductByCode(product.getCode()) == null) {
+							Toast toast = Toast.makeText(
+									ProductosActivity.this,
+									"Producto ya existente", Toast.LENGTH_LONG);
+							toast.show();
+						} else {
+							Toast toast = Toast.makeText(
+									ProductosActivity.this,
+									"Producto agregado exitosamente",
+									Toast.LENGTH_LONG);
+							toast.show();
+							Intent intent = new Intent(ProductosActivity.this,
+									HomeScreenActivity.class);
+							startActivity(intent);
+						}
+					}
 				}
-				}
+			}
 		});
 		
 		btnCancel.setOnClickListener(new OnClickListener() {

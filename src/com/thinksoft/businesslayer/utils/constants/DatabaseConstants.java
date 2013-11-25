@@ -22,6 +22,7 @@ public class DatabaseConstants {
 	public static String COLUMN_FIRST_LASTNAME = "firstLastName";
 	public static String COLUMN_SECOND_LASTNAME = "secondLastName";
 	public static String COLUMN_ACCOUNT_STATE = "accountState";
+	public static String START_EMPTY_STRING= "start with empty string";
 	public static Drawable imgTrue= null;
     public static Drawable imgFalse= null;
 }
