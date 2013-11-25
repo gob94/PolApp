@@ -1,0 +1,180 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#FFFFFF" >
+
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context=".AgregarCobroActivity" >
+
+        <Space android:layout_height="15dp" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:padding="1dip" >
+
+            <TextView
+                android:id="@+id/lblEditClientAddOrder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:fontFamily="roboto-light"
+                android:text="@string/lblAddClient"
+                android:textColor="#8A0886"
+                android:textSize="16sp" />
+
+            <MultiAutoCompleteTextView
+                android:id="@+id/txtEditClientAddOrder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:text=""
+                android:textSize="10sp" >
+
+                <requestFocus />
+            </MultiAutoCompleteTextView>
+        </TableRow>
+
+        <Space android:layout_height="20dp" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:padding="1dip" >
+
+            <TextView
+                android:id="@+id/lblEditPaymentModeAddOrder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:fontFamily="roboto-light"
+                android:text="@string/lblPaymentFrequency"
+                android:textColor="#8A0886"
+                android:textSize="16sp" />
+
+            <Spinner
+                android:id="@+id/spnEditPaymentModeAddOrder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </TableRow>
+
+        <Space android:layout_height="20dp" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:padding="1dip" >
+
+            <TextView
+                android:id="@+id/lblEditTotalAddOrder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:fontFamily="roboto-light"
+                android:text="@string/lblTotal"
+                android:textColor="#8A0886"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/txtEditTotalAddOrder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"
+                android:text="" >
+
+                <requestFocus />
+            </EditText>
+        </TableRow>
+
+        <Space android:layout_height="20dp" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:padding="1dip" >
+
+            <TextView
+                android:id="@+id/lblEditAddSellerAddOrder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:fontFamily="roboto-light"
+                android:text="@string/lblSeller"
+                android:textColor="#8A0886"
+                android:textSize="16sp" />
+
+            <Spinner
+                android:id="@+id/spnEditSellerAddOrder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </TableRow>
+
+        <Space android:layout_height="20dp" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:padding="1dip" >
+
+            <TextView
+                android:id="@+id/lblEditProductsAddOrder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:autoLink="web"
+                android:fontFamily="roboto-light"
+                android:linksClickable="true"
+                android:text="@string/lblAddProducts"
+                android:textColor="#8A0886"
+                android:textSize="16sp" />
+        </TableRow>
+
+        <Space android:layout_height="20dp" />
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <Button
+                android:id="@+id/btnEditSaveAddOrder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|right"
+                android:background="#FFFFFF"
+                android:drawableLeft="@drawable/check32px"
+                android:fontFamily="roboto-light"
+                android:paddingLeft="10dp"
+                android:text="@string/btnAccept"
+                android:textColor="#91A5AE"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/btnEditCancelAddOrder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|left"
+                android:background="#FFFFFF"
+                android:drawableLeft="@drawable/cancel32px"
+                android:fontFamily="roboto-light"
+                android:paddingRight="10dp"
+                android:text="@string/btnCancel"
+                android:textColor="#91A5AE"
+                android:textSize="16sp" />
+        </TableRow>
+    </TableLayout>
+
+</ScrollView>

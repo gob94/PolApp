@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#2E2E2E" >
+
+    <ScrollView
+        android:id="@+id/scrollViewLateralMenu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" 
+                android:clickable="True"
+                android:onClick="Inicio">
+
+                <ImageView
+                    android:id="@+id/btnSlidingHome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="26dp"
+                    android:src="@drawable/home32px" 
+                    android:layout_marginTop="5dp"/>
+
+                <TextView style="@style/TextoMenu"
+                    android:id="@+id/txtSlidingHome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="33dp"
+                    android:layout_toRightOf="@+id/btnSlidingHome"
+                    android:text="@string/lblStart"
+                  />
+
+            </RelativeLayout>
+
+            <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1.5dp" 
+        android:background="#FFFFFF"
+        android:layout_marginTop="10dp">
+    </LinearLayout>
+    
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" 
+                 android:clickable="True"
+                android:onClick="Productos">
+
+                <ImageView
+                    android:id="@+id/btnSlidingProducts"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="24dp"
+                    android:src="@drawable/productpresionado" />
+
+                <TextView
+                    android:id="@+id/txtSlidingProducts"
+                    style="@style/TextoMenu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/btnSlidingProducts"
+                    android:text="Productos" />
+
+            </RelativeLayout>
+            
+            <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1.5dp" 
+        android:background="#FFFFFF"
+        android:layout_marginTop="10dp">
+    </LinearLayout>
+              <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                 android:clickable="True"
+                android:onClick="Ofertas" >
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="24dp"
+                    android:src="@drawable/checkpresionado" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    style="@style/TextoMenu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                  
+                    android:layout_toRightOf="@+id/imageView3"
+                    android:text="Ofertas" />
+
+            </RelativeLayout>
+            
+              <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1.5dp" 
+        android:background="#FFFFFF"
+        android:layout_marginTop="10dp">
+    </LinearLayout>
+    
+                       <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" 
+                 android:clickable="True"
+                android:onClick="Contacto">
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="24dp"
+                    android:src="@drawable/profile32px" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    style="@style/TextoMenu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                  
+                    android:layout_toRightOf="@+id/imageView3"
+                    android:text="Clientes" />
+
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+    
+</LinearLayout>

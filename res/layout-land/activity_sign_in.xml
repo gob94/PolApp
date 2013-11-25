@@ -1,0 +1,132 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#FFFFFF" >
+    
+<TableLayout 
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:orientation="horizontal"
+    android:background="#FFFFFF"
+    tools:context=".SignIn" >
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/idea128px" />
+
+    <Space android:layout_height="40dp" />
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" 
+        android:padding="5dip">
+
+        <ImageView
+            android:id="@+id/imgUserNameSignIn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:contentDescription="@string/lblUserName"
+            android:src="@drawable/peopleicon24px" />
+
+        <TextView
+            android:id="@+id/lblUserNameSignIn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:text="@string/lblUserName" />
+
+        <EditText
+            android:id="@+id/txtUserNameSignIn"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:ems="10" 
+            android:inputType="text">
+
+            <requestFocus />
+        </EditText>
+    </TableRow>
+
+    <Space android:layout_height="15dp" />
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="5dip">
+        
+        <ImageView
+            android:id="@+id/imgPasswordSignIn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:contentDescription="@string/lblPassword"
+            android:src="@drawable/login24px" />
+        
+        <TextView
+            android:id="@+id/lblPasswordSignIn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:text="@string/lblPassword" />
+
+        <EditText
+            android:id="@+id/txtPasswordSignIn"
+            android:layout_width="154dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:ems="10"
+            android:inputType="textPassword" />
+
+    </TableRow>
+
+    <Space android:layout_height="15dp" />
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+	 <TextView
+	     android:id="@+id/lblSignUp"
+	     android:layout_width="wrap_content"
+	     android:layout_height="wrap_content"
+	     android:linksClickable="true"
+	     android:layout_column="2"
+         android:layout_gravity="left"
+         android:paddingLeft="10dp"
+	     android:text="@string/lblSignUp" />
+       
+    </TableRow>
+		
+    <Space android:layout_height="10dp" />
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="5dip">
+
+        <Button
+            android:id="@+id/btnSignIn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_column="2"
+            android:layout_gravity="left"
+            android:background="#FFFFFF"
+            android:textColor="#91A5AE"
+            android:drawableLeft="@drawable/check24px"
+            android:text="@string/btnAccept" />
+
+    </TableRow>
+  
+</TableLayout>
+</ScrollView>

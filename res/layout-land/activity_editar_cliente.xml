@@ -1,0 +1,140 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollViewEditarCliente"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="#FFFFFF"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context=".AgregarClienteActivity" >
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="15dp"
+            android:padding="1dip" >
+
+            <TextView
+                android:id="@+id/lblNameEditClient"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:text="@string/lblName"
+                android:textColor="#045FB4" />
+
+            <EditText
+                android:id="@+id/txtNameEditClient"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:ems="10" 
+                android:inputType="text"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:padding="1dip" >
+
+            <TextView
+                android:id="@+id/lblFirstLastNameEditClient"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:text="@string/lblFirstLastName"
+                android:textColor="#045FB4" />
+
+            <EditText
+                android:id="@+id/txtFirstLastNameEditClient"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:ems="10" 
+                android:inputType="text"/>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:padding="1dip" >
+
+            <TextView
+                android:id="@+id/lblPhoneNumberEditClient"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:paddingLeft="10dp"
+                android:text="@string/lblSecondLastName"
+                android:textColor="#045FB4" />
+
+            <EditText
+                android:id="@+id/txtPhoneNumberEditClient"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="phone" >
+
+                <requestFocus />
+            </EditText>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:padding="1dip" >
+
+            <TextView
+                android:id="@+id/lblAddressEditClient"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clickable="true"
+                android:layout_marginLeft="10dp"
+                android:text="@string/lblClientAddressAdd"
+                android:textColor="#013ADF"
+                android:textColorLink="#013ADF" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <Button
+                android:id="@+id/btnEditAgregarCliente"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#FFFFFF"
+                android:drawableLeft="@drawable/check32px"
+                android:fontFamily="roboto-light"
+                android:paddingLeft="10dp"
+                android:text="@string/btnAccept"
+                android:textColor="#91A5AE"
+                android:textSize="16sp"  />
+
+            <Button
+                android:id="@+id/btnEditCancelarCliente"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:background="#FFFFFF"
+                android:drawableLeft="@drawable/cancel32px"
+                android:fontFamily="roboto-light"
+                android:paddingRight="10dp"
+                android:text="@string/btnCancel"
+                android:textColor="#91A5AE"
+                android:textSize="16sp" />
+        </TableRow>
+    </TableLayout>
+
+</ScrollView>
