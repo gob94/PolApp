@@ -29,6 +29,21 @@ public class EmployeeImpl implements Employee {
 	public EmployeeImpl() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+
+	public EmployeeImpl(String identification, String name, String middle_name,
+			String lastName, int phoneNumber, VehicleImpl vehicle) {
+		super();
+		this.identification = identification;
+		this.name = name;
+		this.middle_name = middle_name;
+		this.lastName = lastName;
+		this.phoneNumber = phoneNumber;
+		this.vehicle = vehicle;
+	}
+
+
 
 	public int getIdEmployee() {
 		return idEmployee;

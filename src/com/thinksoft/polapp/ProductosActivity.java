@@ -1,6 +1,7 @@
 package com.thinksoft.polapp;
 
 
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.START_EMPTY_STRING;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -13,13 +14,9 @@ import android.widget.Toast;
 import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
 import com.thinksoft.businesslayer.bussinessmanagers.BusinessManager;
 import com.thinksoft.businesslayer.bussinessmanagers.impl.BusinessManagerImpl;
-import com.thinksoft.models.daos.PolAppDaoManager;
-import com.thinksoft.models.daos.impl.PolAppDaoManagerImpl;
 import com.thinksoft.models.databases.PolAppHelper;
 import com.thinksoft.models.dtos.Product;
 import com.thinksoft.models.dtos.impl.ProductImpl;
-import com.thinksoft.businesslayer.utils.constants.DatabaseConstants;
-import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.START_EMPTY_STRING;
 
 
 public class ProductosActivity extends OrmLiteBaseActivity<PolAppHelper> {
@@ -66,7 +63,7 @@ public class ProductosActivity extends OrmLiteBaseActivity<PolAppHelper> {
 					toast.show();
 				} else if(bussinesManager.verifyProductInformation(code, name, quantity, price) == START_EMPTY_STRING){
 					Toast toast = Toast.makeText(ProductosActivity.this,
-							"Algún campo empieza con espacio, por favor verifique sus datos",
+							"Alg��n campo empieza con espacio, por favor verifique sus datos",
 							Toast.LENGTH_LONG);
 					toast.show();
 					

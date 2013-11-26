@@ -8,10 +8,10 @@ public class PaymentFrequencyImpl implements PaymentFrequency {
 	@DatabaseField(generatedId = true, useGetSet = true)
 	protected int idPaymentFrequency;
 
-	@DatabaseField(useGetSet = true, unique = true, canBeNull = false)
+	@DatabaseField(useGetSet = true, canBeNull = false)
 	protected String name;
 
-	@DatabaseField(useGetSet = true, unique = true, canBeNull = false)
+	@DatabaseField(useGetSet = true, canBeNull = false)
 	protected int lapse;
 
 	@DatabaseField(useGetSet = true, canBeNull = false, defaultValue = "0")
@@ -23,10 +23,9 @@ public class PaymentFrequencyImpl implements PaymentFrequency {
 
 	
 	
-	public PaymentFrequencyImpl(int idPaymentFrequency, String name, int lapse,
+	public PaymentFrequencyImpl(String name, int lapse,
 			float ammount) {
 		super();
-		this.idPaymentFrequency = idPaymentFrequency;
 		this.name = name;
 		this.lapse = lapse;
 		this.ammount = ammount;

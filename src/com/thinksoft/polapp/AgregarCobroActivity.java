@@ -13,19 +13,25 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
 import com.thinksoft.businesslayer.bussinessmanagers.BusinessManager;
 import com.thinksoft.businesslayer.bussinessmanagers.impl.BusinessManagerImpl;
+import com.thinksoft.businesslayer.utils.EmployeeSpinnerAdapter;
+import com.thinksoft.businesslayer.utils.PaymentFrequencySpinnerAdapter;
 import com.thinksoft.models.databases.PolAppHelper;
 
 public class AgregarCobroActivity extends OrmLiteBaseActivity<PolAppHelper> {
 	EditText txtClient;
 	EditText txtTotal;
 	TextView lblProductos;
+	Spinner spnEmployee;
+	
 	List<Integer> products_ids;
 	BusinessManager businessLayer;
+	Spinner spnPayment;
 	
 	public static int CLIENT_LIST_CODE = 100;
 	public static int PRODUCT_LIST_CODE = 105;
@@ -33,12 +39,23 @@ public class AgregarCobroActivity extends OrmLiteBaseActivity<PolAppHelper> {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_agregar_cobro);
+
+		businessLayer = new BusinessManagerImpl(getHelper().getConnectionSource());
+		
 		products_ids = new ArrayList<Integer>();
 		txtClient= (EditText) findViewById(R.id.txtClientAddOrder);
 		txtTotal= (EditText) findViewById(R.id.txtTotalAddOrder);
 		lblProductos = (TextView) findViewById(R.id.lblProductsAddOrder);
-		businessLayer = new BusinessManagerImpl(getHelper().getConnectionSource());
+		spnPayment = (Spinner) findViewById(R.id.spnPaymentModeAddOrder);
+		spnEmployee = (Spinner) findViewById(R.id.spnSellerAddOrder);
+		PaymentFrequencySpinnerAdapter adapter = new PaymentFrequencySpinnerAdapter(this, businessLayer.listOfPaymentMethods());
+		spnPayment.setAdapter(adapter);
+		EmployeeSpinnerAdapter adapterEmployee = new EmployeeSpinnerAdapter(this, businessLayer.listOfSellers());
+		spnEmployee.setAdapter(adapterEmployee);
 		
+		
+		businessLayer = new BusinessManagerImpl(getHelper().getConnectionSource());
+		businessLayer.addDefaultOrderValues();
 		
 		txtClient.setOnClickListener(new OnClickListener() {
 			@Override

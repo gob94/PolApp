@@ -1,12 +1,7 @@
 package com.thinksoft.businesslayer.bussinessmanagers;
 
-import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.CLIENT_ERROR_TAG;
-
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
-
-import android.util.Log;
 
 import com.thinksoft.models.dtos.Brand;
 import com.thinksoft.models.dtos.Client;
@@ -66,5 +61,6 @@ public interface BusinessManager {
 	public double getProductPrice(int id);
 	
 	public void addDefaultOrderValues();
-	
+	public List<Map<String,String>> listOfSellers();
+	public List<Map<String,String>> listOfPaymentMethods();
 }

@@ -1,19 +1,50 @@
 package com.thinksoft.businesslayer.bussinessmanagers.impl;
 
-import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.START_EMPTY_STRING;
 import static com.thinksoft.businesslayer.utils.constants.Constants.NUMBER_OF_PRODUCTS_TO_DISPLAY;
 import static com.thinksoft.businesslayer.utils.constants.Constants.ZERO;
-import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.*;
-import static com.thinksoft.businesslayer.utils.constants.RowConstants.*;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.BRAND_ERROR_TAG;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.CLIENT_ERROR_TAG;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_CLIENTID;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_FIRST_LASTNAME;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_IDENTIFICATION;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_LASTNAME;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_NAME;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_ORDERID;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_ORDERSTATE;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_PHONENUMBER;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_SECOND_LASTNAME;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_USERNAME;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.EMPTY_STRING;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.MINIMUM_PHONENUMBER_DIGITS;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.PRODUCT_ERROR_TAG;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.START_EMPTY_STRING;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.USER_ERROR_TAG;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.USER_INSERTED;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.VEHICLE_ERROR_TAG;
+import static com.thinksoft.businesslayer.utils.constants.RowConstants.BRAND_COLUMN;
+import static com.thinksoft.businesslayer.utils.constants.RowConstants.CLIENT_ID_COLUMN;
+import static com.thinksoft.businesslayer.utils.constants.RowConstants.CODE_COLUMN;
+import static com.thinksoft.businesslayer.utils.constants.RowConstants.EXPEDITURE_COLUMN;
+import static com.thinksoft.businesslayer.utils.constants.RowConstants.FIRST_LASTNAME_COLUMN;
+import static com.thinksoft.businesslayer.utils.constants.RowConstants.FUNCTIONAL_COLUMN;
+import static com.thinksoft.businesslayer.utils.constants.RowConstants.LICENCE_COLUMN;
+import static com.thinksoft.businesslayer.utils.constants.RowConstants.MODEL_COLUMN;
+import static com.thinksoft.businesslayer.utils.constants.RowConstants.NAME_COLUMN;
+import static com.thinksoft.businesslayer.utils.constants.RowConstants.PRICE_COLUMN;
+import static com.thinksoft.businesslayer.utils.constants.RowConstants.PRODUCT_ID_COLUMN;
+import static com.thinksoft.businesslayer.utils.constants.RowConstants.QUANTITY_COLUMN;
+import static com.thinksoft.businesslayer.utils.constants.RowConstants.RTV_COLUMN;
+import static com.thinksoft.businesslayer.utils.constants.RowConstants.SECOND_LASTNAME_COLUMN;
+import static com.thinksoft.businesslayer.utils.constants.RowConstants.STATUS_COLUMN;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import android.util.Log;
-import android.widget.Toast;
 
 import com.j256.ormlite.stmt.QueryBuilder;
 import com.j256.ormlite.support.ConnectionSource;
@@ -23,6 +54,7 @@ import com.thinksoft.models.daos.PolAppDaoManager;
 import com.thinksoft.models.daos.impl.PolAppDaoManagerImpl;
 import com.thinksoft.models.dtos.Brand;
 import com.thinksoft.models.dtos.Client;
+import com.thinksoft.models.dtos.Employee;
 import com.thinksoft.models.dtos.Order;
 import com.thinksoft.models.dtos.PaymentFrequency;
 import com.thinksoft.models.dtos.Product;
@@ -30,9 +62,11 @@ import com.thinksoft.models.dtos.ProductOrder;
 import com.thinksoft.models.dtos.User;
 import com.thinksoft.models.dtos.Vehicle;
 import com.thinksoft.models.dtos.impl.AddressImpl;
+import com.thinksoft.models.dtos.impl.BrandImpl;
+import com.thinksoft.models.dtos.impl.EmployeeImpl;
 import com.thinksoft.models.dtos.impl.PaymentFrequencyImpl;
 import com.thinksoft.models.dtos.impl.UserImpl;
-import com.thinksoft.polapp.HomeScreenActivity;
+import com.thinksoft.models.dtos.impl.VehicleImpl;
 
 public class BusinessManagerImpl implements BusinessManager {
 	
@@ -516,25 +550,68 @@ public class BusinessManagerImpl implements BusinessManager {
 	@Override
 	public void addDefaultOrderValues() {
 		try {
-		PaymentFrequency frequency = new PaymentFrequencyImpl(1,"Semanal",15,5000);
-		polAppDaoManager.getPaymentFrequencyDao().createIfNotExists(frequency);
+		PaymentFrequency frequency = new PaymentFrequencyImpl("Semanal 1000",7,1000);
+		try{
+			polAppDaoManager.getPaymentFrequencyDao().createIfNotExists(frequency);
+			}catch(SQLException e){
+				e.printStackTrace();
+			}
+		frequency = new PaymentFrequencyImpl("Quincenal 2000",15,2000);
+		try{
+			polAppDaoManager.getPaymentFrequencyDao().createIfNotExists(frequency);
+			}catch(SQLException e){
+				e.printStackTrace();
+			}
+		frequency = new PaymentFrequencyImpl("Quincenal 5000",15,5000);
+		try{
+			polAppDaoManager.getPaymentFrequencyDao().createIfNotExists(frequency);
+			}catch(SQLException e){
+				e.printStackTrace();
+			}
+		frequency = new PaymentFrequencyImpl("Quincenal 10000",15,10000);
+		try{
+			polAppDaoManager.getPaymentFrequencyDao().createIfNotExists(frequency);
+			}catch(SQLException e){
+				e.printStackTrace();
+			}
+		frequency = new PaymentFrequencyImpl("Mensual 5000",30,5000);
+		try{
+			polAppDaoManager.getPaymentFrequencyDao().createIfNotExists(frequency);
+			}catch(SQLException e){
+				e.printStackTrace();
+			}
+		frequency = new PaymentFrequencyImpl("Mensual 10000",30,10000);
+		try{
+			polAppDaoManager.getPaymentFrequencyDao().createIfNotExists(frequency);
+			}catch(SQLException e){
+				e.printStackTrace();
+			}
+		frequency = new PaymentFrequencyImpl("Mensual 20000",30,20000);
+		try{
+			polAppDaoManager.getPaymentFrequencyDao().createIfNotExists(frequency);
+			}catch(SQLException e){
+				e.printStackTrace();
+			}
+		frequency = new PaymentFrequencyImpl("Mensual 50000",30,50000);
+		try{
+			polAppDaoManager.getPaymentFrequencyDao().createIfNotExists(frequency);
+			}catch(SQLException e){
+				e.printStackTrace();
+			}
 		
-		frequency = new PaymentFrequencyImpl(2,"Semanal",15,1000);
-		polAppDaoManager.getPaymentFrequencyDao().createIfNotExists(frequency);
-		frequency = new PaymentFrequencyImpl(3,"Quincenal 2000",15,2000);
-		polAppDaoManager.getPaymentFrequencyDao().createIfNotExists(frequency);
-		frequency = new PaymentFrequencyImpl(4,"Quincenal 5000",15,5000);
-		polAppDaoManager.getPaymentFrequencyDao().createIfNotExists(frequency);
-		frequency = new PaymentFrequencyImpl(5,"Quincenal 10000",15,10000);
-		polAppDaoManager.getPaymentFrequencyDao().createIfNotExists(frequency);
-		frequency = new PaymentFrequencyImpl(6,"Mensual 5000",15,5000);
-		polAppDaoManager.getPaymentFrequencyDao().createIfNotExists(frequency);
-		frequency = new PaymentFrequencyImpl(7,"Mensual 10000",15,10000);
-		polAppDaoManager.getPaymentFrequencyDao().createIfNotExists(frequency);
-		frequency = new PaymentFrequencyImpl(8,"Mensual 20000",15,20000);
-		polAppDaoManager.getPaymentFrequencyDao().createIfNotExists(frequency);
-		frequency = new PaymentFrequencyImpl(9,"Mensual",15,5000);
-		polAppDaoManager.getPaymentFrequencyDao().createIfNotExists(frequency);
+		Brand brand = new BrandImpl("Yamaha");
+		polAppDaoManager.getBrandDao().createIfNotExists(brand);
+		Vehicle vehicle = new VehicleImpl("M123123",true,new Date(), 1000,"123512331", (BrandImpl) brand); 
+		
+		polAppDaoManager.getVehicleDao().createIfNotExists(vehicle);
+		Employee mark = new EmployeeImpl("1","Sergio","Monge","Monge",86882316,(VehicleImpl) vehicle);
+		polAppDaoManager.getEmployee().createIfNotExists(mark);
+		mark = new EmployeeImpl("2","Allan","Porras","Porras",86882316,(VehicleImpl) vehicle);
+		polAppDaoManager.getEmployee().createIfNotExists(mark);
+		mark = new EmployeeImpl("3","Jose","Pablo","Pablo",86882316,(VehicleImpl) vehicle);
+		polAppDaoManager.getEmployee().createIfNotExists(mark);
+		
+		
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -562,6 +639,44 @@ public class BusinessManagerImpl implements BusinessManager {
 			e.printStackTrace();
 		}
 		return result;
+	}
+
+	@Override
+	public List<Map<String,String>> listOfSellers() {
+		List<Map<String, String>> employees = new ArrayList<Map<String, String>>();
+		Map<String,String> map =null;
+		try {
+			for (Employee employee : polAppDaoManager.getEmployee().queryForAll()) {
+				map= new HashMap<String, String>();
+				map.put("Employee_Name", employee.getName()+ " " + employee.getMiddle_name());
+				map.put("Employee_ID", String.valueOf(employee.getIdEmployee()));
+				employees.add(map);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return employees;
+	}
+
+	@Override
+	public List<Map<String, String>> listOfPaymentMethods() {
+		List<Map<String, String>> payments = new ArrayList<Map<String, String>>();
+		Map<String,String> map =null;
+		try {
+			for (PaymentFrequency payment : polAppDaoManager.getPaymentFrequencyDao().queryForAll()) {
+				map= new HashMap<String, String>();
+				map.put("Payment_Name", payment.getName());
+				map.put("Payment_ID", String.valueOf(payment.getIdPaymentFrequency()));
+				payments.add(map);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return payments;
 	}
 	
 	
