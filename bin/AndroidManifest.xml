@@ -61,27 +61,48 @@
         </activity>
         <activity
             android:name="com.thinksoft.polapp.EditarProductosActivity"
-            android:label="@string/title_activity_editar_productos" >
+            android:label="@string/title_activity_editar_productos"
+            android:theme="@android:style/Theme.Holo.Light.Dialog" >
         </activity>
         <activity
             android:name="com.thinksoft.polapp.EditarClienteActivity"
-            android:label="@string/title_activity_editar_cliente" >
+            android:label="@string/title_activity_editar_cliente"
+            android:theme="@android:style/Theme.Holo.Light.Dialog" >
         </activity>
         <activity
             android:name="com.thinksoft.polapp.AgregarVehiculo"
-            android:label="@string/title_activity_agregar_vehiculo" >
+            android:label="@string/title_activity_agregar_vehiculo"
+            android:theme="@android:style/Theme.Holo.Light.Dialog" >
         </activity>
         <activity
             android:name="com.thinksoft.polapp.EditarVehiculo"
-            android:label="@string/title_activity_editar_vehiculo" >
+            android:label="@string/title_activity_editar_vehiculo"
+            android:theme="@android:style/Theme.Holo.Light.Dialog" >
         </activity>
         <activity
             android:name="com.thinksoft.polapp.EditarCobroActivity"
-            android:label="@string/title_activity_editar_cobro" >
+            android:label="@string/title_activity_editar_cobro"
+            android:theme="@android:style/Theme.Holo.Light.Dialog" >
         </activity>
         <activity
             android:name="com.thinksoft.polapp.PerfilClienteActivity"
             android:label="@string/title_activity_perfil_cliente" >
+        </activity>
+        <activity
+            android:name="com.thinksoft.polapp.HomeProductos"
+            android:label="@string/title_activity_home_productos" >
+        </activity>
+        <activity
+            android:name="com.thinksoft.polapp.HomeClientes"
+            android:label="@string/title_activity_home_clientes" >
+        </activity>
+        <activity
+            android:name="com.thinksoft.polapp.HomeVehiculos"
+            android:label="@string/title_activity_home_vehiculos" >
+        </activity>
+        <activity
+            android:name="com.thinksoft.polapp.HomeCobro"
+            android:label="@string/title_activity_home_cobro" >
         </activity>
     </application>
 

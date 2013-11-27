@@ -70,8 +70,8 @@ public class FleetListViewAdapter extends BaseAdapter {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		ViewHolder holder;
 		LayoutInflater inflater = activity.getLayoutInflater();
-		imgTrue= activity.getResources().getDrawable(R.drawable.check16px);
-		imgFalse= activity.getResources().getDrawable(R.drawable.cancel32px);
+		imgTrue= activity.getResources().getDrawable(R.drawable.check16listview);
+		imgFalse= activity.getResources().getDrawable(R.drawable.cancel16listview);
 		
 		if (convertView == null) {
 			convertView = inflater.inflate(R.layout.fleet_list_view_row, null);

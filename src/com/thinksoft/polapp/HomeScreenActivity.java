@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.text.Layout;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Display;
@@ -15,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.Toast;
@@ -29,12 +32,19 @@ import com.thinksoft.businesslayer.utils.ProductListViewAdapter;
 import com.thinksoft.models.databases.PolAppHelper;
 
 public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
+	
 	BusinessManager businessLayer;
 	ImageView btnAddProduct;
 	ImageView btnAddClient;
-	ImageView btnBills;
+	ImageView btnAddFlotilla;
 	ImageView btnAddCobro;
 	SlidingMenu menu;
+	ImageView btnSlidingVehicle;
+	ImageView btnSlidingProduct;
+	ImageView btnSlidingClient;
+	ImageView btnSlidingHome;
+	RelativeLayout layHome;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -43,17 +53,22 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 				.getConnectionSource());
 		btnAddProduct = (ImageView) findViewById(R.id.imgAgregarProductos);
 		btnAddClient = (ImageView) findViewById(R.id.imgAgregarClientes);
-		btnBills = (ImageView) findViewById(R.id.imgAgregarCobros);
+		btnAddFlotilla = (ImageView) findViewById(R.id.imgAgregarFlotilla);
 		btnAddCobro = (ImageView) findViewById(R.id.imgAgregarCobros);
+		/**
+		btnSlidingVehicle = (ImageView)findViewById(R.id.btnSlidingVehicle);
+		btnSlidingProduct =(ImageView)findViewById(R.id.btnSlidingProducts);
+		btnSlidingClient =(ImageView)findViewById(R.id.btnSlidingClient);
+		btnSlidingHome =(ImageView)findViewById(R.id.btnSlidingHome);
+**/
 		Resources res = getResources();
 		
 		Display display = getWindowManager().getDefaultDisplay();
 		@SuppressWarnings("deprecation")
 		int width = display.getWidth();
 		
-		
 	    menu = new SlidingMenu(this);
-	    menu.setMode(SlidingMenu.LEFT);
+	    menu.setMode(SlidingMenu.RIGHT);
 	    menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
 	   
 	    menu.setShadowWidth(20);
@@ -76,7 +91,7 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 		spec.setContent(R.id.tab2);
 		spec.setIndicator("", res.getDrawable(R.drawable.peoplegroup32px));
 		tabs.addTab(spec);
-
+		
 		spec = tabs.newTabSpec("tabProductos");
 		spec.setContent(R.id.tab1);
 		spec.setIndicator("", res.getDrawable(R.drawable.productprincipal));
@@ -107,6 +122,11 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 		listaClientes.setAdapter(adapter);
 		ProductListViewAdapter adapter2 = new ProductListViewAdapter(HomeScreenActivity.this, businessLayer.getAllProducts());
 		listaProductos.setAdapter(adapter2);
+		
+		registerForContextMenu(listaVehiculos);
+		registerForContextMenu(listaProductos);
+		registerForContextMenu(listaClientes);
+		
 
 		btnAddProduct.setOnClickListener(new OnClickListener() {
 			@Override
@@ -127,19 +147,19 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 			}
 		});
 		
-		btnBills.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				Intent intent = new Intent(getApplicationContext(),
-						AgregarCobroActivity.class);
-				startActivity(intent);
-			}
-		});
 		btnAddCobro.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(getApplicationContext(),AgregarCobroActivity.class);
+				startActivity(intent);
+			}
+		});
+		
+		btnAddFlotilla.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent intent= new Intent(getApplicationContext(), AgregarVehiculo.class);
 				startActivity(intent);
 			}
 		});
@@ -194,21 +214,67 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 				return false;
 			}
 			});		
+		Log.i("error", String.valueOf(listaVehiculos));
 		
-	
 	listaVehiculos.setOnItemLongClickListener(new OnItemLongClickListener() {
 
 		@Override
 		public boolean onItemLongClick(AdapterView<?> arg0, View view,
 				int pos, long arg3) {
-				
 	        registerForContextMenu(listaVehiculos);
 				return false;
 		}
-		});		
+		});	
+	/**
+	btnSlidingHome.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				menu.toggle(false);
+			}
+		});
+
+		btnSlidingProduct.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(getApplicationContext(),
+						HomeProductos.class);
+				startActivity(intent);
+			}
+		});
+
+		btnSlidingClient.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(getApplicationContext(),
+						HomeClientes.class);
+				startActivity(intent);
+			}
+		});
+
+		btnSlidingVehicle.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(getApplicationContext(),
+						HomeVehiculos.class);
+				startActivity(intent);
+			}
+		});
+		
+
+		layHome.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				menu.toggle(false);
+			}
+		});
+		**/
 	}
-	
-	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu1) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -227,11 +293,31 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
              menu.add(0, v.getId(), 0, "Eliminar");
 
      } 
+	 	    
+	 
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
-		TabHost tabs = (TabHost) findViewById(android.R.id.tabhost);
-		tabs.setup();
-	    switch (item.getItemId()) {
+		TabHost tabs = (TabHost) findViewById(android.R.id.tabhost);		
+        tabs.setup();
+        
+        if(item.getTitle().toString()=="Editar"){
+        	if(tabs.getCurrentTab()==2){
+	    		Intent intent = new Intent(HomeScreenActivity.this, EditarProductosActivity.class);
+	    		startActivity(intent);
+	    	}else if(tabs.getCurrentTab()== 1){
+	    		Intent intent = new Intent(HomeScreenActivity.this, EditarClienteActivity.class);
+	    		startActivity(intent);
+	    	}else if(tabs.getCurrentTab()== 0){
+	    		Intent intent = new Intent(HomeScreenActivity.this, EditarCobroActivity.class);
+	    		startActivity(intent);
+	    	} else if(tabs.getCurrentTab()==3){
+	    		Intent intent = new Intent(HomeScreenActivity.this, EditarVehiculo.class);
+	    		startActivity(intent);
+	    	}
+	    	return true;
+        }
+
+	 /**   switch (item.getItemId()) {
 	    case R.id.MenuHomeScreenEditar:
 	    	if(tabs.getCurrentTab()== R.id.tab1){
 	    		Intent intent = new Intent(HomeScreenActivity.this, EditarProductosActivity.class);
@@ -246,13 +332,14 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 	    		Intent intent = new Intent(HomeScreenActivity.this, EditarVehiculo.class);
 	    		startActivity(intent);
 	    	}
-	        return true;
+	    	return true;
+	    	  
 	    case R.id.MenuHomeScreenEliminar:
-	        Toast.makeText(getApplicationContext(), "Has pulsado la opción Eliminar", Toast.LENGTH_LONG).show();
+	        Toast.makeText(getApplicationContext(), "Has pulsado la opción Eliminar", Toast.LENGTH_LONG).show();	
 	        return true;
-		default:
-	        return super.onContextItemSelected(item);
-	    }
+	    }**/
+	    return super.onOptionsItemSelected(item);
+	    
 	}
 	
 	@Override
@@ -276,10 +363,30 @@ public boolean onOptionsItemSelected(MenuItem item) {
     		menu.toggle(true);
     	}
     	        return true;
+    case R.id.SlidingHomeLayout:
+    	menu.toggle(false);
+    	return true;
+    	
+    case R.id.SlidingClientLayout:
+    	Intent intent = new Intent(getApplicationContext(), HomeClientes.class);
+    	startActivity(intent);
     }
     return super.onOptionsItemSelected(item);
 }
 	
+
+@Override
+public void registerForContextMenu(View view) {
+	// TODO Auto-generated method stub
+	super.registerForContextMenu(view);
+}
+
+public void slidingClientMenu(){
+	Intent intent = new Intent(getApplicationContext(), HomeClientes.class);
+	startActivity(intent);
+	
+}
+
 }
 
 

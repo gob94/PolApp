@@ -40,6 +40,7 @@ public class SignIn extends OrmLiteBaseActivity<PolAppHelper> {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_sign_in);
 		bussinnessLayer = new BusinessManagerImpl(getHelper() .getConnectionSource());
+
 		java.util.Date d = new Date();
 		java.text.DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
 		
@@ -54,13 +55,16 @@ public class SignIn extends OrmLiteBaseActivity<PolAppHelper> {
 		User user = new UserImpl("admin", "123", "1", "Administrator", "Polaco", "Application");
 		bussinnessLayer.addUser(user);
 		Client client = new ClientImpl("Jonathan","Ruiz","Fallas",true);
+
 		bussinnessLayer.addClient(client);
 		Product pro = new ProductImpl("TELEV", "Samsung LED TV 32'", 14000000, 5);
+
 		bussinnessLayer.addProduct(pro);
 		Brand brand= new BrandImpl("Honda");
 		bussinnessLayer.addBrand(brand);
 		Vehicle veh= new VehicleImpl("5616423", true, d, 5161, "YVR", (BrandImpl) brand);
 		bussinnessLayer.addVechicle(veh);
+
 		final EditText username = (EditText) findViewById(R.id.txtUserNameSignIn);
 		final EditText password = (EditText) findViewById(R.id.txtPasswordSignIn);
 		TextView signUp = (TextView) findViewById(R.id.lblSignUp);

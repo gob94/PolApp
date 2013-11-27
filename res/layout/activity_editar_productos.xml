@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context=".ProductosActivity" >
+    tools:context=".EditarProductosActivity" >
     
     <Space android:layout_height="25dp" />
 
@@ -16,7 +16,7 @@
             android:id="@+id/lblCodeEditProduct"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="roboto-light"
+           
             android:textColor="#FF01A7EB"
             android:textSize="16sp"
             android:layout_marginLeft="2dp"
@@ -26,7 +26,7 @@
             android:id="@+id/txtCodeEditProduct"
             android:layout_width="154dp"
             android:layout_height="wrap_content"
-            android:fontFamily="roboto-light"
+         
             android:textSize="16sp"
             android:layout_marginLeft="2dp"
             android:ems="10" 
@@ -46,7 +46,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:fontFamily="roboto-light"
+       
             android:textColor="#FF01A7EB"
             android:textSize="16sp"
             android:layout_marginLeft="2dp"
@@ -56,7 +56,7 @@
             android:id="@+id/txtNameProductEditProduct"
             android:layout_width="154dp"
             android:layout_height="wrap_content"
-            android:fontFamily="roboto-light"
+            
             android:textSize="16sp"
             android:inputType="textPersonName"
             android:layout_marginLeft="10dp"
@@ -78,7 +78,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:fontFamily="roboto-light"
+            
             android:textColor="#FF01A7EB"
             android:textSize="16sp"
             android:layout_marginLeft="2dp"
@@ -88,7 +88,7 @@
             android:id="@+id/txtCostEditProduct"
             android:layout_width="154dp"
             android:layout_height="wrap_content"
-            android:fontFamily="roboto-light"
+            
             android:textSize="16sp"
             android:layout_marginLeft="10dp"
             android:inputType="number"
@@ -111,7 +111,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="2dp"
-            android:fontFamily="roboto-light"
+           
             android:textColor="#FF01A7EB"
             android:textSize="16sp"
             android:text="@string/lblQuantity" />
@@ -140,7 +140,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
-            android:fontFamily="roboto-light"
+          
             android:textColor="#91A5AE"
             android:textSize="16sp"
             android:drawableLeft="@drawable/check32px"
@@ -151,7 +151,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:fontFamily="roboto-light"
+            
             android:background="#FFFFFF"
             android:textColor="#91A5AE"
             android:textSize="16sp"

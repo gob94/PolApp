@@ -64,8 +64,8 @@ public class ClientListViewAdapter extends BaseAdapter implements Filterable {
 
 		ClientViewHolder holder;
 		LayoutInflater inflater = activity.getLayoutInflater();
-		imgTrue= activity.getResources().getDrawable(R.drawable.check16px);
-		imgFalse= activity.getResources().getDrawable(R.drawable.cancel32px);
+		imgTrue= activity.getResources().getDrawable(R.drawable.check16listview);
+		imgFalse= activity.getResources().getDrawable(R.drawable.cancel16listview);
 
 		if (convertView == null) {
 			convertView = inflater.inflate(R.layout.client_list_view_row, null);

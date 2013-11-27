@@ -18,6 +18,10 @@ import com.thinksoft.models.databases.PolAppHelper;
 import com.thinksoft.models.dtos.Product;
 import com.thinksoft.models.dtos.impl.ProductImpl;
 
+import com.thinksoft.businesslayer.utils.constants.DatabaseConstants;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.START_EMPTY_STRING;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.EMPTY_STRING;;
+
 
 public class ProductosActivity extends OrmLiteBaseActivity<PolAppHelper> {
 
@@ -55,7 +59,7 @@ public class ProductosActivity extends OrmLiteBaseActivity<PolAppHelper> {
 				String quantity= txtQuantity.toString();
 				String price= txtPrice.toString();
 				
-				if (bussinesManager.verifyProductInformation(code, name, quantity, price) == "") {
+				if (bussinesManager.verifyProductInformation(code, name, quantity, price) == EMPTY_STRING) {
 					
 					Toast toast = Toast.makeText(ProductosActivity.this,
 							"Por favor verifique sus datos",

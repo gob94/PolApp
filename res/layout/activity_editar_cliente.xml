@@ -31,7 +31,7 @@
                 android:id="@+id/txtNameEditClient"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@+id/lbEditlNombCliente"
+                
                 android:layout_weight="0"
                 android:ems="10" 
                 android:inputType="text"/>
@@ -49,7 +49,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:paddingLeft="10dp"
-                android:drawableRight="@+id/txtEditApellidoCliente"
+                
                 android:text="@string/lblFirstLastName"
                 android:textColor="#045FB4" />
 
@@ -57,7 +57,7 @@
                 android:id="@+id/txtFirstLastNameEditClient"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@+id/lblEditApellidoCliente"
+                
                 android:ems="10" 
                 android:inputType="text"/>
 
@@ -75,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
                 android:paddingLeft="10dp"
-                android:drawableRight="@+id/txtEditTelefonoCliente"
+                
                 android:text="@string/lblSecondLastName"
                 android:textColor="#045FB4" />
 
@@ -83,7 +83,7 @@
                 android:id="@+id/txtPhoneNumberEditClient"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@+id/lblTelefono"
+                
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="phone" >

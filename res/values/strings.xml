@@ -59,5 +59,9 @@
     <string name="mainMenu"> Menú principal</string>
     <string name="title_activity_editar_cobro">EditarCobroActivity</string>
     <string name="title_activity_perfil_cliente">PerfilClienteActivity</string>
+    <string name="title_activity_home_productos">HomeProductos</string>
+    <string name="title_activity_home_clientes">Clientes</string>
+    <string name="title_activity_home_vehiculos">HomeVehiculos</string>
+    <string name="title_activity_home_cobro">HomeCobro</string>
 
 </resources>
