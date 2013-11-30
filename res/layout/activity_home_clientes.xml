@@ -19,9 +19,11 @@
             android:orientation="vertical" >
 
             <RelativeLayout
+                android:id="@+id/layoutHomeClientList"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:clickable="True" >
+                android:clickable="True" 
+                android:onClick="onClick">
 
 
                 <TextView
@@ -44,9 +46,11 @@
             </LinearLayout>
 
             <RelativeLayout
+                android:id="@+id/layoutHomeClientAdd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:clickable="True">
+                android:clickable="True"
+                android:onClick="onClick">
 
                 <TextView
                     android:id="@+id/txtAddClientHome"
@@ -66,9 +70,11 @@
             </LinearLayout>
 
             <RelativeLayout
+                android:id="@+id/layoutHomeClientSearch"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:clickable="True">
+                android:clickable="True"
+                android:onClick="onClick">
 
 
                 <TextView

@@ -15,6 +15,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ImageView;
@@ -409,9 +411,7 @@ public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle sa
 public void onClick(View v) {
     switch (v.getId()){
         case R.id.SlidingHomeLayout:
-        	Intent intentH = new Intent(getApplicationContext(), HomeScreenActivity.class);
-            startActivity(intentH);
-
+        	menu.toggle(false);
             break;
         case R.id.SlidingProductsLayout:
             Intent intent = new Intent(getApplicationContext(), HomeProductos.class);
@@ -426,7 +426,6 @@ public void onClick(View v) {
         case R.id.SlidingClientLayout:
         	Intent intentC = new Intent(getApplicationContext(), HomeClientes.class);
             startActivity(intentC);
-
             break;
     }
 }
