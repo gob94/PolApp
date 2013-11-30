@@ -3,7 +3,10 @@ package com.thinksoft.models.dtos.impl;
 import java.util.Date;
 
 import com.j256.ormlite.field.DatabaseField;
+import com.thinksoft.models.dtos.Client;
+import com.thinksoft.models.dtos.Employee;
 import com.thinksoft.models.dtos.Order;
+import com.thinksoft.models.dtos.PaymentFrequency;
 
 public class OrderImpl implements Order {
 
@@ -20,13 +23,26 @@ public class OrderImpl implements Order {
 	@DatabaseField(useGetSet = true, defaultValue = "0")
 	protected boolean orderState;
 	@DatabaseField(useGetSet = true, foreign = true, foreignAutoCreate = true)
-	protected UserImpl userId;
+	protected EmployeeImpl employeeId;
 	@DatabaseField(useGetSet = true, canBeNull = false, foreign = true, foreignAutoCreate = true, columnName="clientId")
 	protected ClientImpl clientId;
 	@DatabaseField(useGetSet = true, canBeNull = false, foreign = true, foreignAutoCreate = true)
 	protected PaymentFrequencyImpl paymentFrequencyId;
 
-	public OrderImpl() {
+
+	public OrderImpl( Date creationDate, Date nextPaymentDate,
+			float finalBalance, float actualBalance, boolean orderState,
+			Employee employeeId, Client clientId,
+			PaymentFrequency paymentFrequencyId) {
+		super();
+		this.creationDate = creationDate;
+		this.nextPaymentDate = nextPaymentDate;
+		this.finalBalance = finalBalance;
+		this.actualBalance = actualBalance;
+		this.orderState = orderState;
+		this.employeeId = (EmployeeImpl) employeeId;
+		this.clientId = (ClientImpl) clientId;
+		this.paymentFrequencyId = (PaymentFrequencyImpl) paymentFrequencyId;
 	}
 
 	public int getOrderId() {
@@ -49,8 +65,8 @@ public class OrderImpl implements Order {
 		return actualBalance;
 	}
 
-	public UserImpl getUserId() {
-		return userId;
+	public EmployeeImpl getEmployeeId() {
+		return employeeId;
 	}
 
 	public ClientImpl getClientId() {
@@ -60,6 +76,8 @@ public class OrderImpl implements Order {
 	public PaymentFrequencyImpl getPaymentFrequencyId() {
 		return paymentFrequencyId;
 	}
+	
+	
 
 	@Override
 	public boolean getOrderState() {
@@ -85,8 +103,8 @@ public class OrderImpl implements Order {
 		this.actualBalance = actualBalance;
 	}
 
-	public void setUserId(UserImpl userId) {
-		this.userId = userId;
+	public void setEmployeeId(EmployeeImpl employeeId) {
+		this.employeeId = employeeId;
 	}
 
 	public void setClientId(ClientImpl clientId) {

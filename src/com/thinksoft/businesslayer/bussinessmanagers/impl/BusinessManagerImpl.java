@@ -1,51 +1,22 @@
 package com.thinksoft.businesslayer.bussinessmanagers.impl;
 
-import static com.thinksoft.businesslayer.utils.constants.Constants.NUMBER_OF_PRODUCTS_TO_DISPLAY;
-import static com.thinksoft.businesslayer.utils.constants.Constants.ZERO;
-import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.BRAND_ERROR_TAG;
-import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.CLIENT_ERROR_TAG;
-import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_CLIENTID;
-import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_FIRST_LASTNAME;
-import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_IDENTIFICATION;
-import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_LASTNAME;
-import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_NAME;
-import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_ORDERID;
-import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_ORDERSTATE;
-import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_PHONENUMBER;
-import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_SECOND_LASTNAME;
-import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_USERNAME;
-import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.EMPTY_STRING;
-import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.MINIMUM_PHONENUMBER_DIGITS;
-import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.PRODUCT_ERROR_TAG;
-import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.START_EMPTY_STRING;
-import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.USER_ERROR_TAG;
-import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.USER_INSERTED;
-import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.VEHICLE_ERROR_TAG;
-import static com.thinksoft.businesslayer.utils.constants.RowConstants.BRAND_COLUMN;
-import static com.thinksoft.businesslayer.utils.constants.RowConstants.CLIENT_ID_COLUMN;
-import static com.thinksoft.businesslayer.utils.constants.RowConstants.CODE_COLUMN;
-import static com.thinksoft.businesslayer.utils.constants.RowConstants.EXPEDITURE_COLUMN;
-import static com.thinksoft.businesslayer.utils.constants.RowConstants.FIRST_LASTNAME_COLUMN;
-import static com.thinksoft.businesslayer.utils.constants.RowConstants.FUNCTIONAL_COLUMN;
-import static com.thinksoft.businesslayer.utils.constants.RowConstants.LICENCE_COLUMN;
-import static com.thinksoft.businesslayer.utils.constants.RowConstants.MODEL_COLUMN;
-import static com.thinksoft.businesslayer.utils.constants.RowConstants.NAME_COLUMN;
-import static com.thinksoft.businesslayer.utils.constants.RowConstants.PRICE_COLUMN;
-import static com.thinksoft.businesslayer.utils.constants.RowConstants.PRODUCT_ID_COLUMN;
-import static com.thinksoft.businesslayer.utils.constants.RowConstants.QUANTITY_COLUMN;
-import static com.thinksoft.businesslayer.utils.constants.RowConstants.RTV_COLUMN;
-import static com.thinksoft.businesslayer.utils.constants.RowConstants.SECOND_LASTNAME_COLUMN;
-import static com.thinksoft.businesslayer.utils.constants.RowConstants.STATUS_COLUMN;
+import static com.thinksoft.businesslayer.utils.constants.Constants.*;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.*;
+import static com.thinksoft.businesslayer.utils.constants.RowConstants.*;
+
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.Callable;
 
 import android.util.Log;
 
+import com.j256.ormlite.misc.TransactionManager;
 import com.j256.ormlite.stmt.QueryBuilder;
 import com.j256.ormlite.support.ConnectionSource;
 import com.thinksoft.businesslayer.bussinessmanagers.BusinessManager;
@@ -64,6 +35,7 @@ import com.thinksoft.models.dtos.Vehicle;
 import com.thinksoft.models.dtos.impl.AddressImpl;
 import com.thinksoft.models.dtos.impl.BrandImpl;
 import com.thinksoft.models.dtos.impl.EmployeeImpl;
+import com.thinksoft.models.dtos.impl.OrderImpl;
 import com.thinksoft.models.dtos.impl.PaymentFrequencyImpl;
 import com.thinksoft.models.dtos.impl.UserImpl;
 import com.thinksoft.models.dtos.impl.VehicleImpl;
@@ -677,6 +649,68 @@ public class BusinessManagerImpl implements BusinessManager {
 		}
 		
 		return payments;
+	}
+
+	@Override
+	public String verifyOrderInformation(int clientId, int employeeId, int paymentId) {
+		String result=EMPTY_STRING;
+		try {
+			if(polAppDaoManager.getClientDao().idExists(clientId)){
+				result=COLUMN_CLIENTID;
+			}else if (polAppDaoManager.getEmployee().idExists(employeeId)){
+				result=COLUMN_EMPLOYEE_ID;
+			}else if(polAppDaoManager.getPaymentFrequencyDao().idExists(paymentId)){
+				result=COLUMN_PAYMENTFREQUENCY_ID;
+			}
+		} catch (SQLException e) {
+			Log.i("Error on verification", e.getMessage());
+		}
+		return result;
+	}
+
+	@Override
+	public Order addOrder(int clientId, int employeeId, int paymentId, float total) {
+		Order order = null;
+		try {
+			Date creationDate = new Date();
+			Calendar calendarHelper = Calendar.getInstance();
+			calendarHelper.setTime(creationDate);
+			calendarHelper.add(Calendar.DATE, 1);
+			
+
+			Date nextPaymentDate =calendarHelper.getTime();
+			
+			
+			Employee employee = polAppDaoManager.getEmployee().queryForId(employeeId);
+			PaymentFrequency payment = polAppDaoManager.getPaymentFrequencyDao().queryForId(paymentId);
+			Client client = polAppDaoManager.getClientDao().queryForId(clientId);
+			
+			order = new OrderImpl(creationDate, nextPaymentDate , total, total, true, employee, client, payment);
+		
+		
+			polAppDaoManager.getOrderDao().create(order);
+		} catch (SQLException e) {
+			Log.i("Error adding order", e.getMessage());
+		}
+		return order;
+	}
+
+	@Override
+	public boolean addProductsToOrder(Order order, List<Integer> productsId, ConnectionSource connectionSource) {
+		try {
+			TransactionManager.callInTransaction(connectionSource, new Callable<Void>() {
+			    public Void call() throws Exception {
+			        return null;
+			    }
+			});
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		for (Integer integer : productsId) {
+			
+		}
+		return false;
 	}
 	
 	

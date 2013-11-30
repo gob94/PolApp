@@ -3,7 +3,6 @@ package com.thinksoft.businesslayer.utils;
 import java.util.List;
 import java.util.Map;
 
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -22,9 +21,7 @@ public class EmployeeSpinnerAdapter extends BaseAdapter implements
 
 	private OrmLiteBaseActivity<PolAppHelper> activity;
 
-	public EmployeeSpinnerAdapter(OrmLiteBaseActivity<PolAppHelper> activity,
-			List<Map<String, String>> data) {
-		Log.i("list size", String.valueOf(data.size()));
+	public EmployeeSpinnerAdapter(OrmLiteBaseActivity<PolAppHelper> activity,List<Map<String, String>> data){
 		this.data = data;
 		this.activity = activity;
 	}

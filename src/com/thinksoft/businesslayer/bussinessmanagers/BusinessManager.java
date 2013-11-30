@@ -3,8 +3,10 @@ package com.thinksoft.businesslayer.bussinessmanagers;
 import java.util.List;
 import java.util.Map;
 
+import com.j256.ormlite.support.ConnectionSource;
 import com.thinksoft.models.dtos.Brand;
 import com.thinksoft.models.dtos.Client;
+import com.thinksoft.models.dtos.Order;
 import com.thinksoft.models.dtos.Product;
 import com.thinksoft.models.dtos.User;
 import com.thinksoft.models.dtos.Vehicle;
@@ -61,6 +63,16 @@ public interface BusinessManager {
 	public double getProductPrice(int id);
 	
 	public void addDefaultOrderValues();
+	
 	public List<Map<String,String>> listOfSellers();
+	
 	public List<Map<String,String>> listOfPaymentMethods();
+	
+	public String verifyOrderInformation(int clientId, int employeeId, int paymentId);
+
+	public Order addOrder(int clientId, int employeeId, int paymentId, float total);
+
+	boolean addProductsToOrder(Order order, List<Integer> productsId,
+			ConnectionSource connectionSource);
+	
 }

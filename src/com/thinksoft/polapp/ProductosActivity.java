@@ -1,6 +1,7 @@
 package com.thinksoft.polapp;
 
 
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.EMPTY_STRING;
 import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.START_EMPTY_STRING;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,10 +18,6 @@ import com.thinksoft.businesslayer.bussinessmanagers.impl.BusinessManagerImpl;
 import com.thinksoft.models.databases.PolAppHelper;
 import com.thinksoft.models.dtos.Product;
 import com.thinksoft.models.dtos.impl.ProductImpl;
-
-import com.thinksoft.businesslayer.utils.constants.DatabaseConstants;
-import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.START_EMPTY_STRING;
-import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.EMPTY_STRING;;
 
 
 public class ProductosActivity extends OrmLiteBaseActivity<PolAppHelper> {

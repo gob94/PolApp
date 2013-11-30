@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -28,7 +29,7 @@ public class AgregarCobroActivity extends OrmLiteBaseActivity<PolAppHelper> {
 	EditText txtTotal;
 	TextView lblProductos;
 	Spinner spnEmployee;
-	
+	Button btnSave;
 	List<Integer> products_ids;
 	BusinessManager businessLayer;
 	Spinner spnPayment;
@@ -48,6 +49,8 @@ public class AgregarCobroActivity extends OrmLiteBaseActivity<PolAppHelper> {
 		lblProductos = (TextView) findViewById(R.id.lblProductsAddOrder);
 		spnPayment = (Spinner) findViewById(R.id.spnPaymentModeAddOrder);
 		spnEmployee = (Spinner) findViewById(R.id.spnSellerAddOrder);
+		btnSave = (Button) findViewById(R.id.btnSaveAddOrder);
+		
 		PaymentFrequencySpinnerAdapter adapter = new PaymentFrequencySpinnerAdapter(this, businessLayer.listOfPaymentMethods());
 		spnPayment.setAdapter(adapter);
 		EmployeeSpinnerAdapter adapterEmployee = new EmployeeSpinnerAdapter(this, businessLayer.listOfSellers());
@@ -80,7 +83,22 @@ public class AgregarCobroActivity extends OrmLiteBaseActivity<PolAppHelper> {
 				startActivityForResult(intent, PRODUCT_LIST_CODE);
 			}
 		});
-	
+		
+		btnSave.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				TextView employee = (TextView) spnEmployee.getSelectedItem(); 
+				TextView payment = (TextView) spnEmployee.getSelectedItem(); 
+				
+				int clientId = (Integer) txtClient.getTag();
+				double total = Double.valueOf(txtTotal.getText().toString());
+				int employeeId = (Integer) employee.getTag();
+				int paymentId = (Integer) payment.getTag();
+				
+				
+			}
+		});
 	}
 	
 	

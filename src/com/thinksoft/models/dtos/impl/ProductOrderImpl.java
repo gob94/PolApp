@@ -16,7 +16,6 @@ public class ProductOrderImpl implements ProductOrder {
 	protected ProductImpl product;
 	
 	public ProductOrderImpl() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	public int getQuantity() {

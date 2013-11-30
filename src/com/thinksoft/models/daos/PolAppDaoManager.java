@@ -30,7 +30,7 @@ public interface PolAppDaoManager {
 
 	public Dao<Payment, Integer> getPaymentDao();
 
-	public Dao<PaymentFrequency, Void> getPaymentFrequencyDao();
+	public Dao<PaymentFrequency, Integer> getPaymentFrequencyDao();
  
 	public Dao<Product, Integer> getProductDao();
 
