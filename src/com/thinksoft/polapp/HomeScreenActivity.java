@@ -9,10 +9,12 @@ import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Display;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ImageView;
@@ -55,12 +57,15 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 		btnAddClient = (ImageView) findViewById(R.id.imgAgregarClientes);
 		btnAddFlotilla = (ImageView) findViewById(R.id.imgAgregarFlotilla);
 		btnAddCobro = (ImageView) findViewById(R.id.imgAgregarCobros);
-		/**
+
 		btnSlidingVehicle = (ImageView)findViewById(R.id.btnSlidingVehicle);
 		btnSlidingProduct =(ImageView)findViewById(R.id.btnSlidingProducts);
 		btnSlidingClient =(ImageView)findViewById(R.id.btnSlidingClient);
 		btnSlidingHome =(ImageView)findViewById(R.id.btnSlidingHome);
-**/
+		
+	
+
+		
 		Resources res = getResources();
 		
 		Display display = getWindowManager().getDefaultDisplay();
@@ -225,6 +230,8 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 				return false;
 		}
 		});	
+	
+	
 	/**
 	btnSlidingHome.setOnClickListener(new OnClickListener() {
 
@@ -342,6 +349,9 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 	    
 	}
 	
+	
+	
+	
 	@Override
 	public void onBackPressed() {
 		if(menu.isMenuShowing()){menu.toggle();}
@@ -386,6 +396,41 @@ public void slidingClientMenu(){
 	startActivity(intent);
 	
 }
+public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    View view = inflater.inflate(R.layout.menulateral, container, false);
+
+    view.findViewById(R.id.SlidingHomeLayout).setOnClickListener((OnClickListener) this);
+    view.findViewById(R.id.SlidingProductsLayout).setOnClickListener((OnClickListener) this);
+    view.findViewById(R.id.SlidingVehicleLayout).setOnClickListener((OnClickListener) this);
+    view.findViewById(R.id.SlidingClientLayout).setOnClickListener((OnClickListener) this);
+	return view;
+}
+
+public void onClick(View v) {
+    switch (v.getId()){
+        case R.id.SlidingHomeLayout:
+        	Intent intentH = new Intent(getApplicationContext(), HomeScreenActivity.class);
+            startActivity(intentH);
+
+            break;
+        case R.id.SlidingProductsLayout:
+            Intent intent = new Intent(getApplicationContext(), HomeProductos.class);
+            startActivity(intent);
+
+            break;
+        case R.id.SlidingVehicleLayout:
+        	Intent intentV = new Intent(getApplicationContext(), HomeVehiculos.class);
+            startActivity(intentV);
+
+            break;
+        case R.id.SlidingClientLayout:
+        	Intent intentC = new Intent(getApplicationContext(), HomeClientes.class);
+            startActivity(intentC);
+
+            break;
+    }
+}
+
 
 }
 

@@ -22,7 +22,8 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/SlidingHomeLayout">
+                android:id="@+id/SlidingHomeLayout"
+                android:onClick="onClick">
 
                 <ImageView
                     android:id="@+id/btnSlidingHome"
@@ -55,7 +56,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clickable="True"
-                android:id="@+id/SlidingProductsLayout">
+                android:id="@+id/SlidingProductsLayout"
+                android:onClick="onClick">
 
                 <ImageView
                     android:id="@+id/btnSlidingProducts"
@@ -87,7 +89,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clickable="True"
-                android:id="@+id/SlidingVehicleLayout">
+                android:id="@+id/SlidingVehicleLayout"
+                android:onClick="onClick">
 
                 <ImageView
                     android:id="@+id/btnSlidingVehicle"
@@ -119,7 +122,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clickable="True"
-                
+                android:onClick="onClick"
                 android:id="@+id/SlidingClientLayout">
 
                 <ImageView
