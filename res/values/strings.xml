@@ -25,8 +25,8 @@
     <string name="lblPaymentFrequency">Modo de cobro</string>
     <string name="lblProducts">Productos comprados</string>
     <string name="lblAddress">Dirección</string>
-    <string name="lblFirstLastName">Apellido 1</string>
-    <string name="lblSecondLastName">Apellido 2</string>
+    <string name="lblFirstLastName">Apellido</string>
+    <string name="lblSecondLastName">Apellido</string>
     <string name="lblEditProductPopUp">Editar</string>
     <string name="lblPlate">Placa</string>
     <string name="lblBrand">Marca</string>
@@ -63,5 +63,8 @@
     <string name="title_activity_home_clientes">Clientes</string>
     <string name="title_activity_home_vehiculos">HomeVehiculos</string>
     <string name="title_activity_home_cobro">HomeCobro</string>
+    <string name="title_activity_perfil_productos">PerfilProductos</string>
+    <string name="title_activity_perfil_vehiculo">Perfil Vehiculo</string>
+    <string name="title_activity_perfil_cobros">Perfil Cobros</string>
 
 </resources>

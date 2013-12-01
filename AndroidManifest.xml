@@ -104,6 +104,18 @@
             android:name="com.thinksoft.polapp.HomeCobro"
             android:label="@string/title_activity_home_cobro" >
         </activity>
+        <activity
+            android:name="com.thinksoft.polapp.PerfilProductos"
+            android:label="@string/title_activity_perfil_productos" >
+        </activity>
+        <activity
+            android:name="com.thinksoft.polapp.PerfilVehiculo"
+            android:label="@string/title_activity_perfil_vehiculo" >
+        </activity>
+        <activity
+            android:name="com.thinksoft.polapp.PerfilCobros"
+            android:label="@string/title_activity_perfil_cobros" >
+        </activity>
     </application>
 
 </manifest>
