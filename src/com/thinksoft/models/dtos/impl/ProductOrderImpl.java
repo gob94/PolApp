@@ -1,6 +1,8 @@
 package com.thinksoft.models.dtos.impl;
 
 import com.j256.ormlite.field.DatabaseField;
+import com.thinksoft.models.dtos.Order;
+import com.thinksoft.models.dtos.Product;
 import com.thinksoft.models.dtos.ProductOrder;
 
 public class ProductOrderImpl implements ProductOrder {
@@ -18,6 +20,15 @@ public class ProductOrderImpl implements ProductOrder {
 	public ProductOrderImpl() {
 	}
 	
+	public ProductOrderImpl(int quantity, int total, Order order,
+			Product product) {
+		super();
+		this.quantity = quantity;
+		this.total = total;
+		this.order = (OrderImpl) order;
+		this.product = (ProductImpl) product;
+	}
+
 	public int getQuantity() {
 		return quantity;
 	}

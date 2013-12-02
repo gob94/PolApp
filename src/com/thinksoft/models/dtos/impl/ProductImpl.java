@@ -12,17 +12,16 @@ public class ProductImpl implements Product{
 	@DatabaseField(useGetSet=true, canBeNull=false)
 	protected String name;
 	@DatabaseField(useGetSet=true, canBeNull=false, defaultValue="0")
-	protected float quantity;
+	protected long quantity;
 	@DatabaseField(useGetSet=true, canBeNull=false, defaultValue="0")
-	protected float price;
+	protected long price;
 	
 
 	public ProductImpl() {
-		// TODO Auto-generated constructor stub
 	}
 	
-	public ProductImpl(String code, String name, float quantity,
-			float price) {
+	public ProductImpl(String code, String name, long quantity,
+			long price) {
 		super();
 		this.code = code;
 		this.name = name;
@@ -54,19 +53,19 @@ public class ProductImpl implements Product{
 		this.name = name;
 	}
 
-	public float getQuantity() {
+	public long getQuantity() {
 		return quantity;
 	}
 
-	public void setQuantity(float quantity) {
+	public void setQuantity(long quantity) {
 		this.quantity = quantity;
 	}
 
-	public float getPrice() {
+	public long getPrice() {
 		return price;
 	}
 
-	public void setPrice(float price) {
+	public void setPrice(long price) {
 		this.price = price;
 	}
 	

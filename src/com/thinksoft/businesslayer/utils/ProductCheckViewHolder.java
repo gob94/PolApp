@@ -9,6 +9,7 @@ public class ProductCheckViewHolder {
 	TextView txtCode;
 	TextView txtQuantity;
 	TextView txtPrice;
+	
 	public CheckBox getChkProduct() {
 		return chkProduct;
 	}

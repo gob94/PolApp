@@ -34,7 +34,7 @@ public interface PolAppDaoManager {
  
 	public Dao<Product, Integer> getProductDao();
 
-	public Dao<ProductOrder, Void> getProductOrderDao();
+	public Dao<ProductOrder, Integer> getProductOrderDao();
 
 	public Dao<User, Integer> getUserDao();
 

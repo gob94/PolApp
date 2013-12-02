@@ -3,10 +3,19 @@ package com.thinksoft.polapp;
 import static com.thinksoft.businesslayer.utils.constants.Constants.PRODUCTS_IDS_KEY;
 import static com.thinksoft.businesslayer.utils.constants.RowConstants.CLIENT_ID_COLUMN;
 import static com.thinksoft.businesslayer.utils.constants.RowConstants.NAME_COLUMN;
+import static com.thinksoft.businesslayer.utils.constants.Constants.CLIENT_LIST_CODE;
 
-import java.util.ArrayList;
-import java.util.List;
+import static com.thinksoft.businesslayer.utils.constants.Constants.PAYMENT_ID;
 
+import static com.thinksoft.businesslayer.utils.constants.Constants.PAYMENT_NAME;
+import static com.thinksoft.businesslayer.utils.constants.Constants.EMPLOYEE_ID;
+
+import static com.thinksoft.businesslayer.utils.constants.Constants.EMPLOYEE_NAME;
+import static com.thinksoft.businesslayer.utils.constants.Constants.PRODUCT_LIST_CODE;
+import java.util.HashMap;
+import java.util.Map;
+
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,6 +32,7 @@ import com.thinksoft.businesslayer.bussinessmanagers.impl.BusinessManagerImpl;
 import com.thinksoft.businesslayer.utils.EmployeeSpinnerAdapter;
 import com.thinksoft.businesslayer.utils.PaymentFrequencySpinnerAdapter;
 import com.thinksoft.models.databases.PolAppHelper;
+import com.thinksoft.models.dtos.Order;
 
 public class AgregarCobroActivity extends OrmLiteBaseActivity<PolAppHelper> {
 	EditText txtClient;
@@ -30,12 +40,11 @@ public class AgregarCobroActivity extends OrmLiteBaseActivity<PolAppHelper> {
 	TextView lblProductos;
 	Spinner spnEmployee;
 	Button btnSave;
-	List<Integer> products_ids;
+	Map<Integer,Integer> products_ids;
 	BusinessManager businessLayer;
 	Spinner spnPayment;
-	
-	public static int CLIENT_LIST_CODE = 100;
-	public static int PRODUCT_LIST_CODE = 105;
+
+	@SuppressLint("UseSparseArrays")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -43,7 +52,7 @@ public class AgregarCobroActivity extends OrmLiteBaseActivity<PolAppHelper> {
 
 		businessLayer = new BusinessManagerImpl(getHelper().getConnectionSource());
 		
-		products_ids = new ArrayList<Integer>();
+		products_ids = new HashMap<Integer,Integer>();
 		txtClient= (EditText) findViewById(R.id.txtClientAddOrder);
 		txtTotal= (EditText) findViewById(R.id.txtTotalAddOrder);
 		lblProductos = (TextView) findViewById(R.id.lblProductsAddOrder);
@@ -77,7 +86,7 @@ public class AgregarCobroActivity extends OrmLiteBaseActivity<PolAppHelper> {
 				Bundle bundle = new Bundle();
 				Intent intent = new Intent(AgregarCobroActivity.this, ListaProductosActivity.class);
 				if(products_ids.size()>0){
-					bundle.putIntegerArrayList(PRODUCTS_IDS_KEY, (ArrayList<Integer>) products_ids);
+					bundle.putSerializable(PRODUCTS_IDS_KEY, (HashMap<Integer,Integer>) products_ids);
 					intent.putExtras(bundle);
 				}
 				startActivityForResult(intent, PRODUCT_LIST_CODE);
@@ -86,22 +95,27 @@ public class AgregarCobroActivity extends OrmLiteBaseActivity<PolAppHelper> {
 		
 		btnSave.setOnClickListener(new OnClickListener() {
 			
+			@SuppressWarnings("unchecked")
 			@Override
 			public void onClick(View v) {
-				TextView employee = (TextView) spnEmployee.getSelectedItem(); 
-				TextView payment = (TextView) spnEmployee.getSelectedItem(); 
+				Map<String,String> employee = (HashMap<String, String>) spnEmployee.getSelectedItem(); 
+				Map<String,String> payment = (HashMap<String, String>) spnPayment.getSelectedItem(); 
 				
 				int clientId = (Integer) txtClient.getTag();
 				double total = Double.valueOf(txtTotal.getText().toString());
-				int employeeId = (Integer) employee.getTag();
-				int paymentId = (Integer) payment.getTag();
+				int employeeId = Integer.valueOf(employee.get(EMPLOYEE_ID));
+				int paymentId = Integer.valueOf(payment.get(PAYMENT_ID));
 				
-				
+				businessLayer.verifyOrderInformation(clientId, employeeId, paymentId);
+				Order order = businessLayer.addOrder(clientId, employeeId, paymentId,(float) total);
+				businessLayer.addProductsToOrder(order, products_ids, getHelper().getConnectionSource());
+				finish();
 			}
 		});
 	}
 	
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
@@ -117,7 +131,7 @@ public class AgregarCobroActivity extends OrmLiteBaseActivity<PolAppHelper> {
 			if(resultCode==Activity.RESULT_OK){
 				Bundle bundle = data.getExtras();
 				if(bundle!=null){
-					products_ids = bundle.getIntegerArrayList(PRODUCTS_IDS_KEY);
+					products_ids = (HashMap<Integer, Integer>) bundle.getSerializable(PRODUCTS_IDS_KEY);
 					txtTotal.setText(String.valueOf(setTotal(products_ids)));
 				}
 			}
@@ -125,10 +139,10 @@ public class AgregarCobroActivity extends OrmLiteBaseActivity<PolAppHelper> {
 	}
 
 	
-	public double setTotal(List<Integer> ids){
+	public double setTotal(Map<Integer,Integer> ids){
 		double total=0;
-		for (Integer id : ids) {
-			total = total+businessLayer.getProductPrice(id);
+		for (Integer id : ids.keySet()) {
+			total = total+(businessLayer.getProductPrice(id)*ids.get(id));
 		}
 		return total;
 		

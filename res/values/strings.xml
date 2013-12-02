@@ -63,5 +63,6 @@
     <string name="title_activity_home_clientes">Clientes</string>
     <string name="title_activity_home_vehiculos">HomeVehiculos</string>
     <string name="title_activity_home_cobro">HomeCobro</string>
+    <string name="title_activity_quantity_selector_product_check_list">QuantitySelectorProductCheckListActivity</string>
 
 </resources>

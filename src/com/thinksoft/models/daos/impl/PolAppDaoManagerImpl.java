@@ -29,7 +29,7 @@ public class PolAppDaoManagerImpl implements PolAppDaoManager {
 	private Dao<Payment, Integer> paymentDao;
 	private Dao<PaymentFrequency, Integer> paymentFrequencyDao;
 	private Dao<Product, Integer> productDao;
-	private Dao<ProductOrder, Void> productOrderDao;
+	private Dao<ProductOrder, Integer> productOrderDao;
 	private Dao<User, Integer> userDao;
 	private Dao<Vehicle, Integer> vehicleDao;
 
@@ -91,7 +91,7 @@ public class PolAppDaoManagerImpl implements PolAppDaoManager {
 		return productDao;
 	}
 
-	public Dao<ProductOrder, Void> getProductOrderDao() {
+	public Dao<ProductOrder, Integer> getProductOrderDao() {
 		return productOrderDao;
 	}
 

@@ -70,8 +70,8 @@ public class ProductosActivity extends OrmLiteBaseActivity<PolAppHelper> {
 					
 				}else{
 
-					 Float quantity1=Float.parseFloat(txtQuantity.getText().toString());
-					 Float price1= Float.parseFloat(txtPrice.getText().toString());
+					 long quantity1=Long.parseLong(txtQuantity.getText().toString());
+					 long price1= Long.parseLong(txtPrice.getText().toString());
 					
 					Product product = createProduct(code, name, quantity1, price1);
 					if (bussinesManager.addProduct(product) == false) {
@@ -120,7 +120,7 @@ public class ProductosActivity extends OrmLiteBaseActivity<PolAppHelper> {
 		return true;
 	}
 	
-	public Product createProduct(String code, String name, float quantity, float price ){
+	public Product createProduct(String code, String name, long quantity, long price ){
 		Product product =null;
 		
 		if(code!= null || name!= null || quantity < ZERO || price < ZERO ){
@@ -132,8 +132,8 @@ public class ProductosActivity extends OrmLiteBaseActivity<PolAppHelper> {
 	public void registerProduct (){
 		String code = txtCode.getText().toString();
 		String name= txtName.getText().toString();
-		float quantity=Float.parseFloat(txtQuantity.getText().toString());
-		float price= Integer.parseInt(txtPrice.getText().toString());
+		long quantity=Long.parseLong(txtQuantity.getText().toString());
+		long price= Long.parseLong(txtPrice.getText().toString());
 		
 		Product product = createProduct(code, name, quantity, price);
 		if(bussinesManager.addProduct(product)){

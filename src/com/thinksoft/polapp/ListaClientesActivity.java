@@ -79,25 +79,25 @@ public class ListaClientesActivity extends OrmLiteBaseActivity<PolAppHelper> {
 	 @Override
      public void onCreateContextMenu(ContextMenu menu, final View view, ContextMenuInfo menuInfo)
      {
-             super.onCreateContextMenu(menu, view, menuInfo);
-             menu.add(OPTIONS_GROUP_ID, SELECT_OPTION_ID,FIRST_OPTION, SELECT_ITEM).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+         super.onCreateContextMenu(menu, view, menuInfo);
+         menu.add(OPTIONS_GROUP_ID, SELECT_OPTION_ID,FIRST_OPTION, SELECT_ITEM).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+			
+			@Override
+			public boolean onMenuItemClick(MenuItem item) {
+				ClientViewHolder client = (ClientViewHolder) view.getTag();
+				String clientName = client.txtName.getText().toString()+" "+client.txtFirstLastName.getText().toString()+" "+client.txtSecondLastName.getText().toString();
+				Bundle bundle = getIntent().getExtras()==null ? new Bundle():getIntent().getExtras();
 				
-				@Override
-				public boolean onMenuItemClick(MenuItem item) {
-					ClientViewHolder client = (ClientViewHolder) view.getTag();
-					String clientName = client.txtName.getText().toString()+" "+client.txtFirstLastName.getText().toString()+" "+client.txtSecondLastName.getText().toString();
-					Bundle bundle = getIntent().getExtras()==null ? new Bundle():getIntent().getExtras();
-					
-					bundle.putInt(CLIENT_ID_COLUMN, client.clientId);
-					bundle.putString(NAME_COLUMN, clientName);
-					getIntent().putExtras(bundle);
-					
-					setResult(Activity.RESULT_OK, getIntent());
-					finish();
-					return true;
-				}
-			});
-             menu.add(OPTIONS_GROUP_ID, CANCEL_OPTION_ID, SECOND_OPTION, CANCEL_SELECT_ITEM); 
+				bundle.putInt(CLIENT_ID_COLUMN, client.clientId);
+				bundle.putString(NAME_COLUMN, clientName);
+				getIntent().putExtras(bundle);
+				
+				setResult(Activity.RESULT_OK, getIntent());
+				finish();
+				return true;
+			}
+		});
+        menu.add(OPTIONS_GROUP_ID, CANCEL_OPTION_ID, SECOND_OPTION, CANCEL_SELECT_ITEM); 
 
      } 
 }

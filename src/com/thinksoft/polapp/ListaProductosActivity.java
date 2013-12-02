@@ -1,14 +1,19 @@
 package com.thinksoft.polapp;
 
 import static com.thinksoft.businesslayer.utils.constants.Constants.PRODUCTS_IDS_KEY;
+import static com.thinksoft.businesslayer.utils.constants.Constants.QUANTITY_SELECTOR_CODE;
 import static com.thinksoft.businesslayer.utils.constants.Constants.SELECTED_FLAG;
+import static com.thinksoft.businesslayer.utils.constants.Constants.VIEW_POSITION;
 import static com.thinksoft.businesslayer.utils.constants.RowConstants.PRODUCT_ID_COLUMN;
+import static com.thinksoft.businesslayer.utils.constants.RowConstants.QUANTITY_COLUMN;
+import static com.thinksoft.businesslayer.utils.constants.RowConstants.SELECTED_QUANTITY_COLUMN;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -24,6 +29,7 @@ import com.thinksoft.businesslayer.bussinessmanagers.BusinessManager;
 import com.thinksoft.businesslayer.bussinessmanagers.impl.BusinessManagerImpl;
 import com.thinksoft.businesslayer.utils.ProductCheckListViewAdapter;
 import com.thinksoft.models.databases.PolAppHelper;
+
 
 public class ListaProductosActivity extends OrmLiteBaseActivity<PolAppHelper> {
 
@@ -41,10 +47,13 @@ public class ListaProductosActivity extends OrmLiteBaseActivity<PolAppHelper> {
 		List<Map<String,String>> list = businessLayer.getAllProducts();
 		Bundle bundle = getIntent().getExtras();
 		if(bundle!=null){
-
+			@SuppressWarnings("unchecked")
+			Map<Integer,Integer> ids = (HashMap<Integer, Integer>) bundle.getSerializable(PRODUCTS_IDS_KEY);
 			for (Map<String, String> map : list) {
-				if(bundle.getIntegerArrayList(PRODUCTS_IDS_KEY).contains(Integer.valueOf(map.get(PRODUCT_ID_COLUMN)))){
+				int prodId = Integer.valueOf(map.get(PRODUCT_ID_COLUMN));
+				if(ids.containsKey(prodId)){
 					map.put(SELECTED_FLAG, SELECTED_FLAG);
+					map.put(SELECTED_QUANTITY_COLUMN,String.valueOf(ids.get(prodId)));
 				}
 			}
 		}
@@ -76,7 +85,7 @@ public class ListaProductosActivity extends OrmLiteBaseActivity<PolAppHelper> {
 			@Override
 			public void onClick(View arg0) {
 				Bundle bundle =new Bundle();
-				bundle.putIntegerArrayList(PRODUCTS_IDS_KEY, (ArrayList<Integer>) adapter.checkedList);
+				bundle.putSerializable(PRODUCTS_IDS_KEY, (HashMap<Integer, Integer>) adapter.checkedList);
 				getIntent().putExtras(bundle);
 				setResult(Activity.RESULT_OK, getIntent());
 				finish();
@@ -88,6 +97,25 @@ public class ListaProductosActivity extends OrmLiteBaseActivity<PolAppHelper> {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.lista_productos, menu);
 		return true;
+	}
+	
+	
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if(requestCode==QUANTITY_SELECTOR_CODE){
+			if(resultCode==Activity.RESULT_OK){
+				Bundle extras = data.getExtras();
+				if(extras!=null){
+					String quantity = String.valueOf(extras.getInt(QUANTITY_COLUMN));
+					Map <String, String> item = adapter.list.get(extras.getInt(VIEW_POSITION));
+					item.put(SELECTED_QUANTITY_COLUMN, quantity);
+					adapter.checkedList.put(Integer.valueOf(item.get(PRODUCT_ID_COLUMN)), Integer.valueOf(quantity));
+					adapter.notifyDataSetChanged();
+				}
+			}
+		}
 	}
 
 }

@@ -22,13 +22,17 @@ public class OrderImpl implements Order {
 	protected float actualBalance;
 	@DatabaseField(useGetSet = true, defaultValue = "0")
 	protected boolean orderState;
-	@DatabaseField(useGetSet = true, foreign = true, foreignAutoCreate = true)
+	@DatabaseField(useGetSet = true, canBeNull = false, foreign = true, foreignAutoCreate = true, columnName="employeeId")
 	protected EmployeeImpl employeeId;
 	@DatabaseField(useGetSet = true, canBeNull = false, foreign = true, foreignAutoCreate = true, columnName="clientId")
 	protected ClientImpl clientId;
 	@DatabaseField(useGetSet = true, canBeNull = false, foreign = true, foreignAutoCreate = true)
 	protected PaymentFrequencyImpl paymentFrequencyId;
 
+	
+	public OrderImpl() {
+		
+	}
 
 	public OrderImpl( Date creationDate, Date nextPaymentDate,
 			float finalBalance, float actualBalance, boolean orderState,

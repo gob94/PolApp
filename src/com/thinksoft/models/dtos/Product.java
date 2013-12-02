@@ -17,11 +17,11 @@ public interface Product {
 	
 	public void setName(String name);
 
-	public float getQuantity();
+	public long getQuantity();
 
-	public void setQuantity(float quantity);
+	public void setQuantity(long quantity);
 
-	public float getPrice();
+	public long getPrice();
 
-	public void setPrice(float price);
+	public void setPrice(long price);
 }

@@ -72,7 +72,7 @@ public interface BusinessManager {
 
 	public Order addOrder(int clientId, int employeeId, int paymentId, float total);
 
-	boolean addProductsToOrder(Order order, List<Integer> productsId,
+	boolean addProductsToOrder(Order order, Map<Integer, Integer> productsId,
 			ConnectionSource connectionSource);
 	
 }

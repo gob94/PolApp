@@ -37,6 +37,7 @@ import com.thinksoft.models.dtos.impl.BrandImpl;
 import com.thinksoft.models.dtos.impl.EmployeeImpl;
 import com.thinksoft.models.dtos.impl.OrderImpl;
 import com.thinksoft.models.dtos.impl.PaymentFrequencyImpl;
+import com.thinksoft.models.dtos.impl.ProductOrderImpl;
 import com.thinksoft.models.dtos.impl.UserImpl;
 import com.thinksoft.models.dtos.impl.VehicleImpl;
 
@@ -620,8 +621,8 @@ public class BusinessManagerImpl implements BusinessManager {
 		try {
 			for (Employee employee : polAppDaoManager.getEmployee().queryForAll()) {
 				map= new HashMap<String, String>();
-				map.put("Employee_Name", employee.getName()+ " " + employee.getMiddle_name());
-				map.put("Employee_ID", String.valueOf(employee.getIdEmployee()));
+				map.put(EMPLOYEE_NAME, employee.getName()+ " " + employee.getMiddle_name());
+				map.put(EMPLOYEE_ID, String.valueOf(employee.getIdEmployee()));
 				employees.add(map);
 			}
 		} catch (SQLException e) {
@@ -639,8 +640,8 @@ public class BusinessManagerImpl implements BusinessManager {
 		try {
 			for (PaymentFrequency payment : polAppDaoManager.getPaymentFrequencyDao().queryForAll()) {
 				map= new HashMap<String, String>();
-				map.put("Payment_Name", payment.getName());
-				map.put("Payment_ID", String.valueOf(payment.getIdPaymentFrequency()));
+				map.put(PAYMENT_NAME, payment.getName());
+				map.put(PAYMENT_ID, String.valueOf(payment.getIdPaymentFrequency()));
 				payments.add(map);
 			}
 		} catch (SQLException e) {
@@ -696,20 +697,30 @@ public class BusinessManagerImpl implements BusinessManager {
 	}
 
 	@Override
-	public boolean addProductsToOrder(Order order, List<Integer> productsId, ConnectionSource connectionSource) {
+	public boolean addProductsToOrder(final Order order, final Map<Integer,Integer> productsId, ConnectionSource connectionSource) {
+		
 		try {
 			TransactionManager.callInTransaction(connectionSource, new Callable<Void>() {
 			    public Void call() throws Exception {
-			        return null;
+			    	ProductOrder productOrder;
+			    	Product product;
+			    	for (Integer id : productsId.keySet()) {
+			    		int quantity = productsId.get(id);
+			    		product = polAppDaoManager.getProductDao().queryForId(id);
+			    		productOrder = new ProductOrderImpl(quantity,(int)(quantity*product.getPrice()), order, product);
+			    		product.setQuantity(product.getQuantity()-quantity);
+			    		if(product.getQuantity()>=ZERO){
+			    			polAppDaoManager.getProductDao().update(product);
+			    			polAppDaoManager.getProductOrderDao().create(productOrder);
+			    		}
+					}
+					return null;
 			    }
 			});
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		for (Integer integer : productsId) {
-			
-		}
+		
 		return false;
 	}
 	

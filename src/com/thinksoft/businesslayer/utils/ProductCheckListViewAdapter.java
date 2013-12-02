@@ -1,17 +1,23 @@
 package com.thinksoft.businesslayer.utils;
 
+import static com.thinksoft.businesslayer.utils.constants.Constants.ACTUAL_PRODUCT_QUANTITY;
+import static com.thinksoft.businesslayer.utils.constants.Constants.QUANTITY_SELECTOR_CODE;
 import static com.thinksoft.businesslayer.utils.constants.Constants.SELECTED_FLAG;
+import static com.thinksoft.businesslayer.utils.constants.Constants.VIEW_POSITION;
 import static com.thinksoft.businesslayer.utils.constants.RowConstants.CODE_COLUMN;
 import static com.thinksoft.businesslayer.utils.constants.RowConstants.NAME_COLUMN;
 import static com.thinksoft.businesslayer.utils.constants.RowConstants.PRICE_COLUMN;
 import static com.thinksoft.businesslayer.utils.constants.RowConstants.PRODUCT_ID_COLUMN;
 import static com.thinksoft.businesslayer.utils.constants.RowConstants.QUANTITY_COLUMN;
+import static com.thinksoft.businesslayer.utils.constants.RowConstants.SELECTED_QUANTITY_COLUMN;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import android.util.Log;
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -27,31 +33,31 @@ import com.thinksoft.businesslayer.bussinessmanagers.BusinessManager;
 import com.thinksoft.businesslayer.bussinessmanagers.impl.BusinessManagerImpl;
 import com.thinksoft.businesslayer.utils.services.QueryService;
 import com.thinksoft.models.databases.PolAppHelper;
+import com.thinksoft.polapp.QuantitySelectorProductCheckListActivity;
 import com.thinksoft.polapp.R;
 
+@SuppressLint("UseSparseArrays")
 public class ProductCheckListViewAdapter extends BaseAdapter implements Filterable{
+	
 	public  List<Map<String, String>> list;
-	public  List<Integer> checkedList;
+	public  Map<Integer,Integer> checkedList;
 	public BusinessManager bussinessLayer = null;
 	OrmLiteBaseActivity<PolAppHelper> activity;
-
+	int productId = 0;
+	int productQuantity=0;
+	
     public ProductCheckListViewAdapter(OrmLiteBaseActivity<PolAppHelper> activity, List<Map<String, String>> list) {
 		super();
 		this.activity = activity;
 		this.list = list;
-		checkedList = new ArrayList<Integer>();
-		Log.i("list", String.valueOf(checkedList.size()));
-
-		Log.i("list", String.valueOf(list.size()));
+		
+		checkedList = new HashMap<Integer,Integer>();
 		for (Map<String, String> map : list) {
 			if(map.get(SELECTED_FLAG)!=null){
-				checkedList.add(Integer.valueOf(map.get(PRODUCT_ID_COLUMN)));
+				addSelectedProduct(map);
 			}
 		}
-
-		Log.i("list", String.valueOf(checkedList.size()));
-
-		Log.i("list", String.valueOf(list.size()));
+		
 		bussinessLayer = new BusinessManagerImpl(activity.getHelper().getConnectionSource());
 	}
     
@@ -106,14 +112,28 @@ public class ProductCheckListViewAdapter extends BaseAdapter implements Filterab
 			public void onClick(View checkBox) {
 				CheckBox check = (CheckBox)checkBox;
 				if(check.isChecked()){
-					checkedList.add(Integer.valueOf(list.get(position).get(PRODUCT_ID_COLUMN)));
+					addSelectedProduct(list.get(position));
 				}else{
 					checkedList.remove(Integer.valueOf(list.get(position).get(PRODUCT_ID_COLUMN)));
 				}
 			}
 		});
 		
-		if(checkedList.contains(Integer.valueOf(map.get(PRODUCT_ID_COLUMN)))){
+		holder.txtQuantity.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				Intent intent = new Intent(activity,QuantitySelectorProductCheckListActivity.class);
+				Bundle bundle = new Bundle();
+				TextView txt = (TextView) view;
+				bundle.putInt(QUANTITY_COLUMN,Integer.parseInt(txt.getText().toString()));
+				bundle.putInt(ACTUAL_PRODUCT_QUANTITY,Integer.parseInt(list.get(position).get(QUANTITY_COLUMN)));
+				bundle.putInt(VIEW_POSITION,position);
+				intent.putExtras(bundle);
+				activity.startActivityForResult(intent, QUANTITY_SELECTOR_CODE);
+			}
+		});
+		
+		if(checkedList.containsKey(Integer.valueOf(map.get(PRODUCT_ID_COLUMN)))){
 			holder.chkProduct.setChecked(true);
 		}else{
 			holder.chkProduct.setChecked(false);
@@ -121,8 +141,8 @@ public class ProductCheckListViewAdapter extends BaseAdapter implements Filterab
 		holder.txtName.setText((CharSequence) map.get(NAME_COLUMN));
 		holder.txtCode.setText((CharSequence) map.get(CODE_COLUMN));
 		holder.txtPrice.setText((CharSequence) map.get(PRICE_COLUMN));
-		holder.txtQuantity.setText((CharSequence) map.get(QUANTITY_COLUMN));
-
+		String quantity = map.get(SELECTED_QUANTITY_COLUMN)!=null ? map.get(SELECTED_QUANTITY_COLUMN): "1";
+		holder.txtQuantity.setText((CharSequence) quantity);
 		   
 		return convertView;
 	}
@@ -161,6 +181,12 @@ public class ProductCheckListViewAdapter extends BaseAdapter implements Filterab
 		        return results;
 			}
 		};
+	}
+	
+	public void addSelectedProduct(Map<String,String> map){
+		productId = Integer.valueOf(map.get(PRODUCT_ID_COLUMN));
+		productQuantity = Integer.valueOf(map.get(SELECTED_QUANTITY_COLUMN));
+		checkedList.put(productId,productQuantity);
 	}
 
 }
