@@ -63,12 +63,9 @@
     <string name="title_activity_home_clientes">Clientes</string>
     <string name="title_activity_home_vehiculos">HomeVehiculos</string>
     <string name="title_activity_home_cobro">HomeCobro</string>
-<<<<<<< HEAD
     <string name="title_activity_quantity_selector_product_check_list">QuantitySelectorProductCheckListActivity</string>
-=======
     <string name="title_activity_perfil_productos">PerfilProductos</string>
     <string name="title_activity_perfil_vehiculo">Perfil Vehiculo</string>
     <string name="title_activity_perfil_cobros">Perfil Cobros</string>
->>>>>>> 7353ffcad8bfc0f377f10b534f1052fa363096d2
 
 </resources>
