@@ -6,10 +6,10 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".PerfilCliente" >
+    tools:context=".PerfilProductos" >
 
     <ScrollView
-        android:id="@+id/scrollViewClientProfile"
+        android:id="@+id/scrollViewProductProfile"
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
@@ -19,15 +19,15 @@
             android:orientation="vertical" >
 
             <RelativeLayout
-                android:id="@+id/layoutProfileClient"
+                android:id="@+id/layoutProfileProduct"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clickable="True"
                 android:onClick="onClick" >
 
                 <TextView
-                    android:id="@+id/lblClientTitleProfile"
-                    style="@style/TextoMenuBlue"
+                    android:id="@+id/lblProductTitleProfile"
+                    style="@style/TextoMenuTurquoise"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
@@ -43,123 +43,111 @@
                 android:layout_height="1.5dp"
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp"
-                android:background="#045FB4" >
+                android:background="#FF01A7EB" >
             </LinearLayout>
 
             <RelativeLayout
-                android:id="@+id/layoutProfileClientName"
+                android:id="@+id/layoutProfileProductCode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clickable="True" >
 
                 <TextView
-                    android:id="@+id/lblClientNameProfile"
-                    style="@style/TextoMenuBlue"
+                    android:id="@+id/lblProductCodeProfile"
+                    style="@style/TextoMenuTurquoise"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/lblCode" />
+
+                <TextView
+                    android:id="@+id/lblProductCodeProfileEditabled"
+                    style="@style/TextoMenuTurquoise"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/lblProductCodeProfile"
+                    android:text=""
+                    android:textColor="#802A00" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layoutProfileProductName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:clickable="True" >
+
+                <TextView
+                    android:id="@+id/lblProductNameProfile"
+                    style="@style/TextoMenuTurquoise"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:text="@string/lblName" />
 
                 <TextView
-                    android:id="@+id/lblClientNameProfileEditabled"
+                    android:id="@+id/lblProductNameProfileEditabled"
                     style="@style/TextoMenuTurquoise"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/lblClientNameProfile"
+                    android:layout_toRightOf="@+id/lblProductNameProfile"
                     android:text=""
-                    android:textColor="#000000" />
+                    android:textColor="#802A00" />
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/layoutProfileClientLastName"
+                android:id="@+id/layoutProfileProductPrice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:clickable="True" >
 
                 <TextView
-                    android:id="@+id/lblClientLastNameProfile"
-                    style="@style/TextoMenuBlue"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:text="@string/lblFirstLastName" />
-
-                <TextView
-                    android:id="@+id/lblClientLastNameProfileEditabled"
+                    android:id="@+id/lblProductPriceProfile"
                     style="@style/TextoMenuTurquoise"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/lblClientLastNameProfile"
-                    android:text=""
-                    android:textColor="#000000" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/layoutProfileClientPhone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:clickable="True" >
+                    android:text="@string/lblPrice" />
 
                 <TextView
-                    android:id="@+id/lblClientPhoneProfile"
-                    style="@style/TextoMenuBlue"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:text="@string/lblPhone" />
-
-                <TextView
-                    android:id="@+id/lblClientPhoneProfileEditabled"
-                    style="@style/TextoMenuBlue"
+                    android:id="@+id/lblProductPriceProfileEditabled"
+                    style="@style/TextoMenuTurquoise"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_toRightOf="@+id/lblProductPriceProfile"
                     android:text=""
-                    android:textColor="#000000" />
+                    android:textColor="#802A00" />
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/layoutProfileClientDirection"
+                android:id="@+id/layoutProfileProductQuantity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:clickable="True" >
 
                 <TextView
-                    android:id="@+id/lblClientDirectionProfile"
-                    style="@style/TextoMenuBlue"
+                    android:id="@+id/lblProductQuantityProfile"
+                    style="@style/TextoMenuTurquoise"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="@string/lblAddress" />
+                    android:text="@string/lblQuantity" />
 
                 <TextView
-                    android:id="@+id/lblClientDirectionProfileEditabled"
-                    style="@style/TextoMenuBlue"
+                    android:id="@+id/lblProductQuantityProfileEditabled"
+                    style="@style/TextoMenuTurquoise"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/lblClientDirectionProfile"
+                    android:layout_toRightOf="@+id/lblProductQuantityProfile"
                     android:text=""
-                    android:textColor="#000000" />
+                    android:textColor="#802A00" />
             </RelativeLayout>
-            
-            <RelativeLayout
-                android:id="@+id/layoutProfileClientMap"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:clickable="True" >
-
-                
-            </RelativeLayout>
-            
-            
 
             <RelativeLayout
                 android:id="@+id/layoutProfileProductButtons"
@@ -169,7 +157,7 @@
                 android:clickable="True" >
 
                 <Button
-                    android:id="@+id/btnAcceptClientProfile"
+                    android:id="@+id/btnAcceptProductProfile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="#FFFFFF"
@@ -181,7 +169,7 @@
                     android:textSize="16sp" />
 
                 <Button
-                    android:id="@+id/btnDeleteClientProfile"
+                    android:id="@+id/btnDeleteProductProfile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -195,7 +183,7 @@
                     android:textSize="16sp" />
 
                 <Button
-                    android:id="@+id/btnEditClientProfile"
+                    android:id="@+id/btnEditProductProfile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"

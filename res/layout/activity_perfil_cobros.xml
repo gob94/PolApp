@@ -6,10 +6,10 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".PerfilCliente" >
+    tools:context=".PerfilCobros" >
 
     <ScrollView
-        android:id="@+id/scrollViewClientProfile"
+        android:id="@+id/scrollViewOrderProfile"
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
@@ -19,23 +19,23 @@
             android:orientation="vertical" >
 
             <RelativeLayout
-                android:id="@+id/layoutProfileClient"
+                android:id="@+id/layoutProfileOrder"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clickable="True"
                 android:onClick="onClick" >
 
                 <TextView
-                    android:id="@+id/lblClientTitleProfile"
-                    style="@style/TextoMenuBlue"
+                    android:id="@+id/lblOrderTitleProfile"
+                    style="@style/TextoMenuPurple"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
-                    android:layout_marginLeft="86dp"
+                    android:layout_centerHorizontal="true"
                     android:gravity="center_horizontal"
-                    android:text="Productos"
+                    android:text="Cobros"
                     android:textSize="24sp" />
+
             </RelativeLayout>
 
             <LinearLayout
@@ -43,133 +43,147 @@
                 android:layout_height="1.5dp"
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp"
-                android:background="#045FB4" >
+                android:background="#8A0886" >
             </LinearLayout>
 
             <RelativeLayout
-                android:id="@+id/layoutProfileClientName"
+                android:id="@+id/layoutProfileOrderClient"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clickable="True" >
 
                 <TextView
-                    android:id="@+id/lblClientNameProfile"
-                    style="@style/TextoMenuBlue"
+                    android:id="@+id/lblOrderClientProfile"
+                    style="@style/TextoMenuPurple"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="@string/lblName" />
+                    android:text="@string/lblClient" />
 
                 <TextView
-                    android:id="@+id/lblClientNameProfileEditabled"
-                    style="@style/TextoMenuTurquoise"
+                    android:id="@+id/lblOrderClientProfileEditabled"
+                    style="@style/TextoMenuPurple"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/lblClientNameProfile"
+                    android:layout_toRightOf="@+id/lblOrderClientProfile"
                     android:text=""
                     android:textColor="#000000" />
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/layoutProfileClientLastName"
+                android:id="@+id/layoutProfileOrderPaymentMode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:clickable="True" >
 
                 <TextView
-                    android:id="@+id/lblClientLastNameProfile"
-                    style="@style/TextoMenuBlue"
+                    android:id="@+id/lblOrderPaymentModeProfile"
+                    style="@style/TextoMenuPurple"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="@string/lblFirstLastName" />
+                    android:text="@string/lblPaymentFrequency" />
 
                 <TextView
-                    android:id="@+id/lblClientLastNameProfileEditabled"
-                    style="@style/TextoMenuTurquoise"
+                    android:id="@+id/lblOrderPaymentModeProfileEditabled"
+                    style="@style/TextoMenuPurple"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/lblClientLastNameProfile"
+                    android:layout_toRightOf="@+id/lblOrderPaymentModeProfile"
                     android:text=""
                     android:textColor="#000000" />
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/layoutProfileClientPhone"
+                android:id="@+id/layoutProfileOrderTotal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:clickable="True" >
 
                 <TextView
-                    android:id="@+id/lblClientPhoneProfile"
-                    style="@style/TextoMenuBlue"
+                    android:id="@+id/lblOrderTotalProfile"
+                    style="@style/TextoMenuPurple"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="@string/lblPhone" />
+                    android:text="@string/lblTotal" />
 
                 <TextView
-                    android:id="@+id/lblClientPhoneProfileEditabled"
-                    style="@style/TextoMenuBlue"
+                    android:id="@+id/lblOrderTotalProfileEditabled"
+                    style="@style/TextoMenuPurple"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/lblProductPriceProfile"
+                    android:layout_toRightOf="@+id/lblOrderTotalProfile"
                     android:text=""
                     android:textColor="#000000" />
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/layoutProfileClientDirection"
+                android:id="@+id/layoutProfileOrderSeller"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:clickable="True" >
 
                 <TextView
-                    android:id="@+id/lblClientDirectionProfile"
-                    style="@style/TextoMenuBlue"
+                    android:id="@+id/lblOrderSellerProfile"
+                    style="@style/TextoMenuPurple"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="@string/lblAddress" />
+                    android:text="@string/lblSeller" />
 
                 <TextView
-                    android:id="@+id/lblClientDirectionProfileEditabled"
-                    style="@style/TextoMenuBlue"
+                    android:id="@+id/lblOrderSellerProfileEditabled"
+                    style="@style/TextoMenuPurple"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/lblClientDirectionProfile"
+                    android:layout_toRightOf="@+id/lblOrderSellerProfile"
                     android:text=""
                     android:textColor="#000000" />
             </RelativeLayout>
             
             <RelativeLayout
-                android:id="@+id/layoutProfileClientMap"
+                android:id="@+id/layoutProfileOrderProduct"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:clickable="True" >
 
-                
+                <TextView
+                    android:id="@+id/lblOrderProductProfile"
+                    style="@style/TextoMenuPurple"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/lblProducts" />
+
+                <TextView
+                    android:id="@+id/lblOrderProductProfileEditabled"
+                    style="@style/TextoMenuPurple"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/lblOrderProductProfile"
+                    android:text=""
+                    android:textColor="#000000" />
             </RelativeLayout>
-            
-            
 
             <RelativeLayout
-                android:id="@+id/layoutProfileProductButtons"
+                android:id="@+id/layoutProfileOrderButtons"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:clickable="True" >
 
                 <Button
-                    android:id="@+id/btnAcceptClientProfile"
+                    android:id="@+id/btnAcceptProductProfile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="#FFFFFF"
@@ -181,7 +195,7 @@
                     android:textSize="16sp" />
 
                 <Button
-                    android:id="@+id/btnDeleteClientProfile"
+                    android:id="@+id/btnDeleteProductProfile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -195,7 +209,7 @@
                     android:textSize="16sp" />
 
                 <Button
-                    android:id="@+id/btnEditClientProfile"
+                    android:id="@+id/btnEditProductProfile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"

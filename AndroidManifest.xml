@@ -105,9 +105,22 @@
             android:label="@string/title_activity_home_cobro" >
         </activity>
         <activity
+<<<<<<< HEAD
             android:name="com.thinksoft.polapp.QuantitySelectorProductCheckListActivity"
             android:label="@string/title_activity_quantity_selector_product_check_list" 
             android:theme="@android:style/Theme.Holo.Light.Dialog">
+=======
+            android:name="com.thinksoft.polapp.PerfilProductos"
+            android:label="@string/title_activity_perfil_productos" >
+        </activity>
+        <activity
+            android:name="com.thinksoft.polapp.PerfilVehiculo"
+            android:label="@string/title_activity_perfil_vehiculo" >
+        </activity>
+        <activity
+            android:name="com.thinksoft.polapp.PerfilCobros"
+            android:label="@string/title_activity_perfil_cobros" >
+>>>>>>> 7353ffcad8bfc0f377f10b534f1052fa363096d2
         </activity>
     </application>
 
