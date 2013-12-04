@@ -13,8 +13,8 @@ public class DatabaseConstants {
 	public static String USER_INSERTED = "inserted";
 	public static int MINIMUM_PHONENUMBER_DIGITS= 8;
 	public static String COLUMN_IDENTIFICATION = "identification";
-	public static String COLUMN_CLIENTID = "clientId_id";
-	public static String COLUMN_ORDERID = "order_id";
+	public static String COLUMN_CLIENTID = "client";
+	public static String COLUMN_ORDERID = "orderId";
 	public static String COLUMN_ORDERSTATE = "orderState";
 	public static String COLUMN_NAME = "name";
 	public static String COLUMN_LASTNAME = "lastName";
@@ -22,8 +22,8 @@ public class DatabaseConstants {
 	public static String COLUMN_FIRST_LASTNAME = "firstLastName";
 	public static String COLUMN_SECOND_LASTNAME = "secondLastName";
 	public static String COLUMN_ACCOUNT_STATE = "accountState";
-	public static String COLUMN_EMPLOYEE_ID= "idEmployee";
-	public static String COLUMN_PAYMENTFREQUENCY_ID = "idPaymentFrequency";
+	public static String COLUMN_EMPLOYEE_ID= "employee";
+	public static String COLUMN_PAYMENTFREQUENCY_ID = "paymentFrequency";
 	public static String START_EMPTY_STRING= "start with empty string";
 	public static Drawable imgTrue= null;
     public static Drawable imgFalse= null;

@@ -38,12 +38,21 @@
     <string name="lblSearch">Buscar</string>
     <string name="lblYes">Sí</string>
     <string name="lblNo">No</string>
+    
+    <string name="lblOrderId">#Id</string>
+    
+    <string name="lblClientName">Cliente</string>
+    
+    <string name="lblActualBalance">Saldo</string>
+    
+    <string name="lblNextPayment">Proximo Pago</string>
     <string name="lblClientAddressAdd">Agregar Dirección del cliente</string>
     <string name="lblState">Inicio</string>
     <string name="btnRegister">Registrar</string>
     <string name="btnAccept">Aceptar</string>
     <string name="btnCancel">Cancelar</string>
     <string name="lblStart">Inicio</string>
+    <string name="lblNextPaymentDate">Próximo pago</string>
     <string name="lblClientState">Estado del Cliente</string>
     <string name="title_activity_home_screen">HomeScreenActivity</string>
     <string name="title_activity_clientes">Clientes</string>

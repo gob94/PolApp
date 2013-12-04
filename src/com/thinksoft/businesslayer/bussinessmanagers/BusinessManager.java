@@ -70,9 +70,11 @@ public interface BusinessManager {
 	
 	public String verifyOrderInformation(int clientId, int employeeId, int paymentId);
 
-	public Order addOrder(int clientId, int employeeId, int paymentId, float total);
-
 	boolean addProductsToOrder(Order order, Map<Integer, Integer> productsId,
 			ConnectionSource connectionSource);
+
+	List<Map<String, String>> getAllActiveOrders();
+
+	public Order addOrder(int clientId, int employeeId, int paymentId, long total);
 	
 }

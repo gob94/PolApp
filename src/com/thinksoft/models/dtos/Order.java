@@ -16,15 +16,15 @@ public interface Order {
 
 	public Date getNextPaymentDate();
 
-	public float getFinalBalance();
+	public long getFinalBalance();
 
-	public float getActualBalance();
+	public long getActualBalance();
 
-	public EmployeeImpl getEmployeeId();
+	public EmployeeImpl getEmployee();
 	
-	public ClientImpl getClientId();
+	public ClientImpl getClient();
 
-	public PaymentFrequencyImpl getPaymentFrequencyId();
+	public PaymentFrequencyImpl getPaymentFrequency();
 	
 	public boolean getOrderState();
 
@@ -34,15 +34,15 @@ public interface Order {
 
 	public void setNextPaymentDate(Date nextPaymentDate);
 
-	public void setFinalBalance(float finalBalance);
+	public void setFinalBalance(long finalBalance);
 
-	public void setActualBalance(float actualBalance);
+	public void setActualBalance(long actualBalance);
 
-	public void setEmployeeId(EmployeeImpl employeeId);
+	public void setEmployee(EmployeeImpl employee);
 
-	public void setClientId(ClientImpl clientId);
+	public void setClient(ClientImpl client);
 
-	public void setPaymentFrequencyId(PaymentFrequencyImpl paymentFrequencyId);
+	public void setPaymentFrequency(PaymentFrequencyImpl paymentFrequency);
 	
 	public void setOrderState(boolean orderState);
 }

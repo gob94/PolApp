@@ -17,6 +17,9 @@ public class RowConstants {
     public static final String EXPEDITURE_COLUMN = "Expediture";
     public static final String MODEL_COLUMN = "Model";
     public static final String BRAND_COLUMN = "Brand";
+    public static final String ORDER_ID_COLUMN = "Order ID";
+    public static final String ACTUAL_BALANCE_COLUMN = "Actual Balance";
+    public static final String NEXT_PAYMENT_COLUMN = "Next Payment";
 
     public static final String SELECTED_QUANTITY_COLUMN = "SelectedQuantity";
     public static long STARTING_CLIENT_NUMBER = 10;

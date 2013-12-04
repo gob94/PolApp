@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+
+    <TextView
+        android:id="@+id/txtOrderIdOrderListRow"
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:layout_weight="1"
+        android:background="@drawable/shape_red"
+        android:gravity="center"
+        android:text="@string/lblCode"
+        android:maxLines="1"
+   	    android:ellipsize="end" >
+    </TextView>
+
+    <TextView
+        android:id="@+id/txtClientNameOrderListRow"
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:layout_weight="1"
+        android:background="@drawable/shape_red"
+        android:gravity="center"
+        android:text="@string/lblName" 
+        android:maxLines="1"
+   	    android:ellipsize="end">
+    </TextView>
+
+    <TextView
+        android:id="@+id/txtActualBalanceOrderListRow"
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:layout_weight="1"
+        android:background="@drawable/shape_red"
+        android:gravity="center"
+        android:text="@string/lblPrice" 
+        android:maxLines="1"
+   	    android:ellipsize="end">
+    </TextView>
+
+    <TextView
+        android:id="@+id/txtNextPaymentOrderListRow"
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:layout_weight="1"
+        android:background="@drawable/shape_red"
+        android:gravity="center"
+        android:text="@string/lblQuantity" 
+        android:maxLines="1"
+   	    android:ellipsize="end">
+    </TextView>
+
+</LinearLayout>

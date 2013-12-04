@@ -185,7 +185,7 @@ public class ProductCheckListViewAdapter extends BaseAdapter implements Filterab
 	
 	public void addSelectedProduct(Map<String,String> map){
 		productId = Integer.valueOf(map.get(PRODUCT_ID_COLUMN));
-		productQuantity = Integer.valueOf(map.get(SELECTED_QUANTITY_COLUMN));
+		productQuantity = map.get(SELECTED_QUANTITY_COLUMN)!=null ? Integer.valueOf(map.get(SELECTED_QUANTITY_COLUMN)): 1;
 		checkedList.put(productId,productQuantity);
 	}
 

@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.text.Layout;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Display;
@@ -15,8 +13,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ImageView;
@@ -24,7 +20,6 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
-import android.widget.Toast;
 
 import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
@@ -32,6 +27,7 @@ import com.thinksoft.businesslayer.bussinessmanagers.BusinessManager;
 import com.thinksoft.businesslayer.bussinessmanagers.impl.BusinessManagerImpl;
 import com.thinksoft.businesslayer.utils.ClientListViewAdapter;
 import com.thinksoft.businesslayer.utils.FleetListViewAdapter;
+import com.thinksoft.businesslayer.utils.OrderListViewAdapter;
 import com.thinksoft.businesslayer.utils.ProductListViewAdapter;
 import com.thinksoft.models.databases.PolAppHelper;
 
@@ -111,28 +107,30 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 
 		tabs.setCurrentTab(0);
 				
-		final ListView listaProductos = (ListView) tabs.findViewById(R.id.lvProductos);
+		final ListView productList = (ListView) tabs.findViewById(R.id.lvProductos);
 
-		final ListView listaClientes = (ListView) tabs.findViewById(R.id.lvClientes);
+		final ListView clientList = (ListView) tabs.findViewById(R.id.lvClientes);
 		
-		final ListView listaVehiculos = (ListView) tabs.findViewById(R.id.lvFlotillas);
+		final ListView vehicleList = (ListView) tabs.findViewById(R.id.lvFlotillas);
+		
+		final ListView orderList = (ListView) tabs.findViewById(R.id.lvCobros);
 
+		View ordersHeader= getLayoutInflater().inflate(R.layout.order_list_header, null);
+		orderList.addHeaderView(ordersHeader);
 		View clientHeader= getLayoutInflater().inflate(R.layout.client_header, null);
-		listaClientes.addHeaderView(clientHeader);
+		clientList.addHeaderView(clientHeader);
 		
 		View productHeader= getLayoutInflater().inflate(R.layout.product_list_header, null);
-		listaProductos.addHeaderView(productHeader);
+		productList.addHeaderView(productHeader);
 		View vehiclesHeader= getLayoutInflater().inflate(R.layout.fleet_list_header, null);
-		listaVehiculos.addHeaderView(vehiclesHeader);
+		vehicleList.addHeaderView(vehiclesHeader);
 		
-		ClientListViewAdapter adapter = new ClientListViewAdapter(HomeScreenActivity.this,businessLayer.getAllClients());
-		listaClientes.setAdapter(adapter);
-		ProductListViewAdapter adapter2 = new ProductListViewAdapter(HomeScreenActivity.this, businessLayer.getAllProducts());
-		listaProductos.setAdapter(adapter2);
-		
-		registerForContextMenu(listaVehiculos);
-		registerForContextMenu(listaProductos);
-		registerForContextMenu(listaClientes);
+		ClientListViewAdapter clientAdapter = new ClientListViewAdapter(HomeScreenActivity.this,businessLayer.getAllClients());
+		clientList.setAdapter(clientAdapter);
+		ProductListViewAdapter productAdapter = new ProductListViewAdapter(HomeScreenActivity.this, businessLayer.getAllProducts());
+		productList.setAdapter(productAdapter);
+		OrderListViewAdapter orderAdapter = new OrderListViewAdapter(businessLayer.getAllActiveOrders(), HomeScreenActivity.this);
+		orderList.setAdapter(orderAdapter);
 		
 
 		btnAddProduct.setOnClickListener(new OnClickListener() {
@@ -177,18 +175,22 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 				try {
 					if (tabId.equals("tabClientes")) {
 						ClientListViewAdapter adapter = new ClientListViewAdapter(HomeScreenActivity.this,businessLayer.getAllClients());
-						listaClientes.setAdapter(adapter);
-						listaClientes.setDivider(new ColorDrawable(0x045FB4));
+						clientList.setAdapter(adapter);
+						clientList.setDivider(new ColorDrawable(0x045FB4));
 
 					} else if (tabId.equals("tabProductos")) {
 						ProductListViewAdapter adapter = new ProductListViewAdapter(HomeScreenActivity.this, businessLayer.getAllProducts());
-						listaProductos.setAdapter(adapter);
-						listaClientes.setDivider(new ColorDrawable(0xB40431));
+						productList.setAdapter(adapter);
+						productList.setDivider(new ColorDrawable(0xB40431));
 						
 					} else if (tabId.equals("tabFlotilla")) {
 						FleetListViewAdapter adapter = new FleetListViewAdapter(HomeScreenActivity.this, businessLayer.getAllVehicles());
-						listaVehiculos.setAdapter(adapter);
-						listaClientes.setDivider(new ColorDrawable(0x008B00));
+						vehicleList.setAdapter(adapter);
+						vehicleList.setDivider(new ColorDrawable(0x008B00));
+					} else {
+						OrderListViewAdapter adapter = new OrderListViewAdapter(businessLayer.getAllActiveOrders(), HomeScreenActivity.this);
+						orderList.setAdapter(adapter);
+						orderList.setDivider(new ColorDrawable(0x008B00));
 					}
 
 				} catch (Exception e) {
@@ -199,39 +201,47 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 		
 		
 		
-		listaProductos.setOnItemLongClickListener(new OnItemLongClickListener() {
+		productList.setOnItemLongClickListener(new OnItemLongClickListener() {
 
 			@Override
 			public boolean onItemLongClick(AdapterView<?> arg0, View view,
 					int pos, long arg3) {
 					
-		        registerForContextMenu(listaProductos);
+		        registerForContextMenu(view);
 					return false;
 			}
-			});		
+		});		
 		
 	
-		listaClientes.setOnItemLongClickListener(new OnItemLongClickListener() {
+		clientList.setOnItemLongClickListener(new OnItemLongClickListener() {
 
-		@Override
-		public boolean onItemLongClick(AdapterView<?> arg0, View view,
-				int pos, long arg3) {
-				
-	        registerForContextMenu(listaClientes);
+			@Override
+			public boolean onItemLongClick(AdapterView<?> arg0, View view,
+					int pos, long arg3) {
+					
+	        registerForContextMenu(view);
 				return false;
 			}
-			});		
-		Log.i("error", String.valueOf(listaVehiculos));
+		});
 		
-	listaVehiculos.setOnItemLongClickListener(new OnItemLongClickListener() {
+		vehicleList.setOnItemLongClickListener(new OnItemLongClickListener() {
 
-		@Override
-		public boolean onItemLongClick(AdapterView<?> arg0, View view,
-				int pos, long arg3) {
-	        registerForContextMenu(listaVehiculos);
-				return false;
-		}
+			@Override
+			public boolean onItemLongClick(AdapterView<?> arg0, View view,
+					int pos, long arg3) {
+				registerForContextMenu(view);
+					return false;
+			}
 		});	
+		
+		orderList.setOnItemLongClickListener(new OnItemLongClickListener() {
+			@Override
+			public boolean onItemLongClick(AdapterView<?> arg0, View view,
+					int pos, long arg3) {
+				registerForContextMenu(view);
+					return false;
+			}
+		});
 	
 	
 	/**

@@ -1,17 +1,20 @@
 package com.thinksoft.polapp;
 
+import static com.thinksoft.businesslayer.utils.constants.Constants.CLIENT_LIST_CODE;
+import static com.thinksoft.businesslayer.utils.constants.Constants.EMPLOYEE_ID;
+import static com.thinksoft.businesslayer.utils.constants.Constants.PAYMENT_ID;
 import static com.thinksoft.businesslayer.utils.constants.Constants.PRODUCTS_IDS_KEY;
+import static com.thinksoft.businesslayer.utils.constants.Constants.PRODUCT_LIST_CODE;
+
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.EMPTY_STRING;
 import static com.thinksoft.businesslayer.utils.constants.RowConstants.CLIENT_ID_COLUMN;
 import static com.thinksoft.businesslayer.utils.constants.RowConstants.NAME_COLUMN;
-import static com.thinksoft.businesslayer.utils.constants.Constants.CLIENT_LIST_CODE;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_EMPLOYEE_ID;
 
-import static com.thinksoft.businesslayer.utils.constants.Constants.PAYMENT_ID;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_PAYMENTFREQUENCY_ID;
 
-import static com.thinksoft.businesslayer.utils.constants.Constants.PAYMENT_NAME;
-import static com.thinksoft.businesslayer.utils.constants.Constants.EMPLOYEE_ID;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_CLIENTID;
 
-import static com.thinksoft.businesslayer.utils.constants.Constants.EMPLOYEE_NAME;
-import static com.thinksoft.businesslayer.utils.constants.Constants.PRODUCT_LIST_CODE;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,6 +28,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
 import com.thinksoft.businesslayer.bussinessmanagers.BusinessManager;
@@ -43,7 +47,9 @@ public class AgregarCobroActivity extends OrmLiteBaseActivity<PolAppHelper> {
 	Map<Integer,Integer> products_ids;
 	BusinessManager businessLayer;
 	Spinner spnPayment;
-
+	static String MESSAGE_ERROR="No existe";
+	static String MESSAGE_SUCCESSFUL="Agregado exitosamente";
+	
 	@SuppressLint("UseSparseArrays")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -98,6 +104,7 @@ public class AgregarCobroActivity extends OrmLiteBaseActivity<PolAppHelper> {
 			@SuppressWarnings("unchecked")
 			@Override
 			public void onClick(View v) {
+				Toast msg = null;
 				Map<String,String> employee = (HashMap<String, String>) spnEmployee.getSelectedItem(); 
 				Map<String,String> payment = (HashMap<String, String>) spnPayment.getSelectedItem(); 
 				
@@ -106,9 +113,24 @@ public class AgregarCobroActivity extends OrmLiteBaseActivity<PolAppHelper> {
 				int employeeId = Integer.valueOf(employee.get(EMPLOYEE_ID));
 				int paymentId = Integer.valueOf(payment.get(PAYMENT_ID));
 				
-				businessLayer.verifyOrderInformation(clientId, employeeId, paymentId);
-				Order order = businessLayer.addOrder(clientId, employeeId, paymentId,(float) total);
-				businessLayer.addProductsToOrder(order, products_ids, getHelper().getConnectionSource());
+				String result = businessLayer.verifyOrderInformation(clientId, employeeId, paymentId);
+				
+				if(result.equals(EMPTY_STRING)){
+					Order order = businessLayer.addOrder(clientId, employeeId, paymentId,(long) total);
+					if(order!=null){
+						businessLayer.addProductsToOrder(order, products_ids, getHelper().getConnectionSource());
+						msg = Toast.makeText(AgregarCobroActivity.this, MESSAGE_SUCCESSFUL , Toast.LENGTH_LONG);
+					}else{
+						msg = Toast.makeText(AgregarCobroActivity.this, MESSAGE_ERROR , Toast.LENGTH_LONG);
+					}
+				}else if(result.equals(COLUMN_CLIENTID)){
+					msg = Toast.makeText(AgregarCobroActivity.this, COLUMN_CLIENTID +","+MESSAGE_ERROR , Toast.LENGTH_LONG);
+				}else if(result.equals(COLUMN_EMPLOYEE_ID)){
+					msg = Toast.makeText(AgregarCobroActivity.this,  COLUMN_EMPLOYEE_ID +","+MESSAGE_ERROR  , Toast.LENGTH_LONG);
+				}else if(result.equals(COLUMN_PAYMENTFREQUENCY_ID)){
+					msg = Toast.makeText(AgregarCobroActivity.this,  COLUMN_EMPLOYEE_ID +","+MESSAGE_ERROR  , Toast.LENGTH_LONG);
+				}
+				msg.show();
 				finish();
 			}
 		});

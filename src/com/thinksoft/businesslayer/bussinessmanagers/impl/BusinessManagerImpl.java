@@ -1,11 +1,53 @@
 package com.thinksoft.businesslayer.bussinessmanagers.impl;
 
-import static com.thinksoft.businesslayer.utils.constants.Constants.*;
-import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.*;
-import static com.thinksoft.businesslayer.utils.constants.RowConstants.*;
-
+import static com.thinksoft.businesslayer.utils.constants.Constants.EMPLOYEE_ID;
+import static com.thinksoft.businesslayer.utils.constants.Constants.EMPLOYEE_NAME;
+import static com.thinksoft.businesslayer.utils.constants.Constants.NUMBER_OF_PRODUCTS_TO_DISPLAY;
+import static com.thinksoft.businesslayer.utils.constants.Constants.PAYMENT_ID;
+import static com.thinksoft.businesslayer.utils.constants.Constants.PAYMENT_NAME;
+import static com.thinksoft.businesslayer.utils.constants.Constants.ZERO;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.BRAND_ERROR_TAG;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.CLIENT_ERROR_TAG;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_CLIENTID;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_EMPLOYEE_ID;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_FIRST_LASTNAME;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_IDENTIFICATION;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_LASTNAME;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_NAME;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_ORDERID;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_ORDERSTATE;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_PAYMENTFREQUENCY_ID;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_PHONENUMBER;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_SECOND_LASTNAME;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_USERNAME;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.EMPTY_STRING;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.MINIMUM_PHONENUMBER_DIGITS;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.PRODUCT_ERROR_TAG;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.START_EMPTY_STRING;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.USER_ERROR_TAG;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.USER_INSERTED;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.VEHICLE_ERROR_TAG;
+import static com.thinksoft.businesslayer.utils.constants.RowConstants.ACTUAL_BALANCE_COLUMN;
+import static com.thinksoft.businesslayer.utils.constants.RowConstants.BRAND_COLUMN;
+import static com.thinksoft.businesslayer.utils.constants.RowConstants.CLIENT_ID_COLUMN;
+import static com.thinksoft.businesslayer.utils.constants.RowConstants.CODE_COLUMN;
+import static com.thinksoft.businesslayer.utils.constants.RowConstants.EXPEDITURE_COLUMN;
+import static com.thinksoft.businesslayer.utils.constants.RowConstants.FIRST_LASTNAME_COLUMN;
+import static com.thinksoft.businesslayer.utils.constants.RowConstants.FUNCTIONAL_COLUMN;
+import static com.thinksoft.businesslayer.utils.constants.RowConstants.LICENCE_COLUMN;
+import static com.thinksoft.businesslayer.utils.constants.RowConstants.MODEL_COLUMN;
+import static com.thinksoft.businesslayer.utils.constants.RowConstants.NAME_COLUMN;
+import static com.thinksoft.businesslayer.utils.constants.RowConstants.NEXT_PAYMENT_COLUMN;
+import static com.thinksoft.businesslayer.utils.constants.RowConstants.ORDER_ID_COLUMN;
+import static com.thinksoft.businesslayer.utils.constants.RowConstants.PRICE_COLUMN;
+import static com.thinksoft.businesslayer.utils.constants.RowConstants.PRODUCT_ID_COLUMN;
+import static com.thinksoft.businesslayer.utils.constants.RowConstants.QUANTITY_COLUMN;
+import static com.thinksoft.businesslayer.utils.constants.RowConstants.RTV_COLUMN;
+import static com.thinksoft.businesslayer.utils.constants.RowConstants.SECOND_LASTNAME_COLUMN;
+import static com.thinksoft.businesslayer.utils.constants.RowConstants.STATUS_COLUMN;
 
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -14,6 +56,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
+import android.annotation.SuppressLint;
 import android.util.Log;
 
 import com.j256.ormlite.misc.TransactionManager;
@@ -34,6 +77,7 @@ import com.thinksoft.models.dtos.User;
 import com.thinksoft.models.dtos.Vehicle;
 import com.thinksoft.models.dtos.impl.AddressImpl;
 import com.thinksoft.models.dtos.impl.BrandImpl;
+import com.thinksoft.models.dtos.impl.ClientImpl;
 import com.thinksoft.models.dtos.impl.EmployeeImpl;
 import com.thinksoft.models.dtos.impl.OrderImpl;
 import com.thinksoft.models.dtos.impl.PaymentFrequencyImpl;
@@ -41,6 +85,7 @@ import com.thinksoft.models.dtos.impl.ProductOrderImpl;
 import com.thinksoft.models.dtos.impl.UserImpl;
 import com.thinksoft.models.dtos.impl.VehicleImpl;
 
+@SuppressLint("SimpleDateFormat")
 public class BusinessManagerImpl implements BusinessManager {
 	
 	private PolAppDaoManager polAppDaoManager;
@@ -186,6 +231,26 @@ public class BusinessManagerImpl implements BusinessManager {
 		return productList;
 	}
 
+	
+	@Override
+	public List<Map<String,String>> getAllActiveOrders(){
+		List<Map<String,String>> orderList = null;
+		List<Order> rawOrder = null;
+		try {
+			orderList = new ArrayList<Map<String,String>>();
+			rawOrder = polAppDaoManager.getOrderDao().queryForAll();
+			
+			Log.i("zero",String.valueOf( rawOrder.size()));
+			for (Order order : rawOrder) {
+				orderList.add(getOrderAsItem(order));
+			}
+		} catch (SQLException e) {
+			Log.e(PRODUCT_ERROR_TAG,e.getMessage());
+		}
+		Log.i("zero",String.valueOf( orderList.size()));
+		return orderList;
+	}
+	
 	@Override
 	public List<Map<String, String>> getAllVehicles() {
 		List<Map<String,String>> listOfVehicles = null;
@@ -218,6 +283,23 @@ public class BusinessManagerImpl implements BusinessManager {
 		clientItem.put(STATUS_COLUMN, String.valueOf(client.getAccountState()));
 		
 		return clientItem;
+	}
+	
+	private Map<String, String> getOrderAsItem(Order order){
+		Map<String, String> orderItem = new HashMap<String, String>();
+		try {
+			polAppDaoManager.getClientDao().refresh(order.getClient());
+			orderItem.put(ORDER_ID_COLUMN, String.valueOf(order.getOrderId()));
+			
+			orderItem.put(NAME_COLUMN, order.getClient().getName() + " " + order.getClient().getFirstLastName());
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			orderItem.put(NEXT_PAYMENT_COLUMN, sdf.format(order.getNextPaymentDate()));
+	
+			orderItem.put(ACTUAL_BALANCE_COLUMN, String.valueOf(order.getActualBalance()));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return orderItem;
 	}
 
 	@Override
@@ -273,7 +355,7 @@ public class BusinessManagerImpl implements BusinessManager {
 			actualOrders = polAppDaoManager.getOrderDao().queryBuilder().where().eq(COLUMN_CLIENTID, clientId).query();
 			productList = new ArrayList<Map<String,String>>();
 			for (Order order : actualOrders) {
-				List<ProductOrder> productListOfOrder = polAppDaoManager.getProductOrderDao().queryBuilder().where().eq(COLUMN_ORDERID, order .getOrderId()).query();
+				List<ProductOrder> productListOfOrder = polAppDaoManager.getProductOrderDao().queryBuilder().where().eq(COLUMN_ORDERID, order.getOrderId()).query();
 				if (productList.size()>2) {
 					productList = productList.subList(ZERO, NUMBER_OF_PRODUCTS_TO_DISPLAY);
 				}
@@ -562,15 +644,15 @@ public class BusinessManagerImpl implements BusinessManager {
 		frequency = new PaymentFrequencyImpl("Mensual 20000",30,20000);
 		try{
 			polAppDaoManager.getPaymentFrequencyDao().createIfNotExists(frequency);
-			}catch(SQLException e){
-				e.printStackTrace();
-			}
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
 		frequency = new PaymentFrequencyImpl("Mensual 50000",30,50000);
 		try{
 			polAppDaoManager.getPaymentFrequencyDao().createIfNotExists(frequency);
-			}catch(SQLException e){
-				e.printStackTrace();
-			}
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
 		
 		Brand brand = new BrandImpl("Yamaha");
 		polAppDaoManager.getBrandDao().createIfNotExists(brand);
@@ -584,9 +666,7 @@ public class BusinessManagerImpl implements BusinessManager {
 		mark = new EmployeeImpl("3","Jose","Pablo","Pablo",86882316,(VehicleImpl) vehicle);
 		polAppDaoManager.getEmployee().createIfNotExists(mark);
 		
-		
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -626,7 +706,6 @@ public class BusinessManagerImpl implements BusinessManager {
 				employees.add(map);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -645,7 +724,6 @@ public class BusinessManagerImpl implements BusinessManager {
 				payments.add(map);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -656,11 +734,11 @@ public class BusinessManagerImpl implements BusinessManager {
 	public String verifyOrderInformation(int clientId, int employeeId, int paymentId) {
 		String result=EMPTY_STRING;
 		try {
-			if(polAppDaoManager.getClientDao().idExists(clientId)){
+			if(!polAppDaoManager.getClientDao().idExists(clientId)){
 				result=COLUMN_CLIENTID;
-			}else if (polAppDaoManager.getEmployee().idExists(employeeId)){
+			}else if (!polAppDaoManager.getEmployee().idExists(employeeId)){
 				result=COLUMN_EMPLOYEE_ID;
-			}else if(polAppDaoManager.getPaymentFrequencyDao().idExists(paymentId)){
+			}else if(!polAppDaoManager.getPaymentFrequencyDao().idExists(paymentId)){
 				result=COLUMN_PAYMENTFREQUENCY_ID;
 			}
 		} catch (SQLException e) {
@@ -670,7 +748,7 @@ public class BusinessManagerImpl implements BusinessManager {
 	}
 
 	@Override
-	public Order addOrder(int clientId, int employeeId, int paymentId, float total) {
+	public Order addOrder(int clientId, int employeeId, int paymentId, long total) {
 		Order order = null;
 		try {
 			Date creationDate = new Date();
@@ -678,20 +756,17 @@ public class BusinessManagerImpl implements BusinessManager {
 			calendarHelper.setTime(creationDate);
 			calendarHelper.add(Calendar.DATE, 1);
 			
-
 			Date nextPaymentDate =calendarHelper.getTime();
-			
-			
 			Employee employee = polAppDaoManager.getEmployee().queryForId(employeeId);
 			PaymentFrequency payment = polAppDaoManager.getPaymentFrequencyDao().queryForId(paymentId);
 			Client client = polAppDaoManager.getClientDao().queryForId(clientId);
 			
-			order = new OrderImpl(creationDate, nextPaymentDate , total, total, true, employee, client, payment);
-		
-		
-			polAppDaoManager.getOrderDao().create(order);
+			order = new OrderImpl(creationDate, nextPaymentDate , total, total, true, (EmployeeImpl)employee,(ClientImpl) client,(PaymentFrequencyImpl) payment);
+			polAppDaoManager.getOrderDao().create((OrderImpl)order);
 		} catch (SQLException e) {
 			Log.i("Error adding order", e.getMessage());
+			e.printStackTrace();
+			order=null;
 		}
 		return order;
 	}

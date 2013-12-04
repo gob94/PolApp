@@ -17,17 +17,17 @@ public class OrderImpl implements Order {
 	@DatabaseField(useGetSet = true, canBeNull = false)
 	protected Date nextPaymentDate;
 	@DatabaseField(useGetSet = true, defaultValue = "0")
-	protected float finalBalance;
+	protected long finalBalance;
 	@DatabaseField(useGetSet = true, defaultValue = "0")
-	protected float actualBalance;
+	protected long actualBalance;
 	@DatabaseField(useGetSet = true, defaultValue = "0")
 	protected boolean orderState;
-	@DatabaseField(useGetSet = true, canBeNull = false, foreign = true, foreignAutoCreate = true, columnName="employeeId")
-	protected EmployeeImpl employeeId;
-	@DatabaseField(useGetSet = true, canBeNull = false, foreign = true, foreignAutoCreate = true, columnName="clientId")
-	protected ClientImpl clientId;
-	@DatabaseField(useGetSet = true, canBeNull = false, foreign = true, foreignAutoCreate = true)
-	protected PaymentFrequencyImpl paymentFrequencyId;
+	@DatabaseField(useGetSet = true, canBeNull = false,foreign = true)
+	protected EmployeeImpl employee;
+	@DatabaseField(useGetSet = true, canBeNull = false,foreign = true)
+	protected ClientImpl client;
+	@DatabaseField(useGetSet = true, canBeNull = false,foreign = true)
+	protected PaymentFrequencyImpl paymentFrequency;
 
 	
 	public OrderImpl() {
@@ -35,18 +35,18 @@ public class OrderImpl implements Order {
 	}
 
 	public OrderImpl( Date creationDate, Date nextPaymentDate,
-			float finalBalance, float actualBalance, boolean orderState,
-			Employee employeeId, Client clientId,
-			PaymentFrequency paymentFrequencyId) {
+			long finalBalance, long actualBalance, boolean orderState,
+			EmployeeImpl employee, ClientImpl client,
+			PaymentFrequencyImpl paymentFrequency) {
 		super();
 		this.creationDate = creationDate;
 		this.nextPaymentDate = nextPaymentDate;
 		this.finalBalance = finalBalance;
 		this.actualBalance = actualBalance;
 		this.orderState = orderState;
-		this.employeeId = (EmployeeImpl) employeeId;
-		this.clientId = (ClientImpl) clientId;
-		this.paymentFrequencyId = (PaymentFrequencyImpl) paymentFrequencyId;
+		this.employee =employee;
+		this.client = client;
+		this.paymentFrequency = paymentFrequency;
 	}
 
 	public int getOrderId() {
@@ -61,24 +61,24 @@ public class OrderImpl implements Order {
 		return nextPaymentDate;
 	}
 
-	public float getFinalBalance() {
+	public long getFinalBalance() {
 		return finalBalance;
 	}
 
-	public float getActualBalance() {
+	public long getActualBalance() {
 		return actualBalance;
 	}
 
-	public EmployeeImpl getEmployeeId() {
-		return employeeId;
+	public EmployeeImpl getEmployee() {
+		return employee;
 	}
 
-	public ClientImpl getClientId() {
-		return clientId;
+	public ClientImpl getClient() {
+		return client;
 	}
 
-	public PaymentFrequencyImpl getPaymentFrequencyId() {
-		return paymentFrequencyId;
+	public PaymentFrequencyImpl getPaymentFrequency() {
+		return paymentFrequency;
 	}
 	
 	
@@ -99,27 +99,28 @@ public class OrderImpl implements Order {
 		this.nextPaymentDate = nextPaymentDate;
 	}
 
-	public void setFinalBalance(float finalBalance) {
+	public void setFinalBalance(long finalBalance) {
 		this.finalBalance = finalBalance;
 	}
 
-	public void setActualBalance(float actualBalance) {
+	public void setActualBalance(long actualBalance) {
 		this.actualBalance = actualBalance;
 	}
 
-	public void setEmployeeId(EmployeeImpl employeeId) {
-		this.employeeId = employeeId;
+	public void setEmployee(EmployeeImpl employee) {
+		this.employee = employee;
 	}
 
-	public void setClientId(ClientImpl clientId) {
-		this.clientId = clientId;
+	public void setClient(ClientImpl client) {
+		this.client = client;
 	}
 
-	public void setPaymentFrequencyId(PaymentFrequencyImpl paymentFrequencyId) {
-		this.paymentFrequencyId = paymentFrequencyId;
+	public void setPaymentFrequency(PaymentFrequencyImpl paymentFrequency) {
+		this.paymentFrequency = paymentFrequency;
 	}
 
 	public void setOrderState(boolean orderState) {
 		this.orderState = orderState;
 	}
+
 }
