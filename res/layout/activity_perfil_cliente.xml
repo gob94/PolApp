@@ -34,7 +34,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_marginLeft="86dp"
                     android:gravity="center_horizontal"
-                    android:text="Productos"
+                    android:text="Clientes"
                     android:textSize="24sp" />
             </RelativeLayout>
 

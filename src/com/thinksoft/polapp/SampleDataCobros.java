@@ -1,5 +1,7 @@
 package com.thinksoft.polapp;
 
+
+
 public class SampleDataCobros {
 	
 	private String name;

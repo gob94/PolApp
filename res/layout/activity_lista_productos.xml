@@ -8,7 +8,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".ListaProductosActivity" >
 
-   <Space android:layout_height="5dp" />
+    <Space android:layout_height="5dp" />
 
     <TableRow
         android:layout_width="match_parent"
@@ -30,35 +30,38 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0"
-            android:ems="10" 
-            android:inputType="text"/>
-
+            android:ems="10"
+            android:inputType="text" />
     </TableRow>
-    
-     <TableRow
+
+    <TableRow
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:padding="1dip" >
 
-         <Button
-             android:id="@+id/btnDoneProductCheckList"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:text="@string/btnAccept" />
-        
+        <Button
+            android:id="@+id/btnDoneProductCheckList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:drawableLeft="@drawable/okbuttom"
+            android:fontFamily="roboto-light"
+            android:paddingLeft="10dp"
+            android:text="@string/btnAccept"
+            android:textColor="#91A5AE"
+            android:textSize="16sp" />
     </TableRow>
 
-     <TableRow
-         android:id="@+id/tableRow1"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content" >
+    <TableRow
+        android:id="@+id/tableRow1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
 
-         <ListView
-             android:id="@+id/lstViewSelectProductListActivity"
-             android:layout_width="fill_parent"
-             android:layout_height="match_parent" >
-         </ListView>
-
-     </TableRow>
+        <ListView
+            android:id="@+id/lstViewSelectProductListActivity"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent" >
+        </ListView>
+    </TableRow>
 
 </TableLayout>
