@@ -1,126 +1,129 @@
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:background="#fff3f3f3"
-    tools:context=".SignIn" >
+  <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:tools="http://schemas.android.com/tools"
+     android:id="@+id/scrollView1"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent" >
 
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/idea128px" />
+     <TableLayout
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         android:background="#ffffff"
+         android:gravity="center"
+         android:orientation="vertical"
+         tools:context=".SignIn" >
 
-    <Space android:layout_height="50dp" />
+         <ImageView
+             android:id="@+id/imageView1"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:src="@drawable/idea128px" />
 
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" 
-        android:padding="5dip">
+         <Space android:layout_height="50dp" />
 
-        <ImageView
-            android:id="@+id/imgUserNameSignIn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:paddingLeft="10dp"
-            android:contentDescription="@string/lblUserName"
-            android:src="@drawable/peopleicon24px" />
+         <TableRow
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:padding="5dip" >
 
-        <TextView
-            android:id="@+id/lblUserNameSignIn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:paddingLeft="10dp"
-            android:text="@string/lblUserName" />
+             <ImageView
+                 android:id="@+id/imgUserNameSignIn"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_gravity="center_vertical"
+                 android:contentDescription="@string/lblUserName"
+                 android:paddingLeft="10dp"
+                 android:src="@drawable/peopleicon24px" />
 
-        <EditText
-            android:id="@+id/txtUserNameSignIn"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:paddingLeft="10dp"
-            android:ems="10" 
-            android:inputType="text">
+             <TextView
+                 android:id="@+id/lblUserNameSignIn"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_gravity="center_vertical"
+                 android:paddingLeft="10dp"
+                 android:text="@string/lblUserName" />
 
-            <requestFocus />
-        </EditText>
-    </TableRow>
+             <EditText
+                 android:id="@+id/txtUserNameSignIn"
+                 android:layout_width="150dp"
+                 android:layout_height="wrap_content"
+                 android:layout_gravity="center_vertical"
+                 android:ems="10"
+                 android:inputType="text"
+                 android:paddingLeft="10dp" >
 
-    <Space android:layout_height="25dp" />
+                 <requestFocus />
+             </EditText>
+         </TableRow>
 
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="5dip">
-        
-        <ImageView
-            android:id="@+id/imgPasswordSignIn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:paddingLeft="10dp"
-            android:contentDescription="@string/lblPassword"
-            android:src="@drawable/login24px" />
-        
-        <TextView
-            android:id="@+id/lblPasswordSignIn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:paddingLeft="10dp"
-            android:text="@string/lblPassword" />
+         <Space android:layout_height="25dp" />
 
-        <EditText
-            android:id="@+id/txtPasswordSignIn"
-            android:layout_width="154dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:paddingLeft="10dp"
-            android:ems="10"
-            android:inputType="textPassword" />
+         <TableRow
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:padding="5dip" >
 
-    </TableRow>
+             <ImageView
+                 android:id="@+id/imgPasswordSignIn"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_gravity="center_vertical"
+                 android:contentDescription="@string/lblPassword"
+                 android:paddingLeft="10dp"
+                 android:src="@drawable/login24px" />
 
-    <Space android:layout_height="25dp" />
+             <TextView
+                 android:id="@+id/lblPasswordSignIn"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_gravity="center_vertical"
+                 android:paddingLeft="10dp"
+                 android:text="@string/lblPassword" />
 
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+             <EditText
+                 android:id="@+id/txtPasswordSignIn"
+                 android:layout_width="154dp"
+                 android:layout_height="wrap_content"
+                 android:layout_gravity="center_vertical"
+                 android:ems="10"
+                 android:inputType="textPassword"
+                 android:paddingLeft="10dp" />
+         </TableRow>
 
-	 <TextView
-	     android:id="@+id/lblSignUp"
-	     android:layout_width="wrap_content"
-	     android:layout_height="wrap_content"
-	     android:linksClickable="true"
-	     android:layout_column="2"
-         android:layout_gravity="left"
-         android:paddingLeft="10dp"
-	     android:text="@string/lblSignUp" />
-       
-    </TableRow>
-		
-    <Space android:layout_height="20dp" />
+         <Space android:layout_height="25dp" />
 
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="5dip">
+         <TableRow
+             android:layout_width="match_parent"
+             android:layout_height="match_parent" >
 
-        <Button
-            android:id="@+id/btnSignIn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_column="2"
-            android:layout_gravity="left"
-            android:background="#fff3f3f3"
-            android:textColor="#91A5AE"
-            android:drawableLeft="@drawable/check24px"
-            android:text="@string/btnAccept" />
+             <TextView
+                 android:id="@+id/lblSignUp"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_column="2"
+                 android:layout_gravity="left"
+                 android:linksClickable="true"
+                 android:paddingLeft="10dp"
+                 android:text="@string/lblSignUp" />
+         </TableRow>
 
-    </TableRow>
-  
-</TableLayout>
+         <Space android:layout_height="20dp" />
+
+         <TableRow
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:padding="5dip" >
+
+             <Button
+                 android:id="@+id/btnSignIn"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_column="2"
+                 android:layout_gravity="left"
+                 android:background="#ffffff"
+                 android:drawableLeft="@drawable/check24px"
+                 android:text="@string/btnAccept"
+                 android:textColor="#91A5AE" />
+         </TableRow>
+     </TableLayout>
+
+ </ScrollView>

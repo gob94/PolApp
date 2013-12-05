@@ -76,7 +76,7 @@
                 android:layout_gravity="left"
                 android:paddingLeft="10dp"
                 
-                android:text="@string/lblSecondLastName"
+                android:text="@string/lblPhone"
                 android:textColor="#045FB4" />
 
             <EditText
@@ -92,7 +92,7 @@
             </EditText>
         </TableRow>
 
-        <TableRow
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="10dp"
@@ -100,17 +100,18 @@
 
             <TextView
                 android:id="@+id/lblAddressEditClient"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="19dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
                 android:clickable="true"
-                android:layout_gravity="right"
+                android:drawableLeft="@drawable/mapsclient16px"
                 android:text="@string/lblClientAddressAdd"
                 android:textColor="#013ADF"
                 android:textColorLink="#013ADF" />
-        </TableRow>
+        </RelativeLayout>
 
-        <TableRow
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="10dp"
@@ -120,25 +121,32 @@
                 android:id="@+id/btnEditAgregarCliente"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:layout_marginLeft="10dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="34dp"
                 android:background="#FFFFFF"
-                android:contentDescription="@string/btnAccept"
-                android:drawableLeft="@drawable/check32px"
-                android:src="@drawable/save24px"
-                android:text="@string/btnAccept" />
+                android:drawableLeft="@drawable/okbuttom"
+                android:fontFamily="roboto-light"
+                android:paddingLeft="10dp"
+                android:text="@string/btnAccept"
+                android:textColor="#91A5AE"
+                android:textSize="16sp" />
 
             <Button
                 android:id="@+id/btnEditCancelarCliente"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="left"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="43dp"
                 android:background="#FFFFFF"
-                android:contentDescription="@string/btnCancel"
-                android:drawableLeft="@drawable/cancel32px"
-                android:src="@drawable/cancel32px"
-                android:text="@string/btnCancel" />
-        </TableRow>
+                android:drawableLeft="@drawable/cancelbuttom"
+                android:fontFamily="roboto-light"
+                android:paddingLeft="10dp"
+                android:text="@string/btnCancel"
+                android:textColor="#91A5AE"
+                android:textSize="16sp" />
+        </RelativeLayout>
     </TableLayout>
 
 </ScrollView>

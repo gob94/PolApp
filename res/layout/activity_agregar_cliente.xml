@@ -3,11 +3,11 @@
     android:id="@+id/scrollView2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-     tools:context=".AgregarClienteActivity" >
+    tools:context=".AgregarClienteActivity" >
 
     <TableLayout
-        android:layout_height="wrap_content"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="#FFFFFF"
         android:orientation="vertical" >
 
@@ -26,14 +26,14 @@
                 android:paddingLeft="10dp"
                 android:text="@string/lblName"
                 android:textColor="#045FB4" />
+
             <EditText
                 android:id="@+id/txtNameAddClient"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                
                 android:layout_weight="0"
-                android:ems="10" 
-                android:inputType="text"/>
+                android:ems="10"
+                android:inputType="text" />
         </TableRow>
 
         <TableRow
@@ -48,7 +48,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:paddingLeft="10dp"
-                
                 android:text="@string/lblFirstLastName"
                 android:textColor="#045FB4" />
 
@@ -56,9 +55,8 @@
                 android:id="@+id/txtLastNameAddClient"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ems="10" 
-                android:inputType="text"/>
-
+                android:ems="10"
+                android:inputType="text" />
         </TableRow>
 
         <TableRow
@@ -74,21 +72,21 @@
                 android:layout_gravity="left"
                 android:paddingLeft="10dp"
                 android:text="@string/lblPhone"
-                android:textColor="#045FB4" 
-                />
+                android:textColor="#045FB4" />
 
             <EditText
                 android:id="@+id/txtPhoneAddClient"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:ems="10" 
-                android:inputType="phone"/>
+                android:ems="10"
+                android:maxLength="15"
+                android:inputType="phone" />
 
-                <requestFocus />
+            <requestFocus />
         </TableRow>
 
-        <TableRow
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="10dp"
@@ -96,17 +94,19 @@
 
             <TextView
                 android:id="@+id/lblDireccion"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="19dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
                 android:clickable="true"
-                android:layout_gravity="right"
+                android:drawableLeft="@drawable/mapsclient16px"
                 android:text="@string/lblClientAddressAdd"
                 android:textColor="#013ADF"
                 android:textColorLink="#013ADF" />
-        </TableRow>
 
-        <TableRow
+        </RelativeLayout>
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="10dp"
@@ -116,24 +116,33 @@
                 android:id="@+id/btnSaveAddClient"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:layout_marginLeft="10dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="34dp"
                 android:background="#FFFFFF"
-                android:contentDescription="@string/btnAccept"
-                
-                android:src="@drawable/save24px"
-                android:text="@string/btnAccept" />
+                android:drawableLeft="@drawable/okbuttom"
+                android:fontFamily="roboto-light"
+                android:paddingLeft="10dp"
+                android:text="@string/btnAccept"
+                android:textColor="#91A5AE"
+                android:textSize="16sp" />
 
             <Button
                 android:id="@+id/btnCancelAddClient"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="left"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="43dp"
                 android:background="#FFFFFF"
-                android:contentDescription="@string/btnCancel"
-                android:src="@drawable/cancel32px"
-                android:text="@string/btnCancel" />
-        </TableRow>
+                android:drawableLeft="@drawable/cancelbuttom"
+                android:fontFamily="roboto-light"
+                android:paddingLeft="10dp"
+                android:text="@string/btnCancel"
+                android:textColor="#91A5AE"
+                android:textSize="16sp" />
+
+        </RelativeLayout>
     </TableLayout>
 
 </ScrollView>

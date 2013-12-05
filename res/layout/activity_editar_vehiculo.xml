@@ -1,6 +1,7 @@
 <TableLayout xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:background="#ffffff"
     android:layout_height="match_parent"
     tools:context=".AgregarVehiculo" >
 
@@ -9,7 +10,7 @@
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="1dip" >
+        android:padding="5dip" >
 
         <TextView
             android:id="@+id/lblPlateEditVehicle"
@@ -144,10 +145,6 @@
             android:textColor="#088A4B"
             android:textSize="16sp" />
 
-        <DatePicker
-            android:id="@+id/dpRTVEditVehicle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
     </TableRow>
 
     <Space android:layout_height="10dp" />
@@ -200,7 +197,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="#FFFFFF"
-            android:drawableLeft="@drawable/check32px"
+            android:drawableLeft="@drawable/okbuttom"
             android:fontFamily="roboto-light"
             android:paddingLeft="10dp"
             android:text="@string/btnAccept"
@@ -213,7 +210,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:background="#FFFFFF"
-            android:drawableLeft="@drawable/cancel32px"
+            android:drawableLeft="@drawable/cancelbuttom"
             android:fontFamily="roboto-light"
             android:paddingRight="10dp"
             android:text="@string/btnCancel"
