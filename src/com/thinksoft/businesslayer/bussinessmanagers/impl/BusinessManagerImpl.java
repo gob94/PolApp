@@ -66,6 +66,7 @@ import com.thinksoft.businesslayer.bussinessmanagers.BusinessManager;
 import com.thinksoft.businesslayer.utils.services.QueryService;
 import com.thinksoft.models.daos.PolAppDaoManager;
 import com.thinksoft.models.daos.impl.PolAppDaoManagerImpl;
+import com.thinksoft.models.dtos.Address;
 import com.thinksoft.models.dtos.Brand;
 import com.thinksoft.models.dtos.Client;
 import com.thinksoft.models.dtos.Employee;
@@ -797,6 +798,18 @@ public class BusinessManagerImpl implements BusinessManager {
 		}
 		
 		return false;
+	}
+
+	@Override
+	public boolean addAddress(Address address) {
+		boolean result = false;
+		try {
+			polAppDaoManager.getAddressDao().create(address);
+			result = true;
+		} catch (SQLException e) {
+			Log.e(USER_ERROR_TAG,e.getMessage());
+		}
+		return result;
 	}
 	
 	

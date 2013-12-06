@@ -51,7 +51,7 @@ public class SignIn extends OrmLiteBaseActivity<PolAppHelper> {
 			e.printStackTrace();
 		} 
 
-		/*
+		
 		User user = new UserImpl("admin", "123", "1", "Administrator", "Polaco", "Application");
 		bussinnessLayer.addUser(user);
 		Client client = new ClientImpl("Jonathan","Ruiz","Fallas",true);
@@ -64,7 +64,7 @@ public class SignIn extends OrmLiteBaseActivity<PolAppHelper> {
 		bussinnessLayer.addBrand(brand);
 		Vehicle veh= new VehicleImpl("5616423", true, d, 5161, "YVR", (BrandImpl) brand);
 		bussinnessLayer.addVechicle(veh);
-		*/
+		
 		final EditText username = (EditText) findViewById(R.id.txtUserNameSignIn);
 		final EditText password = (EditText) findViewById(R.id.txtPasswordSignIn);
 		TextView signUp = (TextView) findViewById(R.id.lblSignUp);

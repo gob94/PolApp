@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.j256.ormlite.support.ConnectionSource;
+import com.thinksoft.models.dtos.Address;
 import com.thinksoft.models.dtos.Brand;
 import com.thinksoft.models.dtos.Client;
 import com.thinksoft.models.dtos.Order;
@@ -19,6 +20,8 @@ public interface BusinessManager {
 	public boolean addProduct(Product product);
 	
 	public boolean addVechicle(Vehicle vehicle);
+	
+	public boolean addAddress(Address address);
 	
 	public boolean addBrand(Brand brand);
 

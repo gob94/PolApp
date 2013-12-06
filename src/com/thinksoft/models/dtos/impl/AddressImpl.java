@@ -9,15 +9,13 @@ public class AddressImpl implements Address{
 	@DatabaseField(generatedId = true, useGetSet = true)
 	protected int idAddress;
 	@DatabaseField(useGetSet = true, canBeNull=false)
-	protected int state;
+	protected double zoom;
 	@DatabaseField(useGetSet = true, canBeNull=false)
-	protected int city;
-	@DatabaseField(useGetSet = true, canBeNull=false)
-	protected int disctric;
+	protected double latitude;
+	@DatabaseField(useGetSet = true, canBeNull=true)
+	protected String specificSigns;
 	@DatabaseField(useGetSet = true)
-	protected int specificSigns;
-	@DatabaseField(useGetSet = true)
-	protected int mapURL;
+	protected double longuitude;
 	@DatabaseField(useGetSet = true, foreign=true, foreignAutoCreate=true, columnName="client")
 	protected ClientImpl client;
 	@DatabaseField(useGetSet = true)
@@ -34,38 +32,27 @@ public class AddressImpl implements Address{
 	public void setIdAddress(int idAddress) {
 		this.idAddress = idAddress;
 	}
-	public int getState() {
-		return state;
+
+	public double getLonguitude() {
+		return longuitude;
 	}
-	public void setState(int state) {
-		this.state = state;
+	public void setLonguitude(int longuitude) {
+		this.longuitude = longuitude;
 	}
-	public int getCity() {
-		return city;
-	}
-	public void setCity(int city) {
-		this.city = city;
-	}
-	public int getDisctric() {
-		return disctric;
-	}
-	public void setDisctric(int disctric) {
-		this.disctric = disctric;
-	}
-	public int getSpecificSigns() {
+	public String getSpecificSigns() {
 		return specificSigns;
 	}
 	public ClientImpl getClient() {
 		return client;
 	}
-	public void setSpecificSigns(int specificSigns) {
+	public void setSpecificSigns(String specificSigns) {
 		this.specificSigns = specificSigns;
 	}
-	public int getMapURL() {
-		return mapURL;
+	public double getZoom() {
+		return zoom;
 	}
-	public void setMapURL(int mapURL) {
-		this.mapURL = mapURL;
+	public void setZoom(double zoom) {
+		this.zoom = zoom;
 	}
 	
 	public void setActive(boolean active) {
@@ -85,5 +72,22 @@ public class AddressImpl implements Address{
 	
 	public void setPhoneNumber(int phoneNumber) {
 		this.phoneNumber = phoneNumber;
+	}
+
+	@Override
+	public void setLatitude(double latitude) {
+		this.latitude= latitude;
+	}
+
+
+	@Override
+	public double getLatitude() {
+		return latitude;
+	}
+
+	@Override
+	public void setLonguitude(double longuitude) {
+		this.longuitude = longuitude;
+		
 	}
 }

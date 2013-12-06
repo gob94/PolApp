@@ -38,13 +38,9 @@
     <string name="lblSearch">Buscar</string>
     <string name="lblYes">Sí</string>
     <string name="lblNo">No</string>
-    
     <string name="lblOrderId">#Id</string>
-    
     <string name="lblClientName">Cliente</string>
-    
     <string name="lblActualBalance">Saldo</string>
-    
     <string name="lblNextPayment">Proximo Pago</string>
     <string name="lblClientAddressAdd">Agregar Dirección del cliente</string>
     <string name="lblState">Inicio</string>
@@ -76,5 +72,7 @@
     <string name="title_activity_perfil_productos">PerfilProductos</string>
     <string name="title_activity_perfil_vehiculo">Perfil Vehiculo</string>
     <string name="title_activity_perfil_cobros">Perfil Cobros</string>
+    <string name="title_activity_map_selector">MapSelector</string>
+    <string name="mapskey">AIzaSyBek1AD27jpYEMWsqlcb-09NXRYrdwqzdE</string>
 
 </resources>

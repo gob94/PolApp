@@ -5,6 +5,9 @@ import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLU
 import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_PHONENUMBER;
 import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.EMPTY_STRING;
 import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.MINIMUM_PHONENUMBER_DIGITS;
+
+import java.util.ArrayList;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -13,12 +16,16 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.internal.p;
+import com.google.android.gms.maps.model.LatLng;
 import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
 import com.thinksoft.businesslayer.bussinessmanagers.BusinessManager;
 import com.thinksoft.businesslayer.bussinessmanagers.impl.BusinessManagerImpl;
 import com.thinksoft.models.databases.PolAppHelper;
+import com.thinksoft.models.dtos.Address;
 import com.thinksoft.models.dtos.Client;
 import com.thinksoft.models.dtos.impl.ClientImpl;
 
@@ -27,6 +34,7 @@ public class AgregarClienteActivity extends OrmLiteBaseActivity<PolAppHelper> {
 	 public EditText txtName;
 	 public EditText txtLastName;
 	 public EditText txtPhone;
+	 public TextView txtAddress;
 	 public ListView productList;
 	 public Button btnAddClient;
 	 public static int MESSAGE_DURATION =10000;
@@ -45,21 +53,36 @@ public class AgregarClienteActivity extends OrmLiteBaseActivity<PolAppHelper> {
 	    txtName = (EditText) findViewById(R.id.txtNameAddClient);
 	    txtLastName = (EditText) findViewById(R.id.txtLastNameAddClient);
 	    txtPhone = (EditText) findViewById(R.id.txtPhoneAddClient);
+	    txtAddress= (TextView) findViewById(R.id.lblDireccion);
 
 	    btnAddClient = (Button) findViewById(R.id.btnSaveAddClient);
-	    
+	   
 	    btnAddClient.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View view) {
 				String name = txtName.getText().toString();
 				String[] lastName = txtLastName.getText().toString().split(" ");
+				Intent i= getIntent();
+				Bundle b= i.getExtras();
+				double zoom= b.getDouble("Zoom");
+				LatLng location= i.getParcelableExtra("Location");
+				
 				int phoneNumber = 0;
 				try{
 					phoneNumber = Integer.parseInt(txtPhone.getText().toString());
 				}catch(NumberFormatException ne){
 					ne.printStackTrace();
 				}
-				registerClient(name, lastName, phoneNumber);
+				registerClient(name, lastName, phoneNumber, location, zoom);
+			}
+		});
+	    
+	    txtAddress.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+			   	Intent intentV = new Intent(getApplicationContext(), MapSelector.class);
+	            startActivity(intentV);
 			}
 		});
 	    
@@ -71,13 +94,20 @@ public class AgregarClienteActivity extends OrmLiteBaseActivity<PolAppHelper> {
 		return true;
 	}
 	
-	public void registerClient(String name, String[] lastName, int phoneNumber){
+	public void registerClient(String name, String[] lastName, int phoneNumber, LatLng location, double zoom){
 		Toast msg = null;
 		String result = businessLayer.verifyClientInformation(name,lastName,phoneNumber);
 		if (EMPTY_STRING.equals(result)) {
-			Client client = null;
+			ClientImpl client = null;
+			Address address= null;
+			
+			address.setLatitude(location.latitude);
+			address.setLonguitude(location.longitude);
+			address.setZoom(zoom);
+			address.setClient(client);
+			
 				if(lastName.length>1){
-					client= new ClientImpl(name, lastName[0], lastName[1], NO_DEBTS);			
+					client= new ClientImpl(name, lastName[0], lastName[1], NO_DEBTS);
 				}else{
 					client= new ClientImpl(name, lastName[0], NO_SECOND_LASTNAME,NO_DEBTS);	
 				}
