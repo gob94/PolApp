@@ -49,6 +49,7 @@ public class AgregarCobroActivity extends OrmLiteBaseActivity<PolAppHelper> {
 	Spinner spnPayment;
 	static String MESSAGE_ERROR="No existe";
 	static String MESSAGE_SUCCESSFUL="Agregado exitosamente";
+	static String MESSAGE_MISSING_FIELDS="Debe de elegir un cliente";
 	
 	@SuppressLint("UseSparseArrays")
 	@Override
@@ -105,33 +106,39 @@ public class AgregarCobroActivity extends OrmLiteBaseActivity<PolAppHelper> {
 			@Override
 			public void onClick(View v) {
 				Toast msg = null;
-				Map<String,String> employee = (HashMap<String, String>) spnEmployee.getSelectedItem(); 
-				Map<String,String> payment = (HashMap<String, String>) spnPayment.getSelectedItem(); 
-				
-				int clientId = (Integer) txtClient.getTag();
-				double total = Double.valueOf(txtTotal.getText().toString());
-				int employeeId = Integer.valueOf(employee.get(EMPLOYEE_ID));
-				int paymentId = Integer.valueOf(payment.get(PAYMENT_ID));
-				
-				String result = businessLayer.verifyOrderInformation(clientId, employeeId, paymentId);
-				
-				if(result.equals(EMPTY_STRING)){
-					Order order = businessLayer.addOrder(clientId, employeeId, paymentId,(long) total);
-					if(order!=null){
-						businessLayer.addProductsToOrder(order, products_ids, getHelper().getConnectionSource());
-						msg = Toast.makeText(AgregarCobroActivity.this, MESSAGE_SUCCESSFUL , Toast.LENGTH_LONG);
-					}else{
-						msg = Toast.makeText(AgregarCobroActivity.this, MESSAGE_ERROR , Toast.LENGTH_LONG);
+				if(txtClient.getTag()!=null&&txtTotal.getText().toString()!="0"){
+					
+					Map<String,String> employee = (HashMap<String, String>) spnEmployee.getSelectedItem(); 
+					Map<String,String> payment = (HashMap<String, String>) spnPayment.getSelectedItem(); 
+					
+					int clientId = (Integer) txtClient.getTag();
+					double total = Double.valueOf(txtTotal.getText().toString());
+					int employeeId = Integer.valueOf(employee.get(EMPLOYEE_ID));
+					int paymentId = Integer.valueOf(payment.get(PAYMENT_ID));
+					
+					String result = businessLayer.verifyOrderInformation(clientId, employeeId, paymentId);
+					
+					if(result.equals(EMPTY_STRING)){
+						Order order = businessLayer.addOrder(clientId, employeeId, paymentId,(long) total);
+						if(order!=null){
+							businessLayer.addProductsToOrder(order, products_ids, getHelper().getConnectionSource());
+							msg = Toast.makeText(AgregarCobroActivity.this, MESSAGE_SUCCESSFUL , Toast.LENGTH_LONG);
+						}else{
+							msg = Toast.makeText(AgregarCobroActivity.this, MESSAGE_ERROR , Toast.LENGTH_LONG);
+						}
+					}else if(result.equals(COLUMN_CLIENTID)){
+						msg = Toast.makeText(AgregarCobroActivity.this, COLUMN_CLIENTID +","+MESSAGE_ERROR , Toast.LENGTH_LONG);
+					}else if(result.equals(COLUMN_EMPLOYEE_ID)){
+						msg = Toast.makeText(AgregarCobroActivity.this,  COLUMN_EMPLOYEE_ID +","+MESSAGE_ERROR  , Toast.LENGTH_LONG);
+					}else if(result.equals(COLUMN_PAYMENTFREQUENCY_ID)){
+						msg = Toast.makeText(AgregarCobroActivity.this,  COLUMN_EMPLOYEE_ID +","+MESSAGE_ERROR  , Toast.LENGTH_LONG);
 					}
-				}else if(result.equals(COLUMN_CLIENTID)){
-					msg = Toast.makeText(AgregarCobroActivity.this, COLUMN_CLIENTID +","+MESSAGE_ERROR , Toast.LENGTH_LONG);
-				}else if(result.equals(COLUMN_EMPLOYEE_ID)){
-					msg = Toast.makeText(AgregarCobroActivity.this,  COLUMN_EMPLOYEE_ID +","+MESSAGE_ERROR  , Toast.LENGTH_LONG);
-				}else if(result.equals(COLUMN_PAYMENTFREQUENCY_ID)){
-					msg = Toast.makeText(AgregarCobroActivity.this,  COLUMN_EMPLOYEE_ID +","+MESSAGE_ERROR  , Toast.LENGTH_LONG);
+					msg.show();
+					finish();
+				}else{
+					msg = Toast.makeText(AgregarCobroActivity.this, MESSAGE_MISSING_FIELDS , Toast.LENGTH_LONG);
+					
 				}
-				msg.show();
-				finish();
 			}
 		});
 	}

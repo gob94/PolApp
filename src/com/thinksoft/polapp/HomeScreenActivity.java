@@ -4,12 +4,14 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -27,6 +29,7 @@ import com.thinksoft.businesslayer.bussinessmanagers.BusinessManager;
 import com.thinksoft.businesslayer.bussinessmanagers.impl.BusinessManagerImpl;
 import com.thinksoft.businesslayer.utils.ClientListViewAdapter;
 import com.thinksoft.businesslayer.utils.FleetListViewAdapter;
+import com.thinksoft.businesslayer.utils.MainListSelectable;
 import com.thinksoft.businesslayer.utils.OrderListViewAdapter;
 import com.thinksoft.businesslayer.utils.ProductListViewAdapter;
 import com.thinksoft.models.databases.PolAppHelper;
@@ -304,12 +307,23 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 	}
 	
 	 @Override
-     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo)
+     public void onCreateContextMenu(ContextMenu menu, final View view, ContextMenuInfo menuInfo)
      {
-             super.onCreateContextMenu(menu, v, menuInfo);
-             menu.add(0, v.getId(), 0, "Ver información");
-             menu.add(0, v.getId(), 0, "Editar"); 
-             menu.add(0, v.getId(), 0, "Eliminar");
+             super.onCreateContextMenu(menu, view, menuInfo);
+             
+             
+             menu.add(0, view.getId(), 0, "Ver información").setOnMenuItemClickListener(new OnMenuItemClickListener() {
+				
+				@Override
+				public boolean onMenuItemClick(MenuItem item) {
+					MainListSelectable selectedItem = (MainListSelectable) view.getTag();
+					Intent intent = selectedItem.viewProfile(HomeScreenActivity.this);
+					startActivity(intent);
+					return false;
+				}
+			});
+             menu.add(0, view.getId(), 0, "Editar"); 
+             menu.add(0, view.getId(), 0, "Eliminar");
 
      } 
 	 	    
@@ -330,7 +344,7 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 	    		Intent intent = new Intent(HomeScreenActivity.this, EditarCobroActivity.class);
 	    		startActivity(intent);
 	    	} else if(tabs.getCurrentTab()==3){
-	    		Intent intent = new Intent(HomeScreenActivity.this, EditarVehiculo.class);
+	    		Intent intent = new Intent(HomeScreenActivity.this, EditarVehiculoActivity.class);
 	    		startActivity(intent);
 	    	}
 	    	return true;
@@ -348,7 +362,7 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 	    		Intent intent = new Intent(HomeScreenActivity.this, EditarCobroActivity.class);
 	    		startActivity(intent);
 	    	} else if(tabs.getCurrentTab()== R.id.tab4){
-	    		Intent intent = new Intent(HomeScreenActivity.this, EditarVehiculo.class);
+	    		Intent intent = new Intent(HomeScreenActivity.this, EditarVehiculoActivity.class);
 	    		startActivity(intent);
 	    	}
 	    	return true;

@@ -2,6 +2,11 @@ package com.thinksoft.businesslayer.utils;
 
 import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.imgFalse;
 import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.imgTrue;
+import static com.thinksoft.businesslayer.utils.constants.RowConstants.BRAND_COLUMN;
+import static com.thinksoft.businesslayer.utils.constants.RowConstants.FUNCTIONAL_COLUMN;
+import static com.thinksoft.businesslayer.utils.constants.RowConstants.LICENCE_COLUMN;
+import static com.thinksoft.businesslayer.utils.constants.RowConstants.MODEL_COLUMN;
+import static com.thinksoft.businesslayer.utils.constants.RowConstants.RTV_COLUMN;
 
 import java.util.List;
 import java.util.Map;
@@ -20,12 +25,6 @@ public class FleetListViewAdapter extends BaseAdapter {
 
 	public  List<Map<String, String>> list;
 	Activity activity;
-    public static final String LICENCE_COLUMN = "Licence";
-    public static final String FUNCTIONAL_COLUMN = "Functional";
-    public static final String RTV_COLUMN = "Rtv";
-    //public static final String EXPEDITURE_COLUMN = "Expediture";
-    public static final String MODEL_COLUMN = "Model";
-    public static final String BRAND_COLUMN = "Brand";
     
     public FleetListViewAdapter() {
 		// TODO Auto-generated constructor stub
@@ -55,33 +54,22 @@ public class FleetListViewAdapter extends BaseAdapter {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-	
-	private class ViewHolder {
-		TextView txtLicence;
-		ImageView txtFunctional;
-		TextView txtRtv;
-		//TextView txtExpediture;
-		TextView txtModel;
-		TextView txtBrand;
-	}
 
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		ViewHolder holder;
+		FleetViewHolder holder;
 		LayoutInflater inflater = activity.getLayoutInflater();
 		imgTrue= activity.getResources().getDrawable(R.drawable.check16listview);
 		imgFalse= activity.getResources().getDrawable(R.drawable.cancel16listview);
 		
 		if (convertView == null) {
 			convertView = inflater.inflate(R.layout.fleet_list_view_row, null);
-			holder = new ViewHolder();
+			holder = new FleetViewHolder();
 			holder.txtLicence = (TextView) convertView
 					.findViewById(R.id.LicenceFleetListRow);
 			holder.txtRtv = (TextView) convertView
 					.findViewById(R.id.RtvFleetListRow);
-		//	holder.txtExpediture = (TextView) convertView
-			//		.findViewById(R.id.ExpenditureFleetListRow);
 			holder.txtModel = (TextView) convertView
 					.findViewById(R.id.ModelFleetListRow);
 			holder.txtBrand = (TextView) convertView
@@ -90,18 +78,17 @@ public class FleetListViewAdapter extends BaseAdapter {
 					.findViewById(R.id.FunctionalFleetListRow);
 			convertView.setTag(holder);
 		} else {
-			holder = (ViewHolder) convertView.getTag();
+			holder = (FleetViewHolder) convertView.getTag();
 		}
 		
 		Map<String,String> map = list.get(position);
-
-		holder.txtLicence.setText((CharSequence) map.get(com.thinksoft.businesslayer.utils.constants.RowConstants.LICENCE_COLUMN));
-		holder.txtRtv.setText((CharSequence) map.get(com.thinksoft.businesslayer.utils.constants.RowConstants.RTV_COLUMN));
-		//holder.txtExpediture.setText((CharSequence) map.get(com.thinksoft.businesslayer.utils.constants.RowConstants.EXPEDITURE_COLUMN));
-		holder.txtModel.setText((CharSequence) map.get(com.thinksoft.businesslayer.utils.constants.RowConstants.MODEL_COLUMN));
-		holder.txtBrand.setText((CharSequence) map.get(com.thinksoft.businesslayer.utils.constants.RowConstants.BRAND_COLUMN));
 		
-		if(map.get(com.thinksoft.businesslayer.utils.constants.RowConstants.FUNCTIONAL_COLUMN).equalsIgnoreCase("true")){
+		holder.txtLicence.setText((CharSequence) map.get(LICENCE_COLUMN));
+		holder.txtRtv.setText((CharSequence) map.get(RTV_COLUMN));
+		holder.txtModel.setText((CharSequence) map.get(MODEL_COLUMN));
+		holder.txtBrand.setText((CharSequence) map.get(BRAND_COLUMN));
+		
+		if(map.get(FUNCTIONAL_COLUMN).equalsIgnoreCase("true")){
 			holder.txtFunctional.setImageDrawable(imgTrue);
 		}else{
 			holder.txtFunctional.setImageDrawable(imgFalse);

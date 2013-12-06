@@ -3,10 +3,7 @@ package com.thinksoft.models.dtos.impl;
 import java.util.Date;
 
 import com.j256.ormlite.field.DatabaseField;
-import com.thinksoft.models.dtos.Client;
-import com.thinksoft.models.dtos.Employee;
 import com.thinksoft.models.dtos.Order;
-import com.thinksoft.models.dtos.PaymentFrequency;
 
 public class OrderImpl implements Order {
 
