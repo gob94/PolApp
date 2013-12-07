@@ -21,11 +21,28 @@ public class AddressImpl implements Address{
 	@DatabaseField(useGetSet = true)
 	protected boolean active;
 	@DatabaseField(useGetSet = true)
-	protected int phoneNumber;
+	protected long phoneNumber;
 	
 	public AddressImpl() {
 	}
 	
+	
+	
+	public AddressImpl(double zoom, double latitude,
+			String specificSigns, double longuitude, ClientImpl client,
+			boolean active, long phone) {
+		super();
+		this.phoneNumber = phone;
+		this.zoom = zoom;
+		this.latitude = latitude;
+		this.specificSigns = specificSigns;
+		this.longuitude = longuitude;
+		this.client = client;
+		this.active = active;
+	}
+
+
+
 	public int getIdAddress() {
 		return idAddress;
 	}
@@ -65,14 +82,6 @@ public class AddressImpl implements Address{
 	public boolean getActive() {
 		return active;
 	}
-	
-	public int getPhoneNumber() {
-		return phoneNumber;
-	}
-	
-	public void setPhoneNumber(int phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
 
 	@Override
 	public void setLatitude(double latitude) {
@@ -88,6 +97,21 @@ public class AddressImpl implements Address{
 	@Override
 	public void setLonguitude(double longuitude) {
 		this.longuitude = longuitude;
+		
+	}
+
+
+
+	@Override
+	public long getPhoneNumber() {
+		return phoneNumber;
+	}
+
+
+
+	@Override
+	public void setPhoneNumber(long phone) {
+		this.phoneNumber= phone;
 		
 	}
 }

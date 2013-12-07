@@ -16,12 +16,15 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.internal.ad;
+import com.google.android.gms.internal.bu;
 import com.google.android.gms.maps.model.LatLng;
 import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
 import com.thinksoft.businesslayer.bussinessmanagers.BusinessManager;
 import com.thinksoft.businesslayer.bussinessmanagers.impl.BusinessManagerImpl;
 import com.thinksoft.models.databases.PolAppHelper;
 import com.thinksoft.models.dtos.Address;
+import com.thinksoft.models.dtos.Client;
 import com.thinksoft.models.dtos.impl.AddressImpl;
 import com.thinksoft.models.dtos.impl.ClientImpl;
 
@@ -69,7 +72,9 @@ public class AgregarClienteActivity extends OrmLiteBaseActivity<PolAppHelper> {
 				}catch(NumberFormatException ne){
 					ne.printStackTrace();
 				}
-				registerClient(name, lastName, phoneNumber, location, zoom);
+				
+				registerClient(name, lastName, phoneNumber, zoom, location.latitude, location.longitude);
+				
 			}
 		});
 	    
@@ -90,24 +95,24 @@ public class AgregarClienteActivity extends OrmLiteBaseActivity<PolAppHelper> {
 		return true;
 	}
 	
-	public void registerClient(String name, String[] lastName, long phoneNumber, LatLng location, double zoom){
+	public void registerClient(String name, String[] lastName, long phoneNumber, double zoom, double latitude, double longitude){
 		Toast msg = null;
 		String result = businessLayer.verifyClientInformation(name,lastName,phoneNumber);
 		if (EMPTY_STRING.equals(result)) {
-			ClientImpl client = null;
-			Address address= new AddressImpl();
-			address.setLatitude(location.latitude);
-			address.setLonguitude(location.longitude);
-			address.setZoom(zoom);
-			address.setClient(client);
+			Client client = null;
+			Address add= null;
+
 			
 				if(lastName.length>1){
-					client= new ClientImpl(name, lastName[0], lastName[1], NO_DEBTS,phoneNumber);
+				client= new ClientImpl(name, lastName[0], lastName[1], NO_DEBTS,phoneNumber);
 				}else{
-					client= new ClientImpl(name, lastName[0], NO_SECOND_LASTNAME,NO_DEBTS,phoneNumber);	
+				client= new ClientImpl(name, lastName[0], NO_SECOND_LASTNAME,NO_DEBTS,phoneNumber);	
 				}
+				
 			if(businessLayer.addClient(client)){
+				add= new AddressImpl(zoom, latitude, "", longitude, (ClientImpl)client, true, phoneNumber);
 				Intent intent = new Intent(AgregarClienteActivity.this, HomeScreenActivity.class);
+				businessLayer.addAddress(add);
 				startActivity(intent);
 			}
 		}else if(COLUMN_NAME.equalsIgnoreCase(result)){		
@@ -120,6 +125,23 @@ public class AgregarClienteActivity extends OrmLiteBaseActivity<PolAppHelper> {
 			msg = Toast.makeText(AgregarClienteActivity.this,MESSAGE_GENERIC_ERROR, MESSAGE_DURATION);
 		}
 		msg.show();
+	}
+	
+	public boolean asignAddressToClient(double lat, double longitude, double zoom, ClientImpl client){
+		boolean result= false;
+		Address address= null;
+		
+		address.setLatitude(lat);
+		address.setLonguitude(longitude);
+		address.setZoom(zoom);
+		
+		if(client != null){
+			address.setClient(client);
+			result= true;
+		}else{
+			Toast.makeText(getApplicationContext(), "Por favor verifique sus datos", Toast.LENGTH_LONG).show();
+		}
+		return result;
 	}
  
 }

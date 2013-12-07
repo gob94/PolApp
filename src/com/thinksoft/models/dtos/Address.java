@@ -31,7 +31,7 @@ public interface Address {
 
 	public boolean getActive();
 
-	public int getPhoneNumber();
+	public long getPhoneNumber();
 
-	public void setPhoneNumber(int phoneNumber);
+	public void setPhoneNumber(long phone);
 }
