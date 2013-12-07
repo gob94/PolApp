@@ -20,20 +20,18 @@ public class ClientImpl implements Client {
 
 	@DatabaseField(defaultValue = "false", useGetSet = true, canBeNull = false)
 	protected boolean accountState;
-	
+
 	@DatabaseField(useGetSet = true, canBeNull = false)
 	protected long phoneNumber;
-	
-	@ForeignCollectionField(eager=false)
-    private ForeignCollection<AddressImpl> clientAddresses;
-	
+
+	@ForeignCollectionField(eager = false)
+	private ForeignCollection<AddressImpl> clientAddresses;
+
 	public ClientImpl() {
 	}
-	
-	
-	
-	public ClientImpl(String name, String firstLastName,
-			String secondLastName, boolean accountState,long phoneNumber) {
+
+	public ClientImpl(String name, String firstLastName, String secondLastName,
+			boolean accountState, long phoneNumber) {
 		super();
 		this.name = name;
 		this.firstLastName = firstLastName;
@@ -41,8 +39,6 @@ public class ClientImpl implements Client {
 		this.accountState = accountState;
 		this.phoneNumber = phoneNumber;
 	}
-
-
 
 	public int getClientId() {
 		return clientId;
@@ -83,26 +79,22 @@ public class ClientImpl implements Client {
 	public void setAccountState(boolean accountState) {
 		this.accountState = accountState;
 	}
+
 	public void setClientAddresses(
 			ForeignCollection<AddressImpl> clientAddresses) {
 		this.clientAddresses = clientAddresses;
 	}
+
 	public ForeignCollection<AddressImpl> getClientAddresses() {
 		return clientAddresses;
 	}
-
-
 
 	public long getPhoneNumber() {
 		return phoneNumber;
 	}
 
-
-
 	public void setPhoneNumber(long phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-	
-	
 
 }

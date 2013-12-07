@@ -214,6 +214,7 @@ public class BusinessManagerImpl implements BusinessManager {
 			Date nextPaymentDate =calendarHelper.getTime();
 			PaymentFrequency payment = polAppDaoManager.getPaymentFrequencyDao().queryForId(paymentId);
 			Client client = polAppDaoManager.getClientDao().queryForId(clientId);
+			client.setAccountState(true);
 			
 			order = new OrderImpl(creationDate, nextPaymentDate , total, total, true, (ClientImpl) client,(PaymentFrequencyImpl) payment);
 			polAppDaoManager.getOrderDao().create((OrderImpl)order);
