@@ -20,8 +20,6 @@ public class OrderImpl implements Order {
 	@DatabaseField(useGetSet = true, defaultValue = "0")
 	protected boolean orderState;
 	@DatabaseField(useGetSet = true, canBeNull = false,foreign = true)
-	protected EmployeeImpl employee;
-	@DatabaseField(useGetSet = true, canBeNull = false,foreign = true)
 	protected ClientImpl client;
 	@DatabaseField(useGetSet = true, canBeNull = false,foreign = true)
 	protected PaymentFrequencyImpl paymentFrequency;
@@ -32,8 +30,7 @@ public class OrderImpl implements Order {
 	}
 
 	public OrderImpl( Date creationDate, Date nextPaymentDate,
-			long finalBalance, long actualBalance, boolean orderState,
-			EmployeeImpl employee, ClientImpl client,
+			long finalBalance, long actualBalance, boolean orderState, ClientImpl client,
 			PaymentFrequencyImpl paymentFrequency) {
 		super();
 		this.creationDate = creationDate;
@@ -41,7 +38,6 @@ public class OrderImpl implements Order {
 		this.finalBalance = finalBalance;
 		this.actualBalance = actualBalance;
 		this.orderState = orderState;
-		this.employee =employee;
 		this.client = client;
 		this.paymentFrequency = paymentFrequency;
 	}
@@ -64,10 +60,6 @@ public class OrderImpl implements Order {
 
 	public long getActualBalance() {
 		return actualBalance;
-	}
-
-	public EmployeeImpl getEmployee() {
-		return employee;
 	}
 
 	public ClientImpl getClient() {
@@ -104,9 +96,6 @@ public class OrderImpl implements Order {
 		this.actualBalance = actualBalance;
 	}
 
-	public void setEmployee(EmployeeImpl employee) {
-		this.employee = employee;
-	}
 
 	public void setClient(ClientImpl client) {
 		this.client = client;

@@ -4,7 +4,6 @@ import java.util.Date;
 
 import com.j256.ormlite.table.DatabaseTable;
 import com.thinksoft.models.dtos.impl.ClientImpl;
-import com.thinksoft.models.dtos.impl.EmployeeImpl;
 import com.thinksoft.models.dtos.impl.PaymentFrequencyImpl;
 
 @DatabaseTable
@@ -20,8 +19,6 @@ public interface Order {
 
 	public long getActualBalance();
 
-	public EmployeeImpl getEmployee();
-	
 	public ClientImpl getClient();
 
 	public PaymentFrequencyImpl getPaymentFrequency();
@@ -37,8 +34,6 @@ public interface Order {
 	public void setFinalBalance(long finalBalance);
 
 	public void setActualBalance(long actualBalance);
-
-	public void setEmployee(EmployeeImpl employee);
 
 	public void setClient(ClientImpl client);
 

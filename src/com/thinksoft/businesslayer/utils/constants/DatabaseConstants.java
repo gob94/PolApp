@@ -26,7 +26,7 @@ public class DatabaseConstants {
 	public static String COLUMN_PAYMENTFREQUENCY_ID = "paymentFrequency";
 	public static String COLUMN_PRODUCTID = "idProduct";
 	public static String COLUMN_PRODUCT_CODE = "code";
-	public static String COLUMN_LICENSE_PLATE = "paymentFrequency";
+	public static String COLUMN_LICENSE_PLATE = "licensePlate";
 	public static String START_EMPTY_STRING= "start with empty string";
 	public static Drawable imgTrue= null;
     public static Drawable imgFalse= null;

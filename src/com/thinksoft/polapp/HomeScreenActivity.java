@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Display;
@@ -322,7 +321,16 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 					return false;
 				}
 			});
-             menu.add(0, view.getId(), 0, "Editar"); 
+             menu.add(0, view.getId(), 0, "Editar").setOnMenuItemClickListener(new OnMenuItemClickListener() {
+ 				
+ 				@Override
+ 				public boolean onMenuItemClick(MenuItem item) {
+ 					MainListSelectable selectedItem = (MainListSelectable) view.getTag();
+ 					Intent intent = selectedItem.editItem(HomeScreenActivity.this);
+ 					startActivity(intent);
+ 					return false;
+ 				}
+ 			}); 
              menu.add(0, view.getId(), 0, "Eliminar");
 
      } 

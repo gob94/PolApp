@@ -31,4 +31,8 @@ public interface Client {
 	public void setClientAddresses(ForeignCollection<AddressImpl> clientAddresses);
 	
 	public ForeignCollection<AddressImpl> getClientAddresses();
+	
+	public long getPhoneNumber();
+	
+	public void setPhoneNumber(long phoneNumber);
 }

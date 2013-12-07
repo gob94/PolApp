@@ -9,7 +9,6 @@ import static com.thinksoft.businesslayer.utils.constants.Constants.ZERO;
 import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.BRAND_ERROR_TAG;
 import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.CLIENT_ERROR_TAG;
 import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_CLIENTID;
-import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_EMPLOYEE_ID;
 import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_FIRST_LASTNAME;
 import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_IDENTIFICATION;
 import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_LASTNAME;
@@ -27,6 +26,8 @@ import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.STAR
 import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.USER_ERROR_TAG;
 import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.USER_INSERTED;
 import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.VEHICLE_ERROR_TAG;
+
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_LICENSE_PLATE;
 import static com.thinksoft.businesslayer.utils.constants.RowConstants.ACTUAL_BALANCE_COLUMN;
 import static com.thinksoft.businesslayer.utils.constants.RowConstants.BRAND_COLUMN;
 import static com.thinksoft.businesslayer.utils.constants.RowConstants.CLIENT_ID_COLUMN;
@@ -97,6 +98,18 @@ public class BusinessManagerImpl implements BusinessManager {
 	}
 	
 	@Override
+	public boolean addAddress(Address address) {
+		boolean result = false;
+		try {
+			polAppDaoManager.getAddressDao().create(address);
+			result = true;
+		} catch (SQLException e) {
+			Log.e(USER_ERROR_TAG,e.getMessage());
+		}
+		return result;
+	}
+ 
+	@Override
 	public boolean addBrand(Brand brand) {
 		boolean result = false;
 		try {
@@ -107,7 +120,7 @@ public class BusinessManagerImpl implements BusinessManager {
 		}
 		return result;
 	}
- 
+	
 	@Override
 	public boolean addClient(Client client) {
 		boolean result = false;
@@ -120,6 +133,98 @@ public class BusinessManagerImpl implements BusinessManager {
 		return result;
 	}
 	
+	@Override
+	public void addDefaultOrderValues() {
+		try {
+		PaymentFrequency frequency = new PaymentFrequencyImpl("Semanal 1000",7,1000);
+		try{
+			polAppDaoManager.getPaymentFrequencyDao().createIfNotExists(frequency);
+			}catch(SQLException e){
+				e.printStackTrace();
+			}
+		frequency = new PaymentFrequencyImpl("Quincenal 2000",15,2000);
+		try{
+			polAppDaoManager.getPaymentFrequencyDao().createIfNotExists(frequency);
+			}catch(SQLException e){
+				e.printStackTrace();
+			}
+		frequency = new PaymentFrequencyImpl("Quincenal 5000",15,5000);
+		try{
+			polAppDaoManager.getPaymentFrequencyDao().createIfNotExists(frequency);
+			}catch(SQLException e){
+				e.printStackTrace();
+			}
+		frequency = new PaymentFrequencyImpl("Quincenal 10000",15,10000);
+		try{
+			polAppDaoManager.getPaymentFrequencyDao().createIfNotExists(frequency);
+			}catch(SQLException e){
+				e.printStackTrace();
+			}
+		frequency = new PaymentFrequencyImpl("Mensual 5000",30,5000);
+		try{
+			polAppDaoManager.getPaymentFrequencyDao().createIfNotExists(frequency);
+			}catch(SQLException e){
+				e.printStackTrace();
+			}
+		frequency = new PaymentFrequencyImpl("Mensual 10000",30,10000);
+		try{
+			polAppDaoManager.getPaymentFrequencyDao().createIfNotExists(frequency);
+			}catch(SQLException e){
+				e.printStackTrace();
+			}
+		frequency = new PaymentFrequencyImpl("Mensual 20000",30,20000);
+		try{
+			polAppDaoManager.getPaymentFrequencyDao().createIfNotExists(frequency);
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		frequency = new PaymentFrequencyImpl("Mensual 50000",30,50000);
+		try{
+			polAppDaoManager.getPaymentFrequencyDao().createIfNotExists(frequency);
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		
+		Brand brand = new BrandImpl("Yamaha");
+		polAppDaoManager.getBrandDao().createIfNotExists(brand);
+		Vehicle vehicle = new VehicleImpl("M123123",true,new Date(), 1000,"123512331", (BrandImpl) brand); 
+		
+		polAppDaoManager.getVehicleDao().createIfNotExists(vehicle);
+		Employee mark = new EmployeeImpl("1","Sergio","Monge","Monge",86882316,(VehicleImpl) vehicle);
+		polAppDaoManager.getEmployee().createIfNotExists(mark);
+		mark = new EmployeeImpl("2","Allan","Porras","Porras",86882316,(VehicleImpl) vehicle);
+		polAppDaoManager.getEmployee().createIfNotExists(mark);
+		mark = new EmployeeImpl("3","Jose","Pablo","Pablo",86882316,(VehicleImpl) vehicle);
+		polAppDaoManager.getEmployee().createIfNotExists(mark);
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Override
+	public Order addOrder(int clientId, int paymentId, long total) {
+		Order order = null;
+		try {
+			Date creationDate = new Date();
+			Calendar calendarHelper = Calendar.getInstance();
+			calendarHelper.setTime(creationDate);
+			calendarHelper.add(Calendar.DATE, 1);
+			
+			Date nextPaymentDate =calendarHelper.getTime();
+			PaymentFrequency payment = polAppDaoManager.getPaymentFrequencyDao().queryForId(paymentId);
+			Client client = polAppDaoManager.getClientDao().queryForId(clientId);
+			
+			order = new OrderImpl(creationDate, nextPaymentDate , total, total, true, (ClientImpl) client,(PaymentFrequencyImpl) payment);
+			polAppDaoManager.getOrderDao().create((OrderImpl)order);
+		} catch (SQLException e) {
+			Log.i("Error adding order", e.getMessage());
+			e.printStackTrace();
+			order=null;
+		}
+		return order;
+	}
+
 	@Override
 	public boolean addProduct(Product product) {
 		boolean result = false;
@@ -138,7 +243,35 @@ public class BusinessManagerImpl implements BusinessManager {
 		}
 		return result;
 	}
-	
+
+	@Override
+	public boolean addProductsToOrder(final Order order, final Map<Integer,Integer> productsId, ConnectionSource connectionSource) {
+		
+		try {
+			TransactionManager.callInTransaction(connectionSource, new Callable<Void>() {
+			    public Void call() throws Exception {
+			    	ProductOrder productOrder;
+			    	Product product;
+			    	for (Integer id : productsId.keySet()) {
+			    		int quantity = productsId.get(id);
+			    		product = polAppDaoManager.getProductDao().queryForId(id);
+			    		productOrder = new ProductOrderImpl(quantity,(int)(quantity*product.getPrice()), order, product);
+			    		product.setQuantity(product.getQuantity()-quantity);
+			    		if(product.getQuantity()>=ZERO){
+			    			polAppDaoManager.getProductDao().update(product);
+			    			polAppDaoManager.getProductOrderDao().create(productOrder);
+			    		}
+					}
+					return null;
+			    }
+			});
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
+
 	@Override
 	public boolean addUser(User user) {
 		boolean result = false;
@@ -150,7 +283,7 @@ public class BusinessManagerImpl implements BusinessManager {
 		}
 		return result;
 	}
-	
+
 	@Override
 	public boolean addVechicle(Vehicle vehicle) {
 		boolean result = false;
@@ -163,6 +296,7 @@ public class BusinessManagerImpl implements BusinessManager {
 		return result;
 	}
 
+	
 	@Override
 	public boolean checkUserCredentials(String userName, String password){
 		boolean result = false;
@@ -183,7 +317,7 @@ public class BusinessManagerImpl implements BusinessManager {
 			}
 		return result;
 	}
-
+	
 	@Override
 	public boolean clientHasOrders(int clientId) {
 		boolean result = false;
@@ -198,6 +332,25 @@ public class BusinessManagerImpl implements BusinessManager {
 		return result;
 	}
 
+	@Override
+	public List<Map<String,String>> getAllActiveOrders(){
+		List<Map<String,String>> orderList = null;
+		List<Order> rawOrder = null;
+		try {
+			orderList = new ArrayList<Map<String,String>>();
+			rawOrder = polAppDaoManager.getOrderDao().queryForAll();
+			
+			Log.i("zero",String.valueOf( rawOrder.size()));
+			for (Order order : rawOrder) {
+				orderList.add(getOrderAsItem(order));
+			}
+		} catch (SQLException e) {
+			Log.e(PRODUCT_ERROR_TAG,e.getMessage());
+		}
+		Log.i("zero",String.valueOf( orderList.size()));
+		return orderList;
+	}
+	
 	@Override
 	public List<Map<String,String>> getAllClients(){
 		List<Map<String,String>> listOfClients = null;
@@ -232,26 +385,7 @@ public class BusinessManagerImpl implements BusinessManager {
 		return productList;
 	}
 
-	
-	@Override
-	public List<Map<String,String>> getAllActiveOrders(){
-		List<Map<String,String>> orderList = null;
-		List<Order> rawOrder = null;
-		try {
-			orderList = new ArrayList<Map<String,String>>();
-			rawOrder = polAppDaoManager.getOrderDao().queryForAll();
-			
-			Log.i("zero",String.valueOf( rawOrder.size()));
-			for (Order order : rawOrder) {
-				orderList.add(getOrderAsItem(order));
-			}
-		} catch (SQLException e) {
-			Log.e(PRODUCT_ERROR_TAG,e.getMessage());
-		}
-		Log.i("zero",String.valueOf( orderList.size()));
-		return orderList;
-	}
-	
+
 	@Override
 	public List<Map<String, String>> getAllVehicles() {
 		List<Map<String,String>> listOfVehicles = null;
@@ -269,7 +403,7 @@ public class BusinessManagerImpl implements BusinessManager {
 		}
 		return listOfVehicles;
 	}
-
+	
 	private Map<String, String> getClientAsItem(Client client){
 		Map<String, String> clientItem = new HashMap<String, String>();
 		
@@ -285,23 +419,6 @@ public class BusinessManagerImpl implements BusinessManager {
 		
 		return clientItem;
 	}
-	
-	private Map<String, String> getOrderAsItem(Order order){
-		Map<String, String> orderItem = new HashMap<String, String>();
-		try {
-			polAppDaoManager.getClientDao().refresh(order.getClient());
-			orderItem.put(ORDER_ID_COLUMN, String.valueOf(order.getOrderId()));
-			
-			orderItem.put(NAME_COLUMN, order.getClient().getName() + " " + order.getClient().getFirstLastName());
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			orderItem.put(NEXT_PAYMENT_COLUMN, sdf.format(order.getNextPaymentDate()));
-	
-			orderItem.put(ACTUAL_BALANCE_COLUMN, String.valueOf(order.getActualBalance()));
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return orderItem;
-	}
 
 	@Override
 	public Client getClientById(int id) {
@@ -313,30 +430,6 @@ public class BusinessManagerImpl implements BusinessManager {
 		}
 		return client;
 	}
-
-
-	@Override
-	public Product getProductById(int id) {
-		Product product = null;
-		try {
-			product =  (Product) polAppDaoManager.getProductDao().queryBuilder().where().idEq(id);
-		} catch (SQLException e) {
-			Log.e(CLIENT_ERROR_TAG, e.getMessage());
-		}
-		return product;
-	}
-	
-	@Override
-	public Product getProductByCode(String id) {
-		Product product = null;
-		try {
-			product =  (Product) polAppDaoManager.getProductDao().queryBuilder().where().eq("code", id);
-		} catch (SQLException e) {
-			Log.e(CLIENT_ERROR_TAG, e.getMessage());
-		}
-		return product;
-	}
-
 	@Override
 	public String getClientPhoneNumber(int clientId) {
 		String number = null;
@@ -348,6 +441,7 @@ public class BusinessManagerImpl implements BusinessManager {
 		}
     	return number;
 	}
+
 	@Override
 	public List<Map<String, String>> getClientProducts(int clientId) {
 		List<Map<String,String>> productList = null;
@@ -371,7 +465,48 @@ public class BusinessManagerImpl implements BusinessManager {
 		}
 		return productList;
 	}
+	private Map<String, String> getOrderAsItem(Order order){
+		Map<String, String> orderItem = new HashMap<String, String>();
+		try {
+			polAppDaoManager.getClientDao().refresh(order.getClient());
+			orderItem.put(ORDER_ID_COLUMN, String.valueOf(order.getOrderId()));
+			
+			orderItem.put(NAME_COLUMN, order.getClient().getName() + " " + order.getClient().getFirstLastName());
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			orderItem.put(NEXT_PAYMENT_COLUMN, sdf.format(order.getNextPaymentDate()));
+	
+			orderItem.put(ACTUAL_BALANCE_COLUMN, String.valueOf(order.getActualBalance()));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return orderItem;
+	}
 
+	@Override
+	public Order getOrderById(int id) {
+		Order order=null;
+		
+		try {
+			order = polAppDaoManager.getOrderDao().queryForId(id);
+			polAppDaoManager.getClientDao().refresh(order.getClient());
+			polAppDaoManager.getPaymentFrequencyDao().refresh(order.getPaymentFrequency());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public Product getProduct(int id) {
+		Product product = null;
+		try {
+			product = polAppDaoManager.getProductDao().queryForId(id);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return product;
+	}
+	
 	private Map<String, String> getProductAsItem(Product product){
 		Map<String, String> productItem = new HashMap<String, String>();
 		productItem.put(PRODUCT_ID_COLUMN, String.valueOf(product.getIdProduct()));
@@ -386,6 +521,29 @@ public class BusinessManagerImpl implements BusinessManager {
 		
 		return productItem;
 	}
+	
+	@Override
+	public Product getProductByCode(String id) {
+		Product product = null;
+		try {
+			product =  (Product) polAppDaoManager.getProductDao().queryBuilder().where().eq("code", id);
+		} catch (SQLException e) {
+			Log.e(CLIENT_ERROR_TAG, e.getMessage());
+		}
+		return product;
+	}
+
+	@Override
+	public Product getProductById(int id) {
+		Product product = null;
+		try {
+			product =  (Product) polAppDaoManager.getProductDao().queryBuilder().where().idEq(id);
+		} catch (SQLException e) {
+			Log.e(CLIENT_ERROR_TAG, e.getMessage());
+		}
+		return product;
+	}
+	
 	private Map<String, String> getProductOrderAsItem(ProductOrder productOrder){
 		Map<String,String> productItem = new HashMap<String, String>();
 		
@@ -400,6 +558,17 @@ public class BusinessManagerImpl implements BusinessManager {
 		return productItem;
 	}
 
+	@Override
+	public double getProductPrice(int id) {
+		double price = 0;
+		try {
+			price = polAppDaoManager.getProductDao().queryForId(id).getPrice();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return price;
+	}
+	
 	@Override
 	public List<Map<String, String>> getSpecifiedNumberOfClients(long number) {
 		List<Map<String,String>> listOfClients = null;
@@ -432,7 +601,55 @@ public class BusinessManagerImpl implements BusinessManager {
 		return vehicleItem;
 
 	}
+
+	private int isNumber(String word) {
+		int result = 0;
+		
+		try {
+			result = Integer.parseInt(word);
+		} catch (NumberFormatException e) {
+			
+		}
+		return result;
+	}
+
+	@Override
+	public List<Map<String, String>> listOfPaymentMethods() {
+		List<Map<String, String>> payments = new ArrayList<Map<String, String>>();
+		Map<String,String> map =null;
+		try {
+			for (PaymentFrequency payment : polAppDaoManager.getPaymentFrequencyDao().queryForAll()) {
+				map= new HashMap<String, String>();
+				map.put(PAYMENT_NAME, payment.getName());
+				map.put(PAYMENT_ID, String.valueOf(payment.getIdPaymentFrequency()));
+				payments.add(map);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return payments;
+	}
+
 	
+	@Override
+	public List<Map<String,String>> listOfSellers() {
+		List<Map<String, String>> employees = new ArrayList<Map<String, String>>();
+		Map<String,String> map =null;
+		try {
+			for (Employee employee : polAppDaoManager.getEmployee().queryForAll()) {
+				map= new HashMap<String, String>();
+				map.put(EMPLOYEE_NAME, employee.getName()+ " " + employee.getMiddle_name());
+				map.put(EMPLOYEE_ID, String.valueOf(employee.getIdEmployee()));
+				employees.add(map);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return employees;
+	}
+
 	@Override
 	public String registerUser(User user)  {
 		String result = USER_INSERTED;
@@ -456,7 +673,7 @@ public class BusinessManagerImpl implements BusinessManager {
 			}
 		return result;
 	}
-	
+
 	@Override
 	public List<Map<String, String>> searchClients(String[] queryString) {
 		List<Map<String,String>> listOfClients = null;
@@ -533,20 +750,9 @@ public class BusinessManagerImpl implements BusinessManager {
 		}
 		return listOfProducts;
 	}
-	
-	private int isNumber(String word) {
-		int result = 0;
-		
-		try {
-			result = Integer.parseInt(word);
-		} catch (NumberFormatException e) {
-			
-		}
-		return result;
-	}
 
 	@Override
-	public String verifyClientInformation(String name, String[] lastName, int phoneNumber) {
+	public String verifyClientInformation(String name, String[] lastName, long phoneNumber) {
 		String result = EMPTY_STRING;
 		try{
 			if(name!=null&&!name.equalsIgnoreCase(EMPTY_STRING)){
@@ -565,114 +771,22 @@ public class BusinessManagerImpl implements BusinessManager {
 		}
 		return result;
 	}
-	
-	@Override
-	public User verifyUserInformation(String userName, String password, String name,String[] lastName, String identification){
-		User user = null;
-		if(lastName.length>1){
-			if((!userName.equals(EMPTY_STRING)&&!password.equals(EMPTY_STRING)&&!name.equals(EMPTY_STRING)&&!lastName[0].equals(EMPTY_STRING)&&!identification.equals(EMPTY_STRING))){
-				user = new UserImpl(userName,password,identification,name,lastName[0],lastName[1]);
-			}
-		}else{
-			if((!userName.equals(EMPTY_STRING)&&!password.equals(EMPTY_STRING)&&!name.equals(EMPTY_STRING)&&!lastName[0].equals(EMPTY_STRING)&&!identification.equals(EMPTY_STRING))){
-				user = new UserImpl(userName,password,identification,name,lastName[0],EMPTY_STRING);
-			}
-		}
-		return user;
-	}
 
 	@Override
-	public Product getProduct(int id) {
-		Product product = null;
+	public String verifyOrderInformation(int clientId,  int paymentId) {
+		String result=EMPTY_STRING;
 		try {
-			product = polAppDaoManager.getProductDao().queryForId(id);
+			if(!polAppDaoManager.getClientDao().idExists(clientId)){
+				result=COLUMN_CLIENTID;
+			}else if(!polAppDaoManager.getPaymentFrequencyDao().idExists(paymentId)){
+				result=COLUMN_PAYMENTFREQUENCY_ID;
+			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Log.i("Error on verification", e.getMessage());
 		}
-		return product;
+		return result;
 	}
 
-	@Override
-	public double getProductPrice(int id) {
-		double price = 0;
-		try {
-			price = polAppDaoManager.getProductDao().queryForId(id).getPrice();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return price;
-	}
-
-	@Override
-	public void addDefaultOrderValues() {
-		try {
-		PaymentFrequency frequency = new PaymentFrequencyImpl("Semanal 1000",7,1000);
-		try{
-			polAppDaoManager.getPaymentFrequencyDao().createIfNotExists(frequency);
-			}catch(SQLException e){
-				e.printStackTrace();
-			}
-		frequency = new PaymentFrequencyImpl("Quincenal 2000",15,2000);
-		try{
-			polAppDaoManager.getPaymentFrequencyDao().createIfNotExists(frequency);
-			}catch(SQLException e){
-				e.printStackTrace();
-			}
-		frequency = new PaymentFrequencyImpl("Quincenal 5000",15,5000);
-		try{
-			polAppDaoManager.getPaymentFrequencyDao().createIfNotExists(frequency);
-			}catch(SQLException e){
-				e.printStackTrace();
-			}
-		frequency = new PaymentFrequencyImpl("Quincenal 10000",15,10000);
-		try{
-			polAppDaoManager.getPaymentFrequencyDao().createIfNotExists(frequency);
-			}catch(SQLException e){
-				e.printStackTrace();
-			}
-		frequency = new PaymentFrequencyImpl("Mensual 5000",30,5000);
-		try{
-			polAppDaoManager.getPaymentFrequencyDao().createIfNotExists(frequency);
-			}catch(SQLException e){
-				e.printStackTrace();
-			}
-		frequency = new PaymentFrequencyImpl("Mensual 10000",30,10000);
-		try{
-			polAppDaoManager.getPaymentFrequencyDao().createIfNotExists(frequency);
-			}catch(SQLException e){
-				e.printStackTrace();
-			}
-		frequency = new PaymentFrequencyImpl("Mensual 20000",30,20000);
-		try{
-			polAppDaoManager.getPaymentFrequencyDao().createIfNotExists(frequency);
-		}catch(SQLException e){
-			e.printStackTrace();
-		}
-		frequency = new PaymentFrequencyImpl("Mensual 50000",30,50000);
-		try{
-			polAppDaoManager.getPaymentFrequencyDao().createIfNotExists(frequency);
-		}catch(SQLException e){
-			e.printStackTrace();
-		}
-		
-		Brand brand = new BrandImpl("Yamaha");
-		polAppDaoManager.getBrandDao().createIfNotExists(brand);
-		Vehicle vehicle = new VehicleImpl("M123123",true,new Date(), 1000,"123512331", (BrandImpl) brand); 
-		
-		polAppDaoManager.getVehicleDao().createIfNotExists(vehicle);
-		Employee mark = new EmployeeImpl("1","Sergio","Monge","Monge",86882316,(VehicleImpl) vehicle);
-		polAppDaoManager.getEmployee().createIfNotExists(mark);
-		mark = new EmployeeImpl("2","Allan","Porras","Porras",86882316,(VehicleImpl) vehicle);
-		polAppDaoManager.getEmployee().createIfNotExists(mark);
-		mark = new EmployeeImpl("3","Jose","Pablo","Pablo",86882316,(VehicleImpl) vehicle);
-		polAppDaoManager.getEmployee().createIfNotExists(mark);
-		
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-
-	
 	@Override
 	public String verifyProductInformation(String code, String name, String quantity, String price) {
 		String result = EMPTY_STRING;
@@ -696,120 +810,30 @@ public class BusinessManagerImpl implements BusinessManager {
 	}
 
 	@Override
-	public List<Map<String,String>> listOfSellers() {
-		List<Map<String, String>> employees = new ArrayList<Map<String, String>>();
-		Map<String,String> map =null;
-		try {
-			for (Employee employee : polAppDaoManager.getEmployee().queryForAll()) {
-				map= new HashMap<String, String>();
-				map.put(EMPLOYEE_NAME, employee.getName()+ " " + employee.getMiddle_name());
-				map.put(EMPLOYEE_ID, String.valueOf(employee.getIdEmployee()));
-				employees.add(map);
+	public User verifyUserInformation(String userName, String password, String name,String[] lastName, String identification){
+		User user = null;
+		if(lastName.length>1){
+			if((!userName.equals(EMPTY_STRING)&&!password.equals(EMPTY_STRING)&&!name.equals(EMPTY_STRING)&&!lastName[0].equals(EMPTY_STRING)&&!identification.equals(EMPTY_STRING))){
+				user = new UserImpl(userName,password,identification,name,lastName[0],lastName[1]);
 			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return employees;
-	}
-
-	@Override
-	public List<Map<String, String>> listOfPaymentMethods() {
-		List<Map<String, String>> payments = new ArrayList<Map<String, String>>();
-		Map<String,String> map =null;
-		try {
-			for (PaymentFrequency payment : polAppDaoManager.getPaymentFrequencyDao().queryForAll()) {
-				map= new HashMap<String, String>();
-				map.put(PAYMENT_NAME, payment.getName());
-				map.put(PAYMENT_ID, String.valueOf(payment.getIdPaymentFrequency()));
-				payments.add(map);
+		}else{
+			if((!userName.equals(EMPTY_STRING)&&!password.equals(EMPTY_STRING)&&!name.equals(EMPTY_STRING)&&!lastName[0].equals(EMPTY_STRING)&&!identification.equals(EMPTY_STRING))){
+				user = new UserImpl(userName,password,identification,name,lastName[0],EMPTY_STRING);
 			}
-		} catch (SQLException e) {
-			e.printStackTrace();
 		}
-		
-		return payments;
+		return user;
 	}
 
 	@Override
-	public String verifyOrderInformation(int clientId, int employeeId, int paymentId) {
-		String result=EMPTY_STRING;
+	public Vehicle getVehicleByLicensePlate(String licensePlate) {
+		Vehicle vehicle = null;
 		try {
-			if(!polAppDaoManager.getClientDao().idExists(clientId)){
-				result=COLUMN_CLIENTID;
-			}else if (!polAppDaoManager.getEmployee().idExists(employeeId)){
-				result=COLUMN_EMPLOYEE_ID;
-			}else if(!polAppDaoManager.getPaymentFrequencyDao().idExists(paymentId)){
-				result=COLUMN_PAYMENTFREQUENCY_ID;
-			}
+			vehicle = polAppDaoManager.getVehicleDao().queryForEq(COLUMN_LICENSE_PLATE, licensePlate).get(0);
+			polAppDaoManager.getBrandDao().refresh(vehicle.getBrand());
 		} catch (SQLException e) {
-			Log.i("Error on verification", e.getMessage());
+			// TODO: handle exception
 		}
-		return result;
-	}
-
-	@Override
-	public Order addOrder(int clientId, int employeeId, int paymentId, long total) {
-		Order order = null;
-		try {
-			Date creationDate = new Date();
-			Calendar calendarHelper = Calendar.getInstance();
-			calendarHelper.setTime(creationDate);
-			calendarHelper.add(Calendar.DATE, 1);
-			
-			Date nextPaymentDate =calendarHelper.getTime();
-			Employee employee = polAppDaoManager.getEmployee().queryForId(employeeId);
-			PaymentFrequency payment = polAppDaoManager.getPaymentFrequencyDao().queryForId(paymentId);
-			Client client = polAppDaoManager.getClientDao().queryForId(clientId);
-			
-			order = new OrderImpl(creationDate, nextPaymentDate , total, total, true, (EmployeeImpl)employee,(ClientImpl) client,(PaymentFrequencyImpl) payment);
-			polAppDaoManager.getOrderDao().create((OrderImpl)order);
-		} catch (SQLException e) {
-			Log.i("Error adding order", e.getMessage());
-			e.printStackTrace();
-			order=null;
-		}
-		return order;
-	}
-
-	@Override
-	public boolean addProductsToOrder(final Order order, final Map<Integer,Integer> productsId, ConnectionSource connectionSource) {
-		
-		try {
-			TransactionManager.callInTransaction(connectionSource, new Callable<Void>() {
-			    public Void call() throws Exception {
-			    	ProductOrder productOrder;
-			    	Product product;
-			    	for (Integer id : productsId.keySet()) {
-			    		int quantity = productsId.get(id);
-			    		product = polAppDaoManager.getProductDao().queryForId(id);
-			    		productOrder = new ProductOrderImpl(quantity,(int)(quantity*product.getPrice()), order, product);
-			    		product.setQuantity(product.getQuantity()-quantity);
-			    		if(product.getQuantity()>=ZERO){
-			    			polAppDaoManager.getProductDao().update(product);
-			    			polAppDaoManager.getProductOrderDao().create(productOrder);
-			    		}
-					}
-					return null;
-			    }
-			});
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return false;
-	}
-
-	@Override
-	public boolean addAddress(Address address) {
-		boolean result = false;
-		try {
-			polAppDaoManager.getAddressDao().create(address);
-			result = true;
-		} catch (SQLException e) {
-			Log.e(USER_ERROR_TAG,e.getMessage());
-		}
-		return result;
+		return vehicle;
 	}
 	
 	

@@ -5,9 +5,6 @@ import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLU
 import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_PHONENUMBER;
 import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.EMPTY_STRING;
 import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.MINIMUM_PHONENUMBER_DIGITS;
-
-import java.util.ArrayList;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -19,14 +16,13 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.internal.p;
 import com.google.android.gms.maps.model.LatLng;
 import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
 import com.thinksoft.businesslayer.bussinessmanagers.BusinessManager;
 import com.thinksoft.businesslayer.bussinessmanagers.impl.BusinessManagerImpl;
 import com.thinksoft.models.databases.PolAppHelper;
 import com.thinksoft.models.dtos.Address;
-import com.thinksoft.models.dtos.Client;
+import com.thinksoft.models.dtos.impl.AddressImpl;
 import com.thinksoft.models.dtos.impl.ClientImpl;
 
 public class AgregarClienteActivity extends OrmLiteBaseActivity<PolAppHelper> {
@@ -94,22 +90,21 @@ public class AgregarClienteActivity extends OrmLiteBaseActivity<PolAppHelper> {
 		return true;
 	}
 	
-	public void registerClient(String name, String[] lastName, int phoneNumber, LatLng location, double zoom){
+	public void registerClient(String name, String[] lastName, long phoneNumber, LatLng location, double zoom){
 		Toast msg = null;
 		String result = businessLayer.verifyClientInformation(name,lastName,phoneNumber);
 		if (EMPTY_STRING.equals(result)) {
 			ClientImpl client = null;
-			Address address= null;
-			
+			Address address= new AddressImpl();
 			address.setLatitude(location.latitude);
 			address.setLonguitude(location.longitude);
 			address.setZoom(zoom);
 			address.setClient(client);
 			
 				if(lastName.length>1){
-					client= new ClientImpl(name, lastName[0], lastName[1], NO_DEBTS);
+					client= new ClientImpl(name, lastName[0], lastName[1], NO_DEBTS,phoneNumber);
 				}else{
-					client= new ClientImpl(name, lastName[0], NO_SECOND_LASTNAME,NO_DEBTS);	
+					client= new ClientImpl(name, lastName[0], NO_SECOND_LASTNAME,NO_DEBTS,phoneNumber);	
 				}
 			if(businessLayer.addClient(client)){
 				Intent intent = new Intent(AgregarClienteActivity.this, HomeScreenActivity.class);

@@ -1,19 +1,15 @@
 package com.thinksoft.polapp;
 
 import static com.thinksoft.businesslayer.utils.constants.Constants.CLIENT_LIST_CODE;
-import static com.thinksoft.businesslayer.utils.constants.Constants.EMPLOYEE_ID;
 import static com.thinksoft.businesslayer.utils.constants.Constants.PAYMENT_ID;
 import static com.thinksoft.businesslayer.utils.constants.Constants.PRODUCTS_IDS_KEY;
 import static com.thinksoft.businesslayer.utils.constants.Constants.PRODUCT_LIST_CODE;
-
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_CLIENTID;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_EMPLOYEE_ID;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_PAYMENTFREQUENCY_ID;
 import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.EMPTY_STRING;
 import static com.thinksoft.businesslayer.utils.constants.RowConstants.CLIENT_ID_COLUMN;
 import static com.thinksoft.businesslayer.utils.constants.RowConstants.NAME_COLUMN;
-import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_EMPLOYEE_ID;
-
-import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_PAYMENTFREQUENCY_ID;
-
-import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_CLIENTID;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -33,7 +29,6 @@ import android.widget.Toast;
 import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
 import com.thinksoft.businesslayer.bussinessmanagers.BusinessManager;
 import com.thinksoft.businesslayer.bussinessmanagers.impl.BusinessManagerImpl;
-import com.thinksoft.businesslayer.utils.EmployeeSpinnerAdapter;
 import com.thinksoft.businesslayer.utils.PaymentFrequencySpinnerAdapter;
 import com.thinksoft.models.databases.PolAppHelper;
 import com.thinksoft.models.dtos.Order;
@@ -42,7 +37,6 @@ public class AgregarCobroActivity extends OrmLiteBaseActivity<PolAppHelper> {
 	EditText txtClient;
 	EditText txtTotal;
 	TextView lblProductos;
-	Spinner spnEmployee;
 	Button btnSave;
 	Map<Integer,Integer> products_ids;
 	BusinessManager businessLayer;
@@ -64,13 +58,10 @@ public class AgregarCobroActivity extends OrmLiteBaseActivity<PolAppHelper> {
 		txtTotal= (EditText) findViewById(R.id.txtTotalAddOrder);
 		lblProductos = (TextView) findViewById(R.id.lblProductsAddOrder);
 		spnPayment = (Spinner) findViewById(R.id.spnPaymentModeAddOrder);
-		spnEmployee = (Spinner) findViewById(R.id.spnSellerAddOrder);
 		btnSave = (Button) findViewById(R.id.btnSaveAddOrder);
 		
 		PaymentFrequencySpinnerAdapter adapter = new PaymentFrequencySpinnerAdapter(this, businessLayer.listOfPaymentMethods());
 		spnPayment.setAdapter(adapter);
-		EmployeeSpinnerAdapter adapterEmployee = new EmployeeSpinnerAdapter(this, businessLayer.listOfSellers());
-		spnEmployee.setAdapter(adapterEmployee);
 		
 		
 		businessLayer = new BusinessManagerImpl(getHelper().getConnectionSource());
@@ -107,19 +98,16 @@ public class AgregarCobroActivity extends OrmLiteBaseActivity<PolAppHelper> {
 			public void onClick(View v) {
 				Toast msg = null;
 				if(txtClient.getTag()!=null&&txtTotal.getText().toString()!="0"){
-					
-					Map<String,String> employee = (HashMap<String, String>) spnEmployee.getSelectedItem(); 
 					Map<String,String> payment = (HashMap<String, String>) spnPayment.getSelectedItem(); 
 					
 					int clientId = (Integer) txtClient.getTag();
 					double total = Double.valueOf(txtTotal.getText().toString());
-					int employeeId = Integer.valueOf(employee.get(EMPLOYEE_ID));
 					int paymentId = Integer.valueOf(payment.get(PAYMENT_ID));
 					
-					String result = businessLayer.verifyOrderInformation(clientId, employeeId, paymentId);
+					String result = businessLayer.verifyOrderInformation(clientId, paymentId);
 					
 					if(result.equals(EMPTY_STRING)){
-						Order order = businessLayer.addOrder(clientId, employeeId, paymentId,(long) total);
+						Order order = businessLayer.addOrder(clientId, paymentId,(long) total);
 						if(order!=null){
 							businessLayer.addProductsToOrder(order, products_ids, getHelper().getConnectionSource());
 							msg = Toast.makeText(AgregarCobroActivity.this, MESSAGE_SUCCESSFUL , Toast.LENGTH_LONG);
@@ -128,8 +116,6 @@ public class AgregarCobroActivity extends OrmLiteBaseActivity<PolAppHelper> {
 						}
 					}else if(result.equals(COLUMN_CLIENTID)){
 						msg = Toast.makeText(AgregarCobroActivity.this, COLUMN_CLIENTID +","+MESSAGE_ERROR , Toast.LENGTH_LONG);
-					}else if(result.equals(COLUMN_EMPLOYEE_ID)){
-						msg = Toast.makeText(AgregarCobroActivity.this,  COLUMN_EMPLOYEE_ID +","+MESSAGE_ERROR  , Toast.LENGTH_LONG);
 					}else if(result.equals(COLUMN_PAYMENTFREQUENCY_ID)){
 						msg = Toast.makeText(AgregarCobroActivity.this,  COLUMN_EMPLOYEE_ID +","+MESSAGE_ERROR  , Toast.LENGTH_LONG);
 					}
@@ -137,7 +123,7 @@ public class AgregarCobroActivity extends OrmLiteBaseActivity<PolAppHelper> {
 					finish();
 				}else{
 					msg = Toast.makeText(AgregarCobroActivity.this, MESSAGE_MISSING_FIELDS , Toast.LENGTH_LONG);
-					
+					msg.show();
 				}
 			}
 		});
