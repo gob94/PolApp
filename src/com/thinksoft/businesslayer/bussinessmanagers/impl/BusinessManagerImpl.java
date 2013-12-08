@@ -54,6 +54,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
@@ -425,7 +426,7 @@ public class BusinessManagerImpl implements BusinessManager {
 	public Client getClientById(int id) {
 		Client client = null;
 		try {
-			client =  (Client) polAppDaoManager.getClientDao().queryBuilder().where().idEq(id);
+			client =  polAppDaoManager.getClientDao().queryBuilder().where().idEq(id).queryForFirst();
 		} catch (SQLException e) {
 			Log.e(CLIENT_ERROR_TAG, e.getMessage());
 		}
@@ -473,8 +474,7 @@ public class BusinessManagerImpl implements BusinessManager {
 			orderItem.put(ORDER_ID_COLUMN, String.valueOf(order.getOrderId()));
 			
 			orderItem.put(NAME_COLUMN, order.getClient().getName() + " " + order.getClient().getFirstLastName());
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			orderItem.put(NEXT_PAYMENT_COLUMN, sdf.format(order.getNextPaymentDate()));
+			orderItem.put(NEXT_PAYMENT_COLUMN, getFormatedDate(order.getNextPaymentDate()));
 	
 			orderItem.put(ACTUAL_BALANCE_COLUMN, String.valueOf(order.getActualBalance()));
 		} catch (SQLException e) {
@@ -494,7 +494,7 @@ public class BusinessManagerImpl implements BusinessManager {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return null;
+		return order;
 	}
 
 	@Override
@@ -524,10 +524,10 @@ public class BusinessManagerImpl implements BusinessManager {
 	}
 	
 	@Override
-	public Product getProductByCode(String id) {
+	public Product getProductByCode(String code) {
 		Product product = null;
 		try {
-			product =  (Product) polAppDaoManager.getProductDao().queryBuilder().where().eq("code", id);
+			product =  polAppDaoManager.getProductDao().queryBuilder().where().eq("code", code).queryForFirst();
 		} catch (SQLException e) {
 			Log.e(CLIENT_ERROR_TAG, e.getMessage());
 		}
@@ -538,7 +538,7 @@ public class BusinessManagerImpl implements BusinessManager {
 	public Product getProductById(int id) {
 		Product product = null;
 		try {
-			product =  (Product) polAppDaoManager.getProductDao().queryBuilder().where().idEq(id);
+			product =  polAppDaoManager.getProductDao().queryBuilder().where().idEq(id).queryForFirst();
 		} catch (SQLException e) {
 			Log.e(CLIENT_ERROR_TAG, e.getMessage());
 		}
@@ -594,7 +594,7 @@ public class BusinessManagerImpl implements BusinessManager {
 
 		vehicleItem.put(MODEL_COLUMN, vehicle.getModel());
 		
-		vehicleItem.put(RTV_COLUMN, String.valueOf(vehicle.getRtv()));
+		vehicleItem.put(RTV_COLUMN, getFormatedDate(vehicle.getRtv()));
 		
 		vehicleItem.put(EXPEDITURE_COLUMN, String.valueOf(vehicle.getExpenditure()));
 
@@ -832,9 +832,16 @@ public class BusinessManagerImpl implements BusinessManager {
 			vehicle = polAppDaoManager.getVehicleDao().queryForEq(COLUMN_LICENSE_PLATE, licensePlate).get(0);
 			polAppDaoManager.getBrandDao().refresh(vehicle.getBrand());
 		} catch (SQLException e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 		return vehicle;
+	}
+
+	@Override
+	public String getFormatedDate(Date date) {
+		SimpleDateFormat formateador = new SimpleDateFormat("dd'/'MMMM'/'yy", new Locale("es_ES"));
+		return formateador.format(date);
+		
 	}
 	
 	

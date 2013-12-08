@@ -38,7 +38,7 @@
             android:value="4030500" />
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="@string/mapskey" />
+            android:value="@string/jonathanmapskey" />
 
         <activity
             android:name="com.thinksoft.polapp.MainActivity"
@@ -156,7 +156,7 @@
 
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="@string/mapskey" />
+            android:value="@string/jonathanmapskey" />
     </application>
 
 </manifest>

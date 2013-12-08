@@ -39,14 +39,14 @@ public class PerfilProductos extends OrmLiteBaseActivity<PolAppHelper> {
 		if(extras!=null){
 			final String code = extras.getString(COLUMN_PRODUCT_CODE);
 			bussinessLayer = new BusinessManagerImpl(getHelper().getConnectionSource());
-			txtProductCode = (TextView) findViewById(R.id.lblClientNameProfileEditabled);
-			txtProductName  = (TextView) findViewById(R.id.lblClientLastNameProfileEditabled);
-			txtProductPrice  = (TextView) findViewById(R.id.lblClientPhoneProfileEditabled);
-			txtProductQuantity  = (TextView) findViewById(R.id.lblClientDirectionProfileEditabled);
+			txtProductCode = (TextView) findViewById(R.id.lblProductCodeProfileEditabled);
+			txtProductName  = (TextView) findViewById(R.id.lblProductNameProfileEditabled);
+			txtProductPrice  = (TextView) findViewById(R.id.lblProductPriceProfileEditabled);
+			txtProductQuantity  = (TextView) findViewById(R.id.lblProductQuantityProfileEditabled);
 	
-			btnAcceptProduct  = (Button) findViewById(R.id.btnAcceptClientProfile);
-			btnEditProduct  = (Button) findViewById(R.id.btnEditClientProfile);
-			btnDeleteProduct  = (Button) findViewById(R.id.btnDeleteClientProfile);
+			btnAcceptProduct  = (Button) findViewById(R.id.btnAcceptProductProfile);
+			btnEditProduct  = (Button) findViewById(R.id.btnEditProductProfile);
+			btnDeleteProduct  = (Button) findViewById(R.id.btnDeleteProductProfile);
 			
 			Product product = bussinessLayer.getProductByCode(code);
 			

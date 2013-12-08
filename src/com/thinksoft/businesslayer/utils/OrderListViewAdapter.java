@@ -47,7 +47,7 @@ public class OrderListViewAdapter extends BaseAdapter {
 
 	@Override
 	public long getItemId(int position) {
-		return Integer.parseInt(list.get(position).get( ORDER_ID_COLUMN));
+		return 0;
 	}	
 	
 	@Override

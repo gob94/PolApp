@@ -1,7 +1,7 @@
 package com.thinksoft.polapp;
 
-import android.os.Bundle;
 import android.app.Activity;
+import android.os.Bundle;
 import android.view.Menu;
 
 public class EditarCobroActivity extends Activity {
@@ -14,7 +14,6 @@ public class EditarCobroActivity extends Activity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.editar_cobro, menu);
 		return true;
 	}

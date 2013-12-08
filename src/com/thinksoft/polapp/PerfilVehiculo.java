@@ -1,23 +1,20 @@
 package com.thinksoft.polapp;
 
 import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_LICENSE_PLATE;
-
-import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
-import com.thinksoft.businesslayer.bussinessmanagers.BusinessManager;
-import com.thinksoft.businesslayer.bussinessmanagers.impl.BusinessManagerImpl;
-import com.thinksoft.models.databases.PolAppHelper;
-import com.thinksoft.models.dtos.Product;
-import com.thinksoft.models.dtos.Vehicle;
-
-import android.os.Bundle;
-import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
+import com.thinksoft.businesslayer.bussinessmanagers.BusinessManager;
+import com.thinksoft.businesslayer.bussinessmanagers.impl.BusinessManagerImpl;
+import com.thinksoft.models.databases.PolAppHelper;
+import com.thinksoft.models.dtos.Vehicle;
 
 public class PerfilVehiculo extends OrmLiteBaseActivity<PolAppHelper> {
 	TextView txtVehicleLicensePlate;
@@ -46,16 +43,16 @@ public class PerfilVehiculo extends OrmLiteBaseActivity<PolAppHelper> {
 		if(extras!=null){
 			final String licensePlate = extras.getString(COLUMN_LICENSE_PLATE);
 			bussinessLayer = new BusinessManagerImpl(getHelper().getConnectionSource());
-			txtVehicleLicensePlate = (TextView) findViewById(R.id.lblClientNameProfileEditabled);
-			txtVehicleBrand  = (TextView) findViewById(R.id.lblClientLastNameProfileEditabled);
-			txtVehicleCostPerKm  = (TextView) findViewById(R.id.lblClientPhoneProfileEditabled);
-			txtVehicleModel  = (TextView) findViewById(R.id.lblClientDirectionProfileEditabled);
-			txtRTV  = (TextView) findViewById(R.id.lblClientDirectionProfileEditabled);
-			txtAvailable  = (TextView) findViewById(R.id.lblClientDirectionProfileEditabled);
+			txtVehicleLicensePlate = (TextView) findViewById(R.id.lblVehiclePlateProfileEditabled);
+			txtVehicleBrand  = (TextView) findViewById(R.id.lblVehicleBrandProfileEditabled);
+			txtVehicleCostPerKm  = (TextView) findViewById(R.id.lblVehicleCostPerKmProfileEditabled);
+			txtVehicleModel  = (TextView) findViewById(R.id.lblVehicleModelProfileEditabled);
+			txtRTV  = (TextView) findViewById(R.id.lblVehicleRTVProfileEditabled);
+			txtAvailable  = (TextView) findViewById(R.id.lblVehicleAvailableProfileEditabled);
 	
-			btnAcceptVehicle  = (Button) findViewById(R.id.btnAcceptClientProfile);
-			btnEditVehicle  = (Button) findViewById(R.id.btnEditClientProfile);
-			btnDeleteVehicle  = (Button) findViewById(R.id.btnDeleteClientProfile);
+			btnAcceptVehicle  = (Button) findViewById(R.id.btnAcceptVehicleProfile);
+			btnEditVehicle  = (Button) findViewById(R.id.btnEditVehicleProfile);
+			btnDeleteVehicle  = (Button) findViewById(R.id.btnDeleteVehicleProfile);
 			
 			Vehicle vehicle = bussinessLayer.getVehicleByLicensePlate(licensePlate);
 			
@@ -63,8 +60,10 @@ public class PerfilVehiculo extends OrmLiteBaseActivity<PolAppHelper> {
 			txtVehicleBrand.setText((CharSequence) vehicle.getBrand().getBrandName());
 			txtVehicleCostPerKm.setText((CharSequence) "0");
 			txtVehicleModel.setText((CharSequence) String.valueOf(vehicle.getModel()));
-			txtRTV.setText((CharSequence) String.valueOf(vehicle.getRtv()));
-			txtAvailable.setText((CharSequence) String.valueOf(vehicle.getFunctional()));
+			
+			txtRTV.setText((CharSequence)bussinessLayer.getFormatedDate(vehicle.getRtv()));
+			String available = vehicle.getFunctional()==true ? "Sí":"No";
+			txtAvailable.setText((CharSequence) available);
 			
 			
 			btnAcceptVehicle.setOnClickListener(new OnClickListener() {

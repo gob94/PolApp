@@ -39,17 +39,16 @@ Bundle extras = getIntent().getExtras();
 		if(extras!=null){
 			final int id = extras.getInt(COLUMN_ORDERID);
 			bussinessLayer = new BusinessManagerImpl(getHelper().getConnectionSource());
-			txtOrderClient = (TextView) findViewById(R.id.lblClientNameProfileEditabled);
-			txtOrderPaymentMethod  = (TextView) findViewById(R.id.lblClientLastNameProfileEditabled);
-			txtOrderTotal  = (TextView) findViewById(R.id.lblClientPhoneProfileEditabled);
-			txtOrderProducts  = (TextView) findViewById(R.id.lblClientDirectionProfileEditabled);
+			txtOrderClient = (TextView) findViewById(R.id.lblOrderClientProfileEditabled);
+			txtOrderPaymentMethod  = (TextView) findViewById(R.id.lblOrderPaymentModeProfileEditabled);
+			txtOrderTotal  = (TextView) findViewById(R.id.lblOrderTotalProfileEditabled);
+			txtOrderProducts  = (TextView) findViewById(R.id.lblOrderProductProfileEditabled);
 	
-			btnAcceptOrder  = (Button) findViewById(R.id.btnAcceptClientProfile);
-			btnEditOrder  = (Button) findViewById(R.id.btnEditClientProfile);
-			btnDeleteOrder  = (Button) findViewById(R.id.btnDeleteClientProfile);
+			btnAcceptOrder  = (Button) findViewById(R.id.btnAcceptOrderProfile);
+			btnEditOrder  = (Button) findViewById(R.id.btnEditOrderProfile);
+			btnDeleteOrder  = (Button) findViewById(R.id.btnDeleteOrderProfile);
 			
 			Order order = bussinessLayer.getOrderById(id);
-			
 			txtOrderPaymentMethod.setText((CharSequence) (order.getPaymentFrequency().getName()));
 			txtOrderClient.setText((CharSequence) order.getClient().getName()+" "+order.getClient().getFirstLastName());
 			txtOrderTotal.setText((CharSequence) String.valueOf(order.getActualBalance()));

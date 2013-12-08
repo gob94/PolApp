@@ -73,6 +73,6 @@
     <string name="title_activity_perfil_vehiculo">Perfil Vehiculo</string>
     <string name="title_activity_perfil_cobros">Perfil Cobros</string>
     <string name="title_activity_map_selector">MapSelector</string>
-    <string name="mapskey">AIzaSyBek1AD27jpYEMWsqlcb-09NXRYrdwqzdE</string>
-
+    <string name="johnnymapskey">AIzaSyBek1AD27jpYEMWsqlcb-09NXRYrdwqzdE</string>
+ 	<string name="jonathanmapskey">AIzaSyCMjXJMnF75skQXgfVNoAN-WDIREHVOA0s</string>
 </resources>

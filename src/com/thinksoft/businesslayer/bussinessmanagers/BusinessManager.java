@@ -1,5 +1,6 @@
 package com.thinksoft.businesslayer.bussinessmanagers;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -57,6 +58,8 @@ public interface BusinessManager {
 	
 	public Product getProductByCode(String id);
 
+	public String getFormatedDate(Date date);
+	
 	public Product getProductById(int id);
 	
 	public Vehicle getVehicleByLicensePlate(String licensePlate);

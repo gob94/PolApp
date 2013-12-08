@@ -183,7 +183,7 @@
                 android:clickable="True" >
 
                 <Button
-                    android:id="@+id/btnAcceptProductProfile"
+                    android:id="@+id/btnAcceptOrderProfile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="#FFFFFF"
@@ -195,7 +195,7 @@
                     android:textSize="16sp" />
 
                 <Button
-                    android:id="@+id/btnDeleteProductProfile"
+                    android:id="@+id/btnDeleteOrderProfile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -209,7 +209,7 @@
                     android:textSize="16sp" />
 
                 <Button
-                    android:id="@+id/btnEditProductProfile"
+                    android:id="@+id/btnEditOrderProfile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
