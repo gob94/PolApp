@@ -95,29 +95,6 @@
 
     <Space android:layout_height="20dp" />
 
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:padding="1dip" >
-
-        <TextView
-            android:id="@+id/lblEditAddSellerAddOrder"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="2dp"
-            android:fontFamily="roboto-light"
-            android:text="@string/lblSeller"
-            android:textColor="#8A0886"
-            android:textSize="16sp" />
-
-        <Spinner
-            android:id="@+id/spnEditSellerAddOrder"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </TableRow>
-    
-    <Space android:layout_height="20dp" />
     
     <TableRow
         android:layout_width="match_parent"
