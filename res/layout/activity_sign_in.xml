@@ -1,6 +1,7 @@
   <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
      xmlns:tools="http://schemas.android.com/tools"
      android:id="@+id/scrollView1"
+     android:background="#ffffff"
      android:layout_width="match_parent"
      android:layout_height="match_parent" >
 
@@ -14,15 +15,17 @@
 
          <ImageView
              android:id="@+id/imageView1"
+             android:layout_marginTop="40dp"
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
              android:src="@drawable/idea128px" />
 
-         <Space android:layout_height="50dp" />
+
 
          <TableRow
              android:layout_width="match_parent"
              android:layout_height="match_parent"
+             android:layout_marginTop="50dp"
              android:padding="5dip" >
 
              <ImageView
@@ -55,9 +58,9 @@
              </EditText>
          </TableRow>
 
-         <Space android:layout_height="25dp" />
-
+        
          <TableRow
+             android:layout_marginTop="25dp"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
              android:padding="5dip" >
@@ -89,9 +92,10 @@
                  android:paddingLeft="10dp" />
          </TableRow>
 
-         <Space android:layout_height="25dp" />
+         
 
          <TableRow
+             android:layout_marginTop="25dp"
              android:layout_width="match_parent"
              android:layout_height="match_parent" >
 
@@ -106,9 +110,10 @@
                  android:text="@string/lblSignUp" />
          </TableRow>
 
-         <Space android:layout_height="20dp" />
+    
 
          <TableRow
+             android:layout_marginTop="20dp"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
              android:padding="5dip" >

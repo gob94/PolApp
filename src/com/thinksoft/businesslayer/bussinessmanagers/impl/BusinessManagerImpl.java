@@ -923,6 +923,27 @@ public class BusinessManagerImpl implements BusinessManager {
 		}
 		return result;
 	}
+
+	@Override
+	public Address getAddressByClientId(int id){
+
+		Client client= getClientById(id);
+		List<Address> addressList= new ArrayList<Address>();
+		Address address= null;
+		
+		if(client!= null){
+			try {
+				addressList = polAppDaoManager.getAddressDao().queryForEq("client", id);
+				if(addressList.size() != 0){
+					address = addressList.get(0);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return address;
+	}
 	
 	
 	

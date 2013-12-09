@@ -97,5 +97,6 @@ public interface BusinessManager {
 
 	public boolean updateProduct(Product product);
 	
+	public Address getAddressByClientId(int id);
 	
 }

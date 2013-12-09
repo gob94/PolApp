@@ -9,12 +9,11 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".AgregarCobroActivity" >
 
-    <Space android:layout_height="25dp" />
-
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
+        android:layout_marginTop="25dp"
         android:padding="1dip" >
 
         <TextView
@@ -32,19 +31,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:text="" 
-            android:textSize="10sp">
+            android:text=""
+            android:textSize="10sp" >
 
             <requestFocus />
         </MultiAutoCompleteTextView>
     </TableRow>
 
-    <Space android:layout_height="20dp" />
-
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
+        android:layout_marginTop="20dp"
         android:padding="1dip" >
 
         <TextView
@@ -63,12 +61,11 @@
             android:layout_height="wrap_content" />
     </TableRow>
 
-    <Space android:layout_height="20dp" />
-
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
+        android:layout_marginTop="20dp"
         android:padding="1dip" >
 
         <TextView
@@ -93,34 +90,33 @@
         </EditText>
     </TableRow>
 
-    <Space android:layout_height="20dp" />
-    
-    <TableRow
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="20dp"
         android:padding="1dip" >
 
         <TextView
             android:id="@+id/lblProductsAddOrder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="2dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
             android:autoLink="web"
+            android:drawableLeft="@drawable/editbuttom"
             android:fontFamily="roboto-light"
             android:linksClickable="true"
             android:text="@string/lblAddProducts"
             android:textColor="#8A0886"
             android:textSize="16sp" />
-
-    </TableRow>
-
-    <Space android:layout_height="20dp" />
+    </RelativeLayout>
 
     <TableRow
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="20dp"
         android:padding="1dip" >
 
         <Button
