@@ -19,9 +19,11 @@
             android:orientation="vertical" >
 
             <RelativeLayout
+                android:id="@+id/LayoutListBillsHome"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:clickable="True" >
+                android:clickable="True"
+                android:onClick="onClick1" >
 
 
                 <TextView
@@ -44,9 +46,11 @@
             </LinearLayout>
 
             <RelativeLayout
+                android:id="@+id/LayoutAddBillsHome"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:clickable="True">
+                android:clickable="True"
+                android:onClick="onClick1">
 
                 <TextView
                     android:id="@+id/txtAddBillsHome"
@@ -66,9 +70,11 @@
             </LinearLayout>
 
             <RelativeLayout
+                android:id="@+id/LayoutSearchBillsHome"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:clickable="True">
+                android:clickable="True"
+                android:onClick="onClick1">
 
 
                 <TextView
