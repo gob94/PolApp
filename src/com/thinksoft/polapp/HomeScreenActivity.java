@@ -348,6 +348,7 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 	    	}else if(tabs.getCurrentTab()== 1){
 	    		Intent intent = new Intent(HomeScreenActivity.this, EditarClienteActivity.class);
 	    		startActivity(intent);
+	    		
 	    	}else if(tabs.getCurrentTab()== 0){
 	    		Intent intent = new Intent(HomeScreenActivity.this, EditarCobroActivity.class);
 	    		startActivity(intent);

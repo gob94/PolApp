@@ -140,6 +140,7 @@ public class AgregarCobroActivity extends OrmLiteBaseActivity<PolAppHelper> {
 				if(bundle!=null){
 					txtClient.setText(bundle.getString(NAME_COLUMN));
 					txtClient.setTag(bundle.getInt(CLIENT_ID_COLUMN));
+					
 				}
 			}
 		}else if(requestCode==PRODUCT_LIST_CODE){

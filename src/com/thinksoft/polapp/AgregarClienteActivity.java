@@ -7,6 +7,7 @@ import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.EMPT
 import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.MINIMUM_PHONENUMBER_DIGITS;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -16,7 +17,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.maps.model.LatLng;
 import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
 import com.thinksoft.businesslayer.bussinessmanagers.BusinessManager;
 import com.thinksoft.businesslayer.bussinessmanagers.impl.BusinessManagerImpl;
@@ -42,6 +42,8 @@ public class AgregarClienteActivity extends OrmLiteBaseActivity<PolAppHelper> {
 	 public static String MESSAGE_GENERIC_ERROR ="Hay error con la aplicacion, reinicie la aplicacion";
 	 public static boolean NO_DEBTS =false;
 	 
+	 public static String MESSAGE_SUCCESSFUL ="Cliente Agregado exitosamente";
+	 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -59,7 +61,7 @@ public class AgregarClienteActivity extends OrmLiteBaseActivity<PolAppHelper> {
 			public void onClick(View view) {
 				String name = txtName.getText().toString();
 				String[] lastName = txtLastName.getText().toString().split(" ");
-				Intent i= getIntent();
+				//Intent i= getIntent();
 				//Bundle b= i.getExtras();
 				//double zoom= b.getDouble("Zoom");
 				//LatLng location= i.getParcelableExtra("Location");
@@ -99,7 +101,7 @@ public class AgregarClienteActivity extends OrmLiteBaseActivity<PolAppHelper> {
 		if (EMPTY_STRING.equals(result)) {
 			Client client = null;
 			Address add= null;
-
+			Log.i("INFO",EMPTY_STRING);
 			
 				if(lastName.length>1){
 				client= new ClientImpl(name, lastName[0], lastName[1], NO_DEBTS,phoneNumber);
@@ -108,10 +110,13 @@ public class AgregarClienteActivity extends OrmLiteBaseActivity<PolAppHelper> {
 				}
 				
 			if(businessLayer.addClient(client)){
-				add= new AddressImpl(zoom, latitude, "", longitude, (ClientImpl)client, true, phoneNumber);
+				//add= new AddressImpl(zoom, latitude, "", longitude, (ClientImpl)client, true, phoneNumber);
 				Intent intent = new Intent(AgregarClienteActivity.this, HomeScreenActivity.class);
-				businessLayer.addAddress(add);
+				//businessLayer.addAddress(add);
 				startActivity(intent);
+				msg = Toast.makeText(AgregarClienteActivity.this,MESSAGE_SUCCESSFUL, MESSAGE_DURATION);
+			}else{
+				msg = Toast.makeText(AgregarClienteActivity.this,MESSAGE_GENERIC_ERROR, MESSAGE_DURATION);
 			}
 		}else if(COLUMN_NAME.equalsIgnoreCase(result)){		
 			msg = Toast.makeText(AgregarClienteActivity.this,MESSAGE_NO_NAME, MESSAGE_DURATION);
