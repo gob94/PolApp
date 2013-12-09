@@ -12,6 +12,7 @@ import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLU
 import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_FIRST_LASTNAME;
 import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_IDENTIFICATION;
 import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_LASTNAME;
+import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_LICENSE_PLATE;
 import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_NAME;
 import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_ORDERID;
 import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_ORDERSTATE;
@@ -22,12 +23,9 @@ import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLU
 import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.EMPTY_STRING;
 import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.MINIMUM_PHONENUMBER_DIGITS;
 import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.PRODUCT_ERROR_TAG;
-import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.START_EMPTY_STRING;
 import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.USER_ERROR_TAG;
 import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.USER_INSERTED;
 import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.VEHICLE_ERROR_TAG;
-
-import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.COLUMN_LICENSE_PLATE;
 import static com.thinksoft.businesslayer.utils.constants.RowConstants.ACTUAL_BALANCE_COLUMN;
 import static com.thinksoft.businesslayer.utils.constants.RowConstants.BRAND_COLUMN;
 import static com.thinksoft.businesslayer.utils.constants.RowConstants.CLIENT_ID_COLUMN;
@@ -135,6 +133,18 @@ public class BusinessManagerImpl implements BusinessManager {
 	}
 	
 	@Override
+	public boolean updateClient(Client client) {
+		boolean result = false;
+		try {
+			polAppDaoManager.getClientDao().update(client);
+			result = true;
+		} catch (SQLException e) {
+			Log.e(CLIENT_ERROR_TAG,e.getMessage());
+		}
+		return result;
+	}
+	
+	@Override
 	public void addDefaultOrderValues() {
 		try {
 		PaymentFrequency frequency = new PaymentFrequencyImpl("Semanal 1000",7,1000);
@@ -227,6 +237,17 @@ public class BusinessManagerImpl implements BusinessManager {
 		return order;
 	}
 
+	@Override
+	public void updateOrder(Order order) {
+		try {
+			polAppDaoManager.getOrderDao().createOrUpdate(order);
+		} catch (SQLException e) {
+			Log.i("Error adding order", e.getMessage());
+			e.printStackTrace();
+		}
+	}
+
+	
 	@Override
 	public boolean addProduct(Product product) {
 		boolean result = false;
@@ -547,6 +568,7 @@ public class BusinessManagerImpl implements BusinessManager {
 	
 	private Map<String, String> getProductOrderAsItem(ProductOrder productOrder){
 		Map<String,String> productItem = new HashMap<String, String>();
+		productItem.put(PRODUCT_ID_COLUMN, String.valueOf(productOrder.getProduct().getIdProduct()));
 		
 		productItem.put(NAME_COLUMN, productOrder.getProduct().getName());
 
@@ -792,17 +814,13 @@ public class BusinessManagerImpl implements BusinessManager {
 	public String verifyProductInformation(String code, String name, String quantity, String price) {
 		String result = EMPTY_STRING;
 		try{
-			
 			if(code.equals(EMPTY_STRING) || name.equals(EMPTY_STRING) || quantity.equals(EMPTY_STRING) 
 					|| price.equals(EMPTY_STRING)){
 				
 				result= EMPTY_STRING;
 				
-			}else if(code.startsWith(EMPTY_STRING) || name.startsWith(EMPTY_STRING) 
-						|| quantity.startsWith(EMPTY_STRING) || price.startsWith(EMPTY_STRING)){
-				
-				result= START_EMPTY_STRING;
-				
+			}else{
+				result = "Success!";
 			}
 		}catch(Exception e){
 			e.printStackTrace();
@@ -842,6 +860,68 @@ public class BusinessManagerImpl implements BusinessManager {
 		SimpleDateFormat formateador = new SimpleDateFormat("dd'/'MMMM'/'yy", new Locale("es_ES"));
 		return formateador.format(date);
 		
+	}
+
+	@Override
+	public PaymentFrequency getPaymentFrequencyById(int paymentId) {
+		PaymentFrequency payment = null;
+		try {
+			payment =  polAppDaoManager.getPaymentFrequencyDao().queryForId(paymentId);
+		} catch (SQLException e) {
+			Log.e("Payment Frequency Error", e.getMessage());
+		}
+		return payment;
+	}
+
+	@Override
+	public List<Map<String, String>> getAllOrderProducts(Order order) {
+		List<Map<String,String>> productList = null;
+		List<ProductOrder> rawProducts=null;
+		try {
+			rawProducts = polAppDaoManager.getProductOrderDao().queryForEq("order_id", order.getOrderId());
+			productList = new ArrayList<Map<String,String>>();
+			for (ProductOrder productOrder : rawProducts) {
+					polAppDaoManager.getProductOrderDao().refresh(productOrder);
+					polAppDaoManager.getProductDao().refresh(productOrder.getProduct());
+					polAppDaoManager.getOrderDao().refresh(productOrder.getOrder());
+					productList.add(getProductOrderAsItem(productOrder));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return productList;
+	}
+
+	@SuppressLint("UseSparseArrays")
+	@Override
+	public Map<Integer, Integer> getAllProductsByOrderId(Order order) {
+		Map<Integer,Integer> productList = null;
+		List<ProductOrder> rawProducts=null;
+		try {
+			rawProducts = polAppDaoManager.getProductOrderDao().queryForEq("order_id", order.getOrderId());
+			productList = new HashMap<Integer,Integer>();
+			for (ProductOrder productOrder : rawProducts) {
+					polAppDaoManager.getProductDao().refresh(productOrder.getProduct());
+					productList.put(productOrder.getProduct().getIdProduct(),productOrder.getQuantity());
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return productList;
+	}
+
+	@Override
+	public boolean updateProduct(Product product) {
+		boolean result =false;
+		try {
+			polAppDaoManager.getProductDao().update(product);
+			result = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 	
 	

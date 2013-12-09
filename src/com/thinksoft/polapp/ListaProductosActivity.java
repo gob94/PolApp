@@ -5,7 +5,6 @@ import static com.thinksoft.businesslayer.utils.constants.Constants.QUANTITY_SEL
 import static com.thinksoft.businesslayer.utils.constants.Constants.SELECTED_FLAG;
 import static com.thinksoft.businesslayer.utils.constants.Constants.VIEW_POSITION;
 import static com.thinksoft.businesslayer.utils.constants.RowConstants.PRODUCT_ID_COLUMN;
-import static com.thinksoft.businesslayer.utils.constants.RowConstants.QUANTITY_COLUMN;
 import static com.thinksoft.businesslayer.utils.constants.RowConstants.SELECTED_QUANTITY_COLUMN;
 
 import java.util.HashMap;
@@ -17,6 +16,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -49,6 +49,7 @@ public class ListaProductosActivity extends OrmLiteBaseActivity<PolAppHelper> {
 		if(bundle!=null){
 			@SuppressWarnings("unchecked")
 			Map<Integer,Integer> ids = (HashMap<Integer, Integer>) bundle.getSerializable(PRODUCTS_IDS_KEY);
+			Log.i("INFOO", String.valueOf(ids.size()));
 			for (Map<String, String> map : list) {
 				int prodId = Integer.valueOf(map.get(PRODUCT_ID_COLUMN));
 				if(ids.containsKey(prodId)){
@@ -108,7 +109,7 @@ public class ListaProductosActivity extends OrmLiteBaseActivity<PolAppHelper> {
 			if(resultCode==Activity.RESULT_OK){
 				Bundle extras = data.getExtras();
 				if(extras!=null){
-					String quantity = String.valueOf(extras.getInt(QUANTITY_COLUMN));
+					String quantity = String.valueOf(extras.getInt(SELECTED_QUANTITY_COLUMN));
 					Map <String, String> item = adapter.list.get(extras.getInt(VIEW_POSITION));
 					item.put(SELECTED_QUANTITY_COLUMN, quantity);
 					adapter.checkedList.put(Integer.valueOf(item.get(PRODUCT_ID_COLUMN)), Integer.valueOf(quantity));

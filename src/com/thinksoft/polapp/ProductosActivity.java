@@ -2,7 +2,6 @@ package com.thinksoft.polapp;
 
 
 import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.EMPTY_STRING;
-import static com.thinksoft.businesslayer.utils.constants.DatabaseConstants.START_EMPTY_STRING;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -41,34 +40,28 @@ public class ProductosActivity extends OrmLiteBaseActivity<PolAppHelper> {
 		btnAdd = (Button)findViewById(R.id.btnSaveAddProduct);
 		btnCancel= (Button) findViewById(R.id.btnCancelAddProduct);
 		
-		final EditText txtCode= (EditText) findViewById(R.id.txtCodeAddProduct);
-		final EditText txtName= (EditText) findViewById(R.id.txtNameProductAddProduct);
-		final EditText txtQuantity= (EditText) findViewById(R.id.txtQuantityAddProduct);
-		final EditText txtPrice= (EditText) findViewById(R.id.txtCostAddProduct);
+		txtCode= (EditText) findViewById(R.id.txtCodeAddProduct);
+		txtName= (EditText) findViewById(R.id.txtNameProductAddProduct);
+		txtQuantity= (EditText) findViewById(R.id.txtQuantityAddProduct);
+		txtPrice= (EditText) findViewById(R.id.txtCostAddProduct);
 		
 		btnAdd.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 	
-				String code= txtCode.toString();
-				String name= txtName.toString();
-				String quantity= txtQuantity.toString();
-				String price= txtPrice.toString();
+				String code= txtCode.getText().toString();
+				String name= txtName.getText().toString();
+				String quantity= txtQuantity.getText().toString();
+				String price= txtPrice.getText().toString();
+				String result = bussinesManager.verifyProductInformation(code, name, quantity, price);
 				
-				if (bussinesManager.verifyProductInformation(code, name, quantity, price) == EMPTY_STRING) {
-					
+				if ( result== EMPTY_STRING) {
 					Toast toast = Toast.makeText(ProductosActivity.this,
 							"Por favor verifique sus datos",
 							Toast.LENGTH_LONG);
 					toast.show();
-				} else if(bussinesManager.verifyProductInformation(code, name, quantity, price) == START_EMPTY_STRING){
-					Toast toast = Toast.makeText(ProductosActivity.this,
-							"Alg��n campo empieza con espacio, por favor verifique sus datos",
-							Toast.LENGTH_LONG);
-					toast.show();
-					
-				}else{
+				} else{
 
 					 long quantity1=Long.parseLong(txtQuantity.getText().toString());
 					 long price1= Long.parseLong(txtPrice.getText().toString());
@@ -91,9 +84,7 @@ public class ProductosActivity extends OrmLiteBaseActivity<PolAppHelper> {
 									"Producto agregado exitosamente",
 									Toast.LENGTH_LONG);
 							toast.show();
-							Intent intent = new Intent(ProductosActivity.this,
-									HomeScreenActivity.class);
-							startActivity(intent);
+							finish();
 						}
 					}
 				}

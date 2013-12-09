@@ -1,5 +1,6 @@
 package com.thinksoft.polapp;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.ColorDrawable;
@@ -298,8 +299,6 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu1) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		
 		getMenuInflater().inflate(R.menu.home_screen, menu1);
 		return true;
 
@@ -317,7 +316,7 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
 				public boolean onMenuItemClick(MenuItem item) {
 					MainListSelectable selectedItem = (MainListSelectable) view.getTag();
 					Intent intent = selectedItem.viewProfile(HomeScreenActivity.this);
-					startActivity(intent);
+					startActivityForResult(intent, Activity.RESULT_OK);
 					return false;
 				}
 			});

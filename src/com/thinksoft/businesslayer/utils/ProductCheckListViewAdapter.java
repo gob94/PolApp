@@ -1,6 +1,5 @@
 package com.thinksoft.businesslayer.utils;
 
-import static com.thinksoft.businesslayer.utils.constants.Constants.ACTUAL_PRODUCT_QUANTITY;
 import static com.thinksoft.businesslayer.utils.constants.Constants.QUANTITY_SELECTOR_CODE;
 import static com.thinksoft.businesslayer.utils.constants.Constants.SELECTED_FLAG;
 import static com.thinksoft.businesslayer.utils.constants.Constants.VIEW_POSITION;
@@ -125,8 +124,8 @@ public class ProductCheckListViewAdapter extends BaseAdapter implements Filterab
 				Intent intent = new Intent(activity,QuantitySelectorProductCheckListActivity.class);
 				Bundle bundle = new Bundle();
 				TextView txt = (TextView) view;
-				bundle.putInt(QUANTITY_COLUMN,Integer.parseInt(txt.getText().toString()));
-				bundle.putInt(ACTUAL_PRODUCT_QUANTITY,Integer.parseInt(list.get(position).get(QUANTITY_COLUMN)));
+				bundle.putInt(SELECTED_QUANTITY_COLUMN,Integer.parseInt(txt.getText().toString()));
+				bundle.putInt(QUANTITY_COLUMN,Integer.parseInt(list.get(position).get(QUANTITY_COLUMN)));
 				bundle.putInt(VIEW_POSITION,position);
 				intent.putExtras(bundle);
 				activity.startActivityForResult(intent, QUANTITY_SELECTOR_CODE);

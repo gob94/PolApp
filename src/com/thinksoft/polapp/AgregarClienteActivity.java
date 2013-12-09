@@ -23,7 +23,6 @@ import com.thinksoft.businesslayer.bussinessmanagers.impl.BusinessManagerImpl;
 import com.thinksoft.models.databases.PolAppHelper;
 import com.thinksoft.models.dtos.Address;
 import com.thinksoft.models.dtos.Client;
-import com.thinksoft.models.dtos.impl.AddressImpl;
 import com.thinksoft.models.dtos.impl.ClientImpl;
 
 public class AgregarClienteActivity extends OrmLiteBaseActivity<PolAppHelper> {

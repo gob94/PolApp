@@ -1,10 +1,9 @@
 package com.thinksoft.polapp;
 
-import static com.thinksoft.businesslayer.utils.constants.Constants.ACTUAL_PRODUCT_QUANTITY;
 import static com.thinksoft.businesslayer.utils.constants.Constants.MIN_PRODUCT_QUANTITY;
-import static com.thinksoft.businesslayer.utils.constants.RowConstants.QUANTITY_COLUMN;
 import static com.thinksoft.businesslayer.utils.constants.Constants.VIEW_POSITION;
-
+import static com.thinksoft.businesslayer.utils.constants.RowConstants.QUANTITY_COLUMN;
+import static com.thinksoft.businesslayer.utils.constants.RowConstants.SELECTED_QUANTITY_COLUMN;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -28,8 +27,8 @@ public class QuantitySelectorProductCheckListActivity extends Activity {
 		Bundle extras = getIntent().getExtras();
 		if(extras != null){
 			quantitySelector.setMinValue(MIN_PRODUCT_QUANTITY);
-			quantitySelector.setMaxValue(extras.getInt(ACTUAL_PRODUCT_QUANTITY));
-			quantitySelector.setValue(extras.getInt(QUANTITY_COLUMN));
+			quantitySelector.setMaxValue(extras.getInt(QUANTITY_COLUMN));
+			//quantitySelector.setValue(extras.getInt(SELECTED_QUANTITY_COLUMN));
 			viewPosition = extras.getInt(VIEW_POSITION);
 		}
 		
@@ -38,7 +37,7 @@ public class QuantitySelectorProductCheckListActivity extends Activity {
 			@Override
 			public void onClick(View view) {
 				Bundle extras = new Bundle();
-				extras.putInt(QUANTITY_COLUMN, quantitySelector.getValue());
+				extras.putInt(SELECTED_QUANTITY_COLUMN, quantitySelector.getValue());
 				extras.putInt(VIEW_POSITION, viewPosition);
 				getIntent().putExtras(extras);
 				setResult(Activity.RESULT_OK, getIntent());

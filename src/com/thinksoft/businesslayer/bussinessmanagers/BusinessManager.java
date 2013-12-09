@@ -9,6 +9,7 @@ import com.thinksoft.models.dtos.Address;
 import com.thinksoft.models.dtos.Brand;
 import com.thinksoft.models.dtos.Client;
 import com.thinksoft.models.dtos.Order;
+import com.thinksoft.models.dtos.PaymentFrequency;
 import com.thinksoft.models.dtos.Product;
 import com.thinksoft.models.dtos.User;
 import com.thinksoft.models.dtos.Vehicle;
@@ -38,7 +39,10 @@ public interface BusinessManager {
 	
 	public boolean clientHasOrders(int clientId);
 	
-	List<Map<String, String>> getAllActiveOrders();
+	public List<Map<String, String>> getAllActiveOrders();
+	
+	public List<Map<String, String>> getAllOrderProducts(Order order);
+	public Map<Integer, Integer> getAllProductsByOrderId(Order order);
 	
 	public List<Map<String, String>> getAllClients();
 
@@ -85,5 +89,13 @@ public interface BusinessManager {
 
 	public User verifyUserInformation(String userName, String password,
 			String name, String[] lastName, String identification);
+	public PaymentFrequency getPaymentFrequencyById(int paymentId);
+
+	public void updateOrder(Order order);
+
+	boolean updateClient(Client client);
+
+	public boolean updateProduct(Product product);
+	
 	
 }
