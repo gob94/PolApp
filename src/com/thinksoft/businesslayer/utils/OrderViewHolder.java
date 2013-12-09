@@ -1,5 +1,6 @@
 package com.thinksoft.businesslayer.utils;
 
+import com.thinksoft.businesslayer.bussinessmanagers.BusinessManager;
 import com.thinksoft.polapp.EditarCobroActivity;
 import com.thinksoft.polapp.PerfilCobros;
 
@@ -39,9 +40,10 @@ public class OrderViewHolder implements MainListSelectable{
 
 
 	@Override
-	public Intent delete(Context context) {
-		return null;
+	public boolean delete(BusinessManager businessLayer) {
+		return businessLayer.deleteOrder(Integer.valueOf(orderId.getText().toString()));
 	}
+
 
 	
 	

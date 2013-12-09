@@ -653,6 +653,24 @@ public class BusinessManagerImpl implements BusinessManager {
 		
 		return payments;
 	}
+	
+	@Override
+	public List<Map<String, String>> listOfBrands() {
+		List<Map<String, String>> payments = new ArrayList<Map<String, String>>();
+		Map<String,String> map =null;
+		try {
+			for (PaymentFrequency payment : polAppDaoManager.getPaymentFrequencyDao().queryForAll()) {
+				map= new HashMap<String, String>();
+				map.put(PAYMENT_NAME, payment.getName());
+				map.put(PAYMENT_ID, String.valueOf(payment.getIdPaymentFrequency()));
+				payments.add(map);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return payments;
+	}
 
 	
 	@Override
@@ -917,13 +935,62 @@ public class BusinessManagerImpl implements BusinessManager {
 		boolean result =false;
 		try {
 			polAppDaoManager.getProductDao().update(product);
-			result = true;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return result;
 	}
+
+	@Override
+	public boolean deleteOrder(int orderId) {
+		
+		boolean result=false;
+		Product product= null;
+			try {
+				Order order = polAppDaoManager.getOrderDao().queryBuilder().where().idEq(orderId).queryForFirst();
+				for (ProductOrder po : polAppDaoManager.getProductOrderDao().queryForEq("order_id", order.getOrderId())) {
+					polAppDaoManager.getProductDao().refresh(po.getProduct());
+					 product= polAppDaoManager.getProductDao().queryForId(po.getProduct().getIdProduct());
+					 product.setQuantity(product.getQuantity()+po.getQuantity());
+				}
+				polAppDaoManager.getProductOrderDao().deleteBuilder().where().eq("order_id", order.getOrderId());
+				polAppDaoManager.getOrderDao().deleteById(order.getOrderId());
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		return result;
+	}
+
+	@Override
+	public boolean deleteClient(int clientId) {
+		boolean result=false;
+			try {
+				Client cl = polAppDaoManager.getClientDao().queryBuilder().where().idEq(clientId).queryForFirst();
+				for (Order ord : polAppDaoManager.getOrderDao().queryForEq("client_id",clientId) ){
+					deleteOrder(ord.getOrderId());
+				}
+				polAppDaoManager.getClientDao().delete(cl);
+				result = true;
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		return result;
+	}
+
+	@Override
+	public boolean deleteProduct(int productCode) {
+		boolean result=false;
+		try {
+			Product pr = polAppDaoManager.getProductDao().queryBuilder().where().eq("code",productCode).queryForFirst();
+			polAppDaoManager.getProductOrderDao().deleteBuilder().where().eq("product_id", pr.getIdProduct());
+			polAppDaoManager.getProductDao().delete(pr);
+			result = true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	return result;
+	}
 	
-	
+
 	
 }

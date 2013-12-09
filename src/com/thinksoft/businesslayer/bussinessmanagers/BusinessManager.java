@@ -97,5 +97,9 @@ public interface BusinessManager {
 
 	public boolean updateProduct(Product product);
 	
-	
+	boolean deleteOrder(int order);
+	boolean deleteClient(int clientId);
+	boolean deleteProduct(int productId);
+
+	List<Map<String, String>> listOfBrands();
 }

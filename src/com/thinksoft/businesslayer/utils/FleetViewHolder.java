@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.thinksoft.businesslayer.bussinessmanagers.BusinessManager;
 import com.thinksoft.polapp.EditarVehiculoActivity;
 import com.thinksoft.polapp.PerfilVehiculo;
 
@@ -41,7 +42,10 @@ public class FleetViewHolder implements MainListSelectable {
 
 
 		@Override
-		public Intent delete(Context context) {
-			return null;
+		public boolean delete(BusinessManager businessLayer) {
+			// TODO Auto-generated method stub
+			return false;
 		}
+
+
 }

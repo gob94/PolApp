@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.thinksoft.businesslayer.bussinessmanagers.BusinessManager;
 import com.thinksoft.polapp.EditarProductosActivity;
 import com.thinksoft.polapp.PerfilProductos;
 
@@ -23,15 +24,15 @@ public class ProductViewHolder implements MainListSelectable{
 			return intent;
 		}
 		@Override
-		public Intent delete(Context context) {
-			return null;
-		}
-		@Override
 		public Intent viewProfile(Context context) {
 			Bundle extras = new Bundle();
 			extras.putString(COLUMN_PRODUCT_CODE, txtCode.getText().toString());
 			Intent intent = new Intent(context, PerfilProductos.class);
 			intent.putExtras(extras);
 			return intent;
+		}
+		@Override
+		public boolean delete(BusinessManager businessLayer) {
+			return businessLayer.deleteProduct(Integer.valueOf(txtCode.getText().toString()));
 		}
 }

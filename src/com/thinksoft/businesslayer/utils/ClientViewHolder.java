@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.thinksoft.businesslayer.bussinessmanagers.BusinessManager;
 import com.thinksoft.polapp.EditarClienteActivity;
 import com.thinksoft.polapp.PerfilClienteActivity;
 
@@ -27,10 +28,7 @@ public class ClientViewHolder  implements MainListSelectable{
 		return intent;
 		
 	}
-	@Override
-	public Intent delete(Context context) {
-		return null;
-	}
+
 	@Override
 	public Intent viewProfile(Context context) {
 		Bundle extras = new Bundle();
@@ -40,4 +38,10 @@ public class ClientViewHolder  implements MainListSelectable{
 		
 		return intent;
 	}
+
+	@Override
+	public boolean delete(BusinessManager businessLayer) {
+		return businessLayer.deleteClient(clientId);
+	}
+
 }

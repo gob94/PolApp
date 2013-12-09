@@ -330,7 +330,15 @@ public class HomeScreenActivity extends OrmLiteBaseActivity<PolAppHelper> {
  					return false;
  				}
  			}); 
-             menu.add(0, view.getId(), 0, "Eliminar");
+             menu.add(0, view.getId(), 0, "Eliminar").setOnMenuItemClickListener(new OnMenuItemClickListener() {
+  				
+  				@Override
+  				public boolean onMenuItemClick(MenuItem item) {
+  					MainListSelectable selectedItem = (MainListSelectable) view.getTag();
+  					boolean result = selectedItem.delete(businessLayer);
+  					return result;
+  				}
+  			}); ;
 
      } 
 	 	    
