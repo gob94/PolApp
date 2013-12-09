@@ -60,9 +60,9 @@ public class AgregarClienteActivity extends OrmLiteBaseActivity<PolAppHelper> {
 				String name = txtName.getText().toString();
 				String[] lastName = txtLastName.getText().toString().split(" ");
 				Intent i= getIntent();
-				Bundle b= i.getExtras();
-				double zoom= b.getDouble("Zoom");
-				LatLng location= i.getParcelableExtra("Location");
+				//Bundle b= i.getExtras();
+				//double zoom= b.getDouble("Zoom");
+				//LatLng location= i.getParcelableExtra("Location");
 				
 				int phoneNumber = 0;
 				try{
@@ -71,7 +71,7 @@ public class AgregarClienteActivity extends OrmLiteBaseActivity<PolAppHelper> {
 					ne.printStackTrace();
 				}
 				
-				registerClient(name, lastName, phoneNumber, zoom, location.latitude, location.longitude);
+				registerClient(name, lastName, phoneNumber, 0, 0, 0);
 				
 			}
 		});
