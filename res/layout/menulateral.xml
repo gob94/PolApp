@@ -99,7 +99,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
                     android:layout_marginLeft="24dp"
-                    android:src="@drawable/carprincipal" />
+                    android:src="@drawable/carlateral32px" />
 
                 <TextView
                     android:id="@+id/lblSlidingVehicle"
