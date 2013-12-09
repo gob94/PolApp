@@ -1,0 +1,128 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".AgregarOrden" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <EditText
+            android:id="@+id/txtSearchOrderAddBills"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="22dp"
+            android:clickable="true"
+            android:layout_toRightOf="@+id/lblSearchOrderAddBills"
+            android:ems="10" >
+
+            <requestFocus />
+        </EditText>
+
+        <TextView
+            android:id="@+id/lblSearchOrderAddBills"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/txtSearchOrderAddBills"
+            android:layout_alignBottom="@+id/txtSearchOrderAddBills"
+            android:layout_alignParentLeft="true"
+            android:text="Buscar Orden"
+            android:textColor="#8A0886"
+            android:textSize="16sp" />
+    
+    </RelativeLayout>
+    
+     <RelativeLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/lblPriceOrderAddBills"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/txtPriceOrderAddBills"
+            android:layout_alignBottom="@+id/txtPriceOrderAddBills"
+            android:layout_alignParentLeft="true"
+            android:text="@string/lblPrice"
+            android:textColor="#8A0886"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/txtPriceOrderAddBills"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:clickable="true"
+            android:ems="10" />
+    
+    </RelativeLayout>
+    
+     <RelativeLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/lblOrderSellerAddBills"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="@string/lblSeller"
+            android:textColor="#8A0886"
+            android:textSize="16sp" />
+
+        <Spinner
+            android:id="@+id/spnOrderSellerAddBills"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="37dp"
+            android:layout_toRightOf="@+id/lblOrderSellerAddBills" />
+    
+    </RelativeLayout>
+    
+     
+    <RelativeLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+        
+        <Button
+            android:id="@+id/btnSaveOrder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:drawableLeft="@drawable/okbuttom"
+            android:fontFamily="roboto-light"
+            android:paddingLeft="10dp"
+            android:text="@string/btnAccept"
+            android:textColor="#91A5AE"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btnCancelOrder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:background="#FFFFFF"
+            android:drawableLeft="@drawable/cancelbuttom"
+            android:fontFamily="roboto-light"
+            android:paddingLeft="20dp"
+            android:text="@string/btnCancel"
+            android:textColor="#91A5AE"
+            android:textSize="16sp" />
+
+        </RelativeLayout>
+
+</LinearLayout>
+
