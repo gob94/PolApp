@@ -102,4 +102,5 @@ public interface BusinessManager {
 	boolean deleteProduct(int productId);
 
 	List<Map<String, String>> listOfBrands();
+	public Address getAddressByClientId(int id);
 }

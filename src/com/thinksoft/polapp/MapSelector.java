@@ -1,107 +1,79 @@
 package com.thinksoft.polapp;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnMapLongClickListener;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.thinksoft.businesslayer.bussinessmanagers.BusinessManager;
 import com.thinksoft.businesslayer.bussinessmanagers.impl.BusinessManagerImpl;
 import com.thinksoft.models.databases.PolAppHelper;
 
-public class MapSelector extends FragmentActivity implements Parcelable{
+public class MapSelector extends FragmentActivity implements Parcelable {
 
-	   GoogleMap googleMap;
-	   Button btnSaveMap;
-	   BusinessManager bussinessLayer;
+	GoogleMap googleMap;
+	Button btnSaveMap;
+	BusinessManager bussinessLayer;
+	public static int CLIENT_INFO = 1;
+	public static Bundle bundle;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_map_selector);
 		PolAppHelper p = new PolAppHelper(getApplicationContext());
-		bussinessLayer= new BusinessManagerImpl(p.getConnectionSource());
+		bussinessLayer = new BusinessManagerImpl(p.getConnectionSource());
 		
-		googleMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map))
-	            .getMap();
+		bundle= new Bundle();
 
-	        if (googleMap!=null){
-	        	 googleMap.setOnMapLongClickListener(new OnMapLongClickListener() {
-	                 public void onMapLongClick(final LatLng point) {
-	                	 drawMarker(point);
-	                	 
-	             	   	Intent intentV = new Intent(getApplicationContext(), AgregarClienteActivity.class);
-	             	   	Bundle b;
-	             	   	intentV.putExtra("Location", (LatLng)point);
-	             	   	intentV.putExtra("Zoom", googleMap.getCameraPosition().zoom);
-	             	   	//intentV.putExtra("latitude", point.latitude);
-	             	   	//intentV.putExtra("longititude", point.longitude);
-	             	   	//intentV.putExtra("zoom", googleMap.getCameraPosition().zoom);
-	    	            startActivity(intentV);
-	                    /** 	
-							Address ad= new AddressImpl();
-							ClientImpl cl= new ClientImpl();
-							Intent i= getIntent();
-							Bundle b= i.getExtras();
-							String name= b.get("name").toString();
-							String lastName1= b.getString("lastName1").toString();
-							String lastName2= b.getString("lastName2").toString();
-							int phone= Integer.parseInt(b.getString("phone"));
-							
-							cl.setName(name);
-							cl.setFirstLastName(lastName1);
-							cl.setSecondLastName(lastName2);
-							cl.setAccountState(false);
-															
-							ad.setActive(true);
-							ad.setClient(cl);
-							
-							ad.setLatitude(point.latitude);
-							ad.setLonguitude(point.longitude);
-							ad.setZoom(googleMap.getCameraPosition().zoom);
-							ad.setPhoneNumber(phone);
-	
-							result= bussinessLayer.addAddress(ad);
+		googleMap = ((SupportMapFragment) getSupportFragmentManager()
+				.findFragmentById(R.id.map)).getMap();
 
-							if(result == true){
-							Toast.makeText(getApplicationContext(), "Dirección agregada con éxito", Toast.LENGTH_LONG).show();
-							}else{
-								Toast.makeText(getApplicationContext(), "Por favor verifique sus datos", Toast.LENGTH_LONG).show();
+		if (googleMap != null) {
+			googleMap.setOnMapLongClickListener(new OnMapLongClickListener() {
+				public void onMapLongClick(final LatLng point) {
+					//drawMarker(point);
+					
+					if(point!= null){
+					Log.i("LONGITUDE", String.valueOf(point.longitude));
+					Log.i("LATITUDE", String.valueOf(point.latitude));
+					Log.i("ZOOM", String.valueOf(googleMap.getCameraPosition().zoom));
+					
+					bundle.putDouble("LATITUDE", point.latitude);
+					bundle.putDouble("LONGITUDE", point.longitude);			
+					bundle.putDouble("ZOOM", googleMap.getCameraPosition().zoom);
 
-							}**/
-	                 }
-	             });
-	        	 
-	        	
-	        }
+					getIntent().putExtras(bundle);
+					setResult(Activity.RESULT_OK, getIntent());
+					finish();
+					}else{
+						Toast.makeText(getApplicationContext(), "Estas mamando", Toast.LENGTH_LONG).show();
+					}
+				}
+			});
+
+		}
 
 	}
-	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.map_selector, menu);
 		return true;
 	}
-	
-	 private void drawMarker(LatLng point){
-	        // Creating an instance of MarkerOptions
-	        MarkerOptions markerOptions = new MarkerOptions();
-	 
-	        // Setting latitude and longitude for the marker
-	        markerOptions.position(point);
-	 
-	        // Adding marker on the Google Map
-	        googleMap.addMarker(markerOptions);
-	    }
+
+
 
 	@Override
 	public int describeContents() {
@@ -112,8 +84,20 @@ public class MapSelector extends FragmentActivity implements Parcelable{
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if (requestCode == CLIENT_INFO) {
+			if (resultCode == Activity.RESULT_OK) {
+				Bundle extras = data.getExtras();
+				if (extras != null) {
+					bundle = extras;
+				}
+			}
+		}
+	}
 
 }

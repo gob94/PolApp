@@ -162,6 +162,10 @@
             android:name="com.thinksoft.polapp.AgregarOrden"
             android:label="@string/title_activity_agregar_orden" >
         </activity>
+        <activity
+            android:name="com.thinksoft.polapp.MapView"
+            android:label="@string/title_activity_map_view" >
+        </activity>
     </application>
 
 </manifest>

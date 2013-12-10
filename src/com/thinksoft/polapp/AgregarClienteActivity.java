@@ -23,6 +23,7 @@ import com.thinksoft.businesslayer.bussinessmanagers.impl.BusinessManagerImpl;
 import com.thinksoft.models.databases.PolAppHelper;
 import com.thinksoft.models.dtos.Address;
 import com.thinksoft.models.dtos.Client;
+import com.thinksoft.models.dtos.impl.AddressImpl;
 import com.thinksoft.models.dtos.impl.ClientImpl;
 
 public class AgregarClienteActivity extends OrmLiteBaseActivity<PolAppHelper> {
@@ -40,6 +41,12 @@ public class AgregarClienteActivity extends OrmLiteBaseActivity<PolAppHelper> {
 	 public static String MESSAGE_WRONG_PHONE_NUMBER ="Numero de telefono vacio o no es correcto, digite al menos "+ MINIMUM_PHONENUMBER_DIGITS +" caracteres";
 	 public static String MESSAGE_GENERIC_ERROR ="Hay error con la aplicacion, reinicie la aplicacion";
 	 public static boolean NO_DEBTS =false;
+	 public static int CLIENT_INFO= 120;
+	 public Bundle bundleMap= null;
+	 public double zoom;
+	 public double longi;
+	 public double lat;
+	 
 	 
 	 public static String MESSAGE_SUCCESSFUL ="Cliente Agregado exitosamente";
 	 
@@ -60,10 +67,6 @@ public class AgregarClienteActivity extends OrmLiteBaseActivity<PolAppHelper> {
 			public void onClick(View view) {
 				String name = txtName.getText().toString();
 				String[] lastName = txtLastName.getText().toString().split(" ");
-				//Intent i= getIntent();
-				//Bundle b= i.getExtras();
-				//double zoom= b.getDouble("Zoom");
-				//LatLng location= i.getParcelableExtra("Location");
 				
 				int phoneNumber = 0;
 				try{
@@ -72,8 +75,8 @@ public class AgregarClienteActivity extends OrmLiteBaseActivity<PolAppHelper> {
 					ne.printStackTrace();
 				}
 				
-				registerClient(name, lastName, phoneNumber, 0, 0, 0);
-				
+				registerClient(name, lastName, phoneNumber, zoom,  lat, longi);
+
 			}
 		});
 	    
@@ -82,7 +85,7 @@ public class AgregarClienteActivity extends OrmLiteBaseActivity<PolAppHelper> {
 			@Override
 			public void onClick(View v) {
 			   	Intent intentV = new Intent(getApplicationContext(), MapSelector.class);
-	            startActivity(intentV);
+	            startActivityForResult(intentV, CLIENT_INFO);
 			}
 		});
 	    
@@ -94,7 +97,7 @@ public class AgregarClienteActivity extends OrmLiteBaseActivity<PolAppHelper> {
 		return true;
 	}
 	
-	public void registerClient(String name, String[] lastName, long phoneNumber, double zoom, double latitude, double longitude){
+	public void registerClient(String name, String[] lastName, int phoneNumber, double zoom, double latitude, double longitude){
 		Toast msg = null;
 		String result = businessLayer.verifyClientInformation(name,lastName,phoneNumber);
 		if (EMPTY_STRING.equals(result)) {
@@ -109,9 +112,9 @@ public class AgregarClienteActivity extends OrmLiteBaseActivity<PolAppHelper> {
 				}
 				
 			if(businessLayer.addClient(client)){
-				//add= new AddressImpl(zoom, latitude, "", longitude, (ClientImpl)client, true, phoneNumber);
+				add= new AddressImpl(zoom, latitude, "", longitude, (ClientImpl)client, true, phoneNumber);
 				Intent intent = new Intent(AgregarClienteActivity.this, HomeScreenActivity.class);
-				//businessLayer.addAddress(add);
+				businessLayer.addAddress(add);
 				startActivity(intent);
 				msg = Toast.makeText(AgregarClienteActivity.this,MESSAGE_SUCCESSFUL, MESSAGE_DURATION);
 			}else{
@@ -145,9 +148,25 @@ public class AgregarClienteActivity extends OrmLiteBaseActivity<PolAppHelper> {
 		}
 		return result;
 	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		super.onActivityResult(requestCode, resultCode, data);
+		if(requestCode == CLIENT_INFO){
+			if(resultCode == RESULT_OK){
+				Bundle bundle = data.getExtras();
+				if(bundle!=null){
+					
+					zoom= bundle.getDouble("ZOOM");
+					lat= bundle.getDouble("LATITUDE");
+					longi= bundle.getDouble("LONGITUDE");
+			}
+		}
+	}
  
 }
-
+}
 
 /*if (clientId!=0) {
 client = businessLayer.getClientById(clientId);
